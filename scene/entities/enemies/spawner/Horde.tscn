@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/entities/enemies/spawner/Horde.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 650.077
+
+[node name="Horde" type="Area2D"]
+script = ExtResource( 1 )
+collider = NodePath("Collider")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -1,0 +1,297 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Task",
+"class": "AlwaysFail",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/AlwaysFail.gd"
+}, {
+"base": "Task",
+"class": "AlwaysSucceed",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/AlwaysSucceed.gd"
+}, {
+"base": "Resource",
+"class": "Base_stat",
+"language": "GDScript",
+"path": "res://scene/ui/items/base_stat.gd"
+}, {
+"base": "Item",
+"class": "ConsumableItem",
+"language": "GDScript",
+"path": "res://scene/ui/items/ConsumableItem.gd"
+}, {
+"base": "Inventory",
+"class": "Craft_inventory",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Craft_inventory.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/Enemy.gd"
+}, {
+"base": "Item",
+"class": "EquipmentItem",
+"language": "GDScript",
+"path": "res://scene/ui/items/EquipmentItem.gd"
+}, {
+"base": "Slot",
+"class": "Equipment_slot",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Equipment_slot.gd"
+}, {
+"base": "NinePatchRect",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Inventory.gd"
+}, {
+"base": "Task",
+"class": "Invert",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/Invert.gd"
+}, {
+"base": "TextureRect",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scene/ui/items/Item.gd"
+}, {
+"base": "Task",
+"class": "Leaf",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Leaf.gd"
+}, {
+"base": "Task",
+"class": "Limit",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/Limit.gd"
+}, {
+"base": "Slot",
+"class": "Loot_slot",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Loot_slot.gd"
+}, {
+"base": "Task",
+"class": "Parallel",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Composites/Parallel.gd"
+}, {
+"base": "Node2D",
+"class": "Placable",
+"language": "GDScript",
+"path": "res://scene/entities/player/placable/Placable.gd"
+}, {
+"base": "Item",
+"class": "PlacableItem",
+"language": "GDScript",
+"path": "res://scene/ui/items/PlacableItem.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://scene/entities/player/Player.gd"
+}, {
+"base": "Task",
+"class": "RandomSelector",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Composites/RandomSelector.gd"
+}, {
+"base": "Task",
+"class": "RandomSequence",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Composites/RandomSequence.gd"
+}, {
+"base": "Task",
+"class": "Repeat",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/Repeat.gd"
+}, {
+"base": "Item",
+"class": "ResourceItem",
+"language": "GDScript",
+"path": "res://scene/ui/items/ResourceItem.gd"
+}, {
+"base": "Task",
+"class": "Selector",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Composites/Selector.gd"
+}, {
+"base": "Task",
+"class": "Sequence",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Composites/Sequence.gd"
+}, {
+"base": "NinePatchRect",
+"class": "Slot",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Slot.gd"
+}, {
+"base": "Resource",
+"class": "Stat_range",
+"language": "GDScript",
+"path": "res://scene/ui/items/stat_range.gd"
+}, {
+"base": "Node",
+"class": "Task",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Task.gd"
+}, {
+"base": "Task",
+"class": "UntilFail",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/UntilFail.gd"
+}, {
+"base": "Task",
+"class": "UntilSucces",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/behaviorTree/Decorators/UntilSuccess.gd"
+}, {
+"base": "Control",
+"class": "Vehicle_controller",
+"language": "GDScript",
+"path": "res://scene/entities/vehicles/Controller.gd"
+}, {
+"base": "NinePatchRect",
+"class": "Window",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Panel.gd"
+}, {
+"base": "Leaf",
+"class": "generatePath",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/generatePath.gd"
+}, {
+"base": "Leaf",
+"class": "isChasing",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/isChasing.gd"
+}, {
+"base": "Leaf",
+"class": "isOpponentInRange",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/isOpponentInRange.gd"
+}, {
+"base": "Leaf",
+"class": "isOpponentNeerby",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/isOpponentNeerby.gd"
+}, {
+"base": "Leaf",
+"class": "isOpponentOnView",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/isOpponentOnView.gd"
+}, {
+"base": "Leaf",
+"class": "isVisible",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/isVisible.gd"
+}, {
+"base": "Leaf",
+"class": "navigatePath",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/navigatePath.gd"
+} ]
+_global_script_class_icons={
+"AlwaysFail": "res://scene/entities/enemies/ai/behaviorTree/icons/always-fail.png",
+"AlwaysSucceed": "res://scene/entities/enemies/ai/behaviorTree/icons/always-succeed.png",
+"Base_stat": "",
+"ConsumableItem": "",
+"Craft_inventory": "",
+"Enemy": "",
+"EquipmentItem": "",
+"Equipment_slot": "",
+"Inventory": "",
+"Invert": "res://scene/entities/enemies/ai/behaviorTree/icons/invert.png",
+"Item": "",
+"Leaf": "",
+"Limit": "res://scene/entities/enemies/ai/behaviorTree/icons/limit.png",
+"Loot_slot": "",
+"Parallel": "res://scene/entities/enemies/ai/behaviorTree/icons/parallel.png",
+"Placable": "",
+"PlacableItem": "",
+"Player": "",
+"RandomSelector": "res://scene/entities/enemies/ai/behaviorTree/icons/random-selector.png",
+"RandomSequence": "res://scene/entities/enemies/ai/behaviorTree/icons/random-sequence.png",
+"Repeat": "res://scene/entities/enemies/ai/behaviorTree/icons/repeat.png",
+"ResourceItem": "",
+"Selector": "res://scene/entities/enemies/ai/behaviorTree/icons/selector.png",
+"Sequence": "res://scene/entities/enemies/ai/behaviorTree/icons/sequence.png",
+"Slot": "",
+"Stat_range": "",
+"Task": "",
+"UntilFail": "res://scene/entities/enemies/ai/behaviorTree/icons/until-fail.png",
+"UntilSucces": "res://scene/entities/enemies/ai/behaviorTree/icons/until-success.png",
+"Vehicle_controller": "",
+"Window": "",
+"generatePath": "",
+"isChasing": "",
+"isOpponentInRange": "",
+"isOpponentNeerby": "",
+"isOpponentOnView": "",
+"isVisible": "",
+"navigatePath": ""
+}
+
+[application]
+
+config/name="I Will Survive(zombie apocalypse)"
+run/main_scene="res://scene/game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Utils="*res://autoloads/utils.gd"
+Constants="*res://autoloads/Constants.gd"
+Globals="*res://autoloads/Globals.gd"
+
+[input]
+
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+2d/default_gravity=0
+2d/default_gravity_vector=Vector2( 0, 0 )
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,111 @@
+[
+  {
+    "static_data":{
+      "id": "crystal",
+      "name": "Crystal",
+      "type": "consumable",
+      "stock_size": 100,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "crafting table",
+      "name": "Crafting Table",
+      "type": "placable",
+      "stock_size": 1,
+      "placable_type": "table",
+      "equipment_type": "craft",
+      "size": {
+        "x": 180,
+        "y": 88
+      },
+      "inventory": {
+        "name": "Craftables",
+        "size": 42,
+        "items": [
+          { "name": "crafting table", "quantity": 1}
+        ]
+      }
+    }
+  },
+  {
+    "static_data":{
+      "id": "machette",
+      "name": "Machette",
+      "type": "weapon",
+      "weapon_type": "melle",
+      "stock_size": 1,
+      "equipment_type": "weapon"
+    }
+  },
+  {
+    "static_data":{
+      "id": "AMT AutoMag III",
+      "name": "AMT AutoMag III",
+      "stock_size": 1,
+      "type": "weapon",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "pistol"
+    },
+    "dynamic_data":{
+      "status": {
+        "fire_speed": 15,
+        "fire_accuracy": {
+          "x":10,
+          "y":20
+        },
+        "fire_range": 400,
+        "fire_dmg": 40,
+        "fire_sound": 250
+      }
+    }
+  },
+  {
+    "static_data":{
+      "id": "m13",
+      "name": "m13",
+      "stock_size": 1,
+      "type": "weapon",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "riffle"
+    },
+    "dynamic_data":{
+      "status": {
+        "fire_speed": 15,
+        "fire_accuracy": {
+          "x":10,
+          "y":20
+        },
+        "fire_range": 400,
+        "fire_dmg": 40,
+        "fire_sound": 250
+      }
+    }
+  },
+  {
+    "static_data":{
+      "id": "m14",
+      "name": "m14",
+      "stock_size": 1,
+      "type": "weapon",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "riffle"
+    },
+    "dynamic_data":{
+      "status": {
+        "fire_speed": 15,
+        "fire_accuracy": {
+          "x":10,
+          "y":20
+        },
+        "fire_range": 400,
+        "fire_dmg": 40,
+        "fire_sound": 250
+      }
+    }
+  }
+]

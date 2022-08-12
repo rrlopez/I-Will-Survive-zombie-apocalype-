@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/maps/mapManager/MapManager.tscn" type="PackedScene" id=1]
+
+[node name="GameState" type="Node2D"]
+
+[node name="MapManager" parent="." instance=ExtResource( 1 )]

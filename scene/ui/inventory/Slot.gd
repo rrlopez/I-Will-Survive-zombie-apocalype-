@@ -1,0 +1,42 @@
+class_name Slot extends NinePatchRect
+
+signal item_changed
+
+export(NodePath) onready var item_container  = get_node(item_container) as Control
+
+var item
+export(String) var type 
+
+func _ready():
+	if item:
+		item_container.add_child(item)
+
+
+func set_item(new_item):
+	item = new_item
+
+
+func pick_item():
+	item_container.remove_child(item)
+	item = null
+
+
+func put_item(new_item):
+	item = new_item
+	yield(get_tree(),"idle_frame")
+	item_container.add_child(new_item)
+	emitItemChanged()
+	
+
+func emitItemChanged():
+	emit_signal("item_changed", item)
+
+func use_item():
+	if(item): 
+		var new_item = item.use()
+		pick_item()
+		if(new_item): put_item(new_item)
+		
+func is_full():
+	if item and item.data.quantity >= item.data.static.stock_size: return true
+	return false

@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/entities/objects/table/Table.gd" type="Script" id=1]
+[ext_resource path="res://assets/gui/joystick/SmallHandleFilled.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Table" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 1 )
+sprite = NodePath("Sprite")
+collider = NodePath("Collider")
+areaCollider = NodePath("Area/Collider")
+openBtn = NodePath("Controller/OpenBtn")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="TextureRect" parent="."]
+mouse_filter = 2
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
+shape = SubResource( 2 )
+
+[node name="Controller" type="CanvasLayer" parent="."]
+
+[node name="OpenBtn" type="TouchScreenButton" parent="Controller"]
+visible = false
+position = Vector2( 678, 205 )
+scale = Vector2( 0.86, 0.73 )
+normal = ExtResource( 2 )
+
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="." method="_on_Area_body_exited"]
+[connection signal="pressed" from="Controller/OpenBtn" to="." method="_on_OpenBtn_pressed"]

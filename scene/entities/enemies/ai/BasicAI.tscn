@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/entities/enemies/ai/behaviorTree/Composites/Sequence.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/entities/enemies/ai/leaves/navigatePath.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/entities/enemies/ai/leaves/generatePath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/entities/enemies/ai/BasicAI.gd" type="Script" id=4]
+
+[node name="BasicAI" type="Node"]
+script = ExtResource( 4 )
+root = NodePath("move_to_opponent")
+
+[node name="move_to_opponent" parent="." instance=ExtResource( 1 )]
+
+[node name="generatePath" parent="move_to_opponent" instance=ExtResource( 3 )]
+
+[node name="navigatePath" parent="move_to_opponent" instance=ExtResource( 2 )]

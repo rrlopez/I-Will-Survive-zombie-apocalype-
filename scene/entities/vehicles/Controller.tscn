@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/entities/vehicles/Controller.gd" type="Script" id=1]
+[ext_resource path="res://scene/hud/sprites/VirtualJoystickPack/SmallHandleFilled.png" type="Texture" id=2]
+
+[node name="Control" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AccelerateBtn" type="TouchScreenButton" parent="."]
+position = Vector2( 155, 476 )
+normal = ExtResource( 2 )
+
+[node name="BreakBtn" type="TouchScreenButton" parent="."]
+position = Vector2( 27, 358 )
+normal = ExtResource( 2 )
+
+[node name="disembarkBtn" type="TouchScreenButton" parent="."]
+position = Vector2( 18, 479 )
+normal = ExtResource( 2 )
+
+[connection signal="gui_input" from="." to="." method="_on_Control_gui_input"]
+[connection signal="pressed" from="AccelerateBtn" to="." method="_on_AccelerateBtn_pressed"]
+[connection signal="released" from="AccelerateBtn" to="." method="_on_AccelerateBtn_released"]
+[connection signal="pressed" from="BreakBtn" to="." method="_on_BreakBtn_pressed"]
+[connection signal="released" from="BreakBtn" to="." method="_on_BreakBtn_released"]
+[connection signal="pressed" from="disembarkBtn" to="." method="_on_disembarkBtn_pressed"]

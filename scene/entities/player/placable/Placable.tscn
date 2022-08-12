@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/entities/player/placable/Placable.gd" type="Script" id=2]
+[ext_resource path="res://assets/gui/joystick/SmallHandleFilled.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Placable" type="Area2D"]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource( 2 )
+controller = NodePath("Controller")
+collider = NodePath("Collider")
+sprite = NodePath("Sprite")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="TextureRect" parent="."]
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controller" type="CanvasLayer" parent="."]
+
+[node name="CancelBtn" type="TouchScreenButton" parent="Controller"]
+visible = false
+position = Vector2( 768, 169 )
+scale = Vector2( 0.52, 0.47 )
+normal = ExtResource( 3 )
+
+[node name="PlaceBtn" type="TouchScreenButton" parent="Controller"]
+visible = false
+position = Vector2( 678, 205 )
+scale = Vector2( 0.86, 0.73 )
+normal = ExtResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_Placable_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_Placable_body_exited"]
+[connection signal="pressed" from="Controller/CancelBtn" to="." method="_on_CancelBtn_pressed"]
+[connection signal="pressed" from="Controller/PlaceBtn" to="." method="_on_PlaceBtn_pressed"]

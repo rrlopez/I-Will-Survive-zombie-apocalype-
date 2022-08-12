@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scene/entities/enemies/spawner/Ambush.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 300.0
+
+[node name="Ambush" type="Node2D"]
+script = ExtResource( 1 )
+collider = NodePath("Trigger/Collider")
+enemies = NodePath("Enemies")
+
+[node name="Trigger" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Collider" type="CollisionShape2D" parent="Trigger"]
+shape = SubResource( 1 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Trigger" to="." method="_on_Trigger_body_entered"]

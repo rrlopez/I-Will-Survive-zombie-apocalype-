@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/entities/player/sprites/VirtualJoystickPack/Joystick.png" type="Texture" id=1]
+[ext_resource path="res://scene/entities/player/sprites/VirtualJoystickPack/SmallHandleFilled.png" type="Texture" id=2]
+[ext_resource path="res://scene/entities/player/controller/Controller.gd" type="Script" id=3]
+
+[node name="Control" type="Control"]
+margin_right = 1023.0
+margin_bottom = 596.0
+mouse_filter = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+joystick_texture = NodePath("Joystick")
+joystick_btn = NodePath("Joystick/Btn")
+
+[node name="Joystick" type="Node2D" parent="."]
+visible = false
+position = Vector2( 169, 482 )
+
+[node name="Knob" type="TextureRect" parent="Joystick"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -74.0
+margin_top = -75.0
+margin_right = 226.0
+margin_bottom = 225.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btn" type="Sprite" parent="Joystick"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[connection signal="gui_input" from="." to="." method="_on_Control_gui_input"]
+[connection signal="tree_exited" from="." to="." method="_on_Control_tree_exited"]
