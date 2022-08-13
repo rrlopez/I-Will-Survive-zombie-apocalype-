@@ -6,8 +6,8 @@ class_name Selector, "res://scene/entities/enemies/ai/behaviorTree/icons/selecto
 
 var current_child = 0
 
-func run():
-	get_child(current_child).run()
+func run(delta):
+	get_child(current_child).run(delta)
 	running()
 
 func child_success():

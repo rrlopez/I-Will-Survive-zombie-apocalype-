@@ -198,6 +198,16 @@ _global_script_classes=[ {
 "class": "navigatePath",
 "language": "GDScript",
 "path": "res://scene/entities/enemies/ai/leaves/navigatePath.gd"
+}, {
+"base": "Leaf",
+"class": "running",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/running.gd"
+}, {
+"base": "Leaf",
+"class": "success",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/ai/leaves/success.gd"
 } ]
 _global_script_class_icons={
 "AlwaysFail": "res://scene/entities/enemies/ai/behaviorTree/icons/always-fail.png",
@@ -237,7 +247,9 @@ _global_script_class_icons={
 "isOpponentNeerby": "",
 "isOpponentOnView": "",
 "isVisible": "",
-"navigatePath": ""
+"navigatePath": "",
+"running": "",
+"success": ""
 }
 
 [application]

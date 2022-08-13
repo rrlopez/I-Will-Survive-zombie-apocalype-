@@ -10,10 +10,10 @@ export(int) var LIMIT = 5
 var count = 0
 var repeating = false
 
-func run():
+func run(delta):
 	if not repeating:
 		repeating = true
-		get_child(0).run()
+		get_child(0).run(delta)
 	running()
 
 func child_success():

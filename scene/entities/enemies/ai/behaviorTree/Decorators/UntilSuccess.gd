@@ -4,8 +4,8 @@ extends Task
 
 class_name UntilSucces, "res://scene/entities/enemies/ai/behaviorTree/icons/until-success.png"
 
-func run():
-	get_child(0).run()
+func run(delta):
+	get_child(0).run(delta)
 	running()
 
 func child_success():

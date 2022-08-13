@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/maps/Navigation.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/objects/tree/tree.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://scene/entities/objects/chest/Chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/entities/vehicles/Vehicle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scene/entities/houses/House.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scene/entities/enemies/spawner/Horde.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scene/entities/enemies/spawner/Ambush.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -253,9 +252,6 @@ position = Vector2( -96, -370 )
 
 [node name="Vehicle" parent="." instance=ExtResource( 6 )]
 position = Vector2( 177, 467 )
-
-[node name="Horde" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1432, -905 )
 
 [node name="Ambush" parent="." instance=ExtResource( 9 )]
 position = Vector2( -661, 819 )

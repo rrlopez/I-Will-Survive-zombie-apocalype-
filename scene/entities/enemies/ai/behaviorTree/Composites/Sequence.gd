@@ -6,8 +6,8 @@ class_name Sequence, "res://scene/entities/enemies/ai/behaviorTree/icons/sequenc
 
 var current_child = 0
 
-func run():
-	get_child(current_child).run()
+func run(delta):
+	get_child(current_child).run(delta)
 	running()
 
 func child_success():

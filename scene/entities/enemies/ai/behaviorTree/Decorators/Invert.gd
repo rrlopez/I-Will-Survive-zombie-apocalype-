@@ -4,11 +4,11 @@ extends Task
 
 class_name Invert, "res://scene/entities/enemies/ai/behaviorTree/icons/invert.png"
 
-func run():
-	get_child(0).run()
+func run(delta):
+	get_child(0).run(delta)
 	running()
 
-func child_uccess():
+func child_success():
 	fail()
 
 func child_fail():

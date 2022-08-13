@@ -10,9 +10,9 @@ export(bool) var policy = SEQUENCE
 
 var num_results = 0
 
-func run():
+func run(delta):
 	for child in get_children():
-		child.run()
+		child.run(delta)
 	running()
 
 func child_success():

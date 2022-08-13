@@ -8,6 +8,3 @@ var agent = null
 # Non-final non-abstact methods
 func start(_agent):
 	agent = _agent
-
-func run():
-	pass

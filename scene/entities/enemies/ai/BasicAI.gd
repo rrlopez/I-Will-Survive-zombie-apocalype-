@@ -7,5 +7,5 @@ func _ready():
 	root.start(agent)
 
 
-func _process(_delta):
-	root.run()
+func _physics_process(delta):
+	root.run(delta)

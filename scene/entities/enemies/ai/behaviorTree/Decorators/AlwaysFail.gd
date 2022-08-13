@@ -2,9 +2,9 @@ extends Task
 
 class_name AlwaysFail, "res://scene/entities/enemies/ai/behaviorTree/icons/always-fail.png"
 
-func run():
+func run(delta):
 	if get_child_count() > 0:
-		get_child(0).run()
+		get_child(0).run(delta)
 	fail()
 
 # Ignore child success

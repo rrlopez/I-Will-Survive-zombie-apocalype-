@@ -12,8 +12,8 @@ func set_sequence():
 	sequence = range(get_child_count())
 	sequence.shuffle()
 
-func run():
-	get_child(sequence[idx]).run()
+func run(delta):
+	get_child(sequence[idx]).run(delta)
 	running()
 
 func child_success():

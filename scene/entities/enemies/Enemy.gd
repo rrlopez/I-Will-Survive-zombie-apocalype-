@@ -34,10 +34,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	if(data.states.isChasing):
-		if(path.size()>0): look_at(path[0])
-		if(!data.states.isAttacking):
-			move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
+	if(path.size()>1): 
+		look_at(path[1])
+		move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
 	
 	
 func setEnableVission(enabled = self.visible):
@@ -56,67 +55,6 @@ func aggressive():
 	_on_View_body_entered(Globals.player)
 	$Sense/Collider.disabled = true
 
-#---------- BEHAVIOR TREE FUNCTIONS --------------#
-
-func task_isVisible(task):	
-	if(self.visible): task.succeed()
-	else: task.failed()
-
-#idle behaviors
-func task_isChasing(task):
-	if(data.states.isChasing): task.succeed()
-	else:
-		if(!data.states.isIdle): _on_View_body_exited(null)
-		task.failed()
-	
-	
-func task_checkOnView(task):
-	for ray in $Vision.get_children():
-		if(ray.is_colliding() and ray.get_collider().name == "Player"): 
-			_on_View_body_entered(ray.get_collider())
-			break
-	if(data.states.isChasing): task.succeed()
-	else: task.failed()
-
-
-#seek behaviors
-func task_generatePath(task):
-	if(opponent):
-		path = Globals.currentNavigation.get_simple_path(global_position, opponent.global_position, true)
-		task.succeed()
-	else:
-		task.failed()
-	
-func task_navigate(task):
-	if path.size() > 0:
-		velocity = global_position.direction_to(path[1])
-				
-		if global_position == path[0]:
-			path.pop_front()
-			task.succeed()
-		else: task.failed()
-	else: task.failed()
-
-	
-func task_isNeerby(task):
-	if(global_position.distance_to(opponent.global_position)<data.stats.loose_range): task.succeed()
-	else: 
-		if(data.states.isChasing): _on_View_body_exited(null)
-		task.failed()
-	
-
-#attack behaviors
-func task_isInRange(task):
-	if(opponent and global_position.distance_to(opponent.global_position)<data.stats.attack_range+30):
-		data.states.isAttacking = true
-		$Body/Lower/Animation.stop()
-		task.succeed()
-	else: 
-		data.states.isAttacking = false
-		task.failed()
-	
-
-
 
 #---------- CONNECT FUNCTIONS --------------#
 
@@ -133,6 +71,8 @@ func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
 	$Body/Lower/Animation.stop()
 	setEnableVission()
+	path = []
+	opponent = null
 	data.states.isChasing = false
 	data.states.isIdle = true
 

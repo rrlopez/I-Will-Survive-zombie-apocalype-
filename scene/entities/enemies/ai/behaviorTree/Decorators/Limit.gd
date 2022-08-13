@@ -9,8 +9,8 @@ export(int) var LIMIT = 4
 
 var count = 0
 
-func run():
-	get_child(0).run()
+func run(delta):
+	get_child(0).run(delta)
 	running()
 
 func child_success():

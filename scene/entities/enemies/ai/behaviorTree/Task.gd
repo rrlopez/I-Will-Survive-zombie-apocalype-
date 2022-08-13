@@ -40,7 +40,7 @@ func cancel():
 			child.cancel()
 
 # Abstract methods
-func run():
+func run(_delta):
 	# Process the task and call running(), success(), or fail()
 	pass
 
