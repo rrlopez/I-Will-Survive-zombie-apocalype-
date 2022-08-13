@@ -127,9 +127,7 @@ func spawnSound():
 func setWeapon(item):
 	for child in weapon_container.get_children(): child.queue_free()
 	if(item):
-		var weapon = Constants.weapons[item.data.static.animation_type].instance()
-		weapon.data = item.data
-		weapon_container.add_child(weapon)
+		weapon_container.add_child(Factory.weapons.create(item.data.static.animation_type, item.data))
 		$Body/Upper/Animation.play(item.data.static.animation_type)
 	else:
 		$Body/Upper/Animation.play("run")

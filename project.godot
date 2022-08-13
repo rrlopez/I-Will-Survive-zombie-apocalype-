@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/entities/enemies/Enemy.gd"
 }, {
+"base": "Node",
+"class": "EnemyFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/enemyFactory.gd"
+}, {
 "base": "Item",
 "class": "EquipmentItem",
 "language": "GDScript",
@@ -64,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/ui/items/Item.gd"
 }, {
+"base": "Node",
+"class": "ItemFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/itemFactory.gd"
+}, {
 "base": "Task",
 "class": "Leaf",
 "language": "GDScript",
@@ -88,6 +98,11 @@ _global_script_classes=[ {
 "class": "Placable",
 "language": "GDScript",
 "path": "res://scene/entities/player/placable/Placable.gd"
+}, {
+"base": "Node",
+"class": "PlacableFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/placableFactory.gd"
 }, {
 "base": "Item",
 "class": "PlacableItem",
@@ -159,6 +174,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/entities/vehicles/Controller.gd"
 }, {
+"base": "Node",
+"class": "WeaponFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/weaponFactory.gd"
+}, {
 "base": "NinePatchRect",
 "class": "Window",
 "language": "GDScript",
@@ -226,16 +246,19 @@ _global_script_class_icons={
 "ConsumableItem": "",
 "Craft_inventory": "",
 "Enemy": "",
+"EnemyFactory": "",
 "EquipmentItem": "",
 "Equipment_slot": "",
 "Inventory": "",
 "Invert": "res://ai/behaviorTree/icons/invert.png",
 "Item": "",
+"ItemFactory": "",
 "Leaf": "",
 "Limit": "res://ai/behaviorTree/icons/limit.png",
 "Loot_slot": "",
 "Parallel": "res://ai/behaviorTree/icons/parallel.png",
 "Placable": "",
+"PlacableFactory": "",
 "PlacableItem": "",
 "Player": "",
 "RandomSelector": "res://ai/behaviorTree/icons/random-selector.png",
@@ -250,6 +273,7 @@ _global_script_class_icons={
 "UntilFail": "res://ai/behaviorTree/icons/until-fail.png",
 "UntilSucces": "res://ai/behaviorTree/icons/until-success.png",
 "Vehicle_controller": "",
+"WeaponFactory": "",
 "Window": "",
 "findOpponent": "",
 "generatePath": "",
@@ -275,6 +299,7 @@ config/icon="res://icon.png"
 Utils="*res://autoloads/utils.gd"
 Constants="*res://autoloads/Constants.gd"
 Globals="*res://autoloads/Globals.gd"
+Factory="*res://autoloads/factory/Factory.gd"
 
 [input]
 

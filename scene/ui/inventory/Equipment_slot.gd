@@ -4,7 +4,7 @@ class_name Equipment_slot extends Slot
 export(NodePath) onready var placeholder  = get_node(placeholder) as TextureRect
 
 func _ready():
-	placeholder.texture = Constants.placeholders[type]
+	placeholder.texture = Factory.items.placeholders[type]
 
 
 func set_item(new_item):

@@ -34,8 +34,7 @@ func createInventory(data, sceneType='inventory'):
 	return inventory
 
 func createItem(inventory, data):
-	var itemdata = Constants.get_item(data.name)
-	var item = Constants.itemClasses[itemdata.static.type].new(itemdata)
+	var item = Factory.items.create(data.name)
 	data.quantity = item.add_item_quantity(data.quantity)
 	inventory.add_item(item)
 	if data.quantity > 0: createItem(inventory, data)

@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var currentMapScene = preload("res://scene/maps/world.tscn")
-onready	var enemyScene = load("res://scene/entities/enemies/Enemy.tscn")
 onready	var soundScene = load("res://scene/entities/objects/sound/Sound.tscn")
 onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
 
@@ -16,33 +15,6 @@ func _ready():
 	Globals.currentNavigation = Globals.currentMap.get_node("Navigation")
 	add_child(Globals.currentMap)
 
-
-func spawnEnemies(size, count):
-	var enemies = []
-	var rand = RandomNumberGenerator.new()
-	
-	for _i in range(0, count):
-		rand.randomize()
-		var x = rand.randf_range(-size.x, size.x)
-		rand.randomize()
-		var y = rand.randf_range(-size.y, size.y)
-		rand.randomize()
-		var _rotation = rand.randf_range(0, 360)
-		
-		enemies.append(spawnEnemy(x, y, _rotation))
-	
-	return enemies
-
-
-func spawnEnemy(x, y, rotation):
-	var enemy = enemyScene.instance()
-	enemy.data = Constants.get_enemies('normal')
-	enemy.position.x = x
-	enemy.position.y = y
-	enemy.rotation = rotation
-
-	return enemy
-	
 	
 func spawnSound(origin, scale = 100):
 	var sound = soundScene.instance()
@@ -62,7 +34,7 @@ func spawnDropItems(items, position):
 func createItem(item, position):
 	var dropItem = dropItemScene.instance()
 	dropItem.global_position = position
-	dropItem.data = Constants.get_item(item.name)
+	dropItem.data = Factory.items.data(item.name)
 	item.quantity = dropItem.add_item_quantity(item.quantity)
 	add_child(dropItem)
 	if item.quantity > 0: createItem(item, position)

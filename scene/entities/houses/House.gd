@@ -22,6 +22,6 @@ func _on_House_body_exited(body):
 
 func spawnEnemies():
 	var size = $Collider.shape.extents
-	for enemy in Globals.mapManager.spawnEnemies(size, data.enemies):
+	for enemy in Factory.enemies.createMany(size, data.enemies):
 		add_child(enemy)
 	

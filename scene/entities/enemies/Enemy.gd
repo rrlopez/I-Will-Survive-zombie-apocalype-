@@ -58,7 +58,7 @@ func hurt(dmg):
 
 func setBehavior(value):
 	data.behavior = value
-	behavior = Constants.behaviors[value].instance()
+	behavior = Factory.enemies.behaviors[value].instance()
 	behavior.start(self)
 
 
