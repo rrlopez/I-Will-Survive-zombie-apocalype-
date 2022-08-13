@@ -35,7 +35,6 @@ func data(name):
 	return data	
 	
 	
-func create(name):
-	var data = data(name)
+func create(name, data=data(name)):
 			
 	return itemClasses[data.static.type].new(data)	

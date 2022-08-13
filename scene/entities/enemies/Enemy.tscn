@@ -858,6 +858,7 @@ lowerBodyAnimation = NodePath("Body/Lower/Animation")
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
 process_parent = true
+physics_process_parent = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2 )

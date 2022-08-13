@@ -28,10 +28,7 @@ func _on_CancelBtn_pressed():
 
 func _on_PlaceBtn_pressed():
 	if(!enable): return
-	var item = Constants.placesables[itemData.static.placable_type].instance()
-	item.data = itemData
-	item.global_position = global_position
-	item.rotation_degrees = Globals.player.rotation_degrees
+	var item = Factory.placables.create(itemData, global_position, Globals.player.rotation_degrees)
 	Globals.mapManager.add_child(item)
 	_on_CancelBtn_pressed()
 

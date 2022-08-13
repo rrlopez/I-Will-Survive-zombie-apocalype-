@@ -1,5 +1,7 @@
 {
-  "enemies": 10,
+  "enemies": [
+    {"type": "normal", "count": 100}
+  ],
   "stats":{
     "size": 500
   }

@@ -33,7 +33,7 @@ func pick_it_up(lastQuantity=0):
 	if data.quantity == lastQuantity: return data.quantity
 	lastQuantity = data.quantity
 	
-	var item = Factory.items.itemClasses[data.static.type].new(data)
+	var item = Factory.items.create(data.static.name, data)
 	var remainder = Globals.player.inventory.put_item(item)
 	if remainder>0 :
 		data.quantity=remainder

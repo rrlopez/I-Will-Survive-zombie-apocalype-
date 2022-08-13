@@ -144,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Composites/Sequence.gd"
 }, {
+"base": "Task",
+"class": "Skip",
+"language": "GDScript",
+"path": "res://ai/behaviorTree/Decorators/Skip.gd"
+}, {
 "base": "NinePatchRect",
 "class": "Slot",
 "language": "GDScript",
@@ -173,6 +178,11 @@ _global_script_classes=[ {
 "class": "Vehicle_controller",
 "language": "GDScript",
 "path": "res://scene/entities/vehicles/Controller.gd"
+}, {
+"base": "Task",
+"class": "Wait",
+"language": "GDScript",
+"path": "res://ai/behaviorTree/Decorators/wait.gd"
 }, {
 "base": "Node",
 "class": "WeaponFactory",
@@ -267,12 +277,14 @@ _global_script_class_icons={
 "ResourceItem": "",
 "Selector": "res://ai/behaviorTree/icons/selector.png",
 "Sequence": "res://ai/behaviorTree/icons/sequence.png",
+"Skip": "res://ai/behaviorTree/icons/limit.png",
 "Slot": "",
 "Stat_range": "",
 "Task": "",
 "UntilFail": "res://ai/behaviorTree/icons/until-fail.png",
 "UntilSucces": "res://ai/behaviorTree/icons/until-success.png",
 "Vehicle_controller": "",
+"Wait": "res://ai/behaviorTree/icons/limit.png",
 "WeaponFactory": "",
 "Window": "",
 "findOpponent": "",
@@ -300,6 +312,10 @@ Utils="*res://autoloads/utils.gd"
 Constants="*res://autoloads/Constants.gd"
 Globals="*res://autoloads/Globals.gd"
 Factory="*res://autoloads/factory/Factory.gd"
+
+[display]
+
+window/stretch/mode="2d"
 
 [input]
 
@@ -341,6 +357,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+threads/thread_model=2
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

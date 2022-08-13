@@ -5,7 +5,7 @@ export(NodePath) onready var enemies  = get_node(enemies) as Node2D
  
 
 var data = {
-	"size": 1000
+	"size": 700
 }
 
 var triggered = false
@@ -22,7 +22,7 @@ func _process(delta):
 	if enemies.get_children().size()<20:
 		for _i in 100:
 			Constants.rand.randomize()
-			var position = global_position.normalized().rotated(Constants.rand.randi_range(-360, 360))* Constants.rand.randi_range(data.size, data.size*1.5)
+			var position = Globals.player.global_position.normalized().rotated(Constants.rand.randi_range(-360, 360))* Constants.rand.randi_range(Constants.WIDTH/2, Constants.WIDTH*0.7)
 			var enemy = Factory.enemies.create('normal', position.x, position.y, 0)
 			enemy.data.behavior = "chase"
 			enemies.add_child(enemy)

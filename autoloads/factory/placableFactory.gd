@@ -10,7 +10,9 @@ func data(name):
 	return data	
 	
 	
-func create(name):
-	var placable = placesables[name].instance()
-			
+func create(data, position, rotation):
+	var placable = placesables[data.static.placable_type].instance()
+	placable.data = data
+	placable.global_position = position
+	placable.rotation_degrees = rotation
 	return placable

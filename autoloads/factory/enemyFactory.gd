@@ -38,18 +38,19 @@ func create(name, x, y, rotation):
 	return enemy
 	
 	
-func createMany(size, count):
+func createMany(size, enemiesData):
 	var enemies = []
 	var rand = RandomNumberGenerator.new()
 	
-	for _i in range(0, count):
-		rand.randomize()
-		var x = rand.randf_range(-size.x, size.x)
-		rand.randomize()
-		var y = rand.randf_range(-size.y, size.y)
-		rand.randomize()
-		var _rotation = rand.randf_range(0, 360)
-		
-		enemies.append(create('normal', x, y, _rotation))
+	for data in enemiesData:
+		for _i in range(0, data.count):
+			rand.randomize()
+			var x = rand.randf_range(-size.x, size.x)
+			rand.randomize()
+			var y = rand.randf_range(-size.y, size.y)
+			rand.randomize()
+			var _rotation = rand.randf_range(0, 360)
+			
+			enemies.append(create(data.type, x, y, _rotation))
 	
 	return enemies

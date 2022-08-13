@@ -2,7 +2,8 @@ class_name WeaponFactory extends Node
 
 var weapons = {
 	"pistol": preload("res://scene/entities/items/weapons/range/Pistol.tscn"),
-	"riffle": preload("res://scene/entities/items/weapons/range/Riffle.tscn")
+	"riffle": preload("res://scene/entities/items/weapons/range/Riffle.tscn"),
+	"melle": preload("res://scene/entities/items/weapons/melle/Melle.tscn")
 }
 
 	

@@ -36,7 +36,20 @@
       "type": "weapon",
       "weapon_type": "melle",
       "stock_size": 1,
-      "equipment_type": "weapon"
+      "equipment_type": "melle",
+      "animation_type": "melle"
+    },
+    "dynamic_data":{
+      "status": {
+        "fire_speed": 15,
+        "fire_accuracy": {
+          "x":10,
+          "y":20
+        },
+        "fire_range": 400,
+        "fire_dmg": 40,
+        "fire_sound": 250
+      }
     }
   },
   {
@@ -79,8 +92,8 @@
           "x":10,
           "y":20
         },
-        "fire_range": 400,
-        "fire_dmg": 40,
+        "fire_range": 500,
+        "fire_dmg": 500,
         "fire_sound": 250
       }
     }
@@ -97,13 +110,13 @@
     },
     "dynamic_data":{
       "status": {
-        "fire_speed": 15,
+        "fire_speed": 30,
         "fire_accuracy": {
           "x":10,
           "y":20
         },
-        "fire_range": 400,
-        "fire_dmg": 40,
+        "fire_range": 600,
+        "fire_dmg": 700,
         "fire_sound": 250
       }
     }
