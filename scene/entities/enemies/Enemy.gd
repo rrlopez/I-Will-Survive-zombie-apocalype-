@@ -3,11 +3,13 @@ class_name Enemy extends KinematicBody2D
 export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 
+
 var velocity: Vector2 = Vector2.ZERO
 var path: Array = []
 var data = {}
 
 var opponent = null
+var behavior = null setget setBehavior
 
 
 func _ready():
@@ -31,9 +33,12 @@ func _ready():
 	if(global_position.distance_to(Globals.camera.global_position)>1000): 
 		self.visible = false
 		setEnableVission(false)
-
+	
+	setBehavior(data.behavior)
+	
 
 func _physics_process(delta):
+	behavior.run(delta)
 	if(path.size()>1): 
 		look_at(path[1])
 		move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
@@ -51,30 +56,29 @@ func hurt(dmg):
 		Globals.mapManager.spawnDropItems(data.drops, global_position)
 	else: _on_View_body_entered(null)
 
-func aggressive():
-	_on_View_body_entered(Globals.player)
-	$Sense/Collider.disabled = true
+func setBehavior(value):
+	data.behavior = value
+	behavior = Constants.behaviors[value].instance()
+	behavior.start(self)
 
 
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(body):
 	$Body/Lower/Animation.play("run_stright")
-	$bodySensor/Collider.shape.radius = 40
+	$bodySensor/Collider.shape.radius = data.stats.aggression_range
+	$Sense/Collider.disabled = true
 	setEnableVission(false)
-	data.states.isChasing = true
-	data.states.isIdle = false
 	opponent = body
 
 
 func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
+	$Sense/Collider.disabled = false
 	$Body/Lower/Animation.stop()
 	setEnableVission()
 	path = []
 	opponent = null
-	data.states.isChasing = false
-	data.states.isIdle = true
 
 
 func _on_visibility_screen_entered():

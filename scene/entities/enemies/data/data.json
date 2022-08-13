@@ -9,6 +9,7 @@
 			}
     },
 		"dynamic_data":{
+			"behavior": "basic",
 			"stats": {
 				"size": 120,
 				"angle_speed": 10,

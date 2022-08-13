@@ -24,7 +24,7 @@ func _process(delta):
 			Constants.rand.randomize()
 			var position = global_position.normalized().rotated(Constants.rand.randi_range(-360, 360))* Constants.rand.randi_range(data.size, data.size*1.5)
 			var enemy = Globals.mapManager.spawnEnemy(position.x, position.y, 0)
-			enemy.aggressive()
+			enemy.data.behavior = "chase"
 			enemies.add_child(enemy)
 	
 	life-=delta

@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://scene/entities/enemies/ai/BasicAI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://scene/entities/enemies/sprites/foot.png" type="Texture" id=3]
 [ext_resource path="res://scene/entities/enemies/sprites/arm.png" type="Texture" id=4]
@@ -859,7 +858,6 @@ lowerBodyAnimation = NodePath("Body/Lower/Animation")
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
 process_parent = true
-physics_process_parent = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2 )
@@ -1068,9 +1066,6 @@ collision_mask = 2
 
 [node name="Collider" type="CollisionShape2D" parent="bodySensor"]
 shape = SubResource( 9 )
-
-[node name="BasicAI" parent="." instance=ExtResource( 1 )]
-agent = NodePath("..")
 
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]

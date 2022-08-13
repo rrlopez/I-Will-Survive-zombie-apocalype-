@@ -67,7 +67,10 @@ var placesables = {
 	"table": preload("res://scene/entities/objects/table/Table.tscn")
 }
 
-
+var behaviors = {
+	"basic": preload("res://ai/BasicAI.tscn"),
+	"chase": preload("res://ai/ChaseAI.tscn")
+}
 
 var fonts = {
 	8:preload("res://font/font_8.tres"),
