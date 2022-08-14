@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
+[ext_resource path="res://assets/sfx/zombieGrowl.wav" type="AudioStream" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://scene/entities/enemies/sprites/foot.png" type="Texture" id=3]
 [ext_resource path="res://scene/entities/enemies/sprites/arm.png" type="Texture" id=4]
@@ -854,6 +855,7 @@ collision_mask = 11
 script = ExtResource( 2 )
 vision = NodePath("Vision")
 lowerBodyAnimation = NodePath("Body/Lower/Animation")
+soundGrowl = NodePath("SoundGrowl")
 
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
@@ -1067,6 +1069,10 @@ collision_mask = 2
 
 [node name="Collider" type="CollisionShape2D" parent="bodySensor"]
 shape = SubResource( 9 )
+
+[node name="SoundGrowl" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+max_distance = 600.0
 
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]

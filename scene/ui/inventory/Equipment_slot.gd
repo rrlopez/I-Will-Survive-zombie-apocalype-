@@ -1,7 +1,8 @@
 class_name Equipment_slot extends Slot
 
-
 export(NodePath) onready var placeholder  = get_node(placeholder) as TextureRect
+export(NodePath) onready var soundEquip  = get_node(soundEquip) as AudioStreamPlayer
+export(NodePath) onready var soundUnequip  = get_node(soundUnequip) as AudioStreamPlayer
 
 func _ready():
 	placeholder.texture = Factory.items.placeholders[type]
@@ -17,9 +18,11 @@ func pick_item():
 
 func put_item(new_item):
 	.put_item(new_item)
+	soundEquip.play()
 	placeholder.hide()
 
 func use_item():
 	if Globals.HUD.inventoryPanel.current_inventories[2].put_item(item) == 0:
+		soundUnequip.play()
 		pick_item()
 		emitItemChanged()

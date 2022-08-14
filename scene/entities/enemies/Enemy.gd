@@ -2,6 +2,8 @@ class_name Enemy extends KinematicBody2D
 
 export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
+export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
+
 
 
 var velocity: Vector2 = Vector2.ZERO
@@ -36,6 +38,8 @@ func _ready():
 	
 	setBehavior(data.behavior)
 	
+func _process(_delta):
+	growl()
 
 func _physics_process(delta):
 	behavior.run(delta)
@@ -60,6 +64,12 @@ func setBehavior(value):
 	data.behavior = value
 	behavior = Factory.enemies.behaviors[value].instance()
 	behavior.start(self)
+	
+
+func growl():
+	if !soundGrowl.is_playing():
+		Constants.rand.randomize()
+		if (Constants.rand.randi()%1000)<10: soundGrowl.play()
 
 
 #---------- CONNECT FUNCTIONS --------------#

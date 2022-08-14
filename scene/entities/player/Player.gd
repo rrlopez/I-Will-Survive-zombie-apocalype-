@@ -122,6 +122,7 @@ func _on_Player_tree_exited():
 
 func spawnSound():
 	Globals.mapManager.spawnSound(self, 150)
+	$Body/Lower/footstep.play()
 	
 	
 func setWeapon(item):

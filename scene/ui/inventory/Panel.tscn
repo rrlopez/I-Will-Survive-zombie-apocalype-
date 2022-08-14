@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/ui/inventory/sprites/main panel.png" type="Texture" id=1]
 [ext_resource path="res://scene/ui/inventory/sprites/title.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scene/ui/inventory/sprites/x_normal.png" type="Texture" id=4]
 [ext_resource path="res://scene/ui/inventory/sprites/x_pressed.png" type="Texture" id=5]
 [ext_resource path="res://scene/ui/inventory/Panel.gd" type="Script" id=6]
+[ext_resource path="res://assets/sfx/openPanel.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 18
@@ -30,6 +31,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+soundOpen = NodePath("soundOpen")
 container = NodePath("Container")
 label = NodePath("Title/Label")
 
@@ -79,5 +81,8 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="soundOpen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
 
 [connection signal="released" from="CloseBtn" to="." method="_on_CloseBtn_released"]

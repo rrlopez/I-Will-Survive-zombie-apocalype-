@@ -33,9 +33,25 @@ func createInventory(data, sceneType='inventory'):
 		
 	return inventory
 
+
 func createItem(inventory, data):
 	var item = Factory.items.create(data.name)
 	data.quantity = item.add_item_quantity(data.quantity)
 	inventory.add_item(item)
 	if data.quantity > 0: createItem(inventory, data)
+
+
+func get_files(path):
+	var files = []
+	var dir = Directory.new()
+	dir.open(path)
+	dir.list_dir_begin(true)
+
+	var file = dir.get_next()
+	while file != '':
+		if file.get_extension() != "import":
+			files += [file]
+		file = dir.get_next()
+
+	return files
 

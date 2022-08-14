@@ -1,6 +1,7 @@
 class_name Window extends NinePatchRect
 
 export(String) var title = ""
+export(NodePath) onready var soundOpen  = get_node(soundOpen) as AudioStreamPlayer
 export(NodePath) onready var container  = get_node(container) as Control
 export(NodePath) onready var label  = get_node(label) as Label
 
@@ -40,6 +41,7 @@ func clear_inventory():
 
 
 func show():
+	soundOpen.play()
 	.show()
 	
 

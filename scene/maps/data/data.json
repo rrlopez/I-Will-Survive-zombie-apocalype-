@@ -1,5 +1,5 @@
 {
   "enemies": [
-    {"type": "normal", "count": 1}
+    {"type": "normal", "count": 0}
   ]
 }

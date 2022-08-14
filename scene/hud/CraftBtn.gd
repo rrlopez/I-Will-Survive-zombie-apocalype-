@@ -4,7 +4,7 @@ extends TouchScreenButton
 func _on_CraftBtn_pressed():
 	if(Globals.HUD.craftPanel.visible): 
 		Globals.HUD.craftPanel.close()
-	else: 
+	else:
 		Globals.player.placable.hide()
 		Globals.HUD.inventoryPanel.hide()
 		Globals.HUD.craftPanel.clear_inventory()

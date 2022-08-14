@@ -1,5 +1,7 @@
 extends Node2D
 
+export(NodePath) onready var soundFire  = get_node(soundFire) as AudioStreamPlayer
+
 var isPressed
 var lastFired = 0
 var parent
@@ -21,6 +23,7 @@ func _process(delta):
 func fire(delta):
 	if(isPressed):
 		if(lastFired >= data.status.fire_speed):
+			soundFire.play()
 			lastFired = 0
 			
 			createProjection()

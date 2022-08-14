@@ -23,4 +23,4 @@ var slotScene = {
 var vehicle_controllerScene = preload("res://scene/entities/vehicles/Controller.tscn")
 var player_controllerScene = preload("res://scene/entities/player/controller/Controller.tscn")
 
-
+	
