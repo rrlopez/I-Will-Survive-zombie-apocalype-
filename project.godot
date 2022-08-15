@@ -210,9 +210,9 @@ _global_script_classes=[ {
 "path": "res://ai/leaves/hasOpponent.gd"
 }, {
 "base": "Leaf",
-"class": "isChasing",
+"class": "isBlocked",
 "language": "GDScript",
-"path": "res://ai/leaves/isChasing.gd"
+"path": "res://ai/leaves/isBlocked.gd"
 }, {
 "base": "Leaf",
 "class": "isOpponentInRange",
@@ -290,7 +290,7 @@ _global_script_class_icons={
 "findOpponent": "",
 "generatePath": "",
 "hasOpponent": "",
-"isChasing": "",
+"isBlocked": "",
 "isOpponentInRange": "",
 "isOpponentNeerby": "",
 "isOpponentOnView": "",
@@ -347,6 +347,16 @@ ui_down={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="object"
+2d_physics/layer_4="obstacle"
+2d_physics/layer_5="sensor"
+2d_physics/layer_6="wall"
+2d_physics/layer_7="drop item"
 
 [physics]
 

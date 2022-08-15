@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sfx/zombieGrowl.wav" type="AudioStream" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
@@ -746,7 +746,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -100.531, -86.1879 ), Vector2( -100.531, -50 ), Vector2( -100.531, -86.1879 ), Vector2( -100.531, -110 ), Vector2( -100.531, -86.1879 ) ]
+"values": [ Vector2( -96.4291, -150 ), Vector2( -100.531, -50 ), Vector2( -100.531, -86.1879 ), Vector2( -100.531, -110 ), Vector2( -100.531, -86.1879 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Upper/ArmR:rect_position")
@@ -758,7 +758,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 61.4688, -76.2184 ), Vector2( 61.469, -110 ), Vector2( 61.4688, -76.2184 ), Vector2( 61.469, -50 ), Vector2( 61.4688, -76.2184 ) ]
+"values": [ Vector2( 57.1423, -153.572 ), Vector2( 61.469, -110 ), Vector2( 61.4688, -76.2184 ), Vector2( 61.469, -50 ), Vector2( 61.4688, -76.2184 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Upper/ShoulderL:rect_position")
@@ -770,7 +770,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -106, -43.25 ), Vector2( -106, -30 ), Vector2( -106, -43.25 ), Vector2( -106, -45 ), Vector2( -106, -43.25 ) ]
+"values": [ Vector2( -103.572, -67.8568 ), Vector2( -106, -30 ), Vector2( -106, -43.25 ), Vector2( -106, -45 ), Vector2( -106, -43.25 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Upper/ShoulderR:rect_position")
@@ -782,7 +782,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5, 1, 1.5, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 55.0001, -41.2184 ), Vector2( 55, -45 ), Vector2( 55.0001, -41.2184 ), Vector2( 55, -30 ), Vector2( 55.0001, -41.2184 ) ]
+"values": [ Vector2( 57.1426, -57.1431 ), Vector2( 55, -45 ), Vector2( 55.0001, -41.2184 ), Vector2( 55, -30 ), Vector2( 55.0001, -41.2184 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Upper/Body:rect_rotation")
@@ -846,6 +846,9 @@ tracks/8/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=9]
+radius = 0.01
+
+[sub_resource type="CircleShape2D" id=10]
 radius = 0.01
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -1001,7 +1004,7 @@ __meta__ = {
 margin_left = 55.0001
 margin_top = -41.2184
 margin_right = 105.0
-margin_bottom = 28.7816
+margin_bottom = 29.7816
 rect_pivot_offset = Vector2( 25, 55 )
 mouse_filter = 2
 texture = ExtResource( 6 )
@@ -1021,6 +1024,7 @@ mouse_filter = 2
 texture = ExtResource( 7 )
 expand = true
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1048,6 +1052,9 @@ anims/run = SubResource( 8 )
 
 [node name="Shadow" type="Node2D" parent="." groups=["shadow"]]
 z_index = -1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Texture" type="TextureRect" parent="Shadow"]
 modulate = Color( 1, 1, 1, 0.117647 )
@@ -1060,6 +1067,7 @@ rect_pivot_offset = Vector2( 50, 50 )
 mouse_filter = 2
 texture = ExtResource( 9 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -1074,8 +1082,16 @@ shape = SubResource( 9 )
 stream = ExtResource( 1 )
 max_distance = 600.0
 
+[node name="BlockerSensor" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 4
+
+[node name="Collider" type="CollisionShape2D" parent="BlockerSensor"]
+shape = SubResource( 10 )
+
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
 [connection signal="body_entered" from="Sense" to="." method="_on_View_body_entered"]
 [connection signal="body_exited" from="Sense" to="." method="_on_View_body_exited"]
 [connection signal="body_entered" from="bodySensor" to="." method="_on_bodySensor_body_entered"]
+[connection signal="body_entered" from="BlockerSensor" to="." method="_on_BlockerSensor_body_entered"]

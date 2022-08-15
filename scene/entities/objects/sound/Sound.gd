@@ -12,4 +12,4 @@ func _on_Animation_animation_finished(_anim_name):
 
 
 func _on_Sound_body_entered(body):
-	body._on_View_body_entered(origin)
+	if body.opponent.empty() || body.opponent[0]!=origin: body._on_View_body_entered(origin)

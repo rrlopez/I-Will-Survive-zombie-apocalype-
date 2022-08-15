@@ -4,13 +4,12 @@ export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 
-
-
 var velocity: Vector2 = Vector2.ZERO
 var path: Array = []
 var data = {}
 
-var opponent = null
+var blocker = null
+var opponent = []
 var behavior = null setget setBehavior
 
 
@@ -25,6 +24,7 @@ func _ready():
 	
 	$Body/Lower/Animation.playback_speed=data.stats.move_speed/60
 	$Sense/Collider.shape.radius = data.stats.aggression_range
+	$BlockerSensor/Collider.shape.radius = data.stats.aggression_range
 	
 	for ray in Globals.mapManager.spawnRays(data.stats.vision_width, data.stats.vision_height):
 		ray.set_collision_mask_bit(5, true)
@@ -32,20 +32,25 @@ func _ready():
 		$Vision.add_child(ray)
 
 	
-	if(global_position.distance_to(Globals.camera.global_position)>1000): 
+	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
 		self.visible = false
 		setEnableVission(false)
 	
 	setBehavior(data.behavior)
 	
-func _process(_delta):
+func _process(delta):
+	behavior.run(delta)
 	growl()
 
 func _physics_process(delta):
-	behavior.run(delta)
-	if(path.size()>1): 
-		look_at(path[1])
-		move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
+	if path.size() > 0:
+		velocity = global_position.direction_to(path[0]).normalized()
+		
+		look_at(path[0])
+		velocity = move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
+		
+		if global_position.distance_to(path[0])<10:
+			path.pop_front()
 	
 	
 func setEnableVission(enabled = self.visible):
@@ -75,11 +80,10 @@ func growl():
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(body):
-	$Body/Lower/Animation.play("run_stright")
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range
 	$Sense/Collider.disabled = true
 	setEnableVission(false)
-	opponent = body
+	opponent = [body]
 
 
 func _on_View_body_exited(_body):
@@ -88,7 +92,7 @@ func _on_View_body_exited(_body):
 	$Body/Lower/Animation.stop()
 	setEnableVission()
 	path = []
-	opponent = null
+	opponent = []
 
 
 func _on_visibility_screen_entered():
@@ -102,4 +106,8 @@ func _on_visibility_screen_exited():
 
 
 func _on_bodySensor_body_entered(body):
-	if(!opponent and body.opponent): _on_View_body_entered(body.opponent)
+	if(!opponent.size()>0 and body.opponent.size()>0): _on_View_body_entered(body.opponent)
+
+
+func _on_BlockerSensor_body_entered(body):
+	blocker = body

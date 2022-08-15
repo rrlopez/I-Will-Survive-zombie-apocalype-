@@ -17,7 +17,7 @@ radius = 31.0
 radius = 148.014
 
 [node name="Tree" type="Area2D"]
-collision_layer = 4
+collision_layer = 16
 script = ExtResource( 4 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -27,7 +27,7 @@ __meta__ = {
 }
 
 [node name="Trunk" type="StaticBody2D" parent="."]
-collision_layer = 36
+collision_layer = 32
 __meta__ = {
 "_edit_lock_": true
 }
@@ -54,7 +54,7 @@ __meta__ = {
 [node name="Leaves" type="Area2D" parent="."]
 z_index = 200
 z_as_relative = false
-collision_layer = 4
+collision_layer = 16
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
