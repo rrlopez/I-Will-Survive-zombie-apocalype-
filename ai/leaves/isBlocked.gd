@@ -7,7 +7,7 @@ var minBlockTime = 0.5
 var blockedTime = 0
 
 func run(delta):
-	if agent.global_position.distance_to(last_position)<10:
+	if agent.blocker && agent.global_position.distance_to(last_position)<1:
 		blockedTime+=delta
 		if blockedTime>minBlockTime: 
 			agent.opponent.push_front(agent.blocker)

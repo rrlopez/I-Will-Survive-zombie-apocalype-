@@ -12,7 +12,8 @@ func data(name):
 	return data	
 	
 	
-func create(name, data):
-	var weapon = weapons[name].instance()
+func create(parent, data):
+	var weapon = weapons[data.static.animation_type].instance()
+	weapon.parent = parent
 	weapon.data = data
 	return weapon

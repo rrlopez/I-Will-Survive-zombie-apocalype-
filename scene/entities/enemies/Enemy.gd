@@ -4,6 +4,8 @@ export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 
+var statusEffects = []
+var applyedForce: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var path: Array = []
 var data = {}
@@ -21,6 +23,7 @@ func _ready():
 	self.scale = Vector2(data.stats.size/100.0, data.stats.size/100.0)
 	data.stats["move_speed"]=data.static.stats.move_speed-data.stats.size
 	data.stats["health"]=data.stats.size*data.static.stats.level
+	soundGrowl.stream = data.growl
 	
 	$Body/Lower/Animation.playback_speed=data.stats.move_speed/60
 	$Sense/Collider.shape.radius = data.stats.aggression_range
@@ -40,17 +43,20 @@ func _ready():
 	
 func _process(delta):
 	behavior.run(delta)
-	growl()
-
-func _physics_process(delta):
+	
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[0]).normalized()
+		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER
 		
 		look_at(path[0])
-		velocity = move_and_slide(velocity*data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER*delta)
 		
 		if global_position.distance_to(path[0])<10:
 			path.pop_front()
+	
+	for statusEffect in statusEffects: statusEffect.run(self)
+	growl()
+
+func _physics_process(delta):
+	velocity = move_and_slide(applyedForce+velocity*delta)
 	
 	
 func setEnableVission(enabled = self.visible):
@@ -58,12 +64,12 @@ func setEnableVission(enabled = self.visible):
 		ray.enabled = enabled
 
 
-func hurt(dmg):
+func hurt(opponent, dmg):
 	data.stats.health-=dmg
 	if(data.stats.health<1): 
 		queue_free()
 		Globals.mapManager.spawnDropItems(data.drops, global_position)
-	else: _on_View_body_entered(null)
+	else: _on_View_body_entered(opponent)
 
 func setBehavior(value):
 	data.behavior = value
@@ -106,7 +112,7 @@ func _on_visibility_screen_exited():
 
 
 func _on_bodySensor_body_entered(body):
-	if(!opponent.size()>0 and body.opponent.size()>0): _on_View_body_entered(body.opponent)
+	if(!opponent.empty() and body.opponent.empty()): body._on_View_body_entered(opponent[0])
 
 
 func _on_BlockerSensor_body_entered(body):

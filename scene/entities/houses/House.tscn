@@ -22,7 +22,7 @@
 0/z_index = 0
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 570, 471.25 )
+extents = Vector2( 829.75, 639.75 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -431,7 +431,7 @@ __meta__ = {
 }
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 1, 1 )
+position = Vector2( -19, -19 )
 shape = SubResource( 3 )
 
 [node name="Walls" type="StaticBody2D" parent="."]

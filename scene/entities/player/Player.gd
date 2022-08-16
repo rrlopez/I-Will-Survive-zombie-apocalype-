@@ -3,40 +3,19 @@ class_name Player extends KinematicBody2D
 export(NodePath) onready var weapon_container  = get_node(weapon_container) as Node2D
 export(NodePath) onready var hand_container  = get_node(hand_container) as Node2D
 export(NodePath) onready var placable  = get_node(placable) as Node2D
+export(NodePath) onready var upperAnimation  = get_node(upperAnimation) as AnimationPlayer
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
 var inventory:Inventory
 var craftInventory:Inventory
+var weapon = null
 
-var data = {
-	"stats":{
-		"size": 50,
-		"move_speed": 120
-	},
-	"inventory": {
-		"name": "Inventory",
-		"size": 36,
-		"items": [
-			{ "name": "machette", "quantity": 1},
-			{ "name": "AMT AutoMag III", "quantity": 1},
-			{ "name": "m13", "quantity": 1},
-			{ "name": "m14", "quantity": 1},
-			{ "name": "crystal", "quantity": 65},
-		]
-	},
-	"craft_inventory": {
-		"name": "Craftables",
-		"slot_type": "craft",
-		"size": 36,
-		"items": [
-			{ "name": "crafting table", "quantity": 1},
-		]
-	}
-}
+var data = {}
 
 var controller
 
 func _ready():
+	data = Utils.import_data("res://scene/entities/player/data/data.json")
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")
@@ -128,12 +107,11 @@ func spawnSound():
 func setWeapon(item):
 	for child in weapon_container.get_children(): child.queue_free()
 	if(item):
-		weapon_container.add_child(Factory.weapons.create(item.data.static.animation_type, item.data))
-		$Body/Upper/Animation.play(item.data.static.animation_type)
+		weapon_container.add_child(Factory.weapons.create(self, item.data))
+		weapon = item
+		$Body/Upper/Animation.play(weapon.data.static.animation_type)
 	else:
 		$Body/Upper/Animation.play("run")
-	
-
 
 func _on_Pickup_body_entered(body):
 	body.pick_item()

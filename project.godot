@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://ai/behaviorTree/Decorators/AlwaysSucceed.gd"
 }, {
 "base": "Resource",
+"class": "ApplyForce",
+"language": "GDScript",
+"path": "res://statEffects/applyForce.gd"
+}, {
+"base": "Resource",
 "class": "Base_stat",
 "language": "GDScript",
 "path": "res://scene/ui/items/base_stat.gd"
@@ -160,6 +165,11 @@ _global_script_classes=[ {
 "path": "res://scene/ui/items/stat_range.gd"
 }, {
 "base": "Node",
+"class": "StatusEffectFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/statusEffectFactory.gd"
+}, {
+"base": "Node",
 "class": "Task",
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Task.gd"
@@ -252,6 +262,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AlwaysFail": "res://ai/behaviorTree/icons/always-fail.png",
 "AlwaysSucceed": "res://ai/behaviorTree/icons/always-succeed.png",
+"ApplyForce": "",
 "Base_stat": "",
 "ConsumableItem": "",
 "Craft_inventory": "",
@@ -280,6 +291,7 @@ _global_script_class_icons={
 "Skip": "res://ai/behaviorTree/icons/limit.png",
 "Slot": "",
 "Stat_range": "",
+"StatusEffectFactory": "",
 "Task": "",
 "UntilFail": "res://ai/behaviorTree/icons/until-fail.png",
 "UntilSucces": "res://ai/behaviorTree/icons/until-success.png",

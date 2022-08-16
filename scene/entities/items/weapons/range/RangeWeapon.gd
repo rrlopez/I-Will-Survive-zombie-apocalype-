@@ -34,7 +34,7 @@ func fire(delta):
 				var collider = $Projection.get_collider()
 				projectile.points[1] =  $Projection.get_collision_point() - $Nozzle.global_position
 
-				if(collider.get_class() == 'KinematicBody2D'): collider.hurt(data.status.fire_dmg)
+				if(collider.get_class() == 'KinematicBody2D'): collider.hurt(parent, data.status.fire_dmg)
 			else:
 				projectile.points[1] =  $Projection.cast_to - Vector2(60, 0)
 				projectile.rotation_degrees = $Projection.global_rotation_degrees

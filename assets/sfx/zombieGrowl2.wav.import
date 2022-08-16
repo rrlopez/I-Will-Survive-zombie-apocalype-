@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/zombieGrowl.wav-f705b95854e12dfff845bcd5523c98c1.sample"
+path="res://.import/zombieGrowl2.wav-cd35e690925759395a2826dc36d7fa29.sample"
 
 [deps]
 
-source_file="res://assets/sfx/zombieGrowl.wav"
-dest_files=[ "res://.import/zombieGrowl.wav-f705b95854e12dfff845bcd5523c98c1.sample" ]
+source_file="res://assets/sfx/zombieGrowl2.wav"
+dest_files=[ "res://.import/zombieGrowl2.wav-cd35e690925759395a2826dc36d7fa29.sample" ]
 
 [params]
 

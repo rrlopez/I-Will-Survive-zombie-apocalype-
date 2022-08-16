@@ -7,6 +7,14 @@ var behaviors = {
 	"chase": preload("res://ai/ChaseAI.tscn")
 }
 
+var growl = [
+	 preload("res://assets/sfx/zombieGrowl1.wav"),
+	 preload("res://assets/sfx/zombieGrowl2.wav"),
+	 preload("res://assets/sfx/zombieGrowl3.wav"),
+	 preload("res://assets/sfx/zombieGrowl4.wav"),
+	 preload("res://assets/sfx/zombieGrowl5.wav"),
+]
+
 var enemies = {}
 
 func _init():
@@ -35,6 +43,8 @@ func create(name, x, y, rotation):
 	enemy.data = data(name)
 	enemy.position = Vector2(x, y)
 	enemy.rotation = rotation
+	Constants.rand.randomize()
+	enemy.data.growl = Factory.enemies.growl[Constants.rand.randf_range(0, 5)]
 	return enemy
 	
 	

@@ -1,0 +1,25 @@
+{
+  "stats":{
+    "size": 50,
+    "move_speed": 120
+  },
+  "inventory": {
+    "name": "Inventory",
+    "size": 36,
+    "items": [
+      { "name": "machette", "quantity": 1},
+      { "name": "AMT AutoMag III", "quantity": 1},
+      { "name": "m13", "quantity": 1},
+      { "name": "m14", "quantity": 1},
+      { "name": "crystal", "quantity": 65}
+    ]
+  },
+  "craft_inventory": {
+    "name": "Craftables",
+    "slot_type": "craft",
+    "size": 36,
+    "items": [
+      { "name": "crafting table", "quantity": 1}
+    ]
+  }
+}

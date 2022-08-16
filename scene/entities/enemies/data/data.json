@@ -4,7 +4,7 @@
 			"id": "normal",
 			"name": "Normal",
 			"stats":{
-				"move_speed": 180,
+				"move_speed": 240,
 				"level": 2
 			}
     },

@@ -136,7 +136,7 @@ func _on_Controller_use_break(value):
 	breaking = value
 
 
-func hurt(_dmg):
+func hurt(opponen, _dmg):
 	pass
 
 
