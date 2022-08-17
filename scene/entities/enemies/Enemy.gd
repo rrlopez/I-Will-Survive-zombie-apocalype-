@@ -55,7 +55,7 @@ func setEnableVission(enabled = self.visible):
 
 
 func hurt(opponent, dmg):
-	if !data.stats.health.addVal(-dmg):
+	if !data.stats.health.setVal(Factory.statsModifiers.create("subtruct", dmg)):
 		 _on_View_body_entered(opponent)
 
 func setBehavior(value):

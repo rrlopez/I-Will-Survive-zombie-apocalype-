@@ -2,8 +2,11 @@ class_name MoveSpeedStat extends Stat
 
 func _init(_name, _val, _agent):
 	init(_name, _val, _agent)
-	addVal(val)
+	update()
 
-func addVal(amout):
-	.addVal(amout)
+func setVal(modifier):
+	.setVal(modifier)
+	update()
+
+func update():
 	agent.lowerBodyAnimation.playback_speed=val/60

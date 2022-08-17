@@ -73,7 +73,7 @@
               "stats":{
                 "duration": 2,
                 "modifiers": [
-                  {"type":"move_speed", "val": -100}
+                  {"type":"move_speed", "script": "multiply", "val": 0.5}
                 ]
               }
             },
@@ -83,7 +83,7 @@
                 "duration": 2,
                 "rate": 0.2,
                 "modifiers": [
-                  {"type":"health", "val": -80}
+                  {"type":"health", "script": "subtruct", "val": 1}
                 ]
               }
             }
