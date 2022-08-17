@@ -15,7 +15,7 @@ var data = {}
 var controller
 
 func _ready():
-	data = Utils.import_data("res://scene/entities/player/data/data.json")
+	data = Utils.import_data("res://data/player.json")
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")

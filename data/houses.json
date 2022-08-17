@@ -1,0 +1,12 @@
+[
+  {
+    "id": "normal",
+    "name": "Normal",
+    "enemies": [
+      {"type": "normal", "count": 0}
+    ],
+    "stats":{
+      "size": 500
+    }
+  }
+]

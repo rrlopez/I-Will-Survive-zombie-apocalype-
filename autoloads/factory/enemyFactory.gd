@@ -18,7 +18,7 @@ var growl = [
 var enemies = {}
 
 func _init():
-	for enemy in Utils.import_data("res://scene/entities/enemies/data/data.json"):
+	for enemy in Utils.import_data("res://data/enemies.json"):
 		enemies[enemy.static_data.id] = enemy
 	
 func data(name):

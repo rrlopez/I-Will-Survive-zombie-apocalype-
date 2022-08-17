@@ -28,8 +28,9 @@ func removeModifier(modifier):
 
 func recompute():
 	val = defaultVal
+	maxVal = defaultVal
 	for modifier in modifiers:
-		maxVal= modifier.execute(maxVal)
+		maxVal = modifier.execute(maxVal)
 		setVal(modifier)
 
 func setVal(modifier):

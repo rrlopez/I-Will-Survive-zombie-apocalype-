@@ -19,7 +19,7 @@ var placeholders = {
 var items = {}
 
 func _init():
-	for item in Utils.import_data("res://scene/ui/items/data/items.json"):
+	for item in Utils.import_data("res://data/items.json"):
 		item.static_data["texture"] = load("res://scene/ui/items/sprites/"+item.static_data.id+".png")
 		item.static_data["object_texture"] = load("res://assets/entities/"+item.static_data.id+".png")
 		items[item.static_data.id] = item

@@ -11,6 +11,10 @@ func create(data, oponent, parent):
 	for i in data.effects.size():
 		var effect = data.effects[i]
 		data.effects[i] = statusEffects[effect.script].new(effect.stats, oponent, parent)
-		
+	
+	for statusEffect in oponent.statusEffects:
+		if statusEffect.data.id == data.id:
+			statusEffect.reset()
+			return
 	oponent.statusEffects.append(StatusEffect.new(data))
 	

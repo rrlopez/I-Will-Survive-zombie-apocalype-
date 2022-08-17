@@ -6,7 +6,7 @@ var rateTimer = 0
 
 func _init(_data, opponent, parent):
 	data = _data
-	timer = 0
+	reset()
 	for i in data.modifiers.size():
 		var modifier = data.modifiers[i]
 		data.modifiers[i] = Factory.statsModifiers.create(modifier.script, modifier.val, modifier.type)
@@ -18,7 +18,11 @@ func run(agent, delta):
 			agent.data.stats[modifier.type].setVal(modifier)
 	
 	if(timer>data.duration):
-		agent.statusEffects.erase(self)
+		return true
 	timer+=delta
 	rateTimer+=delta
+	return false
 
+func reset():
+	timer = 0
+	rateTimer = 0

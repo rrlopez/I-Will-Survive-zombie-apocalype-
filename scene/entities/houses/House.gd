@@ -5,7 +5,7 @@ onready var tween = $Roof/Tween
 var data = {}
 
 func _ready():
-	data = Utils.import_data("res://scene/entities/houses/data/data.json")
+	data = Factory.houses.create('normal')
 	spawnEnemies()
 
 func _on_House_body_entered(body):
