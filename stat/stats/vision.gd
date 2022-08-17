@@ -1,8 +1,8 @@
 class_name VissionStat extends Stat
 
 func _init(_name, _val, _agent):
-	_val.width = Constants.rand.randi_range(_val.width*0.7, _val.width)
-	_val.height = Constants.rand.randi_range(_val.height*0.7, _val.height)
+	_val.width = Constants.rand.randi_range(_val.width.min, _val.width.max)
+	_val.height = Constants.rand.randi_range(_val.height.min, _val.height.max)
 	initValues(_name, _val, _agent)
 	update()
 

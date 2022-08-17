@@ -8,7 +8,7 @@ var maxVal
 var val
 
 func init(_name, _val, _agent):
-	_val = Constants.rand.randi_range(_val*0.7, _val)
+	_val = Constants.rand.randi_range(_val.min, _val.max)
 	initValues(_name, _val, _agent)
 
 func initValues(_name, _val, _agent):

@@ -5,6 +5,7 @@ var HEIGHT = ProjectSettings.get_setting("display/window/size/height")
 
 const MOVE_SPEED_MULTIPLYER = 100
 const ANGLE_BETWEEN_RAYS = deg2rad(5)
+const STAT_RANDOM = 0.7
 
 var rand = RandomNumberGenerator.new()
 

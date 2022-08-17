@@ -1,30 +1,27 @@
-class_name Player extends KinematicBody2D
+class_name Player extends Entity
 
 export(NodePath) onready var weapon_container  = get_node(weapon_container) as Node2D
 export(NodePath) onready var hand_container  = get_node(hand_container) as Node2D
 export(NodePath) onready var placable  = get_node(placable) as Node2D
-export(NodePath) onready var upperAnimation  = get_node(upperAnimation) as AnimationPlayer
+export(NodePath) onready var upperBodyAnimation  = get_node(upperBodyAnimation) as AnimationPlayer
+export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
 var inventory:Inventory
 var craftInventory:Inventory
 var weapon = null
 
-var data = {}
-
 var controller
 
 func _ready():
 	data = Utils.import_data("res://data/player.json")
+	.ready()
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")
 	controller.connect("use_rotateArea_degrees", self, "_on_Controller_use_rotateArea_degrees")
 	Globals.currentController = controller
 	
-	
-	$Body/Lower/Animation.playback_speed=data.stats.move_speed/60
-	data.stats.move_speed*=Constants.MOVE_SPEED_MULTIPLYER
 	_on_player_tree_entered()
 	
 	inventory = Utils.createInventory(data.inventory)
@@ -34,8 +31,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))* delta
-	move_and_slide(motion, Vector2.UP)
+	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))
+	move_and_slide((motion+applyedForce)*delta, Vector2.UP)
 
 
 
@@ -69,7 +66,7 @@ func _on_Controller_on_joystick_release(key):
 
 func _on_Controller_use_joystick_vector(vector):
 	if(vector.value.length() > 0):
-		velocity.push_back({'key': vector.key, 'value': vector.value*data.stats.move_speed})
+		velocity.push_back({'key': vector.key, 'value': vector.value*data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER})
 		if(abs(velocity.back().value.x) < abs(velocity.back().value.y)):$Body/Lower/Animation.play("run_stright")
 		else:$Body/Lower/Animation.play("run_side")
 	else:

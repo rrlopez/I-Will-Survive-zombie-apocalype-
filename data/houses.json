@@ -3,7 +3,7 @@
     "id": "normal",
     "name": "Normal",
     "enemies": [
-      {"type": "normal", "count": 0}
+      {"type": "normal", "count": 100}
     ],
     "stats":{
       "size": 500

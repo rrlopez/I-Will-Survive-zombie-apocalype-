@@ -1403,7 +1403,8 @@ script = ExtResource( 8 )
 weapon_container = NodePath("Equipments/Weapon")
 hand_container = NodePath("Equipments/Hand")
 placable = NodePath("Equipments/Placable")
-upperAnimation = NodePath("Body/Upper/Animation")
+upperBodyAnimation = NodePath("Body/Upper/Animation")
+lowerBodyAnimation = NodePath("Body/Lower/Animation")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

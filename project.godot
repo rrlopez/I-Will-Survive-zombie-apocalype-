@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stat/modifiers/divideModifier.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Entity",
 "class": "Enemy",
 "language": "GDScript",
 "path": "res://scene/entities/enemies/Enemy.gd"
@@ -73,6 +73,11 @@ _global_script_classes=[ {
 "class": "EnemyFactory",
 "language": "GDScript",
 "path": "res://autoloads/factory/enemyFactory.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://scene/entities/Entity.gd"
 }, {
 "base": "Item",
 "class": "EquipmentItem",
@@ -164,7 +169,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/ui/items/PlacableItem.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Entity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scene/entities/player/Player.gd"
@@ -373,6 +378,7 @@ _global_script_class_icons={
 "DivideModifier": "",
 "Enemy": "",
 "EnemyFactory": "",
+"Entity": "",
 "EquipmentItem": "",
 "Equipment_slot": "",
 "HealthStat": "",

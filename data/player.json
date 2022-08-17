@@ -1,7 +1,8 @@
 {
   "stats":{
-    "size": 50,
-    "move_speed": 120
+    "size":  {"script": "size", "val": {"min": 100, "max": 100}},
+    "move_speed": {"script": "moveSpeed", "val": {"min": 180, "max": 180}},
+    "health": {"script": "health", "val": {"min": 240, "max": 240}}
   },
   "inventory": {
     "name": "Inventory",

@@ -1,4 +1,4 @@
-class_name Enemy extends KinematicBody2D
+class_name Enemy extends Entity
 
 export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var sense  = get_node(sense) as CollisionShape2D
@@ -6,12 +6,8 @@ export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as Collisi
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 
-var data = {}
-var statusEffects = []
-
-var applyedForce: Vector2 = Vector2.ZERO
-var velocity: Vector2 = Vector2.ZERO
 var path: Array = []
+var velocity: Vector2 = Vector2.ZERO
 
 var blocker = null
 var opponent = []
@@ -19,10 +15,7 @@ var behavior = null setget setBehavior
 
 
 func _ready():
-	for stat in data.stats:
-		Constants.rand.randomize()
-		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
-	
+	.ready()
 	soundGrowl.stream = data.growl
 	
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
@@ -30,6 +23,7 @@ func _ready():
 		setEnableVission(false)
 	
 	setBehavior(data.behavior)
+	
 	
 func _process(delta):
 	behavior.run(delta)
@@ -41,9 +35,10 @@ func _process(delta):
 		
 		if global_position.distance_to(path[0])<10:
 			path.pop_front()
-	
-	for statusEffect in statusEffects: statusEffect.run(self, delta)
+			
 	growl()
+	._process(delta)
+
 
 func _physics_process(delta):
 	velocity = move_and_slide((applyedForce+velocity)*delta)
@@ -55,7 +50,7 @@ func setEnableVission(enabled = self.visible):
 
 
 func hurt(opponent, dmg):
-	if !data.stats.health.setVal(Factory.statsModifiers.create("subtruct", dmg)):
+	if !.hurt(opponent, dmg):
 		 _on_View_body_entered(opponent)
 
 func setBehavior(value):
@@ -95,6 +90,12 @@ func _on_visibility_screen_entered():
 
 func _on_visibility_screen_exited():
 	self.visible = false
+	if opponent.empty():
+		$visibility.process_parent = true
+		$visibility.physics_process_parent = true
+	else:
+		$visibility.process_parent = false
+		$visibility.physics_process_parent = false
 	setEnableVission()
 
 
