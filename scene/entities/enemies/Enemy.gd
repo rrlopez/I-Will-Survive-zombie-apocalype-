@@ -56,7 +56,7 @@ func _process(delta):
 	growl()
 
 func _physics_process(delta):
-	velocity = move_and_slide(applyedForce+velocity*delta)
+	velocity = move_and_slide((applyedForce+velocity)*delta)
 	
 	
 func setEnableVission(enabled = self.visible):

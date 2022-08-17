@@ -13,9 +13,8 @@ var knokback = {
 	"name": "Knock back", 
 	"type": "applyForce", 
 	"stats": {
-		"direction": 0, 
 		"force": 200, 
-		"friction": 0.2
+		"friction": 0.05
 	}
 }
 
@@ -38,8 +37,7 @@ func _on_fireBtn_pressed():
 
 
 func _on_hitBox_body_entered(body):
-	knokback.stats.direction = parent.global_position.direction_to(body.global_position)
-	body.statusEffects.append(Factory.statusEffects.create(knokback))
+	Factory.statusEffects.create(knokback, body, parent)
 	body.hurt(parent, data.status.fire_dmg)
 	
 func attackFinished():

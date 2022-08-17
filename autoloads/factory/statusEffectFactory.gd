@@ -5,6 +5,6 @@ var statusEffects = {
 }
 
 	
-func create(data):
-	return statusEffects[data.type].new(data.stats)
+func create(data, oponent, parent):
+	oponent.statusEffects.append(statusEffects[data.type].new(data.stats, oponent, parent))
 	
