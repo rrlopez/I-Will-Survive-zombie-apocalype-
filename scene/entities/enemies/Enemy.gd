@@ -1,14 +1,17 @@
 class_name Enemy extends KinematicBody2D
 
 export(NodePath) onready var vision  = get_node(vision) as Node2D
+export(NodePath) onready var sense  = get_node(sense) as CollisionShape2D
+export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as CollisionShape2D
 export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 
+var data = {}
 var statusEffects = []
+
 var applyedForce: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
 var path: Array = []
-var data = {}
 
 var blocker = null
 var opponent = []
@@ -18,22 +21,9 @@ var behavior = null setget setBehavior
 func _ready():
 	for stat in data.stats:
 		Constants.rand.randomize()
-		data.stats[stat] = Constants.rand.randi_range(data.stats[stat]*0.7, data.stats[stat])
+		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
 	
-	self.scale = Vector2(data.stats.size/100.0, data.stats.size/100.0)
-	data.stats["move_speed"]=data.static.stats.move_speed-data.stats.size
-	data.stats["health"]=data.stats.size*data.static.stats.level
 	soundGrowl.stream = data.growl
-	
-	$Body/Lower/Animation.playback_speed=data.stats.move_speed/60
-	$Sense/Collider.shape.radius = data.stats.aggression_range
-	$BlockerSensor/Collider.shape.radius = data.stats.aggression_range
-	
-	for ray in Globals.mapManager.spawnRays(data.stats.vision_width, data.stats.vision_height):
-		ray.set_collision_mask_bit(5, true)
-		ray.enabled = false
-		$Vision.add_child(ray)
-
 	
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
 		self.visible = false
@@ -45,14 +35,14 @@ func _process(delta):
 	behavior.run(delta)
 	
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed*Constants.MOVE_SPEED_MULTIPLYER
+		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
 		
 		look_at(path[0])
 		
 		if global_position.distance_to(path[0])<10:
 			path.pop_front()
 	
-	for statusEffect in statusEffects: statusEffect.run(self)
+	for statusEffect in statusEffects: statusEffect.run(self, delta)
 	growl()
 
 func _physics_process(delta):
@@ -65,11 +55,8 @@ func setEnableVission(enabled = self.visible):
 
 
 func hurt(opponent, dmg):
-	data.stats.health-=dmg
-	if(data.stats.health<1): 
-		queue_free()
-		Globals.mapManager.spawnDropItems(data.drops, global_position)
-	else: _on_View_body_entered(opponent)
+	if !data.stats.health.addVal(-dmg):
+		 _on_View_body_entered(opponent)
 
 func setBehavior(value):
 	data.behavior = value
@@ -86,7 +73,7 @@ func growl():
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(body):
-	$bodySensor/Collider.shape.radius = data.stats.aggression_range
+	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
 	$Sense/Collider.disabled = true
 	setEnableVission(false)
 	opponent = [body]

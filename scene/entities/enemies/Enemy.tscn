@@ -856,6 +856,8 @@ collision_layer = 2
 collision_mask = 11
 script = ExtResource( 2 )
 vision = NodePath("Vision")
+sense = NodePath("Sense/Collider")
+blockerSensor = NodePath("bodySensor/Collider")
 lowerBodyAnimation = NodePath("Body/Lower/Animation")
 soundGrowl = NodePath("SoundGrowl")
 

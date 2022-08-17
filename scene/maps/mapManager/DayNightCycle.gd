@@ -21,7 +21,7 @@ func day(_delta):
 		if(!parent.visible): continue
 		var parentsPosition = parent.global_position
 		var position = sunPosition+parentsPosition
-		var distance = min(parent.data.stats.size, parentsPosition.distance_to(position)*0.3)
+		var distance = min(50, parentsPosition.distance_to(position)*0.3)
 		var direction = position.direction_to(parentsPosition).rotated(deg2rad(-parent.rotation_degrees))
 		
 		shadow.position = Vector2(direction.x*distance, direction.y*distance)

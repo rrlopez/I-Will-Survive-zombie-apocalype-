@@ -8,7 +8,7 @@ func _init(data, opponent, parent):
 	force = direction*data.force*100
 	friction = data.friction
 
-func run(agent):
+func run(agent, _delta):
 	if(force.length()<1):
 		agent.statusEffects.erase(self)
 		agent.applyedForce = Vector2.ZERO

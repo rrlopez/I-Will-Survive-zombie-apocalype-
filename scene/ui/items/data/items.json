@@ -49,7 +49,47 @@
         "fire_range": 400,
         "fire_dmg": 40,
         "fire_sound": 250
-      }
+      },
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "openWounds",
+          "name": "Open Wounds",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 2,
+                "modifiers": [
+                  {"type":"move_speed", "val": -100}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 2,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"health", "val": -80}
+                ]
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -72,7 +112,22 @@
         "fire_range": 400,
         "fire_dmg": 40,
         "fire_sound": 250
-      }
+      },
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -95,7 +150,22 @@
         "fire_range": 500,
         "fire_dmg": 500,
         "fire_sound": 250
-      }
+      },
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -118,7 +188,22 @@
         "fire_range": 600,
         "fire_dmg": 700,
         "fire_sound": 250
-      }
+      },
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 ]

@@ -1,14 +1,8 @@
-extends Node2D
+extends Weapon
 
 export(NodePath) onready var soundFire  = get_node(soundFire) as AudioStreamPlayer
 
-var isPressed
-var lastFired = 0
-var parent
-
 var projectileScene = preload("res://scene/entities/objects/projectile/Projectile.tscn")
-
-var data
 
 func _ready():
 	$Texture.texture = data.static.object_texture
@@ -34,7 +28,7 @@ func fire(delta):
 				var collider = $Projection.get_collider()
 				projectile.points[1] =  $Projection.get_collision_point() - $Nozzle.global_position
 
-				if(collider.get_class() == 'KinematicBody2D'): collider.hurt(parent, data.status.fire_dmg)
+				if(collider.get_class() == 'KinematicBody2D'): .hit(collider)
 			else:
 				projectile.points[1] =  $Projection.cast_to - Vector2(60, 0)
 				projectile.rotation_degrees = $Projection.global_rotation_degrees
