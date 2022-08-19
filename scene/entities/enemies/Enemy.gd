@@ -25,7 +25,13 @@ func _ready():
 	setBehavior(data.behavior)
 	
 	
-func _process(delta):
+
+func _physics_process(delta):
+	process(delta)
+	velocity = move_and_slide((applyedForce+velocity)*delta)
+	
+	
+func process(delta):
 	behavior.run(delta)
 	
 	if path.size() > 0:
@@ -39,10 +45,6 @@ func _process(delta):
 	growl()
 	._process(delta)
 
-
-func _physics_process(delta):
-	velocity = move_and_slide((applyedForce+velocity)*delta)
-	
 	
 func setEnableVission(enabled = self.visible):
 	for ray in $Vision.get_children():

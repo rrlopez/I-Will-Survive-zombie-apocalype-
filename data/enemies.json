@@ -8,7 +8,7 @@
 			"behavior": "basic",
 			"stats": {
 				"size": {"script": "size", "val": {"min": 80, "max": 120}},
-				"move_speed": {"script": "moveSpeed", "val": {"min": 180, "max": 240}},
+				"move_speed": {"script": "moveSpeed", "val": {"min": 100, "max": 140}},
 				"health": {"script": "health", "val": {"min": 100, "max": 240}},
 				"angle_speed": {"script": "default", "val": {"min": 10, "max": 10}},
 				"attack_range": {"script": "default", "val": {"min": 30, "max": 30}},

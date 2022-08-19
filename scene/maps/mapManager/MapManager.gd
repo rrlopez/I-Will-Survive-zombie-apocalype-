@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var currentMapScene = preload("res://scene/maps/world.tscn")
+onready var currentMapScene = preload("res://scene/maps/World.tscn")
 onready	var soundScene = load("res://scene/entities/objects/sound/Sound.tscn")
 onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
 

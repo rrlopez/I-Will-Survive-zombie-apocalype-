@@ -2,7 +2,9 @@ extends Area2D
 
 onready var tween = $Roof/Tween
 
-var data = {}
+var data = {
+	"disabled": false
+}
 
 func _ready():
 	data = Factory.houses.create('normal')
@@ -24,4 +26,3 @@ func spawnEnemies():
 	var size = $Collider.shape.extents
 	for enemy in Factory.enemies.createMany(size, data.enemies):
 		add_child(enemy)
-	

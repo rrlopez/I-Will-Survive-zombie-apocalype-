@@ -1,5 +1,7 @@
 extends Area2D
 
+export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
+
 var data = {}
 
 
@@ -10,7 +12,7 @@ func _ready():
 	
 
 func spawnEnemies():
-	var size = $Collider.shape.extents
+	var size = collider.shape.extents
 	
 	for enemy in Factory.enemies.createMany(size, data.enemies):
 		add_child(enemy)
