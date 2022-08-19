@@ -14,5 +14,5 @@ func _process(delta):
 	for statusEffect in statusEffects: statusEffect.run(self, delta)
 	
 
-func hurt(opponent, dmg):
+func _hurt(dmg):
 	return data.stats.health.setVal(Factory.statsModifiers.create("subtruct", dmg))

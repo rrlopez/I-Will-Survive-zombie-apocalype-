@@ -3,8 +3,8 @@ class_name Player extends Entity
 export(NodePath) onready var weapon_container  = get_node(weapon_container) as Node2D
 export(NodePath) onready var hand_container  = get_node(hand_container) as Node2D
 export(NodePath) onready var placable  = get_node(placable) as Node2D
-export(NodePath) onready var upperBodyAnimation  = get_node(upperBodyAnimation) as AnimationPlayer
-export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
+export(NodePath) onready var body  = get_node(body) as Node2D
+
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
 var inventory:Inventory
@@ -54,7 +54,11 @@ func addCamera():
 	Globals.camera.position = Vector2(0, zoom*-220)
 
 	add_child(Globals.camera)
-
+	
+func hurt(dmg):
+	print(dmg)
+	if ._hurt(dmg): return true
+	return false
 
 func _on_Controller_on_joystick_release(key):
 	velocity = Utils.filter(velocity, key)

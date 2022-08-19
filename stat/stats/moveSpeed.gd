@@ -9,4 +9,4 @@ func setVal(modifier):
 	update()
 
 func update():
-	agent.lowerBodyAnimation.playback_speed=val/60
+	agent.body.lowerBodyAnimation.playback_speed=val/60

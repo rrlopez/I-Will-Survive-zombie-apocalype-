@@ -35,6 +35,11 @@ _global_script_classes=[ {
 "path": "res://stat/statEffects/applyForce.gd"
 }, {
 "base": "Resource",
+"class": "Attack",
+"language": "GDScript",
+"path": "res://scene/entities/enemies/attacks/Attack.gd"
+}, {
+"base": "Resource",
 "class": "Base_stat",
 "language": "GDScript",
 "path": "res://scene/ui/items/base_stat.gd"
@@ -310,6 +315,16 @@ _global_script_classes=[ {
 "path": "res://scene/ui/inventory/Panel.gd"
 }, {
 "base": "Leaf",
+"class": "attackOpponent",
+"language": "GDScript",
+"path": "res://ai/leaves/attackOpponent.gd"
+}, {
+"base": "Leaf",
+"class": "chooseOpponent",
+"language": "GDScript",
+"path": "res://ai/leaves/ChooseAttack.gd"
+}, {
+"base": "Leaf",
 "class": "findOpponent",
 "language": "GDScript",
 "path": "res://ai/leaves/findOpponent.gd"
@@ -370,6 +385,7 @@ _global_script_class_icons={
 "AlwaysFail": "res://ai/behaviorTree/icons/always-fail.png",
 "AlwaysSucceed": "res://ai/behaviorTree/icons/always-succeed.png",
 "ApplyForce": "",
+"Attack": "",
 "Base_stat": "",
 "Buff": "",
 "ConsumableItem": "",
@@ -425,6 +441,8 @@ _global_script_class_icons={
 "Weapon": "",
 "WeaponFactory": "",
 "Window": "",
+"attackOpponent": "",
+"chooseOpponent": "",
 "findOpponent": "",
 "generatePath": "",
 "hasOpponent": "",
@@ -496,6 +514,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_6="wall"
 2d_physics/layer_7="drop item"
 2d_physics/layer_8="house"
+2d_physics/layer_9="enemy"
 
 [physics]
 

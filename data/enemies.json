@@ -2,7 +2,8 @@
 	{
 		"static_data":{
 			"id": "normal",
-			"name": "Normal"
+			"name": "Normal",
+			"attacks": ["melle"]
     },
 		"dynamic_data":{
 			"behavior": "basic",
@@ -11,9 +12,35 @@
 				"move_speed": {"script": "moveSpeed", "val": {"min": 100, "max": 140}},
 				"health": {"script": "health", "val": {"min": 100, "max": 240}},
 				"angle_speed": {"script": "default", "val": {"min": 10, "max": 10}},
-				"attack_range": {"script": "default", "val": {"min": 30, "max": 30}},
+				"attack_range": {"script": "default", "val": {"min": 15, "max": 15}},
+				"attack_dmg": {"script": "default", "val": {"min": 1, "max": 1}},
 				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
-				"loose_range": {"script": "default", "val": {"min": 500, "max": 1000}},
+				"loose_range": {"script": "default", "val": {"min": 1000, "max": 2000}},
+				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
+			},
+			"drops":[
+				{ "name": "machette", "quantity": {"min": 1, "max": 1}, "rarity": 50},
+				{ "name": "crystal", "quantity": {"min": 1, "max": 10}, "rarity": 80}
+			]
+		}
+	},
+	{
+		"static_data":{
+			"id": "charger",
+			"name": "charger",
+			"attacks": ["charge"]
+    },
+		"dynamic_data":{
+			"behavior": "basic",
+			"stats": {
+				"size": {"script": "size", "val": {"min": 80, "max": 120}},
+				"move_speed": {"script": "moveSpeed", "val": {"min": 100, "max": 140}},
+				"health": {"script": "health", "val": {"min": 100, "max": 240}},
+				"angle_speed": {"script": "default", "val": {"min": 10, "max": 10}},
+				"attack_range": {"script": "default", "val": {"min": 15, "max": 15}},
+				"attack_dmg": {"script": "default", "val": {"min": 1, "max": 1}},
+				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
+				"loose_range": {"script": "default", "val": {"min": 2000, "max": 5000}},
 				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[

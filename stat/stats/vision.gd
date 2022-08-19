@@ -25,5 +25,5 @@ func update():
 	for ray in agent.vision.get_children(): ray.queue_free()
 	for ray in Globals.mapManager.spawnRays(val.width, val.height):
 		ray.set_collision_mask_bit(5, true)
-		ray.enabled = false
+		ray.enabled = true
 		agent.vision.add_child(ray)

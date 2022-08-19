@@ -28,7 +28,7 @@ normal = ExtResource( 3 )
 [node name="hitBox" type="Area2D" parent="."]
 rotation = 0.523599
 collision_layer = 16
-collision_mask = 2
+collision_mask = 256
 
 [node name="Collider" type="CollisionShape2D" parent="hitBox"]
 position = Vector2( -23, 0 )

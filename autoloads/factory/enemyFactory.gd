@@ -15,6 +15,17 @@ var growl = [
 	 preload("res://assets/sfx/zombieGrowl5.wav"),
 ]
 
+
+var attacks = {
+	"melle": preload("res://scene/entities/enemies/attacks/Melle.gd"),
+	"charge": preload("res://scene/entities/enemies/attacks/Charge.gd")
+}
+
+var bodies = {
+	"normal": preload("res://scene/entities/enemies/Body.tscn"),
+	"charger": preload("res://scene/entities/enemies/Body.tscn")
+}
+
 var enemies = {}
 
 func _init():
@@ -41,10 +52,15 @@ func data(name):
 func create(name, x, y, rotation):
 	var enemy = enemyScene.instance()
 	enemy.data = data(name)
+	enemy.body = bodies[name].instance()
 	enemy.position = Vector2(x, y)
 	enemy.rotation = rotation
 	Constants.rand.randomize()
 	enemy.data.growl = Factory.enemies.growl[Constants.rand.randf_range(0, 5)]
+	
+	for attack in enemy.data.static.attacks:
+		enemy.attacks.append(attacks[attack].new(enemy))
+	
 	return enemy
 	
 	

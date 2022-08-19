@@ -1,10 +1,13 @@
 class_name Enemy extends Entity
 
 export(NodePath) onready var vision  = get_node(vision) as Node2D
+export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var sense  = get_node(sense) as CollisionShape2D
 export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as CollisionShape2D
-export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
+export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
+
+var body = null
 
 var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
@@ -13,13 +16,18 @@ var blocker = null
 var opponent = []
 var behavior = null setget setBehavior
 
+var attacks = []
+var curAttack = null
+
 
 func _ready():
+	add_child(body)
+	
 	.ready()
 	soundGrowl.stream = data.growl
 	
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
-		self.visible = false
+		visible = false
 		setEnableVission(false)
 	
 	setBehavior(data.behavior)
@@ -52,8 +60,27 @@ func setEnableVission(enabled = self.visible):
 
 
 func hurt(opponent, dmg):
-	if !.hurt(opponent, dmg):
-		 _on_View_body_entered(opponent)
+	if !._hurt(dmg):
+		_on_View_body_entered(opponent)
+		return false
+	Globals.mapManager.spawnDropItems(data.drops, global_position)
+	return true
+	
+func chooseAttack():
+	Constants.rand.randomize()
+	attacks[Constants.rand.randi_range(0, attacks.size()-1)].use()
+		
+func attack():
+	body.lowerBodyAnimation.stop()
+	path = []
+	curAttack.attack()
+
+func isAttacking(delta):
+	return curAttack.isAttacking(delta)
+
+func attackLanded():
+	curAttack.landed()
+
 
 func setBehavior(value):
 	data.behavior = value
@@ -70,6 +97,7 @@ func growl():
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(body):
+	chooseAttack()
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
 	$Sense/Collider.disabled = true
 	setEnableVission(false)
@@ -107,3 +135,4 @@ func _on_bodySensor_body_entered(body):
 
 func _on_BlockerSensor_body_entered(body):
 	blocker = body
+

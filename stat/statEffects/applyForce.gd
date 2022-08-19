@@ -13,6 +13,7 @@ func _init(data, opponent, parent):
 func run(agent, _delta):
 	if(force.length()<1):
 		agent.applyedForce = Vector2.ZERO
+		force = Vector2.ZERO
 		return true
 	agent.applyedForce+=force
 	force*=friction

@@ -3,7 +3,8 @@
     "id": "normal",
     "name": "Normal",
     "enemies": [
-      {"type": "normal", "count": 10}
+      {"type": "normal", "count": 10},
+      {"type": "charger", "count": 10}
     ],
     "stats":{
       "size": 500

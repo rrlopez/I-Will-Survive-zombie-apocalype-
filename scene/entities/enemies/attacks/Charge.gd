@@ -1,0 +1,38 @@
+extends Attack
+
+var force
+
+func _init(_agent):
+	.init(_agent)
+
+func use():
+	.use()
+	agent.hitBox.collider.scale = Vector2(agent.data.stats.vision.val.height/2, agent.data.stats.size.val/4)
+	agent.hitBox.collider.position = Vector2(agent.data.stats.vision.val.height/2, 0)
+	agent.set_collision_layer_bit(1, true)
+	agent.set_collision_mask_bit(0, true)
+	agent.set_collision_mask_bit(1, true)
+
+func attack():
+	.attack()
+	agent.hitBox.collider.scale = Vector2(1, 1)
+	agent.hitBox.collider.shape.radius = agent.data.stats.size.val/2
+	agent.hitBox.collider.position = Vector2(0, 0)
+	force = ApplyForce.new({ "force": agent.data.stats.vision.val.height/7,  "friction": 0.9 }, agent.opponent[0], agent)
+	agent.set_collision_layer_bit(1, false)
+	agent.set_collision_mask_bit(0, false)
+	agent.set_collision_mask_bit(1, false)
+
+func isAttacking(delta):
+	if force.run(agent, delta):
+		use()
+		return false
+	landed()
+	agent.hitBox.opponents = []
+	return true
+
+func landed():
+	for opponent in agent.hitBox.opponents:
+		opponent.hurt(agent.data.stats.attack_dmg.val)
+
+

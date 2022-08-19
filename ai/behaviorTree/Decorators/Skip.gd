@@ -2,7 +2,7 @@ extends Task
 
 class_name Skip, "../icons/limit.png"
 
-export(int) var skipTime = 0.5
+export(float) var skipTime = 0.5
 var timer = 0
 
 func run(delta):

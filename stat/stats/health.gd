@@ -7,6 +7,5 @@ func setVal(modifier):
 	.setVal(modifier)
 	if(val<1): 
 		agent.queue_free()
-		Globals.mapManager.spawnDropItems(agent.data.drops, agent.global_position)
 		return true
 	return false
