@@ -6,6 +6,8 @@ onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropI
 onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.tscn")
 
 
+export(NodePath) onready var dayNightCycle  = get_node(dayNightCycle) as CanvasModulate
+
 
 func _ready():
 	Globals.camera = CameraScene.instance()

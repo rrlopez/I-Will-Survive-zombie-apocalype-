@@ -514,3 +514,4 @@ __meta__ = {
 [connection signal="body_entered" from="." to="." method="_on_House_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_House_body_exited"]
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
+[connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]

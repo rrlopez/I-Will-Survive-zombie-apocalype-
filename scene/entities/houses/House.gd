@@ -10,6 +10,7 @@ var data = {
 
 func _ready():
 	data = Factory.houses.create('normal')
+	Globals.mapManager.dayNightCycle.connect("dayStarted", self, "_on_visibility_screen_entered")
 
 func _on_House_body_entered(body):
 	if(body.name=='Player'):
@@ -24,11 +25,16 @@ func _on_House_body_exited(body):
 
 
 func spawnEnemies():
-	var size = $Collider.shape.extents
-	for enemy in Factory.enemies.createMany(size, data.enemies):
-		enemies.add_child(enemy)
+	if visible and enemies.get_child_count()<1:
+		var size = $Collider.shape.extents
+		for enemy in Factory.enemies.createMany(size, data.enemies):
+			enemies.add_child(enemy)
 
 
 func _on_visibility_screen_entered():
-	if enemies.get_child_count()<1:
-		spawnEnemies()
+	show()
+	spawnEnemies()
+
+
+func _on_visibility_screen_exited():
+	hide()

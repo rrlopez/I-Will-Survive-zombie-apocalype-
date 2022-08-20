@@ -3,6 +3,8 @@ extends CanvasModulate
 var time = 20
 var speed = 0.2
 
+signal dayStarted
+
 func _ready():
 	$Animation.play("cycle")
 	$Animation.playback_speed = speed
@@ -28,3 +30,7 @@ func day(_delta):
 		shadow.modulate.a = min(1, (0.5-abs(sin(deg2rad(time))-0.5))*4)
 	
 	$AmbiantLight.global_position = Vector2(((time-45)*5)+60, ((abs(sin(deg2rad(time))-0.5))*200)+10)
+
+
+func dayStarted():
+	emit_signal("dayStarted")
