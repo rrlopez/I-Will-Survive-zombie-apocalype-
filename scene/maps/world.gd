@@ -16,4 +16,3 @@ func spawnEnemies():
 	
 	for enemy in Factory.enemies.createMany(size, data.enemies):
 		add_child(enemy)
-	

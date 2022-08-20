@@ -17,7 +17,6 @@ script = ExtResource( 3 )
 collider = NodePath("Collider")
 
 [node name="Collider" type="CollisionShape2D" parent="." groups=["map"]]
-visible = false
 shape = SubResource( 3 )
 
 [node name="Navigation" type="Navigation2D" parent="." groups=["navigation"]]

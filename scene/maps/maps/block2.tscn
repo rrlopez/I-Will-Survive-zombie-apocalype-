@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/maps/sprites/tilemap.png" type="Texture" id=1]
-[ext_resource path="res://scene/entities/houses/House.tscn" type="PackedScene" id=2]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -197,20 +196,3 @@ tile_data = PoolIntArray( -6487956, 4, 0, 0, 12, 0, 1, 12, 0, 2, 12, 0, 3, 12, 0
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="House" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4881, 7341 )
-
-[node name="House4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7552, 6258 )
-rotation = 1.5708
-
-[node name="House5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7552, 5148 )
-rotation = 1.5708
-
-[node name="House2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 6160, 7341 )
-
-[node name="House3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7445, 7328 )

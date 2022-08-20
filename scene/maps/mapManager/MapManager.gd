@@ -7,6 +7,7 @@ onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.ts
 
 
 export(NodePath) onready var dayNightCycle  = get_node(dayNightCycle) as CanvasModulate
+export(NodePath) onready var enemies  = get_node(enemies) as Node2D
 
 
 func _ready():

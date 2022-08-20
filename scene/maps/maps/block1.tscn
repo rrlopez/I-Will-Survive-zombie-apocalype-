@@ -217,7 +217,7 @@ position = Vector2( 1811, 10265 )
 position = Vector2( 713, 10265 )
 
 [node name="House21" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4920, 8820 )
+position = Vector2( 4920, 8818 )
 rotation = 3.14159
 
 [node name="House22" parent="." instance=ExtResource( 2 )]

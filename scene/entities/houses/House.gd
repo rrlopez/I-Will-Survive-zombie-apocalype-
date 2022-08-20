@@ -1,8 +1,7 @@
 extends Area2D
 
-export(NodePath) onready var enemies  = get_node(enemies) as Node2D
+var enemies = []
 
-onready var tween = $Roof/Tween
 
 var data = {
 	"disabled": false
@@ -10,31 +9,41 @@ var data = {
 
 func _ready():
 	data = Factory.houses.create('normal')
-	Globals.mapManager.dayNightCycle.connect("dayStarted", self, "_on_visibility_screen_entered")
-
-func _on_House_body_entered(body):
-	if(body.name=='Player'):
-		tween.interpolate_property($Roof/Texture, "modulate", Color(1,1,1,1), Color(1,1,1,0), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.start()
-
-
-func _on_House_body_exited(body):
-	if(body.name=='Player'):
-		tween.interpolate_property($Roof/Texture, "modulate", Color(1,1,1,0), Color(1,1,1,1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-		tween.start()
 
 
 func spawnEnemies():
-	if visible and enemies.get_child_count()<1:
+	if visible and enemyCount()<1:
 		var size = $Collider.shape.extents
 		for enemy in Factory.enemies.createMany(size, data.enemies):
-			enemies.add_child(enemy)
+			enemy.global_position = enemy.position+global_position
+			enemies.append(enemy)
+			Globals.mapManager.enemies.add_child(enemy)
+
+func enemyCount():
+	for enemy in enemies:
+		if !weakref(enemy).get_ref(): enemies.erase(enemy)
+	return enemies.size()
 
 
 func _on_visibility_screen_entered():
+	Globals.mapManager.dayNightCycle.connect("dayStarted", self, "_on_visibility_screen_entered")
 	show()
 	spawnEnemies()
 
 
 func _on_visibility_screen_exited():
+	Globals.mapManager.dayNightCycle.disconnect("dayStarted", self, "_on_visibility_screen_entered")
 	hide()
+
+
+func _on_visibility_viewport_entered(viewport):
+	if viewport.name == 'root':
+		$visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
+		$visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
+		self.connect("body_entered", $Roof, "_on_House_body_entered")
+		self.connect("body_exited", $Roof, "_on_House_body_exited")
+		$visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
+		_on_visibility_screen_entered()
+	else: $Roof.hide()
+	
+	$visibility.disconnect("viewport_entered", self, "_on_visibility_viewport_entered")

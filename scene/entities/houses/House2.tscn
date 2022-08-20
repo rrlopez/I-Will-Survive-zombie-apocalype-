@@ -425,7 +425,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
-enemies = NodePath("enemies")
 
 [node name="visibility" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 60.4999, 73.0001 )
