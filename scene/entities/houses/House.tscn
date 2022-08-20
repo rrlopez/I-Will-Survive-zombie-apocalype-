@@ -422,6 +422,11 @@ extents = Vector2( 626.5, 545.5 )
 collision_layer = 132
 collision_mask = 129
 script = ExtResource( 3 )
+enemies = NodePath("enemies")
+
+[node name="visibility" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -3, -1.5 )
+scale = Vector2( 62.7, 54.15 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
@@ -507,5 +512,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="enemies" type="Node2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_House_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_House_body_exited"]
+[connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]

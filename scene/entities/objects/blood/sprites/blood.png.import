@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/foot.png-92fd3adb52923d85af31bf736a4742e9.stex"
+path="res://.import/blood.png-4fed7d48cf5353d6b634971ac695d678.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/entities/enemies/sprites/foot.png"
-dest_files=[ "res://.import/foot.png-92fd3adb52923d85af31bf736a4742e9.stex" ]
+source_file="res://scene/entities/objects/blood/sprites/blood.png"
+dest_files=[ "res://.import/blood.png-4fed7d48cf5353d6b634971ac695d678.stex" ]
 
 [params]
 

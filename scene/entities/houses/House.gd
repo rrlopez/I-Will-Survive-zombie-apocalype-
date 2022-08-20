@@ -1,5 +1,7 @@
 extends Area2D
 
+export(NodePath) onready var enemies  = get_node(enemies) as Node2D
+
 onready var tween = $Roof/Tween
 
 var data = {
@@ -8,7 +10,6 @@ var data = {
 
 func _ready():
 	data = Factory.houses.create('normal')
-	spawnEnemies()
 
 func _on_House_body_entered(body):
 	if(body.name=='Player'):
@@ -25,4 +26,9 @@ func _on_House_body_exited(body):
 func spawnEnemies():
 	var size = $Collider.shape.extents
 	for enemy in Factory.enemies.createMany(size, data.enemies):
-		add_child(enemy)
+		enemies.add_child(enemy)
+
+
+func _on_visibility_screen_entered():
+	if enemies.get_child_count()<1:
+		spawnEnemies()

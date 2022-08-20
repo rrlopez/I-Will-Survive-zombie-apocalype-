@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arm.png-6f18a9b9f167fb946da7532dfcc1ee20.stex"
+path="res://.import/tigh.png-4a5706e35c73a699059f46388592034a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/entities/enemies/sprites/arm.png"
-dest_files=[ "res://.import/arm.png-6f18a9b9f167fb946da7532dfcc1ee20.stex" ]
+source_file="res://scene/entities/sprites/tigh.png"
+dest_files=[ "res://.import/tigh.png-4a5706e35c73a699059f46388592034a.stex" ]
 
 [params]
 

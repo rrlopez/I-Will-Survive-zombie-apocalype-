@@ -65,7 +65,7 @@ func create(name, x, y, rotation):
 	
 	
 func createMany(size, enemiesData):
-	var enemies = []
+	var _enemies = []
 	var rand = RandomNumberGenerator.new()
 	
 	for data in enemiesData:
@@ -77,6 +77,6 @@ func createMany(size, enemiesData):
 			rand.randomize()
 			var _rotation = rand.randf_range(0, 360)
 			
-			enemies.append(create(data.type, x, y, _rotation))
+			_enemies.append(create(data.type, x, y, _rotation))
 	
-	return enemies
+	return _enemies

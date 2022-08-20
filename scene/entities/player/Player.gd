@@ -57,6 +57,9 @@ func addCamera():
 	
 func hurt(dmg):
 	print(dmg)
+	Factory.particles.createBlood(global_position, Color.red)
+	Globals.camera.shake = {"timer": 0.2, "intensity": 3}
+	global_rotation-=Constants.rand.randi_range(-1, 1)*0.15
 	if ._hurt(dmg): return true
 	return false
 
@@ -114,5 +117,5 @@ func setWeapon(item):
 	else:
 		$Body/Upper/Animation.play("run")
 
-func _on_Pickup_body_entered(body):
-	body.pick_item()
+func _on_Pickup_body_entered(_body):
+	_body.pick_item()

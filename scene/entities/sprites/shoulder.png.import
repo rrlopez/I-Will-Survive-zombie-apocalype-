@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body.png-d6d066e14e4745d76377b37463a78cb6.stex"
+path="res://.import/shoulder.png-6683388d4f5bf35adaaa9783143d1c84.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/entities/enemies/sprites/body.png"
-dest_files=[ "res://.import/body.png-d6d066e14e4745d76377b37463a78cb6.stex" ]
+source_file="res://scene/entities/sprites/shoulder.png"
+dest_files=[ "res://.import/shoulder.png-6683388d4f5bf35adaaa9783143d1c84.stex" ]
 
 [params]
 

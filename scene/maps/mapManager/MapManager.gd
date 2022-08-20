@@ -1,13 +1,14 @@
 extends Node2D
 
-onready var currentMapScene = preload("res://scene/maps/World.tscn")
+onready var currentMapScene = preload("res://scene/maps/world.tscn")
 onready	var soundScene = load("res://scene/entities/objects/sound/Sound.tscn")
 onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
+onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.tscn")
 
 
 
 func _ready():
-	createCamera()
+	Globals.camera = CameraScene.instance()
 	Globals.mapManager = self
 	Globals.player = self.get_node("Player")
 	Globals.player.addCamera()
@@ -49,10 +50,3 @@ func spawnRays(width, height):
 		ray.cast_to = Vector2.RIGHT.rotated(angle) * height
 		rays.append(ray)
 	return rays
-	
-	
-func createCamera():
-	var camera = Camera2D.new()
-	camera.rotating = true
-	camera.current = true
-	Globals.camera = camera

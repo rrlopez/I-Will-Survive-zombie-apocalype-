@@ -4,7 +4,7 @@ var data = {}
 var timer = 0
 var rateTimer = 0
 
-func _init(_data, opponent, parent):
+func _init(_data, _opponent, _parent):
 	data = _data
 	reset()
 	for i in data.modifiers.size():

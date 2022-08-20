@@ -159,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Composites/Parallel.gd"
 }, {
+"base": "Node",
+"class": "ParticleFactory",
+"language": "GDScript",
+"path": "res://autoloads/factory/particleFactory.gd"
+}, {
 "base": "Node2D",
 "class": "Placable",
 "language": "GDScript",
@@ -410,6 +415,7 @@ _global_script_class_icons={
 "MoveSpeedStat": "",
 "MultiplyModifier": "",
 "Parallel": "res://ai/behaviorTree/icons/parallel.png",
+"ParticleFactory": "",
 "Placable": "",
 "PlacableFactory": "",
 "PlacableItem": "",

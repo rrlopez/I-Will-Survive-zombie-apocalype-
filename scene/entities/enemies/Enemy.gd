@@ -59,9 +59,10 @@ func setEnableVission(enabled = self.visible):
 		ray.enabled = enabled
 
 
-func hurt(opponent, dmg):
+func hurt(_opponent, dmg):
+	Factory.particles.createBlood(global_position, Color.green)
 	if !._hurt(dmg):
-		_on_View_body_entered(opponent)
+		_on_View_body_entered(_opponent)
 		return false
 	Globals.mapManager.spawnDropItems(data.drops, global_position)
 	return true
@@ -96,12 +97,12 @@ func growl():
 
 #---------- CONNECT FUNCTIONS --------------#
 
-func _on_View_body_entered(body):
+func _on_View_body_entered(_opponent):
 	chooseAttack()
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
 	$Sense/Collider.disabled = true
 	setEnableVission(false)
-	opponent = [body]
+	opponent = [_opponent]
 
 
 func _on_View_body_exited(_body):
@@ -129,10 +130,10 @@ func _on_visibility_screen_exited():
 	setEnableVission()
 
 
-func _on_bodySensor_body_entered(body):
-	if(!opponent.empty() and body.opponent.empty()): body._on_View_body_entered(opponent[0])
+func _on_bodySensor_body_entered(_opponent):
+	if(!opponent.empty() and _opponent.opponent.empty()): _opponent._on_View_body_entered(opponent[0])
 
 
-func _on_BlockerSensor_body_entered(body):
-	blocker = body
+func _on_BlockerSensor_body_entered(object):
+	blocker = object
 

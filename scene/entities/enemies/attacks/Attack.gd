@@ -14,7 +14,7 @@ func attack():
 	agent.path = []
 	pass
 
-func isAttacking(delta):
+func isAttacking(_delta):
 	pass
 
 func landed():

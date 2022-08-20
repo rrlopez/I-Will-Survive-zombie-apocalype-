@@ -33,7 +33,7 @@ func _process(delta):
 		queue_free()
 
 
-func _on_Trigger_body_entered(body):
+func _on_Trigger_body_entered(_body):
 	Globals.camera.rotating = false
 	Globals.camera.position = Vector2(0, 0)
 	triggered = true

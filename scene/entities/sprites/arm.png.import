@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/head.png-f4b3c7e6637f39130adc1bc0068449fb.stex"
+path="res://.import/arm.png-cc9ed40a75eb3bfa70818481fa5a1d69.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/entities/enemies/sprites/head.png"
-dest_files=[ "res://.import/head.png-f4b3c7e6637f39130adc1bc0068449fb.stex" ]
+source_file="res://scene/entities/sprites/arm.png"
+dest_files=[ "res://.import/arm.png-cc9ed40a75eb3bfa70818481fa5a1d69.stex" ]
 
 [params]
 
