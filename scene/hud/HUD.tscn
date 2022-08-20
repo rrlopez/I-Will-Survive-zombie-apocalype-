@@ -17,7 +17,6 @@ lootPanel = NodePath("Loot_Panel")
 inventoryPanel = NodePath("Inventory_panel")
 craftPanel = NodePath("Craft_panel")
 controller = NodePath("Controller")
-miniMap = NodePath("Minimap")
 
 [node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
 item_info = NodePath("../Item_info")
@@ -78,10 +77,6 @@ normal = ExtResource( 9 )
 script = ExtResource( 4 )
 
 [node name="Minimap" parent="." instance=ExtResource( 10 )]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -200.0
-margin_right = 0.0
 
 [connection signal="pressed" from="CraftBtn" to="CraftBtn" method="_on_CraftBtn_pressed"]
 [connection signal="pressed" from="BagBtn" to="BagBtn" method="_on_BagBtn_pressed"]

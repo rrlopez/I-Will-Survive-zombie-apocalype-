@@ -44,6 +44,6 @@ func _on_visibility_viewport_entered(viewport):
 		self.connect("body_exited", $Roof, "_on_House_body_exited")
 		$visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
 		_on_visibility_screen_entered()
-	else: $Roof.hide()
+	elif viewport.name == 'minmapViewport': $Roof.hide()
 	
 	$visibility.disconnect("viewport_entered", self, "_on_visibility_viewport_entered")

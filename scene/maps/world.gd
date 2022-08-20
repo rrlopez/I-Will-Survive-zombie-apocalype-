@@ -8,7 +8,6 @@ var data = {}
 func _ready():
 	data = Factory.maps.create("normal")
 	spawnEnemies()
-	add_child(Factory.enemies.create('normal', 0, 0, 0))
 	
 
 func spawnEnemies():

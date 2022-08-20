@@ -2,6 +2,8 @@ extends Navigation2D
 onready var current_navpoly_id = 1
 
 
+export(NodePath) onready var blocks  = get_node(blocks) as Node2D
+
 func _ready():
 	var polygon = $Polygon.get_navigation_polygon()
 	
@@ -24,7 +26,7 @@ func createNavigationBound(polygon):
 
 
 func createNavigationCuts(polygon):
-	var obstacles = get_tree().get_nodes_in_group('obstacle')
+	var obstacles = Utils.findNodeDescendantsInGroup(blocks, 'obstacle')
 	for obstacle in obstacles:
 		var newPolygon = PoolVector2Array()
 		var polygon_transform = obstacle.get_global_transform()

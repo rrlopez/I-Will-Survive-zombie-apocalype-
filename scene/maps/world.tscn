@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/maps/Navigation.gd" type="Script" id=1]
-[ext_resource path="res://scene/maps/maps/block1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/maps/maps/blocks.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/maps/world.gd" type="Script" id=3]
-[ext_resource path="res://scene/maps/maps/block3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scene/maps/maps/block2.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scene/maps/maps/block4.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 19065, 19065 )
@@ -25,6 +22,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
+blocks = NodePath("../blocks")
 
 [node name="Polygon" type="NavigationPolygonInstance" parent="Navigation"]
 navpoly = SubResource( 2 )
@@ -32,13 +30,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="block1" parent="." instance=ExtResource( 2 )]
-position = Vector2( -12609, 0 )
-
-[node name="block2" parent="." instance=ExtResource( 5 )]
-
-[node name="block3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 0, -11648 )
-
-[node name="block4" parent="." instance=ExtResource( 4 )]
-position = Vector2( -12609, -11648 )
+[node name="blocks" parent="." instance=ExtResource( 2 )]
