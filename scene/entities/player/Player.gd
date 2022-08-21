@@ -30,7 +30,7 @@ func _ready():
 	
 
 func _process(delta):
-	data.stats.hunger.setVal(Factory.statsModifiers.create("subtruct", delta))
+	data.stats.hunger.run(delta)
 
 func _physics_process(delta):
 	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))
@@ -52,7 +52,11 @@ func hurt(dmg):
 	Factory.particles.createBlood(global_position, Color.red)
 	Globals.camera.shake = {"timer": 0.2, "intensity": 3}
 	global_rotation-=Constants.rand.randi_range(-1, 1)*0.15
-	if ._hurt(dmg): return true
+	if ._hurt(dmg):
+		yield(get_tree(),"idle_frame")
+		yield(get_tree(),"idle_frame")
+		Globals.stateManager.pushState("gameOverState")
+		return true
 	return false
 
 func _on_Controller_on_joystick_release(key):

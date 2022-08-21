@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gold.png-9eb89d804eb5331366035b0b93194f81.stex"
+path="res://.import/bandage.png-8dc4d89d4ae4499df0915c9ad7e4612e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scene/ui/items/sprites/gold.png"
-dest_files=[ "res://.import/gold.png-9eb89d804eb5331366035b0b93194f81.stex" ]
+source_file="res://scene/ui/items/sprites/bandage.png"
+dest_files=[ "res://.import/bandage.png-8dc4d89d4ae4499df0915c9ad7e4612e.stex" ]
 
 [params]
 

@@ -162,7 +162,7 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "MultiplyModifier",
 "language": "GDScript",
-"path": "res://stat/modifiers/MultiplyModifier.gd"
+"path": "res://stat/modifiers/multiplyModifier.gd"
 }, {
 "base": "Task",
 "class": "Parallel",
@@ -193,6 +193,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scene/entities/player/Player.gd"
+}, {
+"base": "Resource",
+"class": "PopModifier",
+"language": "GDScript",
+"path": "res://stat/modifiers/popModifier.gd"
+}, {
+"base": "Resource",
+"class": "PushModifier",
+"language": "GDScript",
+"path": "res://stat/modifiers/pushModifier.gd"
 }, {
 "base": "Task",
 "class": "RandomSelector",
@@ -432,6 +442,8 @@ _global_script_class_icons={
 "PlacableFactory": "",
 "PlacableItem": "",
 "Player": "",
+"PopModifier": "",
+"PushModifier": "",
 "RandomSelector": "res://ai/behaviorTree/icons/random-selector.png",
 "RandomSequence": "res://ai/behaviorTree/icons/random-sequence.png",
 "Regen": "",

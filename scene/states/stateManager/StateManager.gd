@@ -3,7 +3,8 @@ extends Node2D
 onready var states = {
 	"gameState": preload("res://scene/states/GameState.tscn").instance(),
 	"pauseState": preload("res://scene/states/pauseState/pauseState.tscn").instance(),
-	"mapState": preload("res://scene/states/mapState/mapState.tscn").instance()
+	"mapState": preload("res://scene/states/mapState/mapState.tscn").instance(),
+	"gameOverState": preload("res://scene/states/gameOverState/gameOverState.tscn").instance()
 }
 
 onready var currentStates = []

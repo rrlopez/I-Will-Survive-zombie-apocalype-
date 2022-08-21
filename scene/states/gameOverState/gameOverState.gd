@@ -1,7 +1,6 @@
 extends Node2D
 
 
-
 func _on_TouchScreenButton_pressed():
 	get_tree().paused = false
 	remove_child(Globals.stateManager.currentStates[1])

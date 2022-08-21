@@ -1,11 +1,30 @@
 [
   {
     "static_data":{
-      "id": "crystal",
-      "name": "Crystal",
+      "id": "bandage",
+      "name": "Bandage",
       "type": "consumable",
       "stock_size": 100,
       "equipment_type": ""
+    },
+    "dynamic_data":{
+      "modifiers": [
+        {"type": "health", "script": "add", "val": 10}
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "bread",
+      "name": "Bread",
+      "type": "consumable",
+      "stock_size": 100,
+      "equipment_type": ""
+    },
+    "dynamic_data":{
+      "modifiers": [
+        {"type": "hunger", "script": "add", "val": 10}
+      ]
     }
   },
   {

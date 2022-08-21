@@ -29,7 +29,7 @@ func data(name):
 	var data = {"static": items[name].static_data}
 	data.quantity = 0
 	if items[name].has("dynamic_data"):
-		var dynamicData = items[name].dynamic_data.duplicate()
+		var dynamicData = items[name].dynamic_data.duplicate(true)
 		for key in dynamicData.keys():
 			data[key] = dynamicData[key]
 	return data	

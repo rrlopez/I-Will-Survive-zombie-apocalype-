@@ -5,6 +5,7 @@ export(NodePath) onready var itemInfo = get_node(itemInfo) as ItemInfoWindow
 export(NodePath) onready var inventoryPanel = get_node(inventoryPanel) as Window
 export(NodePath) onready var craftPanel = get_node(craftPanel) as Window
 export(NodePath) onready var controller = get_node(controller) as Node2D
+export(NodePath) onready var cameraEffect = get_node(cameraEffect) as Sprite
 
 
 func _init():

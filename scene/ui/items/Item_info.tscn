@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://font/fontStyle.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scene/ui/inventory/sprites/inner_panel.png" type="Texture" id=2]
 [ext_resource path="res://scene/ui/inventory/sprites/title.png" type="Texture" id=3]
 [ext_resource path="res://scene/ui/items/Item_info.gd" type="Script" id=4]

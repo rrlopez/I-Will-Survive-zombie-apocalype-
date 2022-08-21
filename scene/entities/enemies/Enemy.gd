@@ -65,6 +65,7 @@ func hurt(_opponent, dmg):
 		_on_View_body_entered(_opponent)
 		return false
 	Globals.mapManager.spawnDropItems(data.drops, global_position)
+	queue_free()
 	return true
 	
 func chooseAttack():
