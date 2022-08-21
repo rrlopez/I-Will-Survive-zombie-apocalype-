@@ -1,9 +1,27 @@
 extends Node2D
 
-onready var currentState = null
+onready var states = {
+	"gameState": preload("res://scene/states/GameState.tscn").instance(),
+	"pauseState": preload("res://scene/states/pauseState/pauseState.tscn").instance(),
+	"mapState": preload("res://scene/states/mapState/mapState.tscn").instance()
+}
 
-# Called when the node enters the scene tree for the first time.
+onready var currentStates = []
+
 func _ready():
-	currentState = preload("res://scene/states/GameState.tscn")
-	add_child(currentState.instance())
-	pass # Replace with function body.
+	Globals.stateManager = self
+	pushState("gameState")
+
+func popState():
+	if currentStates.size() < 2: return 
+	remove_child(currentStates[0])
+	currentStates.pop_front()
+	add_child(currentStates[0])
+	
+func pushState(name):
+	var state = states[name]
+	if currentStates.size()>0: 
+		if currentStates[0] == state: return
+		remove_child(currentStates[0])
+	currentStates.push_front(state)
+	add_child(currentStates[0])

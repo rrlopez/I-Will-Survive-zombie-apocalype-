@@ -59,6 +59,7 @@ func _input(event:InputEvent):
 		if event.doubleclick and prev_slot: 
 			prev_slot.use_item()
 			prev_slot = null
+			cur_slot = null
 		elif !event.is_pressed(): clickPosition = null
 	
 

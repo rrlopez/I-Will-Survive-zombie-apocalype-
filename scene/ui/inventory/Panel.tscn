@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scene/ui/inventory/sprites/main panel.png" type="Texture" id=1]
 [ext_resource path="res://scene/ui/inventory/sprites/title.png" type="Texture" id=2]
-[ext_resource path="res://font/Arcadepix Plus.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scene/ui/inventory/sprites/x_normal.png" type="Texture" id=4]
 [ext_resource path="res://scene/ui/inventory/sprites/x_pressed.png" type="Texture" id=5]
 [ext_resource path="res://scene/ui/inventory/Panel.gd" type="Script" id=6]

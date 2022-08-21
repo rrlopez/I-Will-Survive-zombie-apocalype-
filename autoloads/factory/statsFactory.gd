@@ -6,6 +6,7 @@ var stats = {
 	'moveSpeed': MoveSpeedStat,
 	'aggressionRange': AggressionRangeStat,
 	'vission': VissionStat,
+	'hunger': HungerStat,
 	'default': DefaultStat,
 }
 

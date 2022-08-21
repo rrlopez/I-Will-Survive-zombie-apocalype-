@@ -29,6 +29,8 @@ func _ready():
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 
+func _process(delta):
+	data.stats.hunger.setVal(Factory.statsModifiers.create("subtruct", delta))
 
 func _physics_process(delta):
 	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))
@@ -44,19 +46,9 @@ func setupInventory():
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 
 func addCamera():
-	var cameraParent = Globals.camera.get_parent()
-	if(cameraParent): cameraParent.remove_child(Globals.camera)
-
-	var zoom = 1.5
-	Globals.camera.rotating = true
-	Globals.camera.zoom = Vector2(zoom, zoom)
-	Globals.camera.rotation_degrees = 0
-	Globals.camera.position = Vector2(0, zoom*-220)
-
-	add_child(Globals.camera)
+	Globals.camera.attachTo(self, 1.5, 220)
 	
 func hurt(dmg):
-	print(dmg)
 	Factory.particles.createBlood(global_position, Color.red)
 	Globals.camera.shake = {"timer": 0.2, "intensity": 3}
 	global_rotation-=Constants.rand.randi_range(-1, 1)*0.15

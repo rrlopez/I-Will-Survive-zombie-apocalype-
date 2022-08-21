@@ -1,7 +1,7 @@
 extends Camera2D
 
-var shake setget setShake
-var lastZoom = 1
+var shake = null
+var lastZoom = Vector2.ZERO
 	
 func _process(delta):
 	if shake:
@@ -17,6 +17,15 @@ func _process(delta):
 			zoom = lastZoom
 			shake = null
 
-func setShake(value):
-	shake = value
-	lastZoom = zoom
+
+func attachTo(newParent, _zoom, offset):
+	var cameraParent = get_parent()
+	if(cameraParent): cameraParent.remove_child(self)
+
+	rotating = true
+	zoom = Vector2(_zoom, _zoom)
+	lastZoom = Vector2(_zoom, _zoom)
+	rotation_degrees = 0
+	position = Vector2(0, _zoom*-offset)
+
+	newParent.add_child(self)

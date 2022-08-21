@@ -1,7 +1,8 @@
 extends CanvasModulate
 
 var time = 20
-var speed = 0.2
+var speed = 20#0.2
+var day = 1
 
 signal dayStarted
 
@@ -33,4 +34,5 @@ func day(_delta):
 
 
 func dayStarted():
-	emit_signal("dayStarted")
+	day+=1
+	emit_signal("dayStarted", day)

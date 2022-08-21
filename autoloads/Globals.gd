@@ -5,6 +5,7 @@ var camera = null
 var HUD = null
 
 var inventoryManager = null
+var stateManager = null
 
 var player:Player = null
 var inventory = null

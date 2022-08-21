@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/hud/gage/gage.gd" type="Script" id=2]
+
+[node name="gage" type="ColorRect"]
+margin_right = 148.0
+margin_bottom = 20.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="rect" type="ColorRect" parent="."]
+margin_right = 148.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 10, 10 )
+scale = Vector2( 0.14, 0.14 )

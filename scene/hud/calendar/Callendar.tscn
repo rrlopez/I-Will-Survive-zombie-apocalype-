@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scene/hud/calendar/Callendar.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 28
+font_data = ExtResource( 1 )
+
+[node name="Callendar" type="ColorRect"]
+margin_right = 88.0
+margin_bottom = 35.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+dayLabel = NodePath("dayCount")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_bottom = 1.0
+margin_right = 30.0
+color = Color( 0.690196, 0.109804, 0.109804, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ColorRect"]
+margin_left = 2.0
+margin_top = 34.0
+margin_right = 35.0
+margin_bottom = 59.0
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 2 )
+text = "Day"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dayCount" type="Label" parent="."]
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = 1.0
+margin_right = 87.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

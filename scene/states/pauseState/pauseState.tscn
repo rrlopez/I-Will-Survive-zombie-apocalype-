@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/gui/playIcon.png" type="Texture" id=1]
+[ext_resource path="res://scene/states/pauseState/pauseState.gd" type="Script" id=2]
+
+[node name="pauseState" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2( 955, 10 )
+scale = Vector2( 0.6, 0.6 )
+normal = ExtResource( 1 )
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
