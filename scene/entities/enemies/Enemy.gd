@@ -61,12 +61,19 @@ func setEnableVission(enabled = self.visible):
 
 func hurt(_opponent, dmg):
 	Factory.particles.createBlood(global_position, Color.green)
-	if !._hurt(dmg):
-		_on_View_body_entered(_opponent)
-		return false
+	if ._hurt(dmg):
+		dead()
+		return true
+	
+	_on_View_body_entered(_opponent)
+	return false
+
+func dead():
 	Globals.mapManager.spawnDropItems(data.drops, global_position)
 	queue_free()
-	return true
+	
+func healthStatCallback(health):
+	pass
 	
 func chooseAttack():
 	Constants.rand.randomize()

@@ -290,6 +290,11 @@ _global_script_classes=[ {
 "path": "res://autoloads/factory/statusEffectFactory.gd"
 }, {
 "base": "Resource",
+"class": "StatusEffects",
+"language": "GDScript",
+"path": "res://stat/statusEffects.gd"
+}, {
+"base": "Resource",
 "class": "SubtructModifier",
 "language": "GDScript",
 "path": "res://stat/modifiers/subtructModifier.gd"
@@ -461,6 +466,7 @@ _global_script_class_icons={
 "StatsModifierFactory": "",
 "StatusEffect": "",
 "StatusEffectFactory": "",
+"StatusEffects": "",
 "SubtructModifier": "",
 "Task": "",
 "UntilFail": "res://ai/behaviorTree/icons/until-fail.png",

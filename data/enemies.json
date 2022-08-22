@@ -2,8 +2,7 @@
 	{
 		"static_data":{
 			"id": "normal",
-			"name": "Normal",
-			"attacks": ["melle"]
+			"name": "Normal"
     },
 		"dynamic_data":{
 			"behavior": "basic",
@@ -19,17 +18,18 @@
 				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[
-				{ "name": "machette", "quantity": {"min": 1, "max": 1}, "rarity": 50},
-				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},
-				{ "name": "bandage", "quantity": {"min": 1, "max": 10}, "rarity": 80}
+				{ "name": "bread", "quantity": {"min": 1, "max": 2}, "rarity": 80},
+				{ "name": "bandage", "quantity": {"min": 1, "max": 2}, "rarity": 80}
+			],
+			"attacks": [
+				{"script": "melle", "statusEffects":[]}
 			]
 		}
 	},
 	{
 		"static_data":{
 			"id": "charger",
-			"name": "charger",
-			"attacks": ["charge"]
+			"name": "Charger"
     },
 		"dynamic_data":{
 			"behavior": "basic",
@@ -45,8 +45,41 @@
 				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[
-				{ "name": "machette", "quantity": {"min": 1, "max": 1}, "rarity": 50},
 				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80}
+			],
+			"attacks": [
+				{
+					"script": "charge",
+					"statusEffects": [
+						{
+							"id": "openWounds",
+							"name": "Open Wounds",
+							"icon": "wounded",
+							"chance": 70,
+							"effects": [
+								{
+									"script": "buff",
+									"stats":{
+										"duration": 200,
+										"modifiers": [
+											{"type":"move_speed", "script": "multiply", "val": 0.5}
+										]
+									}
+								},
+								{
+									"script": "regen",
+									"stats":{
+										"duration": 20,
+										"rate": 0.2,
+										"modifiers": [
+											{"type":"health", "script": "subtruct", "val": 1}
+										]
+									}
+								}
+							]
+						}
+					]
+				}
 			]
 		}
 	}

@@ -13,7 +13,9 @@
       { "name": "machette", "quantity": 1},
       { "name": "AMT AutoMag III", "quantity": 1},
       { "name": "m13", "quantity": 1},
-      { "name": "m14", "quantity": 1}
+      { "name": "m14", "quantity": 1},
+      { "name": "bandage", "quantity": 99},
+      { "name": "bread", "quantity": 99}
     ]
   },
   "craft_inventory": {

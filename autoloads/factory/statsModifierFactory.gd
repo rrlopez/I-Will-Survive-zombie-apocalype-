@@ -6,6 +6,8 @@ var modifiers = {
 	'multiply': MultiplyModifier,
 	'divide': DivideModifier,
 	'set': SetModifier,
+	'pop': PopModifier,
+	'push': PushModifier,
 }
 
 func createAll(data):

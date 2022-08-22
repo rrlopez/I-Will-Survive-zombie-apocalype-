@@ -6,7 +6,7 @@ func _init(_name, _val, _agent):
 	init(_name, _val, _agent)
 
 func run(delta):
-	if(val<1):
+	if(val<=0):
 		healthModifier.val = delta*agent.data.stats.hunger_tolerance.val
-		agent.data.stats.health.setVal(healthModifier)
+		if agent.data.stats.health.setVal(healthModifier): agent.dead()
 	else: val-=delta

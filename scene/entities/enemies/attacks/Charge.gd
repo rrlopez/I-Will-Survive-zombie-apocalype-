@@ -2,8 +2,8 @@ extends Attack
 
 var force
 
-func _init(_agent):
-	.init(_agent)
+func _init(_agent, _data):
+	.init(_agent, _data)
 
 func use():
 	.use()
@@ -30,9 +30,5 @@ func isAttacking(delta):
 	landed()
 	agent.hitBox.opponents = []
 	return true
-
-func landed():
-	for opponent in agent.hitBox.opponents:
-		opponent.hurt(agent.data.stats.attack_dmg.val)
 
 

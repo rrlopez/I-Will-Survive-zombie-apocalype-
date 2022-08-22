@@ -1,8 +1,8 @@
 extends Attack
 
 
-func _init(_agent):
-	.init(_agent)
+func _init(_agent, _data):
+	.init(_agent, _data)
 
 func use():
 	.use()

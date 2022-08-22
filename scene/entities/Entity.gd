@@ -1,18 +1,32 @@
 class_name Entity extends KinematicBody2D
 
 var data = {}
-var statusEffects = []
+var statusEffects = null
 
 var applyedForce: Vector2 = Vector2.ZERO
 
 func ready():
+	statusEffects = StatusEffects.new(self)
 	for stat in data.stats:
 		Constants.rand.randomize()
 		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
 	
 func _process(delta):
-	for statusEffect in statusEffects: statusEffect.run(self, delta)
+	statusEffects.run(delta)
 	
 
 func _hurt(dmg):
 	return data.stats.health.setVal(Factory.statsModifiers.create("subtruct", dmg))
+
+
+func revive():
+	for stat in data.stats: data.stats[stat].reset()
+	statusEffects.reset()
+
+
+func addStatusEffect(statusEffect):
+	statusEffects.addVal(statusEffect)
+
+func removeStatusEffect(statusEffect):
+	statusEffects.removeVal(statusEffect)
+

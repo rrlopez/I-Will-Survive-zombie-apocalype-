@@ -30,12 +30,12 @@ func _ready():
 	
 
 func _process(delta):
+	._process(delta)
 	data.stats.hunger.run(delta)
 
 func _physics_process(delta):
-	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))
+	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))*data.stats.move_speed.val
 	move_and_slide((motion+applyedForce)*delta, Vector2.UP)
-
 
 
 func setupInventory():
@@ -53,11 +53,33 @@ func hurt(dmg):
 	Globals.camera.shake = {"timer": 0.2, "intensity": 3}
 	global_rotation-=Constants.rand.randi_range(-1, 1)*0.15
 	if ._hurt(dmg):
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		Globals.stateManager.pushState("gameOverState")
+		dead()
 		return true
-	return false
+
+func dead():
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	Globals.stateManager.pushState("gameOverState")
+
+
+func healthStatCallback(health):
+	if(health.val<health.maxVal/1.5):
+		var scale = max((2-1.2/(((health.maxVal)/health.val+1))+1)+1.2, 1.2)
+		var alpha = 0.6-(0.6/((health.maxVal)/health.val+1)+1)
+		Globals.HUD.cameraEffect.visible = true
+		Globals.HUD.cameraEffect.modulate.a = alpha
+		Globals.HUD.cameraEffect.scale = Vector2(scale, scale)
+	else: Globals.HUD.cameraEffect.visible = false
+
+
+func addStatusEffect(statusEffect):
+	.addStatusEffect(statusEffect)
+	Globals.HUD.statusEffectIcons.addIcon(statusEffect)
+
+func removeStatusEffect(statusEffect):
+	.removeStatusEffect(statusEffect)
+	Globals.HUD.statusEffectIcons.removeIcon(statusEffect)
+
 
 func _on_Controller_on_joystick_release(key):
 	velocity = Utils.filter(velocity, key)
@@ -69,7 +91,7 @@ func _on_Controller_on_joystick_release(key):
 
 func _on_Controller_use_joystick_vector(vector):
 	if(vector.value.length() > 0):
-		velocity.push_back({'key': vector.key, 'value': vector.value*data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER})
+		velocity.push_back({'key': vector.key, 'value': vector.value*Constants.MOVE_SPEED_MULTIPLYER})
 		if(abs(velocity.back().value.x) < abs(velocity.back().value.y)):$Body/Lower/Animation.play("run_stright")
 		else:$Body/Lower/Animation.play("run_side")
 	else:

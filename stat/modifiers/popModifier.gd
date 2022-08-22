@@ -1,11 +1,13 @@
 class_name PopModifier extends Resource
 
-var element
+var id
 var type
 
-func _init(_element, _type=null):
-	element = _element
+func _init(_id, _type=null):
+	id = _id
 	type = _type
 
-func execute(array, _element = element):
-	return Utils.filter(array, _element)
+func execute(array, _id = id):
+	for element in array.val:
+		if element.data.id == _id: 
+			array.remove(element)

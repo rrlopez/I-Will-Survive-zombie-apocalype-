@@ -33,15 +33,7 @@ func _init():
 		enemies[enemy.static_data.id] = enemy
 	
 func data(name):
-	var data = {
-		"static": enemies[name].static_data,
-		"states": {
-			"isChasing": false,
-			"isAttacking": false,
-			"isIdle": false,
-			"isDead": false
-		}
-	}
+	var data = {"static": enemies[name].static_data}
 	if enemies[name].has("dynamic_data"):
 		var dynamicData = enemies[name].dynamic_data.duplicate(true)
 		for key in dynamicData.keys():
@@ -58,8 +50,8 @@ func create(name, x, y, rotation):
 	Constants.rand.randomize()
 	enemy.data.growl = Factory.enemies.growl[Constants.rand.randf_range(0, 5)]
 	
-	for attack in enemy.data.static.attacks:
-		enemy.attacks.append(attacks[attack].new(enemy))
+	for attack in enemy.data.attacks:
+		enemy.attacks.append(attacks[attack.script].new(enemy, attack))
 	
 	return enemy
 	

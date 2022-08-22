@@ -10,7 +10,6 @@ func _init(_name, _val, _agent):
 func setVal(modifier):
 	val.width = modifier.execute(val.width, modifier.val.width)
 	val.height = modifier.execute(val.height, modifier.val.height)
-	update()
 
 
 func recompute():
@@ -19,6 +18,7 @@ func recompute():
 		maxVal.width = modifier.execute(maxVal.width, modifier.val.width)
 		maxVal.height = modifier.execute(maxVal.height, modifier.val.height)
 		setVal(modifier)
+	update()
 		
 
 func update():
