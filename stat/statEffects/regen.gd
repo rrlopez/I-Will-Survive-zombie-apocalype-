@@ -15,7 +15,7 @@ func run(agent, delta):
 	if(rateTimer>data.rate):
 		rateTimer=0
 		for modifier in data.modifiers:
-			agent.data.stats[modifier.type].setVal(modifier)
+			Utils.getProp(agent, modifier.type).setVal(modifier)
 	
 	if(timer>data.duration):
 		return true

@@ -62,3 +62,8 @@ func findNodeDescendantsInGroup(node: Node, groupName: String) -> Array:
 			descendantsInGroup.append(child)
 		descendantsInGroup += findNodeDescendantsInGroup(child, groupName)
 	return descendantsInGroup
+
+func getProp(object, path):
+	var prop = object
+	for type in path.split(".", true): prop = prop[type]
+	return prop

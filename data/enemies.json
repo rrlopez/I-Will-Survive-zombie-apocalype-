@@ -62,7 +62,7 @@
 									"stats":{
 										"duration": 200,
 										"modifiers": [
-											{"type":"move_speed", "script": "multiply", "val": 0.5}
+											{"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
 										]
 									}
 								},
@@ -72,7 +72,7 @@
 										"duration": 20,
 										"rate": 0.2,
 										"modifiers": [
-											{"type":"health", "script": "subtruct", "val": 1}
+											{"type":"data.stats.health", "script": "subtruct", "val": 1}
 										]
 									}
 								}
