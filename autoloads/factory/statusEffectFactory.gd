@@ -7,7 +7,7 @@ var statusEffects = {
 }
 
 	
-func create(data, oponent, parent):
+func create(data, oponent=Globals.player, parent=Globals.player):
 	Constants.rand.randomize()
 	if Constants.rand.randi()%100>data.chance: return
 	for statusEffect in oponent.statusEffects.val:

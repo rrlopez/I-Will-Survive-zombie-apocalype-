@@ -24,7 +24,34 @@
     },
     "dynamic_data":{
       "modifiers": [
-        {"type": "data.stats.hunger", "script": "add", "val": 10}
+        {"type": "data.stats.hunger", "script": "add", "val": 10},
+        {"type": "statusEffects", "script": "push", "val": {
+          "id": "inspire",
+          "name": "Inspire",
+          "chance": 100,
+          "icon": "wounded",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 2,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": 1.5}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 2,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "add", "val": 1}
+                ]
+              }
+            }
+          ]
+        }}
       ]
     }
   },

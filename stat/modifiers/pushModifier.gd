@@ -8,4 +8,4 @@ func _init(_element, _type=null):
 	type = _type
 
 func execute(array, _element = element):
-	return array.append(_element)
+	Factory.statusEffects.create(_element.duplicate(true))

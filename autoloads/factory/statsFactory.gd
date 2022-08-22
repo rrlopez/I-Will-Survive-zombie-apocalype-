@@ -13,4 +13,3 @@ var stats = {
 	
 func create(name, data, agent):
 	return stats[data.script].new(name, data.val, agent)
-	
