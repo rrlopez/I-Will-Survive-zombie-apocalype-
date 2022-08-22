@@ -63,7 +63,8 @@ func dead():
 
 
 func healthStatCallback(health):
-	if(health.val<health.maxVal/1.5 and health.val>0):
+	if(health.val<=0): dead()
+	elif(health.val<health.maxVal/1.5 and health.val>0):
 		var scale = max((2-1.2/(((health.maxVal)/health.val)))+1.2, 1.2)
 		var alpha = 0.6-(0.6/((health.maxVal)/health.val))
 		Globals.HUD.cameraEffect.visible = true

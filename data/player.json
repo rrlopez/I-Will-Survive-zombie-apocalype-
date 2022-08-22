@@ -23,7 +23,8 @@
     "slot_type": "craft",
     "size": 36,
     "items": [
-      { "name": "crafting table", "quantity": 1}
+      { "name": "crafting table", "quantity": 1},
+      { "name": "campfire", "quantity": 1}
     ]
   }
 }

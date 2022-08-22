@@ -78,6 +78,20 @@
   },
   {
     "static_data":{
+      "id": "campfire",
+      "name": "Campfire",
+      "type": "placable",
+      "stock_size": 1,
+      "placable_type": "campfire",
+      "equipment_type": "craft",
+      "size": {
+        "x": 88,
+        "y": 88
+      }
+    }
+  },
+  {
+    "static_data":{
       "id": "machette",
       "name": "Machette",
       "type": "weapon",

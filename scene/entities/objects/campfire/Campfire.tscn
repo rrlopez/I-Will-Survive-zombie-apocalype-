@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scene/entities/objects/campfire/Campfire.gd" type="Script" id=1]
+[ext_resource path="res://assets/entities/campfire.png" type="Texture" id=2]
+[ext_resource path="res://assets/light/light.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Campfire" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 1 )
+sprite = NodePath("Sprite")
+collider = NodePath("Collider")
+light = NodePath("light")
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="TextureRect" parent="."]
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="light" type="Light2D" parent="."]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+mode = 2
