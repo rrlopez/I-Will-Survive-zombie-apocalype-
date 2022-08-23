@@ -101,15 +101,15 @@
       "animation_type": "melle"
     },
     "dynamic_data":{
-      "status": {
-        "fire_speed": 15,
-        "fire_accuracy": {
-          "x":10,
-          "y":20
-        },
-        "fire_range": 400,
-        "fire_dmg": 40,
-        "fire_sound": 250
+      "stats": {
+        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
+        "fire_accuracy": {"script": "fireAccuracy", "val": {
+          "x":{"min": 10, "max": 10},
+          "y":{"min": 20, "max": 20}
+        }},
+        "fire_range": {"script": "default", "val": {"min": 400, "max": 400}},
+        "fire_dmg": {"script": "default", "val": {"min": 40, "max": 40}},
+        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}}
       },
       "statusEffects": [
         {
@@ -166,15 +166,15 @@
       "animation_type": "pistol"
     },
     "dynamic_data":{
-      "status": {
-        "fire_speed": 15,
-        "fire_accuracy": {
-          "x":10,
-          "y":20
-        },
-        "fire_range": 400,
-        "fire_dmg": 40,
-        "fire_sound": 250
+      "stats": {
+        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
+        "fire_accuracy": {"script": "fireAccuracy", "val": {
+          "x":{"min": 10, "max": 10},
+          "y":{"min": 20, "max": 20}
+        }},
+        "fire_range": {"script": "default", "val": {"min": 400, "max": 400}},
+        "fire_dmg": {"script": "default", "val": {"min": 40, "max": 40}},
+        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}}
       },
       "statusEffects": [
         {
@@ -202,18 +202,22 @@
       "type": "weapon",
       "equipment_type": "weapon",
       "weapon_type": "range",
-      "animation_type": "riffle"
+      "animation_type": "riffle",
+      "ammo_type": "riffle ammo"
     },
     "dynamic_data":{
-      "status": {
-        "fire_speed": 15,
-        "fire_accuracy": {
-          "x":10,
-          "y":20
-        },
-        "fire_range": 500,
-        "fire_dmg": 500,
-        "fire_sound": 250
+      "stats": {
+        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
+        "fire_accuracy": {"script": "fireAccuracy", "val": {
+          "x":{"min": 10, "max": 10},
+          "y":{"min": 20, "max": 20}
+        }},
+        "fire_range": {"script": "default", "val": {"min": 500, "max": 500}},
+        "fire_dmg": {"script": "default", "val": {"min": 500, "max": 500}},
+        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}},
+        "ammo": {"script": "ammo", "val": {"min": 10, "max": 10}},
+        "reload_duration": {"script": "default", "val": {"min": 2, "max": 2}},
+        "reload_rate": {"script": "default", "val": {"min": 10, "max": 10}}
       },
       "statusEffects": [
         {
@@ -244,15 +248,15 @@
       "animation_type": "riffle"
     },
     "dynamic_data":{
-      "status": {
-        "fire_speed": 30,
-        "fire_accuracy": {
-          "x":10,
-          "y":20
-        },
-        "fire_range": 600,
-        "fire_dmg": 700,
-        "fire_sound": 600
+      "stats": {
+        "fire_speed": {"script": "default", "val": {"min": 30, "max": 30}},
+        "fire_accuracy": {"script": "fireAccuracy", "val": {
+          "x":{"min": 10, "max": 10},
+          "y":{"min": 20, "max": 20}
+        }},
+        "fire_range": {"script": "default", "val": {"min": 600, "max": 600}},
+        "fire_dmg": {"script": "default", "val": {"min": 700, "max": 700}},
+        "fire_sound": {"script": "default", "val": {"min": 600, "max": 600}}
       },
       "statusEffects": [
         {
@@ -270,6 +274,15 @@
           ]
         }
       ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "riffle ammo",
+      "name": "Riffle Ammo",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
     }
   }
 ]

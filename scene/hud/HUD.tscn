@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/gui/hammer.png" type="Texture" id=1]
 [ext_resource path="res://scene/hud/HUD.gd" type="Script" id=2]
@@ -18,12 +18,19 @@
 [ext_resource path="res://scene/hud/calendar/Callendar.tscn" type="PackedScene" id=16]
 [ext_resource path="res://assets/gui/cameraEffect.png" type="Texture" id=17]
 [ext_resource path="res://scene/hud/statusEffects/statusEffects.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scene/ui/items/sprites/m14.png" type="Texture" id=19]
+[ext_resource path="res://scene/hud/weaponPanel.gd" type="Script" id=20]
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
 font_data = ExtResource( 4 )
 
 [node name="HUD" type="CanvasLayer"]
+layer = 2
 script = ExtResource( 2 )
 lootPanel = NodePath("Loot_panel")
 itemInfo = NodePath("Item_info")
@@ -32,13 +39,7 @@ craftPanel = NodePath("Craft_panel")
 controller = NodePath("Controller")
 cameraEffect = NodePath("cameraEffect")
 statusEffectIcons = NodePath("statusEffects")
-
-[node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
-position = Vector2( -5, -5 )
-item_info = NodePath("../Item_info")
-
-[node name="Controller" type="Node2D" parent="."]
-z_index = 1000
+weaponPanel = NodePath("weaponPanel")
 
 [node name="buttons" type="Node2D" parent="."]
 script = ExtResource( 14 )
@@ -63,6 +64,76 @@ position = Vector2( 955, 10 )
 scale = Vector2( 0.6, 0.6 )
 normal = ExtResource( 13 )
 
+[node name="weaponPanel" type="ColorRect" parent="."]
+visible = false
+margin_left = 904.0
+margin_top = 137.0
+margin_right = 1024.0
+margin_bottom = 247.0
+mouse_filter = 2
+color = Color( 0.215686, 0.215686, 0.215686, 0.541176 )
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+sprite = NodePath("CenterContainer/Sprite")
+label = NodePath("Label")
+
+[node name="ColorRect" type="ColorRect" parent="weaponPanel"]
+margin_left = 28.0
+margin_top = 15.0
+margin_right = 91.0
+margin_bottom = 73.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="weaponPanel"]
+anchor_right = 1.0
+margin_bottom = 92.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="TextureRect" parent="weaponPanel/CenterContainer"]
+margin_left = 35.0
+margin_top = 21.0
+margin_right = 85.0
+margin_bottom = 71.0
+mouse_filter = 2
+texture = ExtResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="weaponPanel"]
+anchor_right = 1.0
+margin_top = 75.0
+margin_bottom = 89.0
+custom_fonts/font = SubResource( 2 )
+text = "20"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
+position = Vector2( -5, -5 )
+item_info = NodePath("../Item_info")
+
+[node name="Inventory_panel" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = 143.0
+margin_top = -280.0
+margin_right = 498.0
+margin_bottom = 17.0
+mouse_filter = 0
+title = "Inventory"
+
 [node name="Minimap" parent="." instance=ExtResource( 10 )]
 
 [node name="Loot_panel" parent="." instance=ExtResource( 3 )]
@@ -78,14 +149,6 @@ margin_left = 367.0
 margin_top = 26.0
 margin_right = 650.0
 margin_bottom = 184.0
-
-[node name="Inventory_panel" parent="." instance=ExtResource( 6 )]
-visible = false
-margin_left = 143.0
-margin_top = -280.0
-margin_right = 498.0
-margin_bottom = 17.0
-title = "Inventory"
 
 [node name="Craft_panel" parent="." instance=ExtResource( 3 )]
 visible = false
@@ -159,6 +222,8 @@ position = Vector2( 517, 300 )
 scale = Vector2( 2, 2 )
 z_index = -1
 texture = ExtResource( 17 )
+
+[node name="Controller" type="Node2D" parent="."]
 
 [connection signal="pressed" from="buttons/CraftBtn" to="buttons" method="_on_CraftBtn_pressed"]
 [connection signal="pressed" from="buttons/BagBtn" to="buttons" method="_on_BagBtn_pressed"]

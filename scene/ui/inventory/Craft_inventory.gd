@@ -4,5 +4,5 @@ func add_item(item):
 	.add_item(item)
 
 func put_item(item):
-	if has_item(item.data.static.id): return item.data.quantity
+	if get_item(item.data.static.id): return item.data.quantity
 	.put_item(item)

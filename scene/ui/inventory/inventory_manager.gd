@@ -14,7 +14,9 @@ var cur_slot = null
 var prev_slot = null
 var item_in_hand = null
 var item_offset = Vector2.ZERO
+var lastTap = 0
 
+var panelPressed = null
 
 func _init(): 
 	Globals.inventoryManager = self
@@ -34,9 +36,9 @@ func _on_inventory_ready(inventory):
 
 func _input(event:InputEvent):
 	if(item_in_hand):
-		if event is InputEventMouseMotion: item_in_hand.rect_position = event.position
+		if event is InputEventScreenDrag and panelPressed == event.index: item_in_hand.rect_position = event.position
 				
-		if event is InputEventMouseButton and !event.is_pressed():
+		if event is InputEventScreenTouch and panelPressed == event.index and !event.is_pressed():
 			item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_IGNORE
 
 			if(cur_slot): 
@@ -51,16 +53,18 @@ func _input(event:InputEvent):
 				item_in_hand = null
 			prev_slot.emitItemChanged()
 			prev_slot = null
-	elif clickPosition and event is InputEventMouseMotion and event.position.distance_to(clickPosition)>10: 
+	elif clickPosition and event is InputEventScreenDrag and event.position.distance_to(clickPosition)>10: 
 		item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_STOP
 		clickPosition = null
 		updateSlot(event, prev_slot)
-	elif event is InputEventMouseButton:
-		if event.doubleclick and prev_slot: 
-			prev_slot.use_item()
-			prev_slot = null
-			cur_slot = null
-		elif !event.is_pressed(): clickPosition = null
+	elif event is InputEventScreenTouch:
+		if event.is_pressed(): 
+			if (OS.get_ticks_msec()-lastTap)<300 and prev_slot:
+				prev_slot.use_item()
+				yield(get_tree(), "idle_frame")
+				prev_slot = null
+			lastTap = OS.get_ticks_msec()
+		else: clickPosition = null
 	
 
 #if(prev_slot.item.data.static.equipment_type != "craft"): 
@@ -76,7 +80,8 @@ func _on_mouse_exited_slot():
 
 
 func _on_gui_input_slot(event: InputEvent, slot: Slot):
-	if event is InputEventMouseButton and event.is_pressed() and !event.doubleclick and slot.item:
+	if event is InputEventScreenTouch and event.is_pressed() and slot.item:
+		panelPressed = event.index
 		clickPosition = slot.get_global_mouse_position()
 		prev_slot = slot
 

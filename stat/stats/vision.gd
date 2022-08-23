@@ -1,29 +1,21 @@
-class_name VissionStat extends Stat
+class_name FireAccuracyStat extends Stat
 
 func _init(_name, _val, _agent):
-	_val.width = Constants.rand.randi_range(_val.width.min, _val.width.max)
-	_val.height = Constants.rand.randi_range(_val.height.min, _val.height.max)
+	_val.x = Constants.rand.randi_range(_val.x.min, _val.x.max)
+	_val.y = Constants.rand.randi_range(_val.y.min, _val.y.max)
 	initValues(_name, _val, _agent)
-	update()
 
 
 func setVal(modifier):
-	val.width = modifier.execute(val.width, modifier.val.width)
-	val.height = modifier.execute(val.height, modifier.val.height)
+	val.x = modifier.execute(val.x, modifier.val.x)
+	val.y = modifier.execute(val.y, modifier.val.y)
 
 
 func recompute():
 	val = defaultVal
 	for modifier in modifiers:
-		maxVal.width = modifier.execute(maxVal.width, modifier.val.width)
-		maxVal.height = modifier.execute(maxVal.height, modifier.val.height)
+		maxVal.x = modifier.execute(maxVal.x, modifier.val.x)
+		maxVal.y = modifier.execute(maxVal.y, modifier.val.y)
 		setVal(modifier)
-	update()
 		
 
-func update():
-	for ray in agent.vision.get_children(): ray.queue_free()
-	for ray in Globals.mapManager.spawnRays(val.width, val.height):
-		ray.set_collision_mask_bit(5, true)
-		ray.enabled = true
-		agent.vision.add_child(ray)

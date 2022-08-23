@@ -1,13 +1,16 @@
 class_name StatsFactory extends Node
 
 var stats = {
+	'fireAccuracy': FireAccuracyStat,
+	'ammo': AmmoStat,
+	
 	'health': HealthStat,
 	'size': SizeStat,
 	'moveSpeed': MoveSpeedStat,
 	'aggressionRange': AggressionRangeStat,
 	'vission': VissionStat,
 	'hunger': HungerStat,
-	'default': DefaultStat,
+	'default': DefaultStat
 }
 
 	

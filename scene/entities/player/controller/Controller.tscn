@@ -2,16 +2,10 @@
 
 [ext_resource path="res://scene/entities/player/sprites/VirtualJoystickPack/Joystick.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/player/sprites/VirtualJoystickPack/SmallHandleFilled.png" type="Texture" id=2]
-[ext_resource path="res://scene/entities/player/controller/Controller.gd" type="Script" id=3]
+[ext_resource path="res://scene/entities/player/controller/Joystick.gd" type="Script" id=5]
 
-[node name="Control" type="Control"]
-margin_right = 1023.0
-margin_bottom = 596.0
-mouse_filter = 1
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Control" type="Node2D"]
+script = ExtResource( 5 )
 joystick_texture = NodePath("Joystick")
 joystick_btn = NodePath("Joystick/Btn")
 
@@ -27,6 +21,7 @@ margin_top = -75.0
 margin_right = 226.0
 margin_bottom = 225.0
 rect_scale = Vector2( 0.5, 0.5 )
+mouse_filter = 2
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -36,5 +31,4 @@ __meta__ = {
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
-[connection signal="gui_input" from="." to="." method="_on_Control_gui_input"]
 [connection signal="tree_exited" from="." to="." method="_on_Control_tree_exited"]

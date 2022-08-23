@@ -43,11 +43,20 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 96.2, 114, 134.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "dayStarted"
+}, {
+"args": [  ],
+"method": "spawnEnemyWave"
+}, {
+"args": [  ],
+"method": "spawnEnemyWave"
+}, {
+"args": [  ],
+"method": "spawnEnemyWave"
 } ]
 }
 

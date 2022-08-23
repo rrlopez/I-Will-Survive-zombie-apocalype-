@@ -36,7 +36,11 @@ func use_item():
 		var new_item = item.use()
 		pick_item()
 		if(new_item): put_item(new_item)
-		
+
+func add_item_quantity(value):
+	item.add_item_quantity(value)
+	if item.data.quantity<1: pick_item()
+
 func is_full():
 	if item and item.data.quantity >= item.data.static.stock_size: return true
 	return false

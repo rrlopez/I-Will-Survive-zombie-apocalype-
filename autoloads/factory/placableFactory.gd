@@ -1,8 +1,8 @@
 class_name PlacableFactory extends Node
 
 var placesables = {
-	"table": preload("res://scene/entities/objects/table/Table.tscn"),
-	"campfire": preload("res://scene/entities/objects/campfire/Campfire.tscn")
+	"table": preload("res://scene/entities/placables/table/Table.tscn"),
+	"campfire": preload("res://scene/entities/placables/campfire/Campfire.tscn")
 }
 
 	

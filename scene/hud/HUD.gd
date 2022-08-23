@@ -7,6 +7,7 @@ export(NodePath) onready var craftPanel = get_node(craftPanel) as Window
 export(NodePath) onready var controller = get_node(controller) as Node2D
 export(NodePath) onready var cameraEffect = get_node(cameraEffect) as Sprite
 export(NodePath) onready var statusEffectIcons = get_node(statusEffectIcons) as GridContainer
+export(NodePath) onready var weaponPanel = get_node(weaponPanel) as ColorRect
 
 
 func _init():

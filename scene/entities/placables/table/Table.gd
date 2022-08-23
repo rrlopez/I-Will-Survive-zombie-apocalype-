@@ -3,7 +3,7 @@ extends StaticBody2D
 export(NodePath) onready var sprite  = get_node(sprite) as TextureRect
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider  = get_node(areaCollider) as CollisionShape2D
-export(NodePath) onready var openBtn  = get_node(openBtn) as TouchScreenButton
+export(NodePath) onready var buttons  = get_node(buttons) as Node2D
 
 var data = null
 var inventory: Inventory
@@ -21,7 +21,7 @@ func _ready():
 
 
 func _on_OpenBtn_pressed():
-	openBtn.hide()
+	buttons.hide()
 	Globals.inventoryManager.hide()
 	Globals.HUD.craftPanel.label.text = data.static.name
 	Globals.HUD.craftPanel.clear_inventory()
@@ -30,9 +30,13 @@ func _on_OpenBtn_pressed():
 
 
 func _on_Area_body_entered(_body):
-	openBtn.show()
+	buttons.show()
 
 
 func _on_Area_body_exited(_body):
 	Globals.HUD.craftPanel.hide()
-	openBtn.hide()
+	buttons.hide()
+
+
+func _on_removeBtn_pressed():
+	self.queue_free()

@@ -45,7 +45,8 @@
 				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[
-				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80}
+				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},
+				{ "name": "riffle ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80}
 			],
 			"attacks": [
 				{

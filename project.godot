@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Decorators/AlwaysSucceed.gd"
 }, {
+"base": "Stat",
+"class": "AmmoStat",
+"language": "GDScript",
+"path": "res://stat/stats/ammo.gd"
+}, {
 "base": "Resource",
 "class": "ApplyForce",
 "language": "GDScript",
@@ -93,6 +98,11 @@ _global_script_classes=[ {
 "class": "Equipment_slot",
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Equipment_slot.gd"
+}, {
+"base": "Stat",
+"class": "FireAccuracyStat",
+"language": "GDScript",
+"path": "res://stat/stats/vision.gd"
 }, {
 "base": "Stat",
 "class": "HealthStat",
@@ -319,10 +329,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/entities/vehicles/Controller.gd"
 }, {
-"base": "Stat",
+"base": "Reference",
 "class": "VissionStat",
 "language": "GDScript",
-"path": "res://stat/stats/vision.gd"
+"path": "res://stat/stats/fireAccuracy.gd"
 }, {
 "base": "Task",
 "class": "Wait",
@@ -338,6 +348,11 @@ _global_script_classes=[ {
 "class": "WeaponFactory",
 "language": "GDScript",
 "path": "res://autoloads/factory/weaponFactory.gd"
+}, {
+"base": "Equipment_slot",
+"class": "Weapon_slot",
+"language": "GDScript",
+"path": "res://scene/ui/inventory/Weapon_slot.gd"
 }, {
 "base": "NinePatchRect",
 "class": "Window",
@@ -414,6 +429,7 @@ _global_script_class_icons={
 "AggressionRangeStat": "",
 "AlwaysFail": "res://ai/behaviorTree/icons/always-fail.png",
 "AlwaysSucceed": "res://ai/behaviorTree/icons/always-succeed.png",
+"AmmoStat": "",
 "ApplyForce": "",
 "Attack": "",
 "Base_stat": "",
@@ -427,6 +443,7 @@ _global_script_class_icons={
 "Entity": "",
 "EquipmentItem": "",
 "Equipment_slot": "",
+"FireAccuracyStat": "",
 "HealthStat": "",
 "HouseFactory": "",
 "HungerStat": "",
@@ -476,6 +493,7 @@ _global_script_class_icons={
 "Wait": "res://ai/behaviorTree/icons/limit.png",
 "Weapon": "",
 "WeaponFactory": "",
+"Weapon_slot": "",
 "Window": "",
 "attackOpponent": "",
 "chooseOpponent": "",

@@ -38,3 +38,4 @@ position = Vector2( 0, -46 )
 
 [connection signal="pressed" from="Controller/fireBtn" to="." method="_on_fireBtn_pressed"]
 [connection signal="released" from="Controller/fireBtn" to="." method="_on_fireBtn_released"]
+[connection signal="pressed" from="Controller/reloadBtn" to="." method="_on_reloadBtn_pressed"]

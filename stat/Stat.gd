@@ -37,5 +37,4 @@ func setVal(modifier):
 	val = min(modifier.execute(val), maxVal)
 	
 func reset():
-	modifiers = []
 	recompute()

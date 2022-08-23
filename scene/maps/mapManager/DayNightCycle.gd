@@ -36,3 +36,12 @@ func day(_delta):
 func dayStarted():
 	day+=1
 	emit_signal("dayStarted", day)
+	
+	
+func spawnEnemyWave():
+	for _i in 100:
+		Constants.rand.randomize()
+		var position = Globals.player.global_position + Vector2.UP.rotated(Constants.rand.randi_range(-360, 360))* Constants.rand.randi_range(Constants.WIDTH, Constants.WIDTH*1.7)
+		var enemy = Factory.enemies.create('normal', position.x, position.y, 0)
+		enemy.data.behavior = "chase"
+		Globals.mapManager.add_child(enemy)

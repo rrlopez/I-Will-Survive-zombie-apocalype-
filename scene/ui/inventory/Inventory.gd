@@ -74,10 +74,10 @@ func put_item(item):
 				return remainder 
 	return item.data.quantity
 
-func has_item(itemID):
+func get_item(itemID):
 	for s in slots:
-		if s.item and s.item.data.static.id == itemID: return true
-	return false
+		if s.item and s.item.data.static.id == itemID: return s
+	return null
 
 
 func _on_Inventory_mouse_entered():

@@ -8,7 +8,6 @@ var applyedForce: Vector2 = Vector2.ZERO
 func ready():
 	statusEffects = StatusEffects.new(self)
 	for stat in data.stats:
-		Constants.rand.randomize()
 		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
 	
 func _process(delta):
