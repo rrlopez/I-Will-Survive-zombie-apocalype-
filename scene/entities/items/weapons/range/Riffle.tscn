@@ -7,3 +7,5 @@
 
 [node name="soundFire" parent="." index="4"]
 stream = ExtResource( 2 )
+
+[connection signal="tree_entered" from="." to="." method="_on_Riffle_tree_entered"]

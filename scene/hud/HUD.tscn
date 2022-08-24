@@ -79,6 +79,7 @@ __meta__ = {
 }
 sprite = NodePath("CenterContainer/Sprite")
 label = NodePath("Label")
+cooldown = NodePath("cooldown")
 
 [node name="ColorRect" type="ColorRect" parent="weaponPanel"]
 margin_left = 28.0
@@ -117,6 +118,18 @@ custom_fonts/font = SubResource( 2 )
 text = "20"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="cooldown" type="ColorRect" parent="weaponPanel"]
+margin_left = 10.0
+margin_top = 92.0
+margin_right = 11.0
+margin_bottom = 96.0
+rect_scale = Vector2( 100, 1 )
+mouse_filter = 2
+color = Color( 0.72549, 0.188235, 0.188235, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -222,6 +235,9 @@ position = Vector2( 517, 300 )
 scale = Vector2( 2, 2 )
 z_index = -1
 texture = ExtResource( 17 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Controller" type="Node2D" parent="."]
 

@@ -4,6 +4,7 @@ export(NodePath) onready var weapon_container  = get_node(weapon_container) as N
 export(NodePath) onready var hand_container  = get_node(hand_container) as Node2D
 export(NodePath) onready var placable  = get_node(placable) as Node2D
 export(NodePath) onready var body  = get_node(body) as Node2D
+export(NodePath) onready var notif  = get_node(notif) as Sprite
 
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
@@ -128,10 +129,12 @@ func spawnSound():
 	
 	
 func setWeapon(item):
-	for child in weapon_container.get_children(): child.queue_free()
+	for child in weapon_container.get_children(): weapon_container.remove_child(child)
 	if(item):
-		weapon_container.add_child(Factory.weapons.create(self, item.data))
+		if item.data.has("object"): weapon_container.add_child(item.data.object)
+		else: weapon_container.add_child(Factory.weapons.create(self, item.data))
 		weapon = item
+			
 		$Body/Upper/Animation.play(weapon.data.static.animation_type)
 	else:
 		$Body/Upper/Animation.play("run")

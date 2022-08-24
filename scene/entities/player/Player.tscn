@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scene/entities/player/sprites/body/arm.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/player/sprites/body/tigh.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/light/light.png" type="Texture" id=11]
 [ext_resource path="res://assets/shadow/circle.png" type="Texture" id=12]
 [ext_resource path="res://scene/entities/enemies/Body.gd" type="Script" id=13]
+[ext_resource path="res://assets/gui/reloadNotif.png" type="Texture" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 28.0713
@@ -1405,6 +1406,7 @@ weapon_container = NodePath("Equipments/Weapon")
 hand_container = NodePath("Equipments/Hand")
 placable = NodePath("Equipments/Placable")
 body = NodePath("Body")
+notif = NodePath("notif")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -1636,6 +1638,12 @@ anims/pistol = SubResource( 10 )
 anims/riffle = SubResource( 11 )
 anims/run = SubResource( 9 )
 script = ExtResource( 10 )
+
+[node name="notif" type="Sprite" parent="."]
+visible = false
+position = Vector2( 48, -41 )
+scale = Vector2( 0.518681, 0.518681 )
+texture = ExtResource( 15 )
 
 [connection signal="tree_entered" from="." to="." method="_on_player_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Player_tree_exited"]

@@ -1,15 +1,17 @@
 extends Weapon
 
 export(NodePath) onready var soundFire  = get_node(soundFire) as AudioStreamPlayer
+export(NodePath) onready var sprite  = get_node(sprite) as Sprite
+export(NodePath) onready var projection  = get_node(projection) as RayCast2D
 
 var projectileScene = preload("res://scene/entities/objects/projectile/Projectile.tscn")
 var isReloading = false
 var ammoInventorySlot = null
 
 func _ready():
-	$Texture.texture = data.static.object_texture
-	$Projection.global_position = get_parent().global_position
-	lastFired = data.stats.fire_speed.val
+	sprite.texture = data.static.object_texture
+	projection.global_position = parent.global_position
+	setLastFired(data.stats.fire_speed.val)
 
 
 func _process(delta):
@@ -17,10 +19,11 @@ func _process(delta):
 	
 	
 func fire(delta):
-	if(!reloading(delta) and isPressed):
+	if reloading(delta): return
+	if isPressed:
 		if(lastFired >= data.stats.fire_speed.val):
 			soundFire.play()
-			lastFired = 0
+			setLastFired(0)
 			
 			createProjection()
 			
@@ -41,29 +44,36 @@ func fire(delta):
 			data.stats.ammo.setVal(Factory.statsModifiers.create("subtruct", 1))
 			if data.stats.ammo.val<1: _on_reloadBtn_pressed()
 			
-		else: lastFired += (100*delta)
-	else: lastFired = data.stats.fire_speed.val
+		else: setLastFired(lastFired + (100*delta))
+	elif lastFired < data.stats.fire_speed.val: setLastFired(data.stats.fire_speed.val)
 
 
 func reloading(delta):
 	if ammoInventorySlot and isReloading:
 		if data.stats.reload_duration.val<data.stats.reload_duration.maxVal:
 			data.stats.reload_duration.setVal(Factory.statsModifiers.create("add", delta))
+			Globals.HUD.weaponPanel.setCooldown((data.stats.reload_duration.val/data.stats.reload_duration.maxVal)*100)
+			return true
 		else:
 			var currentAmmo = data.stats.ammo.val
 			data.stats.ammo.setVal(Factory.statsModifiers.create("add", min(data.stats.reload_rate.val, ammoInventorySlot.item.data.quantity)))
 			ammoInventorySlot.add_item_quantity(currentAmmo-data.stats.ammo.maxVal)
 			
-			if !ammoInventorySlot.item:
-				if data.stats.ammo.val>0: isReloading = false
+			if !ammoInventorySlot.item: 
 				ammoInventorySlot = null
+				isReloading = false
 			else:
 				if data.stats.ammo.val<data.stats.ammo.maxVal: 
 					data.stats.reload_duration.setVal(Factory.statsModifiers.create("set", 0))
 				else: isReloading = false
-			
+	else:
+		isReloading = false
+		if data.stats.ammo.val<1: 
+			parent.notif.texture = Constants.notif.noAmmo
+			return true
+		else: parent.notif.hide()
 	
-	return isReloading
+	return false
 
 func createProjection():
 	Constants.rand.randomize()
@@ -83,6 +93,7 @@ func _on_fireBtn_pressed():
 	Globals.inventoryManager.hide()
 	$Projection.enabled = true
 	isPressed = true
+	if data.stats.ammo.val<1: _on_reloadBtn_pressed()
 
 
 func _on_fireBtn_released():
@@ -91,6 +102,25 @@ func _on_fireBtn_released():
 
 
 func _on_reloadBtn_pressed():
+	if isReloading: return
 	data.stats.reload_duration.setVal(Factory.statsModifiers.create("set", 0))
 	ammoInventorySlot = parent.inventory.get_item(data.static.ammo_type)
+	Globals.HUD.weaponPanel.setCooldown(0)
+	parent.notif.show()
+	parent.notif.texture = Constants.notif.reloadAmmo
 	isReloading = true
+
+func setLastFired(value):
+	.setLastFired(value)
+	Globals.HUD.weaponPanel.setCooldown(((value+1)/data.stats.fire_speed.val)*100)
+
+
+func _on_RangeWeapon_tree_exiting():
+	isReloading = false
+	ammoInventorySlot = null
+	parent.notif.hide()
+
+
+
+func _on_Riffle_tree_entered():
+	if data.has("object") and data.stats.ammo.val<1: _on_reloadBtn_pressed()

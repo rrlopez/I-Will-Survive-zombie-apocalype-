@@ -24,4 +24,9 @@ var slotScene = {
 var vehicle_controllerScene = preload("res://scene/entities/vehicles/Controller.tscn")
 var player_controllerScene = preload("res://scene/entities/player/controller/Controller.tscn")
 
+var notif = {
+	"reloadAmmo": preload("res://assets/gui/reloadNotif.png"),
+	"noAmmo": preload("res://assets/gui/noAmmoNotif.png")
+}
+
 	
