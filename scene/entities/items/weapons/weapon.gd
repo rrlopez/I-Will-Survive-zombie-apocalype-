@@ -6,7 +6,9 @@ var parent
 
 var data
 
-func _ready():
+func init(_parent, _data):
+	data = _data
+	parent = _parent
 	data.object = self
 	for stat in data.stats:
 		Constants.rand.randomize()
@@ -19,3 +21,22 @@ func hit(body):
 
 func setLastFired(value):
 	lastFired = value
+
+
+func serialize():
+	var serializedData = data.duplicate(true)
+	serializedData.erase('object')
+	serializedData.serialized = true
+	
+	for stat in data.stats: 
+		serializedData.stats[stat] = data.stats[stat].serialize()
+		
+	return serializedData
+
+
+func deserialize(_parent, _data):
+	data = _data
+	parent = _parent
+	data.object = self
+	
+	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)

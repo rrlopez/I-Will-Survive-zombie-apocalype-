@@ -13,3 +13,7 @@ func update():
 
 func serialize(script = "size"):
 	return .serialize(script)
+	
+func deserialize(savedData, _agent):
+	.deserialize(savedData, _agent)
+	update()

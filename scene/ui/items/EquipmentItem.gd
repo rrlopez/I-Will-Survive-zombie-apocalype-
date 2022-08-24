@@ -14,7 +14,9 @@ func use():
 func serialize():
 	if(data.has("object")):
 		var serializedData = data.duplicate(true)
-		for stat in data.stats: serializedData[stat] = data.stats[stat].serialize()
+		serializedData.erase("object")
+		serializedData["serialized"] = true
+		for stat in data.stats: serializedData.stats[stat] = data.stats[stat].serialize()
 		return serializedData
 	else: return data
 

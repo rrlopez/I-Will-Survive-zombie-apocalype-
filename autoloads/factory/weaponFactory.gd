@@ -14,6 +14,10 @@ func data(name):
 	
 func create(parent, data):
 	var weapon = weapons[data.static.animation_type].instance()
-	weapon.parent = parent
-	weapon.data = data
+	weapon.init(parent, data)
+	return weapon
+
+func deserialize(parent, data):
+	var weapon = weapons[data.static.animation_type].instance()
+	weapon.deserialize(parent, data)
 	return weapon

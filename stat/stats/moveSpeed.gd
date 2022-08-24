@@ -14,3 +14,7 @@ func update():
 
 func serialize(script = "moveSpeed"):
 	return .serialize(script)
+	
+func deserialize(savedData, _agent):
+	.deserialize(savedData, _agent)
+	update()

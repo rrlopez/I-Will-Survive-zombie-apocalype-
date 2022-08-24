@@ -31,3 +31,7 @@ func update():
 
 func serialize(script = "vision"):
 	return .serialize(script)
+	
+func deserialize(savedData, _agent):
+	.deserialize(savedData, _agent)
+	update()

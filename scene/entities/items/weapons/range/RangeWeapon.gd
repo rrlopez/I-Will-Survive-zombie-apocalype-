@@ -121,6 +121,6 @@ func _on_RangeWeapon_tree_exiting():
 	parent.notif.hide()
 
 
-
 func _on_Riffle_tree_entered():
 	if data.has("object") and data.stats.ammo.val<1: _on_reloadBtn_pressed()
+

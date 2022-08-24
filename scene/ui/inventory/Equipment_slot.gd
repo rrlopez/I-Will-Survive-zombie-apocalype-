@@ -7,6 +7,8 @@ export(NodePath) onready var soundUnequip  = get_node(soundUnequip) as AudioStre
 func _ready():
 	placeholder.texture = Factory.items.placeholders[type]
 
+	if item:
+		item_container.add_child(item)
 
 func set_item(new_item):
 	.set_item(new_item)

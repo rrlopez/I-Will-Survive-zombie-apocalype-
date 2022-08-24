@@ -10,7 +10,6 @@ export(NodePath) onready var notif  = get_node(notif) as Sprite
 var velocity = [{'key': 'default', 'value': Vector2()}]
 var inventory:Inventory
 var craftInventory:Inventory
-var weapon = null
 
 var controller
 
@@ -25,8 +24,6 @@ func _ready():
 	
 	_on_player_tree_entered()
 	
-	Globals.HUD.inventoryPanel.add_inventory(inventory)
-	
 	Globals.player = self
 
 func init():
@@ -34,6 +31,7 @@ func init():
 	.init()
 	inventory = Utils.createInventory(data.inventory)
 	craftInventory = Utils.createInventory(data.craft_inventory, "craft_inventory")
+	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 
 func _process(delta):
@@ -138,12 +136,11 @@ func setWeapon(item):
 	for child in weapon_container.get_children(): weapon_container.remove_child(child)
 	if(item):
 		if item.data.has("object"): weapon_container.add_child(item.data.object)
+		elif item.data.has("serialized"): weapon_container.add_child(Factory.weapons.deserialize(self, item.data))
 		else: weapon_container.add_child(Factory.weapons.create(self, item.data))
-		weapon = item
-			
-		$Body/Upper/Animation.play(weapon.data.static.animation_type)
+		body.upperBodyAnimation.play(item.data.static.animation_type)
 	else:
-		$Body/Upper/Animation.play("run")
+		body.upperBodyAnimation.play("run")
 
 func _on_Pickup_body_entered(_body):
 	_body.pick_item()
@@ -152,12 +149,7 @@ func _on_Pickup_body_entered(_body):
 	
 
 func serialize(savedData):
-	return
-	var serializedData = data.duplicate(true)
-	for stat in serializedData.stats: 
-		serializedData.stats[stat] = data.stats[stat].serialize()
-	
-	savedData.append({
+	var serializedData = {
 		"filename" : get_filename(),
 		"parent" : get_parent().get_path(),
 		"global_position":{
@@ -166,9 +158,16 @@ func serialize(savedData):
 		},
 		"global_rotation_degrees": global_rotation_degrees,
 		"inventory": inventory.serialize(),
-		"data": serializedData,
 		"statusEffects": statusEffects.serialize(),
-	})
+		"data": data.duplicate(true)
+	}
+	
+	for stat in serializedData.data.stats: 
+		serializedData.data.stats[stat] = data.stats[stat].serialize()
+	
+	if(weapon_container.get_child_count()>0): serializedData.weapon = weapon_container.get_child(0).serialize()
+	
+	savedData.append(serializedData)
 
 
 
@@ -180,6 +179,10 @@ func deserialize(savedData):
 	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
 	
 	inventory = Utils.deserializeInventory(savedData.inventory)
+	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 	statusEffects = StatusEffects.new(self)
 	statusEffects.deserialize(savedData.statusEffects)
+	
+	if savedData.has("weapon"): 
+		Globals.HUD.inventoryPanel.current_inventories[0].weapon.put_item(Factory.items.deserialize(savedData.weapon))

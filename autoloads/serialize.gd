@@ -6,7 +6,7 @@ var timer = 0
 
 func _process(delta):
 	if timer < 0:
-		timer = 50
+		timer = 5
 		data=[]
 		emit_signal("serialize", data)
 		saveGame()
@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func saveGame():
-	return
+	print("save")
 	var save_game = File.new()
 	save_game.open("user://savegame.json", File.WRITE)
 
@@ -32,6 +32,6 @@ func loadGame():
 	var game_data = parse_json(save_game.get_as_text())
 	for data in game_data:
 		var new_object = load(data["filename"]).instance()
-		new_object.deserialize(data)
 		get_node(data["parent"]).add_child(new_object)
+		new_object.deserialize(data)
 	save_game.close()
