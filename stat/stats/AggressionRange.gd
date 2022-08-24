@@ -1,7 +1,7 @@
 class_name AggressionRangeStat extends Stat
 
-func _init(_name, _val, _agent):
-	init(_name, _val, _agent)
+func init(_name, _val, _agent):
+	.init(_name, _val, _agent)
 	update()
 
 func recompute():
@@ -11,3 +11,7 @@ func recompute():
 func update():
 	agent.sense.shape.radius = val
 	agent.blockerSensor.shape.radius = val
+
+
+func serialize(script = "aggressionRange"):
+	return .serialize(script)

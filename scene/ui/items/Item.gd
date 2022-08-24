@@ -11,7 +11,7 @@ func init(itemData):
 	if(data.has("base_stats")): data["base_stats"] = Base_stat.new(data["base_stats"], randf())
 
 func _ready():
-	texture = data.static.texture
+	texture = Factory.items.itemTexture[data.static.id]
 	label_quantity = Label.new()
 	label_quantity.set("custom_fonts/font", Constants.fonts[16])
 	label_quantity.set("custom_colors/font_color", Color.black)
@@ -32,3 +32,9 @@ func add_item_quantity(value):
 
 func use():
 	return self
+	
+func serialize():
+	return data
+
+func desentralize(savedData):
+	data = savedData

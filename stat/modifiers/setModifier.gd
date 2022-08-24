@@ -9,3 +9,6 @@ func _init(_val, _type=null):
 
 func execute(_value, amount = val):
 	return amount
+
+func serialize():
+	return { "script": "set", "val": val, "type": type}

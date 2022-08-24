@@ -9,3 +9,6 @@ func _init(_element, _type=null):
 
 func execute(array, _element = element):
 	Factory.statusEffects.create(_element.duplicate(true))
+
+func serialize():
+	return { "script": "push", "val": element, "type": type}

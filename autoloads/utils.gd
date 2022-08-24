@@ -32,7 +32,11 @@ func createInventory(data, sceneType='inventory'):
 		createItem(inventory, itemData)
 		
 	return inventory
-
+	
+func deserializeInventory(data, sceneType='inventory'):
+	var inventory = inventoryScene[sceneType].instance()
+	inventory.deserialize(data)
+	return inventory
 
 func createItem(inventory, data):
 	var item = Factory.items.create(data.name)

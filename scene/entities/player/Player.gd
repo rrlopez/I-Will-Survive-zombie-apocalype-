@@ -15,8 +15,8 @@ var weapon = null
 var controller
 
 func _ready():
-	data = Utils.import_data("res://data/player.json")
-	.ready()
+	._ready()
+	Serialize.connect("serialize", self, "serialize")
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")
@@ -25,9 +25,15 @@ func _ready():
 	
 	_on_player_tree_entered()
 	
+	Globals.HUD.inventoryPanel.add_inventory(inventory)
+	
+	Globals.player = self
+
+func init():
+	data = Utils.import_data("res://data/player.json")
+	.init()
 	inventory = Utils.createInventory(data.inventory)
 	craftInventory = Utils.createInventory(data.craft_inventory, "craft_inventory")
-	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 
 func _process(delta):
@@ -141,3 +147,39 @@ func setWeapon(item):
 
 func _on_Pickup_body_entered(_body):
 	_body.pick_item()
+	
+	
+	
+
+func serialize(savedData):
+	return
+	var serializedData = data.duplicate(true)
+	for stat in serializedData.stats: 
+		serializedData.stats[stat] = data.stats[stat].serialize()
+	
+	savedData.append({
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"global_position":{
+			"x": global_position.x,
+			"y": global_position.y
+		},
+		"global_rotation_degrees": global_rotation_degrees,
+		"inventory": inventory.serialize(),
+		"data": serializedData,
+		"statusEffects": statusEffects.serialize(),
+	})
+
+
+
+func deserialize(savedData):
+	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
+	global_rotation_degrees = savedData.global_rotation_degrees
+	data = savedData.data
+	
+	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
+	
+	inventory = Utils.deserializeInventory(savedData.inventory)
+	
+	statusEffects = StatusEffects.new(self)
+	statusEffects.deserialize(savedData.statusEffects)

@@ -1,7 +1,7 @@
 class_name AmmoStat extends Stat
 
-func _init(_name, _val, _agent):
-	init(_name, _val, _agent)
+func init(_name, _val, _agent):
+	.init(_name, _val, _agent)
 	update()
 
 func recompute():
@@ -15,3 +15,6 @@ func setVal(modifier):
 	
 func update():
 	Globals.HUD.weaponPanel.label.text = String(val)
+
+func serialize(script = "ammo"):
+	return .serialize(script)

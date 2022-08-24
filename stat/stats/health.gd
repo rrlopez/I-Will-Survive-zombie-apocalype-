@@ -1,7 +1,7 @@
 class_name HealthStat extends Stat
 
-func _init(_name, _val, _agent):
-	init(_name, _val, _agent)
+func init(_name, _val, _agent):
+	.init(_name, _val, _agent)
 
 func setVal(modifier):
 	.setVal(modifier)
@@ -11,3 +11,6 @@ func setVal(modifier):
 func reset():
 	.reset()
 	agent.healthStatCallback(self)
+
+func serialize(script = "health"):
+	return .serialize(script)

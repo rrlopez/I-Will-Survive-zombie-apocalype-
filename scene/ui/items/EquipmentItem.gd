@@ -1,7 +1,5 @@
 class_name EquipmentItem extends Item
 
-func _init(itemData): init(itemData)
-
 func use():
 	var slot = Globals.HUD.inventoryPanel.current_inventories[0][data.static.type]
 	if(slot.item):
@@ -12,3 +10,13 @@ func use():
 	else: 
 		slot.put_item(self)
 		return null
+
+func serialize():
+	if(data.has("object")):
+		var serializedData = data.duplicate(true)
+		for stat in data.stats: serializedData[stat] = data.stats[stat].serialize()
+		return serializedData
+	else: return data
+
+func deserialize(savedData):
+	data = savedData

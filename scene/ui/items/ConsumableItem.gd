@@ -1,7 +1,7 @@
 class_name ConsumableItem extends Item
 
-func _init(itemData): 
-	init(itemData)
+func init(itemData): 
+	.init(itemData)
 	Factory.statsModifiers.createAll(data.modifiers)
 
 func use():

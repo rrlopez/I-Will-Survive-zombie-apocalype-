@@ -38,3 +38,22 @@ func setVal(modifier):
 	
 func reset():
 	recompute()
+
+func serialize(script):
+	var modifierObject = []
+	for modifier in modifiers: modifierObject.append(modifier.serialize())
+	return {
+		"script": script,
+		"name":  name,
+		"maxVal": maxVal,
+		"defaultVal": defaultVal,
+		"val": val,
+		"modifiers": modifierObject
+	}
+
+func deserialize(savedData, _agent):
+	agent = _agent
+	name = savedData.name
+	maxVal = savedData.maxVal
+	defaultVal = savedData.defaultVal
+	val = savedData.val

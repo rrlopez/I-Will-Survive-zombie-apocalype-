@@ -10,11 +10,7 @@
     "name": "Inventory",
     "size": 36,
     "items": [
-      { "name": "machette", "quantity": 1},
-      { "name": "m13", "quantity": 1},
-      { "name": "riffle ammo", "quantity": 15},
-      { "name": "bandage", "quantity": 99},
-      { "name": "bread", "quantity": 99}
+      { "name": "m13", "quantity": 1}
     ]
   },
   "craft_inventory": {

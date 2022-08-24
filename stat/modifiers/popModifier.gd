@@ -11,3 +11,7 @@ func execute(array, _id = id):
 	for element in array.val:
 		if element.data.id == _id: 
 			array.remove(element)
+
+
+func serialize():
+	return { "script": "pop", "val": id, "type": type}

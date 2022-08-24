@@ -4,7 +4,7 @@ var defaultForce = Vector2.ZERO
 var force = Vector2.ZERO
 var friction = 1
 
-func _init(data, opponent, parent):
+func init(data, opponent, parent):
 	var direction = parent.global_position.direction_to(opponent.global_position)
 	force = direction*data.force*100
 	defaultForce = force
@@ -21,3 +21,17 @@ func run(agent, _delta):
 
 func reset():
 	force = defaultForce
+
+
+func serialize():
+	return {
+		"script": "applyForce",
+		"defaultForce": {"x": defaultForce.x, "y": defaultForce.y},
+		"force": {"x": force.x, "y": force.y},
+		"friction": friction
+	}
+
+func deserialize(savedData): 
+	defaultForce = Vector2(savedData.defaultForce.x, savedData.defaultForce.y)
+	force = Vector2(savedData.force.x, savedData.force.y)
+	friction = savedData.friction

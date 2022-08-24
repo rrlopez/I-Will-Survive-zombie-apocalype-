@@ -22,8 +22,7 @@ var curAttack = null
 
 func _ready():
 	add_child(body)
-	
-	.ready()
+	._ready()
 	soundGrowl.stream = data.growl
 	
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 

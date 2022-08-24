@@ -3,7 +3,7 @@ class_name Buff extends Resource
 var data = {}
 var timer = 0
 
-func _init(_data, opponent, _parent):
+func init(_data, opponent, _parent):
 	data = _data
 	reset()
 	for i in data.modifiers.size():
@@ -23,3 +23,19 @@ func run(agent, delta):
 
 func reset():
 	timer = 0
+
+func serialize():
+	var modifierObject = []
+	for modifier in data.modifiers: modifierObject.append(modifier.serialize())
+	return {
+		"script": "buff",
+		"data": {
+			"duration": data.duration,
+			"modifiers": modifierObject
+		},
+		"timer":0
+	}
+
+func deserialize(savedData): 
+	data = savedData.data
+	timer = savedData.timer

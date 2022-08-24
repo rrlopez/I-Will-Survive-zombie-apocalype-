@@ -5,7 +5,10 @@ var statusEffects = null
 
 var applyedForce: Vector2 = Vector2.ZERO
 
-func ready():
+func _ready():
+	pass
+
+func init():
 	statusEffects = StatusEffects.new(self)
 	for stat in data.stats:
 		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)

@@ -86,3 +86,30 @@ func _on_Inventory_mouse_entered():
 
 func _on_Inventory_mouse_exited():
 	Globals.inventoryManager.cur_inventory = null
+
+func serialize():
+	var serializedItems = []
+	for s in slots: 
+		if s.item: serializedItems.append(s.item.serialize())
+		else: serializedItems.append(null)
+	return {
+		"name": inventory_name,
+		"size": size,
+		"slot_type": slot_type,
+		"slot_scene_type": slot_scene_type,
+		"items": serializedItems,
+		"columns": columns
+	}
+
+func deserialize(savedData):
+	size = savedData.size
+	inventory_name = savedData.name
+	slot_scene_type = savedData.slot_scene_type
+	slot_type = savedData.slot_type
+	columns = savedData.columns
+	
+	for item in savedData.items:
+		var new_slot = Constants.slotScene[slot_scene_type].instance()
+		new_slot.type = slot_type
+		if item : new_slot.set_item(Factory.items.deserialize(item))
+		slots.append(new_slot)

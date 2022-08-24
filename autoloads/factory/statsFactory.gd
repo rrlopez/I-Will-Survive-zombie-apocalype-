@@ -8,11 +8,18 @@ var stats = {
 	'size': SizeStat,
 	'moveSpeed': MoveSpeedStat,
 	'aggressionRange': AggressionRangeStat,
-	'vission': VissionStat,
+	'vision': VisionStat,
 	'hunger': HungerStat,
 	'default': DefaultStat
 }
 
 	
 func create(name, data, agent):
-	return stats[data.script].new(name, data.val, agent)
+	var stat = stats[data.script].new()
+	stat.init(name, data.val, agent)
+	return stat
+
+func deserialize(data, agent):
+	var stat = stats[data.script].new()
+	stat.deserialize(data, agent)
+	return stat

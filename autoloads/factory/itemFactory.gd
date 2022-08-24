@@ -17,11 +17,13 @@ var placeholders = {
 
 
 var items = {}
+var itemTexture = {}
+var itemObjectTexture = {}
 
 func _init():
 	for item in Utils.import_data("res://data/items.json"):
-		item.static_data["texture"] = load("res://scene/ui/items/sprites/"+item.static_data.id+".png")
-		item.static_data["object_texture"] = load("res://assets/entities/"+item.static_data.id+".png")
+		itemTexture[item.static_data.id] = load("res://scene/ui/items/sprites/"+item.static_data.id+".png")
+		itemObjectTexture[item.static_data.id] = load("res://assets/entities/"+item.static_data.id+".png")
 		items[item.static_data.id] = item
 	
 	
@@ -36,4 +38,11 @@ func data(name):
 	
 	
 func create(name, data=data(name)):
-	return itemClasses[data.static.type].new(data)	
+	var item = itemClasses[data.static.type].new()
+	item.init()
+	return item
+
+func deserialize(data):
+	var item = itemClasses[data.static.type].new()
+	item.deserialize(data)
+	return item

@@ -102,7 +102,7 @@ _global_script_classes=[ {
 "base": "Stat",
 "class": "FireAccuracyStat",
 "language": "GDScript",
-"path": "res://stat/stats/vision.gd"
+"path": "res://stat/stats/fireAccuracy.gd"
 }, {
 "base": "Stat",
 "class": "HealthStat",
@@ -329,10 +329,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/entities/vehicles/Controller.gd"
 }, {
-"base": "Reference",
-"class": "VissionStat",
+"base": "Stat",
+"class": "VisionStat",
 "language": "GDScript",
-"path": "res://stat/stats/fireAccuracy.gd"
+"path": "res://stat/stats/vision.gd"
 }, {
 "base": "Task",
 "class": "Wait",
@@ -489,7 +489,7 @@ _global_script_class_icons={
 "UntilFail": "res://ai/behaviorTree/icons/until-fail.png",
 "UntilSucces": "res://ai/behaviorTree/icons/until-success.png",
 "Vehicle_controller": "",
-"VissionStat": "",
+"VisionStat": "",
 "Wait": "res://ai/behaviorTree/icons/limit.png",
 "Weapon": "",
 "WeaponFactory": "",
@@ -522,6 +522,7 @@ Utils="*res://autoloads/utils.gd"
 Constants="*res://autoloads/Constants.gd"
 Globals="*res://autoloads/Globals.gd"
 Factory="*res://autoloads/factory/Factory.gd"
+Serialize="*res://autoloads/serialize.gd"
 
 [display]
 

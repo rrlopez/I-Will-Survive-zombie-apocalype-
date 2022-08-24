@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scene/maps/mapManager/MapManager.gd" type="Script" id=1]
 [ext_resource path="res://scene/hud/HUD.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scene/entities/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/maps/mapManager/DayNightCycle.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -76,7 +75,5 @@ script = ExtResource( 5 )
 [node name="Animation" type="AnimationPlayer" parent="DayNightCycle"]
 anims/RESET = SubResource( 1 )
 anims/cycle = SubResource( 2 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
 
 [node name="enemies" type="Node2D" parent="."]

@@ -23,3 +23,12 @@ func setVal(modifier):
 	
 func reset():
 	for statusEffect in val: remove(statusEffect)
+
+func serialize():
+	var serializedVal = val.duplicate(true)
+	for statusEffect in serializedVal: statusEffect = statusEffect.serialize()
+	return serializedVal
+
+func deserialize(savedData):
+	val = savedData
+	for statusEffect in val: statusEffect = statusEffect.serialize()

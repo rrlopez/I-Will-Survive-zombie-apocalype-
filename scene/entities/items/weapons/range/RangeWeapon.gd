@@ -9,7 +9,7 @@ var isReloading = false
 var ammoInventorySlot = null
 
 func _ready():
-	sprite.texture = data.static.object_texture
+	sprite.texture = Factory.items.itemObjectTexture[data.static.id]
 	projection.global_position = parent.global_position
 	setLastFired(data.stats.fire_speed.val)
 

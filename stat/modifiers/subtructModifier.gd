@@ -9,3 +9,6 @@ func _init(_val, _type=null):
 
 func execute(value, amount = val):
 	return value-amount
+
+func serialize():
+	return { "script": "subtruct", "val": val, "type": type}
