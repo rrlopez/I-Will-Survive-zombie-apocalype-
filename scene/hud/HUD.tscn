@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/gui/hammer.png" type="Texture" id=1]
 [ext_resource path="res://scene/hud/HUD.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scene/hud/statusEffects/statusEffects.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scene/ui/items/sprites/m14.png" type="Texture" id=19]
 [ext_resource path="res://scene/hud/weaponPanel.gd" type="Script" id=20]
+[ext_resource path="res://scene/hud/notifContainer/notifContainer.tscn" type="PackedScene" id=21]
 
 [sub_resource type="DynamicFont" id=2]
 size = 12
@@ -40,6 +41,7 @@ controller = NodePath("Controller")
 cameraEffect = NodePath("cameraEffect")
 statusEffectIcons = NodePath("statusEffects")
 weaponPanel = NodePath("weaponPanel")
+notifs = NodePath("notifContainer")
 
 [node name="buttons" type="Node2D" parent="."]
 script = ExtResource( 14 )
@@ -134,42 +136,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
-position = Vector2( -5, -5 )
-item_info = NodePath("../Item_info")
-
-[node name="Inventory_panel" parent="." instance=ExtResource( 6 )]
-visible = false
-margin_left = 143.0
-margin_top = -280.0
-margin_right = 498.0
-margin_bottom = 17.0
-mouse_filter = 0
-title = "Inventory"
-
-[node name="Minimap" parent="." instance=ExtResource( 10 )]
-
-[node name="Loot_panel" parent="." instance=ExtResource( 3 )]
-visible = false
-margin_left = -507.0
-margin_top = -273.0
-margin_right = -152.0
-margin_bottom = -147.0
-
-[node name="Item_info" parent="." instance=ExtResource( 7 )]
-visible = false
-margin_left = 367.0
-margin_top = 26.0
-margin_right = 650.0
-margin_bottom = 184.0
-
-[node name="Craft_panel" parent="." instance=ExtResource( 3 )]
-visible = false
-margin_left = 143.0
-margin_top = -280.0
-margin_right = 498.0
-margin_bottom = -154.0
-
 [node name="gages" type="Node2D" parent="."]
 position = Vector2( 110, 5 )
 
@@ -228,6 +194,47 @@ margin_left = 5.0
 margin_top = 109.0
 margin_right = 273.0
 margin_bottom = 139.0
+
+[node name="Minimap" parent="." instance=ExtResource( 10 )]
+
+[node name="notifContainer" parent="." instance=ExtResource( 21 )]
+margin_left = 8.0
+margin_top = 153.0
+margin_right = 256.0
+margin_bottom = 404.0
+
+[node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
+position = Vector2( -5, -5 )
+item_info = NodePath("../Item_info")
+
+[node name="Inventory_panel" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = 153.0
+margin_top = -275.0
+margin_right = 498.0
+margin_bottom = 22.0
+title = "Inventory"
+
+[node name="Loot_panel" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = -507.0
+margin_top = -275.0
+margin_right = -162.0
+margin_bottom = -149.0
+
+[node name="Item_info" parent="." instance=ExtResource( 7 )]
+visible = false
+margin_left = 367.0
+margin_top = 26.0
+margin_right = 650.0
+margin_bottom = 184.0
+
+[node name="Craft_panel" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = 153.0
+margin_top = -275.0
+margin_right = 498.0
+margin_bottom = -149.0
 
 [node name="cameraEffect" type="Sprite" parent="."]
 modulate = Color( 0.533333, 0.0313726, 0.0313726, 0 )

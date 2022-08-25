@@ -1,8 +1,8 @@
-class_name Inventory extends NinePatchRect
+class_name Inventory extends Control
 
 export(String) var inventory_name
 export(String) var slot_scene_type = "slot" setget set_inventory_slot_scene_type
-export(float) var columns = 6 setget set_inventory_column
+export(float) var columns = 6
 export(int) var size = 0 setget set_inventory_size
 export(String) var slot_type = "" setget set_slot_type
 
@@ -28,7 +28,6 @@ func set_column():
 
 func set_inventory_size(value):
 	size = value
-	set_inventory_column(columns)
 	set_inventory_slot_scene_type(slot_scene_type)
 	
 func set_inventory_slot_scene_type(value):
@@ -39,10 +38,6 @@ func set_inventory_slot_scene_type(value):
 		var new_slot = Constants.slotScene[value].instance()
 		new_slot.type = slot_type
 		slots.append(new_slot)
-
-func set_inventory_column(value):
-	columns = value
-	rect_min_size.y = 85 + (ceil(size/columns)-1)*55
 
 func set_slot_type(value):
 	slot_type = value

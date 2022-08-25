@@ -119,7 +119,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stat/stats/hunger.gd"
 }, {
-"base": "NinePatchRect",
+"base": "Control",
 "class": "Inventory",
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Inventory.gd"
@@ -354,7 +354,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Weapon_slot.gd"
 }, {
-"base": "NinePatchRect",
+"base": "Control",
 "class": "Window",
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Panel.gd"

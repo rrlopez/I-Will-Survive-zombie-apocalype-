@@ -9,7 +9,7 @@
 
 [sub_resource type="CircleShape2D" id=2]
 
-[node name="Campfire" type="StaticBody2D"]
+[node name="Campfire" type="StaticBody2D" groups=["serializable"]]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource( 1 )

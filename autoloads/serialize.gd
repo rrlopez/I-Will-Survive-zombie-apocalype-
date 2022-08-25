@@ -12,7 +12,7 @@ func _process(delta):
 
 
 func saveGame():
-	print("save")
+	Globals.HUD.notifs.addNotif('saved...')
 	data=[]
 	
 	for node in get_tree().get_nodes_in_group('serializable'): node.serialize(data)
@@ -28,7 +28,7 @@ func hasLoadData():
 	return save_game.file_exists(filePath)
 
 func loadGame():
-	print("load")
+	Globals.HUD.notifs.addNotif('loaded...')
 	var save_game = File.new()
 	if not save_game.file_exists(filePath):
 		return # Error! We don't have a save to load.

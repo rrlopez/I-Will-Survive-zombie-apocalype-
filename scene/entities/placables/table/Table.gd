@@ -9,9 +9,10 @@ var data = null
 var inventory: Inventory
 
 func _ready():
+	yield(get_tree(), "idle_frame")
 	sprite.rect_position = Vector2(-data.static.size.x/2, -data.static.size.y/2)
 	sprite.rect_min_size = Vector2(data.static.size.x, data.static.size.y)
-	sprite.texture = data.static.object_texture
+	sprite.texture = Factory.items.itemObjectTexture[data.static.id]
 	
 	collider.shape.extents = Vector2(data.static.size.x/2, data.static.size.y/2)
 	areaCollider.shape.extents = collider.shape.extents + Vector2(10, 10)
@@ -40,3 +41,28 @@ func _on_Area_body_exited(_body):
 
 func _on_removeBtn_pressed():
 	self.queue_free()
+
+
+
+func serialize(savedData): 
+	savedData.append({
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"global_position":{
+			"x": global_position.x,
+			"y": global_position.y
+		},
+		"global_rotation_degrees": global_rotation_degrees,
+		"inventory": inventory.serialize(),
+		"data": data
+	})
+
+
+
+func deserialize(savedData):
+	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
+	global_rotation_degrees = savedData.global_rotation_degrees
+	data = savedData.data
+	
+	inventory = Utils.deserializeInventory(savedData.inventory)
+	

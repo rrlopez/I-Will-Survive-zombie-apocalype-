@@ -27,7 +27,10 @@ func add_item_quantity(value):
 
 
 func pick_item():
-	if pick_it_up() == 0: queue_free()
+	var quantity = data.quantity
+	var remainder = pick_it_up()
+	if remainder == 0: queue_free()
+	Globals.HUD.notifs.addNotif(data.static.name+" x"+String(quantity-remainder))
 
 func pick_it_up(lastQuantity=0):
 	if data.quantity == lastQuantity: return data.quantity

@@ -3,6 +3,7 @@ extends Node
 var camera = null
 
 var HUD = null
+var dayNightCycle = null
 
 var inventoryManager = null
 var stateManager = null

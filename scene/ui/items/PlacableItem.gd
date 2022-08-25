@@ -4,3 +4,7 @@ func use():
 	Globals.HUD.craftPanel.hide()
 	Globals.player.placable.build(data)
 	return self
+
+
+func deserialize(savedData):
+	data = savedData

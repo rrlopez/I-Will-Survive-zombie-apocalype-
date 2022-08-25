@@ -141,8 +141,8 @@ func setWeapon(item):
 	else:
 		body.upperBodyAnimation.play("run")
 
-func _on_Pickup_body_entered(_body):
-	_body.pick_item()
+func _on_Pickup_body_entered(dropItem):
+	dropItem.pick_item()
 	
 	
 	
@@ -157,6 +157,7 @@ func serialize(savedData):
 		},
 		"global_rotation_degrees": global_rotation_degrees,
 		"inventory": inventory.serialize(),
+		"craft": craftInventory.serialize(),
 		"statusEffects": statusEffects.serialize(),
 		"data": data.duplicate(true)
 	}
@@ -177,6 +178,7 @@ func deserialize(savedData):
 	
 	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
 	
+	craftInventory = Utils.deserializeInventory(savedData.craft)
 	inventory = Utils.deserializeInventory(savedData.inventory)
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	

@@ -1,4 +1,4 @@
-class_name Window extends NinePatchRect
+class_name Window extends Control
 
 export(String) var title = ""
 export(NodePath) onready var soundOpen  = get_node(soundOpen) as AudioStreamPlayer
@@ -20,24 +20,20 @@ func _on_inventory_opened(inventory: Inventory):
 
 	
 func add_inventory(inventory):
-	if(current_inventories.size()==0): rect_size.y = 20
 	if(current_inventories.has(inventory)): return
 	container.add_child(inventory)
 	current_inventories.append(inventory)
-	rect_size.y += inventory.rect_size.y + container.get_constant("separation")
 
 
 func remove_inventory(inventory):
 	if(current_inventories.has(inventory)):
 		container.remove_child(inventory)
 		current_inventories.erase(inventory)
-		rect_size.y -= inventory.rect_size.y + container.get_constant("separation")
 
 func clear_inventory():
 	for inventory in current_inventories:
 		container.remove_child(inventory)
 		current_inventories.erase(inventory)
-		rect_size.y -= inventory.rect_size.y + container.get_constant("separation")
 
 
 func show():

@@ -9,12 +9,12 @@ var enable = true
 
 func build(new_itemData):
 	itemData = new_itemData
-	Globals.inventoryManager.hide()
 	
+	Globals.inventoryManager.hide()
 	position = Vector2(0, -(50+itemData.static.size.y/2))
 	sprite.rect_position = Vector2(-itemData.static.size.x/2, -itemData.static.size.y/2)
-	sprite.rect_min_size = Vector2(itemData.static.size.x, itemData.static.size.y)
-	sprite.texture = itemData.static.object_texture
+	sprite.rect_size = Vector2(itemData.static.size.x, itemData.static.size.y)
+	sprite.texture = Factory.items.itemObjectTexture[itemData.static.id]
 	collider.shape.extents = Vector2(-itemData.static.size.x/2, -itemData.static.size.y/2)
 	_on_Placable_body_exited(null)
 	show()

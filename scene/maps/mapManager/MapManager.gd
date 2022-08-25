@@ -5,8 +5,6 @@ onready	var soundScene = load("res://scene/entities/objects/sound/Sound.tscn")
 onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
 onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.tscn")
 
-
-export(NodePath) onready var dayNightCycle  = get_node(dayNightCycle) as CanvasModulate
 export(NodePath) onready var enemies  = get_node(enemies) as Node2D
 
 func _init():

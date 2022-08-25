@@ -31,13 +31,13 @@ func enemyCount():
 
 
 func _on_visibility_screen_entered():
-	Globals.mapManager.dayNightCycle.connect("dayStarted", self, "spawnEnemies")
+	Globals.dayNightCycle.connect("dayStarted", self, "spawnEnemies")
 	show()
 	spawnEnemies()
 
 
 func _on_visibility_screen_exited():
-	Globals.mapManager.dayNightCycle.disconnect("dayStarted", self, "spawnEnemies")
+	Globals.dayNightCycle.disconnect("dayStarted", self, "spawnEnemies")
 	hide()
 
 
