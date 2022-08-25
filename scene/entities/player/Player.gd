@@ -161,7 +161,6 @@ func serialize(savedData):
 		"statusEffects": statusEffects.serialize(),
 		"data": data.duplicate(true)
 	}
-	
 	for stat in serializedData.data.stats: 
 		serializedData.data.stats[stat] = data.stats[stat].serialize()
 	
@@ -174,6 +173,7 @@ func serialize(savedData):
 func deserialize(savedData):
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
+	controller.rotated = global_rotation_degrees
 	data = savedData.data
 	
 	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
@@ -182,7 +182,8 @@ func deserialize(savedData):
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 	statusEffects = StatusEffects.new(self)
-	statusEffects.deserialize(savedData.statusEffects)
+	for i in savedData.statusEffects.size(): 
+		addStatusEffect(Factory.statusEffects.deserialize(savedData.statusEffects[i]))
 	
 	if savedData.has("weapon"): 
 		Globals.HUD.inventoryPanel.current_inventories[0].weapon.put_item(Factory.items.deserialize(savedData.weapon))

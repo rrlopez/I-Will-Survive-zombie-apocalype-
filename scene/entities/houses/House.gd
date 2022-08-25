@@ -21,7 +21,6 @@ func spawnEnemies(_day=0):
 		for enemy in Factory.enemies.createMany(size, data.enemies):
 			enemy.global_position = enemy.position+global_position
 			enemies.append(enemy)
-			Globals.mapManager.enemies.add_child(enemy)
 			count-=1
 			if count < 1: return
 

@@ -12,3 +12,8 @@ func execute(_value, amount = val):
 
 func serialize():
 	return { "script": "set", "val": val, "type": type}
+
+	
+func deserialize(savedData):
+	val = savedData.val
+	type = savedData.type

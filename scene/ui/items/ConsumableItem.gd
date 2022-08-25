@@ -10,3 +10,6 @@ func use():
 		Utils.getProp(Globals.player, modifier.type).setVal(modifier)
 	if(data.quantity<1): return null
 	return self
+	
+func deserialize(savedData):
+	data = savedData

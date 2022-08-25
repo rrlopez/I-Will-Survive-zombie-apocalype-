@@ -38,4 +38,5 @@ func serialize():
 
 func deserialize(savedData): 
 	data = savedData.data
+	for i in data.modifiers.size(): data.modifiers[i] = Factory.statsModifiers.deserialize(data.modifiers[i])
 	timer = savedData.timer

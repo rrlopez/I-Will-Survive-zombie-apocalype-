@@ -18,7 +18,8 @@ func attack():
 	agent.hitBox.collider.scale = Vector2(1, 1)
 	agent.hitBox.collider.shape.radius = agent.data.stats.size.val/2
 	agent.hitBox.collider.position = Vector2(0, 0)
-	force = Factory.statusEffects.create({ "type": "applyForce", "force": agent.data.stats.vision.val.height/7,  "friction": 0.9 }, agent.opponent[0], agent)
+	force = ApplyForce.new()
+	force.init({"force": agent.data.stats.vision.val.height/7,  "friction": 0.9 }, agent.opponent[0], agent)
 	agent.set_collision_layer_bit(1, false)
 	agent.set_collision_mask_bit(0, false)
 	agent.set_collision_mask_bit(1, false)

@@ -20,19 +20,20 @@ var attacks = []
 var curAttack = null
 
 
-func _ready():
-	add_child(body)
-	._ready()
-	soundGrowl.stream = data.growl
 	
+func init():
+	body = Factory.enemies.bodies[data.static.id].instance()
+	add_child(body)
+	.init()
+	soundGrowl.stream = Factory.enemies.growl[data.growl]
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
 		visible = false
-		setEnableVission(false)
+		setEnableVision(false)
 	
 	setBehavior(data.behavior)
 	
+	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
 	
-
 func _physics_process(delta):
 	process(delta)
 	velocity = move_and_slide((applyedForce+velocity)*delta)
@@ -53,7 +54,7 @@ func process(delta):
 	._process(delta)
 
 	
-func setEnableVission(enabled = self.visible):
+func setEnableVision(enabled = self.visible):
 	for ray in $Vision.get_children():
 		ray.enabled = enabled
 
@@ -107,7 +108,7 @@ func _on_View_body_entered(_opponent):
 	chooseAttack()
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
 	$Sense/Collider.disabled = true
-	setEnableVission(false)
+	setEnableVision(false)
 	opponent = [_opponent]
 
 
@@ -115,25 +116,27 @@ func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
 	$Sense/Collider.disabled = false
 	$Body/Lower/Animation.stop()
-	setEnableVission()
+	setEnableVision()
 	path = []
 	opponent = []
 
 
 func _on_visibility_screen_entered():
+	Serialize.connect("serialize", self, "serialize")
 	self.visible = true
-	setEnableVission()
+	setEnableVision()
 
 
 func _on_visibility_screen_exited():
 	self.visible = false
 	if opponent.empty():
+		Serialize.disconnect("serialize", self, "serialize")
 		$visibility.process_parent = true
 		$visibility.physics_process_parent = true
 	else:
 		$visibility.process_parent = false
 		$visibility.physics_process_parent = false
-	setEnableVission()
+	setEnableVision()
 
 
 func _on_bodySensor_body_entered(_opponent):
@@ -143,3 +146,47 @@ func _on_bodySensor_body_entered(_opponent):
 func _on_BlockerSensor_body_entered(object):
 	blocker = object
 
+
+
+func serialize(savedData):
+	var serializedData = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"global_position":{
+			"x": global_position.x,
+			"y": global_position.y
+		},
+		"global_rotation_degrees": global_rotation_degrees,
+		"statusEffects": statusEffects.serialize(),
+		"data": data.duplicate(true)
+	}
+	
+	for stat in serializedData.data.stats: 
+		serializedData.data.stats[stat] = data.stats[stat].serialize()
+	
+	var body = null
+
+	serializedData.attacks = []
+	for attack in attacks:
+		serializedData.attacks.append(attack.serialize())
+	
+	savedData.append(serializedData)
+
+
+
+func deserialize(savedData):
+	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
+	global_rotation_degrees = savedData.global_rotation_degrees
+	data = savedData.data
+	
+	body = Factory.enemies.bodies[data.static.id].instance()
+	add_child(body)
+	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
+	
+	statusEffects = StatusEffects.new(self)
+	statusEffects.deserialize(savedData.statusEffects)
+	
+	soundGrowl.stream = Factory.enemies.growl[data.growl]
+	setBehavior(data.behavior)
+	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
+	

@@ -15,7 +15,7 @@
 				"attack_dmg": {"script": "default", "val": {"min": 10, "max": 20}},
 				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
 				"loose_range": {"script": "default", "val": {"min": 1000, "max": 2000}},
-				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
+				"vision": {"script": "vision", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[
 				{ "name": "bread", "quantity": {"min": 1, "max": 2}, "rarity": 80},
@@ -42,7 +42,7 @@
 				"attack_dmg": {"script": "default", "val": {"min": 15, "max": 25}},
 				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
 				"loose_range": {"script": "default", "val": {"min": 2000, "max": 5000}},
-				"vision": {"script": "vission", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
+				"vision": {"script": "vision", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}}
 			},
 			"drops":[
 				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},

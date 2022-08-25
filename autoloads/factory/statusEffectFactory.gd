@@ -25,10 +25,12 @@ func create(data, oponent=Globals.player, parent=Globals.player):
 	oponent.addStatusEffect(statusEffect)
 	
 	
-func deserialize(data, agent):
+func deserialize(data):
 	for i in data.effects.size():
 		var effect = data.effects[i]
 		data.effects[i] = statusEffects[effect.script].new()
-		data.effects[i].deserialize(effect, agent)
+		data.effects[i].deserialize(effect)
+	var statusEffect = StatusEffect.new()
+	statusEffect.init(data)
 	
-	return data
+	return statusEffect

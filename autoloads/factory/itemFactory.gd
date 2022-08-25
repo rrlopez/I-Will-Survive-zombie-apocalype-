@@ -39,7 +39,7 @@ func data(name):
 	
 func create(name, data=data(name)):
 	var item = itemClasses[data.static.type].new()
-	item.init()
+	item.init(data)
 	return item
 
 func deserialize(data):

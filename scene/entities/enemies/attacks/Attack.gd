@@ -24,3 +24,12 @@ func landed():
 		for statusEffect in data.statusEffects:
 			Factory.statusEffects.create(statusEffect.duplicate(true), opponent, agent)
 		opponent.hurt(agent.data.stats.attack_dmg.val)
+
+func serialize():
+	return data
+	
+
+func deserialize(savedData):
+	data = savedData
+
+	

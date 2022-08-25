@@ -1473,8 +1473,6 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_lock_": true
 }
-upperBodyAnimation = NodePath("Upper/Animation")
-lowerBodyAnimation = NodePath("Lower/Animation")
 
 [node name="Lower" type="Node2D" parent="Body"]
 __meta__ = {

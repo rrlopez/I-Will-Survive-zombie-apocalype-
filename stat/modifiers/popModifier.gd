@@ -15,3 +15,8 @@ func execute(array, _id = id):
 
 func serialize():
 	return { "script": "pop", "val": id, "type": type}
+
+	
+func deserialize(savedData):
+	id = savedData.val
+	type = savedData.type

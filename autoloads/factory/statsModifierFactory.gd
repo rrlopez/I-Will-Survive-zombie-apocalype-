@@ -17,3 +17,5 @@ func createAll(data):
 func create(script, val, type=null):
 	return modifiers[script].new(val, type)
 	
+func deserialize(data):
+	return create(data.script, data.val, data.type)

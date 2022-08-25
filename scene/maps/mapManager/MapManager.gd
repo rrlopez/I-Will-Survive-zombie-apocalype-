@@ -11,9 +11,9 @@ export(NodePath) onready var enemies  = get_node(enemies) as Node2D
 
 
 func _ready():
-	Serialize.loadGame()
 	Globals.camera = CameraScene.instance()
 	Globals.mapManager = self
+	Serialize.loadGame()
 	Globals.player.addCamera()
 	Globals.currentMap = currentMapScene.instance()
 	Globals.currentNavigation = Globals.currentMap.get_node("Navigation")

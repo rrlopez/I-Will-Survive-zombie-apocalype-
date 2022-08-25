@@ -25,10 +25,10 @@ func reset():
 	for statusEffect in val: remove(statusEffect)
 
 func serialize():
-	var serializedVal = val.duplicate(true)
-	for statusEffect in serializedVal: statusEffect = statusEffect.serialize()
-	return serializedVal
+	var serializedData = []
+	for statusEffect in val: serializedData.append(statusEffect.serialize())
+	return serializedData
 
 func deserialize(savedData):
 	val = savedData
-	for statusEffect in val: statusEffect = statusEffect.serialize()
+	for i in val.size(): val[i] = Factory.statusEffects.deserialize(val[i])

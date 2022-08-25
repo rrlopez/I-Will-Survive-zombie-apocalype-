@@ -7,7 +7,7 @@ var data = null
 var life = 20
 
 func _ready():
-	sprite.texture = data.static.texture
+	sprite.texture = Factory.items.itemTexture[data.static.id]
 	Constants.rand.randomize()
 	linear_velocity.x = Constants.rand.randf_range(-1, 1)
 	Constants.rand.randomize()

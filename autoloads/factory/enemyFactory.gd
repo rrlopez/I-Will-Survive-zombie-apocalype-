@@ -44,15 +44,13 @@ func data(name):
 func create(name, x, y, rotation):
 	var enemy = enemyScene.instance()
 	enemy.data = data(name)
-	enemy.body = bodies[name].instance()
 	enemy.position = Vector2(x, y)
 	enemy.rotation = rotation
 	Constants.rand.randomize()
-	enemy.data.growl = Factory.enemies.growl[Constants.rand.randf_range(0, 5)]
+	enemy.data.growl = Constants.rand.randi_range(0, growl.size()-1)
 	
-	for attack in enemy.data.attacks:
-		enemy.attacks.append(attacks[attack.script].new(enemy, attack))
-	
+	Globals.mapManager.enemies.add_child(enemy)
+	enemy.init()
 	return enemy
 	
 	

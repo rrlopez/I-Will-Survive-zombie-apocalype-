@@ -12,3 +12,8 @@ func execute(array, _element = element):
 
 func serialize():
 	return { "script": "push", "val": element, "type": type}
+
+	
+func deserialize(savedData):
+	element = savedData.val
+	type = savedData.type
