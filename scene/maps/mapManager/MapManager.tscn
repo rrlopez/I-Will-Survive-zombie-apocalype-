@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/maps/mapManager/MapManager.gd" type="Script" id=1]
-[ext_resource path="res://scene/hud/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/maps/mapManager/DayNightCycle.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -63,8 +62,6 @@ tracks/1/keys = {
 script = ExtResource( 1 )
 dayNightCycle = NodePath("DayNightCycle")
 enemies = NodePath("enemies")
-
-[node name="HUD" parent="." instance=ExtResource( 2 )]
 
 [node name="DayNightCycle" type="CanvasModulate" parent="."]
 z_index = 4096

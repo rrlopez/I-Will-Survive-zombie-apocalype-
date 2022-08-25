@@ -15,7 +15,6 @@ var controller
 
 func _ready():
 	._ready()
-	Serialize.connect("serialize", self, "serialize")
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")

@@ -1,17 +1,18 @@
 extends Node2D
 
 onready var states = {
-	"gameState": preload("res://scene/states/GameState.tscn").instance(),
+	"gameState": preload("res://scene/states/gameState/GameState.tscn").instance(),
 	"pauseState": preload("res://scene/states/pauseState/pauseState.tscn").instance(),
 	"mapState": preload("res://scene/states/mapState/mapState.tscn").instance(),
-	"gameOverState": preload("res://scene/states/gameOverState/gameOverState.tscn").instance()
+	"gameOverState": preload("res://scene/states/gameOverState/gameOverState.tscn").instance(),
+	"menuState": preload("res://scene/states/menuState/menuState.tscn").instance()
 }
 
 onready var currentStates = []
 
 func _ready():
 	Globals.stateManager = self
-	pushState("gameState")
+	pushState("menuState")
 
 func popState():
 	if currentStates.size() < 2: return 

@@ -1,6 +1,7 @@
 extends Node2D
 
-
+func _ready():
+	Serialize.saveGame()
 
 func _on_pauseState_tree_entered():
 	get_tree().paused = true

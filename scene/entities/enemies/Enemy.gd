@@ -122,7 +122,7 @@ func _on_View_body_exited(_body):
 
 
 func _on_visibility_screen_entered():
-	Serialize.connect("serialize", self, "serialize")
+	self.add_to_group("serializable")
 	self.visible = true
 	setEnableVision()
 
@@ -130,7 +130,7 @@ func _on_visibility_screen_entered():
 func _on_visibility_screen_exited():
 	self.visible = false
 	if opponent.empty():
-		Serialize.disconnect("serialize", self, "serialize")
+		self.remove_from_group("serializable")
 		$visibility.process_parent = true
 		$visibility.physics_process_parent = true
 	else:

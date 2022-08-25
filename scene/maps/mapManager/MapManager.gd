@@ -9,12 +9,11 @@ onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.ts
 export(NodePath) onready var dayNightCycle  = get_node(dayNightCycle) as CanvasModulate
 export(NodePath) onready var enemies  = get_node(enemies) as Node2D
 
+func _init():
+	Globals.mapManager = self
 
 func _ready():
 	Globals.camera = CameraScene.instance()
-	Globals.mapManager = self
-	Serialize.loadGame()
-	Globals.player.addCamera()
 	Globals.currentMap = currentMapScene.instance()
 	Globals.currentNavigation = Globals.currentMap.get_node("Navigation")
 	add_child(Globals.currentMap)
