@@ -1,15 +1,22 @@
 extends Node2D
 
+var timer = 5
+
+func _process(delta):
+	if timer < 0:
+		timer = 5
+		Serialize.saveGame()
+	else: timer-=delta
+
+
 func continueGame():
 	Serialize.loadGame()
 	Globals.player.addCamera()
-	pass
 	
 
 func newGame():
 	createNewPlayer()
 	createNewDayNightCycle()
-	
 	Serialize.saveGame()
 	
 

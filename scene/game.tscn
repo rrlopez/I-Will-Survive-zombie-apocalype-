@@ -12,7 +12,9 @@ fps = NodePath("CanvasLayer/label")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="label" type="Label" parent="CanvasLayer"]
-margin_right = 40.0
+anchor_right = 1.0
+margin_left = 464.0
+margin_right = -464.0
 margin_bottom = 14.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -219,6 +219,22 @@
         "reload_duration": {"script": "default", "val": {"min": 2, "max": 2}},
         "reload_rate": {"script": "default", "val": {"min": 10, "max": 10}}
       },
+      "sideEffects":[
+        {
+          "id": "slow",
+          "name": "Slow",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
+                ]
+              }
+            }
+          ]
+        }
+      ],
       "statusEffects": [
         {
           "id": "knockback",

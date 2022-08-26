@@ -2,14 +2,6 @@ extends Node2D
 
 var filePath = "user://savegame.json"
 var data = []
-var timer = 5
-
-func _process(delta):
-	if timer < 0:
-		timer = 5
-		saveGame()
-	else: timer-=delta
-
 
 func saveGame():
 	Globals.HUD.notifs.addNotif('saved...')

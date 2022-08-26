@@ -2,6 +2,7 @@ class_name EquipmentItem extends Item
 
 func use():
 	var slot = Globals.HUD.inventoryPanel.current_inventories[0][data.static.type]
+			
 	if(slot.item):
 		var new_item = slot.item
 		slot.pick_item()
@@ -17,6 +18,9 @@ func serialize():
 		serializedData.erase("object")
 		serializedData["serialized"] = true
 		for stat in data.stats: serializedData.stats[stat] = data.stats[stat].serialize()
+		for sideEffect in serializedData.sideEffects: 
+			for i in sideEffect.effects.size(): 
+				sideEffect.effects[i] = sideEffect.effects[i].serialize()
 		return serializedData
 	else: return data
 

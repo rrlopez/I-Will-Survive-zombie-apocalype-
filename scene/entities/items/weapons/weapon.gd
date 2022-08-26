@@ -30,6 +30,9 @@ func serialize():
 	
 	for stat in data.stats: 
 		serializedData.stats[stat] = data.stats[stat].serialize()
+	for sideEffect in serializedData.sideEffects: 
+		for i in sideEffect.effects.size(): 
+			sideEffect.effects[i] = sideEffect.effects[i].serialize()
 		
 	return serializedData
 

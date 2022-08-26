@@ -12,15 +12,18 @@ func init(_data, opponent, _parent):
 		
 		Utils.getProp(opponent, data.modifiers[i].type).addModifier(data.modifiers[i])
 
+
 func run(agent, delta):
 	if(timer>data.duration):
-		for modifier in data.modifiers:
-			Utils.getProp(agent, modifier.type).removeModifier(modifier)
+		remove(agent)
 		return true
 	timer+=delta
 	return false
 
-
+func remove(agent):
+	for modifier in data.modifiers:
+		Utils.getProp(agent, modifier.type).removeModifier(modifier)
+		
 func reset():
 	timer = 0
 

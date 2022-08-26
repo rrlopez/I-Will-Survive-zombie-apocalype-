@@ -8,7 +8,6 @@ func _on_pauseState_tree_entered():
 	add_child(Globals.stateManager.currentStates[1])
 
 
-
 func _on_ReviveBtn_pressed():
 	Globals.player.revive()
 	get_tree().paused = false
