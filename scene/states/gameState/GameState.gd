@@ -15,10 +15,15 @@ func continueGame():
 	
 
 func newGame():
+	createNewHotbar()
 	createNewPlayer()
 	createNewDayNightCycle()
 	Serialize.saveGame()
-	
+
+func createNewHotbar():
+	var hotbarScene = load("res://scene/hud/hotbar/hotbar.tscn")
+	var hotbar = hotbarScene.instance()
+	hotbar.init()
 
 func createNewPlayer():
 	var playerScene = load("res://scene/entities/player/Player.tscn")

@@ -27,11 +27,16 @@ func _ready():
 	
 func _on_inventory_ready(inventory):
 	inventories.append(inventory)
-	
-	for slot in inventory.slots:
-		slot.connect("mouse_entered", self, "_on_mouse_entered_slot", [slot])
-		slot.connect("mouse_exited", self, "_on_mouse_exited_slot")
-		slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
+	if inventory.slot_type == 'hotbar':
+		for slot in inventory.slots:
+			slot.connect("mouse_entered", self, "set_cur_slot", [slot])
+			slot.connect("mouse_exited", self, "unset_cur_slot")
+			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
+	else:
+		for slot in inventory.slots:
+			slot.connect("mouse_entered", self, "_on_mouse_entered_slot", [slot])
+			slot.connect("mouse_exited", self, "_on_mouse_exited_slot")
+			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 		
 
 func _input(event:InputEvent):
@@ -69,14 +74,19 @@ func _input(event:InputEvent):
 
 #if(prev_slot.item.data.static.equipment_type != "craft"): 
 func _on_mouse_entered_slot(slot):
-	cur_slot=slot
+	set_cur_slot(slot)
 	if(slot.item):
 		item_info.display(slot)
 
-
 func _on_mouse_exited_slot():
-	cur_slot=null
+	unset_cur_slot()
 	item_info.hide()
+	
+func set_cur_slot(slot):
+	cur_slot=slot
+
+func unset_cur_slot():
+	cur_slot=null
 
 
 func _on_gui_input_slot(event: InputEvent, slot: Slot):

@@ -105,6 +105,7 @@ func _on_reloadBtn_pressed():
 	if isReloading: return
 	data.stats.reload_duration.setVal(Factory.statsModifiers.create("set", 0))
 	ammoInventorySlot = parent.inventory.get_item(data.static.ammo_type)
+	if !ammoInventorySlot: ammoInventorySlot = Globals.HUD.hotbar.get_item(data.static.ammo_type)
 	Globals.HUD.weaponPanel.setCooldown(0)
 	parent.notif.show()
 	parent.notif.texture = Constants.notif.reloadAmmo

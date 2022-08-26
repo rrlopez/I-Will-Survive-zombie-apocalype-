@@ -10,6 +10,7 @@ export(NodePath) onready var statusEffectIcons = get_node(statusEffectIcons) as 
 export(NodePath) onready var weaponPanel = get_node(weaponPanel) as ColorRect
 export(NodePath) onready var notifs = get_node(notifs) as VBoxContainer
 
+var hotbar setget setHotbar
 
 func _init():
 	Globals.HUD = self
@@ -17,3 +18,7 @@ func _init():
 func _ready():
 	Globals.inventoryManager.panels.append(lootPanel)
 	Globals.inventoryManager.panels.append(inventoryPanel)
+
+func setHotbar(value):
+	hotbar = value
+	add_child(hotbar)
