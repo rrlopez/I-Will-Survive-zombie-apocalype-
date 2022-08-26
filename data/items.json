@@ -92,12 +92,29 @@
   },
   {
     "static_data":{
+      "id": "torch",
+      "name": "Torch",
+      "script": "torch",
+      "type": "equipment",
+      "equipment_type": "hand",
+      "stock_size": 1
+    },
+    "dynamic_data":{
+      "sideEffects":[],
+      "stats":{
+        "size":  {"script": "size", "val": {"min": 20, "max": 20}}
+      }
+    }
+  },
+  {
+    "static_data":{
       "id": "machette",
       "name": "Machette",
-      "type": "weapon",
+      "script": "melle",
+      "type": "equipment",
+      "equipment_type": "weapon",
       "weapon_type": "melle",
       "stock_size": 1,
-      "equipment_type": "melle",
       "animation_type": "melle"
     },
     "dynamic_data":{
@@ -159,8 +176,9 @@
     "static_data":{
       "id": "AMT AutoMag III",
       "name": "AMT AutoMag III",
+      "script": "pistol",
       "stock_size": 1,
-      "type": "weapon",
+      "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
       "animation_type": "pistol"
@@ -198,8 +216,9 @@
     "static_data":{
       "id": "m13",
       "name": "m13",
+      "script": "riffle",
       "stock_size": 1,
-      "type": "weapon",
+      "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
       "animation_type": "riffle",
@@ -216,25 +235,10 @@
         "fire_dmg": {"script": "default", "val": {"min": 500, "max": 500}},
         "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}},
         "ammo": {"script": "ammo", "val": {"min": 10, "max": 10}},
-        "reload_duration": {"script": "default", "val": {"min": 2, "max": 2}},
+        "reload_duration": {"script": "default", "val": {"min": 1, "max": 1}},
         "reload_rate": {"script": "default", "val": {"min": 10, "max": 10}}
       },
-      "sideEffects":[
-        {
-          "id": "slow",
-          "name": "Slow",
-          "effects": [
-            {
-              "script": "buff",
-              "stats":{
-                "modifiers": [
-                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
-                ]
-              }
-            }
-          ]
-        }
-      ],
+      "sideEffects":[],
       "statusEffects": [
         {
           "id": "knockback",
@@ -257,8 +261,9 @@
     "static_data":{
       "id": "m14",
       "name": "m14",
+      "script": "riffle",
       "stock_size": 1,
-      "type": "weapon",
+      "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
       "animation_type": "riffle"
@@ -294,8 +299,77 @@
   },
   {
     "static_data":{
+      "id": "machine gun",
+      "name": "Machine Gun",
+      "script": "machine gun",
+      "stock_size": 1,
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "machine gun",
+      "ammo_type": "machine gun ammo"
+    },
+    "dynamic_data":{
+      "stats": {
+        "fire_speed": {"script": "default", "val": {"min": 5, "max": 5}},
+        "fire_accuracy": {"script": "fireAccuracy", "val": {
+          "x":{"min": 10, "max": 10},
+          "y":{"min": 20, "max": 20}
+        }},
+        "fire_range": {"script": "default", "val": {"min": 500, "max": 500}},
+        "fire_dmg": {"script": "default", "val": {"min": 500, "max": 500}},
+        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}},
+        "ammo": {"script": "ammo", "val": {"min": 100, "max": 100}},
+        "reload_duration": {"script": "default", "val": {"min": 2, "max": 2}},
+        "reload_rate": {"script": "default", "val": {"min": 100, "max": 100}}
+      },
+      "sideEffects":[
+        {
+          "id": "slow",
+          "name": "Slow",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.8}
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
       "id": "riffle ammo",
       "name": "Riffle Ammo",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "machine gun ammo",
+      "name": "machine gun ammo",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""

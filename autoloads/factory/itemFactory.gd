@@ -5,7 +5,7 @@ var itemClasses = {
 	"resource": ResourceItem,
 	"consumable": ConsumableItem,
 	"placable": PlacableItem,
-	"weapon": EquipmentItem,
+	"equipment": EquipmentItem,
 }
 
 var placeholders = {

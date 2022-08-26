@@ -1,7 +1,7 @@
 class_name EquipmentItem extends Item
 
 func use():
-	var slot = Globals.HUD.inventoryPanel.current_inventories[0][data.static.type]
+	var slot = Globals.HUD.inventoryPanel.current_inventories[0][data.static.equipment_type]
 			
 	if(slot.item):
 		var new_item = slot.item

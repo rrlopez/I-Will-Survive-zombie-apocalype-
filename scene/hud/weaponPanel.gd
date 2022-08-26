@@ -6,5 +6,6 @@ export(NodePath) onready var cooldown = get_node(cooldown) as ColorRect
 
 
 func setCooldown(percent):
+	percent = min(percent, 100)
 	cooldown.rect_position = Vector2(60-(percent/2),92)
 	cooldown.rect_scale = Vector2(percent,1)

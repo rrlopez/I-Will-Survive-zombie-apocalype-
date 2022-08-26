@@ -129,7 +129,14 @@ func _on_Player_tree_exited():
 func spawnSound():
 	Globals.mapManager.spawnSound(self, 150)
 	$Body/Lower/footstep.play()
-	
+
+func setHandItem(item):
+	for child in hand_container.get_children(): hand_container.remove_child(child)
+	if(item):
+		if item.data.has("object"): hand_container.add_child(item.data.object)
+		elif item.data.has("serialized"): hand_container.add_child(Factory.handItems.deserialize(self, item.data))
+		else: hand_container.add_child(Factory.handItems.create(self, item.data))
+		
 	
 func setWeapon(item):
 	for child in weapon_container.get_children(): weapon_container.remove_child(child)
@@ -165,6 +172,7 @@ func serialize(savedData):
 		serializedData.data.stats[stat] = data.stats[stat].serialize()
 	
 	if(weapon_container.get_child_count()>0): serializedData.weapon = weapon_container.get_child(0).serialize()
+	if(hand_container.get_child_count()>0): serializedData.handItem = hand_container.get_child(0).serialize()
 	
 	savedData.append(serializedData)
 
@@ -188,3 +196,5 @@ func deserialize(savedData):
 	
 	if savedData.has("weapon"): 
 		Globals.HUD.inventoryPanel.current_inventories[0].weapon.put_item(Factory.items.deserialize(savedData.weapon))
+	if savedData.has("handItem"): 
+		Globals.HUD.inventoryPanel.current_inventories[0].hand.put_item(Factory.items.deserialize(savedData.handItem))
