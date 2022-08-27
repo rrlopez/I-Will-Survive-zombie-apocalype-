@@ -30,6 +30,7 @@ margin_left = -101.0
 margin_top = -51.0
 margin_right = 291.0
 margin_bottom = 75.0
+mouse_filter = 2
 custom_styles/panel = SubResource( 2 )
 script = ExtResource( 6 )
 __meta__ = {

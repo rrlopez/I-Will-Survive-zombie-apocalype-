@@ -22,3 +22,4 @@ func _ready():
 func setHotbar(value):
 	hotbar = value
 	add_child(hotbar)
+	move_child(hotbar, 7)

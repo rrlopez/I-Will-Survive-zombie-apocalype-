@@ -81,6 +81,7 @@ func _on_Inventory_mouse_entered():
 
 func _on_Inventory_mouse_exited():
 	Globals.inventoryManager.cur_inventory = null
+	
 
 func serialize():
 	var serializedItems = []

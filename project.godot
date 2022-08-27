@@ -583,6 +583,8 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_8="house"
 2d_physics/layer_9="enemy"
 2d_physics/layer_10="player"
+2d_physics/layer_11="slot"
+2d_physics/layer_12="item"
 
 [physics]
 

@@ -29,8 +29,6 @@ func _on_inventory_ready(inventory):
 	inventories.append(inventory)
 	if inventory.slot_type == 'hotbar':
 		for slot in inventory.slots:
-			slot.connect("mouse_entered", self, "set_cur_slot", [slot])
-			slot.connect("mouse_exited", self, "unset_cur_slot")
 			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 	else:
 		for slot in inventory.slots:
@@ -45,7 +43,6 @@ func _input(event:InputEvent):
 				
 		if event is InputEventScreenTouch and panelPressed == event.index and !event.is_pressed():
 			item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_IGNORE
-
 			if(cur_slot): 
 				if item_in_hand.data.static.has("equipment_type") and (cur_slot.type or item_in_hand.data.static.equipment_type == "craft") and item_in_hand.data.static.equipment_type != cur_slot.type: 
 					item_in_hand_node.remove_child(item_in_hand)
@@ -69,25 +66,18 @@ func _input(event:InputEvent):
 				yield(get_tree(), "idle_frame")
 				prev_slot = null
 			lastTap = OS.get_ticks_msec()
+			
 		else: clickPosition = null
 	
 
 #if(prev_slot.item.data.static.equipment_type != "craft"): 
 func _on_mouse_entered_slot(slot):
-	set_cur_slot(slot)
 	if(slot.item):
 		item_info.display(slot)
 
 func _on_mouse_exited_slot():
-	unset_cur_slot()
 	item_info.hide()
 	
-func set_cur_slot(slot):
-	cur_slot=slot
-
-func unset_cur_slot():
-	cur_slot=null
-
 
 func _on_gui_input_slot(event: InputEvent, slot: Slot):
 	if event is InputEventScreenTouch and event.is_pressed() and slot.item:

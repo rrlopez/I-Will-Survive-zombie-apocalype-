@@ -3,6 +3,7 @@ class_name Slot extends NinePatchRect
 signal item_changed
 
 export(NodePath) onready var item_container  = get_node(item_container) as Control
+export(NodePath) onready var area  = get_node(area) as Area2D
 
 var item
 export(String) var type 
@@ -44,3 +45,8 @@ func add_item_quantity(value):
 func is_full():
 	if item and item.data.quantity >= item.data.static.stock_size: return true
 	return false
+
+
+func _on_area_area_entered(area):
+	Globals.inventoryManager.cur_slot = self
+

@@ -17,6 +17,7 @@ func _ready():
 	label_quantity.set("custom_colors/font_color", Color.black)
 	add_child(label_quantity)
 	set_quantity(data.quantity)
+	add_child(Constants.itemArea.instance())
 
 func set_quantity(value):
 	data.quantity = value
