@@ -47,3 +47,15 @@ func close():
 
 func _on_CloseBtn_released():
 	close()
+
+
+
+func serialize():
+	var serializedData = []
+	for inventory in current_inventories: 
+		serializedData.append(inventory.serialize())
+	return serializedData
+
+func deserialize(savedData):
+	for inventory in savedData: 
+		inventory = Utils.deserializeInventory(inventory)

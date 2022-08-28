@@ -20,5 +20,14 @@ func recompute():
 		
 
 
-func serialize(script = "fireAccuracy"):
-	return .serialize(script)
+func serialize():
+	return {
+		"difference": {
+			"x": maxVal.x - val.x,
+			"y": maxVal.y - val.y
+		}
+	}
+
+func deserialize(savedData):
+	val.x = maxVal.x-savedData.difference.x
+	val.y = maxVal.y-savedData.difference.y

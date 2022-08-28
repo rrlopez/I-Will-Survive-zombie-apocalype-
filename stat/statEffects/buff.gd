@@ -3,14 +3,12 @@ class_name Buff extends Resource
 var data = {}
 var timer = 0
 
-func init(_data, opponent, _parent):
+func init(_data):
 	data = _data
 	reset()
 	for i in data.modifiers.size():
 		var modifier = data.modifiers[i]
 		data.modifiers[i] = Factory.statsModifiers.create(modifier.script, modifier.val, modifier.type)
-		
-		Utils.getProp(opponent, data.modifiers[i].type).addModifier(data.modifiers[i])
 
 
 func run(agent, delta):
@@ -24,6 +22,11 @@ func remove(agent):
 	for modifier in data.modifiers:
 		Utils.getProp(agent, modifier.type).removeModifier(modifier)
 		
+
+func add(opponent, _parent=null):
+	for modifier in data.modifiers:
+		Utils.getProp(opponent, modifier.type).addModifier(modifier)
+		
 func reset():
 	timer = 0
 
@@ -36,10 +39,10 @@ func serialize():
 			"duration": data.duration,
 			"modifiers": modifierObject
 		},
-		"timer":0
+		"timer": timer
 	}
 
-func deserialize(savedData): 
-	data = savedData.data
-	for i in data.modifiers.size(): data.modifiers[i] = Factory.statsModifiers.deserialize(data.modifiers[i])
+func deserialize(savedData, agent):
+	init(savedData.data)
+	add(agent)
 	timer = savedData.timer

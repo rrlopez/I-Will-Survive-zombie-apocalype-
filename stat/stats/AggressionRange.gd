@@ -12,10 +12,7 @@ func update():
 	agent.sense.shape.radius = val
 	agent.blockerSensor.shape.radius = val
 
-
-func serialize(script = "aggressionRange"):
-	return .serialize(script)
 	
-func deserialize(savedData, _agent):
-	.deserialize(savedData, _agent)
+func deserialize(savedData):
+	.deserialize(savedData)
 	update()

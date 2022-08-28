@@ -1,7 +1,24 @@
 class_name EquipmentItem extends Item
 
+func init(itemData, _staticData):
+	.init(itemData, _staticData)
+	
+	data["object"] = Factory.equipments.create(Globals.player, self)
+	for stat in data.stats:
+		Constants.rand.randomize()
+		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], data.object)
+
+	for sideEffect in data.sideEffects:
+		for i in sideEffect.effects.size():
+			var effect = sideEffect.effects[i]
+			effect.stats["duration"] = 0
+			sideEffect.effects[i] = Factory.statusEffects.statusEffects[effect.script].new()
+			sideEffect.effects[i].init(effect.stats)
+
+	print(data["object"], data["object"].parent, Globals.player)
+
 func use():
-	var slot = Globals.HUD.inventoryPanel.current_inventories[0][data.static.equipment_type]
+	var slot = Globals.HUD.inventoryPanel.current_inventories[0][staticData.equipment_type]
 			
 	if(slot.item):
 		var new_item = slot.item
@@ -12,17 +29,18 @@ func use():
 		slot.put_item(self)
 		return null
 
+
 func serialize():
-	if(data.has("object")):
-		var serializedData = data.duplicate(true)
-		serializedData.erase("object")
-		serializedData["serialized"] = true
-		for stat in data.stats: serializedData.stats[stat] = data.stats[stat].serialize()
-		for sideEffect in serializedData.sideEffects: 
-			for i in sideEffect.effects.size(): 
-				sideEffect.effects[i] = sideEffect.effects[i].serialize()
-		return serializedData
-	else: return data
+	var serializedData = {
+		"id":data.id,
+		"quantity":data.quantity,
+		"stats": {}
+	}
+	for stat in data.stats: serializedData.stats[stat] = data.stats[stat].serialize()
+	return serializedData
+
 
 func deserialize(savedData):
-	data = savedData
+	.deserialize(savedData)
+	for stat in data.stats:
+		data.stats[stat].deserialize(savedData.stats[stat])

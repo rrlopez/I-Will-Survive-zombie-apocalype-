@@ -16,9 +16,6 @@ func setVal(modifier):
 func update():
 	Globals.HUD.weaponPanel.label.text = String(val)
 
-func serialize(script = "ammo"):
-	return .serialize(script)
-
-func deserialize(savedData, _agent):
-	.deserialize(savedData, _agent)
+func deserialize(savedData):
+	.deserialize(savedData)
 	update()

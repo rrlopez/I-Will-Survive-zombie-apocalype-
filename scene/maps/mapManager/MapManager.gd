@@ -34,8 +34,7 @@ func spawnDropItems(items, position):
 
 func createItem(item, position):
 	var dropItem = dropItemScene.instance()
-	dropItem.global_position = position
-	dropItem.data = Factory.items.data(item.name)
+	dropItem.init(item.name, position)
 	item.quantity = dropItem.add_item_quantity(item.quantity)
 	add_child(dropItem)
 	if item.quantity > 0: createItem(item, position)

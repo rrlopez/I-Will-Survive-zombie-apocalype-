@@ -4,42 +4,25 @@ var isPressed
 var lastFired = 0 
 var parent
 
-var data
+var item
 
-func init(_parent, _data):
-	data = _data
+func init(_parent, _item):
 	parent = _parent
-	data.object = self
-	for stat in data.stats:
-		Constants.rand.randomize()
-		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
-
+	item = _item
+	
 func hit(body):
-	for statusEffect in data.statusEffects:
+	for statusEffect in item.data.statusEffects:
 		Factory.statusEffects.create(statusEffect.duplicate(true), body, parent)
-	body.hurt(parent, data.stats.fire_dmg.val)
+	body.hurt(parent, item.data.stats.fire_dmg.val)
 
 func setLastFired(value):
 	lastFired = value
 
 
 func serialize():
-	var serializedData = data.duplicate(true)
-	serializedData.erase('object')
-	serializedData.serialized = true
-	
-	for stat in data.stats: 
-		serializedData.stats[stat] = data.stats[stat].serialize()
-	for sideEffect in serializedData.sideEffects: 
-		for i in sideEffect.effects.size(): 
-			sideEffect.effects[i] = sideEffect.effects[i].serialize()
-		
-	return serializedData
+	return item.serialize()
 
 
 func deserialize(_parent, _data):
-	data = _data
 	parent = _parent
-	data.object = self
-	
-	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
+	item.deserialize(_data)

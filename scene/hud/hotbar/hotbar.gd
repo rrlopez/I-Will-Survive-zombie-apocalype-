@@ -28,7 +28,7 @@ func serialize(savedData):
 	for s in slots: 
 		if s.item: serializedItems.append(s.item.serialize())
 		else: serializedItems.append(null)
-	savedData.append({
+	savedData.others.append({
 		"filename" : get_filename(),
 		"parent" : get_parent().get_path(),
 		"rect_global_position":{

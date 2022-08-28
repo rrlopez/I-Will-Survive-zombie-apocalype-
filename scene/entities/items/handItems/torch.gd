@@ -1,33 +1,19 @@
 extends Light2D
 
-var data
+var item
 var parent
 
-func ready():
-	data.object = self
-		
-	texture_scale = data.stats.size.val
-
-func init(_parent, _data):
-	parent = _parent
-	data = _data
+func _ready():
 	
-	for stat in data.stats: data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
-	ready()
+	texture_scale = item.data.stats.size.val
+
+func init(_parent, _item):
+	parent = _parent
+	item = _item
 
 func serialize():
-	var serializedData = data.duplicate(true)
-	serializedData.erase('object')
-	serializedData.serialized = true
-	
-	for stat in data.stats: 
-		serializedData.stats[stat] = data.stats[stat].serialize()
-
-	return serializedData
+	return item.serialize()
 	
 func deserialize(_parent, _data):
-	data = _data
 	parent = _parent
-	
-	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
-	ready()
+	item.deserialize()

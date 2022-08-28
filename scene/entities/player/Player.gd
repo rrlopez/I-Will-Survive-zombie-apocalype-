@@ -133,18 +133,14 @@ func spawnSound():
 func setHandItem(item):
 	for child in hand_container.get_children(): hand_container.remove_child(child)
 	if(item):
-		if item.data.has("object"): hand_container.add_child(item.data.object)
-		elif item.data.has("serialized"): hand_container.add_child(Factory.handItems.deserialize(self, item.data))
-		else: hand_container.add_child(Factory.handItems.create(self, item.data))
+		hand_container.add_child(item.data.object)
 		
 	
 func setWeapon(item):
 	for child in weapon_container.get_children(): weapon_container.remove_child(child)
 	if(item):
-		if item.data.has("object"): weapon_container.add_child(item.data.object)
-		elif item.data.has("serialized"): weapon_container.add_child(Factory.weapons.deserialize(self, item.data))
-		else: weapon_container.add_child(Factory.weapons.create(self, item.data))
-		body.upperBodyAnimation.play(item.data.static.animation_type)
+		weapon_container.add_child(item.data.object)
+		body.upperBodyAnimation.play(item.staticData.animation_type)
 	else:
 		body.upperBodyAnimation.play("run")
 
@@ -174,25 +170,25 @@ func serialize(savedData):
 	if(weapon_container.get_child_count()>0): serializedData.weapon = weapon_container.get_child(0).serialize()
 	if(hand_container.get_child_count()>0): serializedData.handItem = hand_container.get_child(0).serialize()
 	
-	savedData.append(serializedData)
+	savedData["player"] = serializedData
 
 
 
 func deserialize(savedData):
+	data = Utils.import_data("res://data/player.json")
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
 	controller.rotated = global_rotation_degrees
-	data = savedData.data
+	.init()
 	
-	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
+	for stat in savedData.data.stats: data.stats[stat].deserialize(savedData.data.stats[stat])
 	
 	craftInventory = Utils.deserializeInventory(savedData.craft)
 	inventory = Utils.deserializeInventory(savedData.inventory)
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
-	statusEffects = StatusEffects.new(self)
 	for i in savedData.statusEffects.size(): 
-		addStatusEffect(Factory.statusEffects.deserialize(savedData.statusEffects[i]))
+		addStatusEffect(Factory.statusEffects.deserialize(savedData.statusEffects[i], self))
 	
 	if savedData.has("weapon"): 
 		Globals.HUD.inventoryPanel.current_inventories[0].weapon.put_item(Factory.items.deserialize(savedData.weapon))

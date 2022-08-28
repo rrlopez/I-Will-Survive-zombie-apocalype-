@@ -12,9 +12,7 @@ func recompute():
 func update():
 	agent.body.lowerBodyAnimation.playback_speed=val/60
 
-func serialize(script = "moveSpeed"):
-	return .serialize(script)
 	
-func deserialize(savedData, _agent):
-	.deserialize(savedData, _agent)
+func deserialize(savedData):
+	.deserialize(savedData)
 	update()

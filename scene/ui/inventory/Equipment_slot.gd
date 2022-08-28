@@ -23,26 +23,10 @@ func pick_item():
 
 func put_item(new_item):
 	.put_item(new_item)
-	if(item.data.has("object")):
-		for sideEffect in item.data.sideEffects:
-			for effect in sideEffect.effects:
-				for modifier in effect.data.modifiers:
-					Utils.getProp(Globals.player, modifier.type).addModifier(modifier)
-				effect.reset()
-	elif(item.data.has("serialized")):
-		for sideEffect in item.data.sideEffects:
-			sideEffect = Factory.statusEffects.deserialize(sideEffect)
-			for effect in sideEffect.data.effects:
-				for modifier in effect.data.modifiers:
-					Utils.getProp(Globals.player, modifier.type).addModifier(modifier)
-				effect.reset()
-	else:
-		for sideEffect in item.data.sideEffects:
-			for i in sideEffect.effects.size():
-				var effect = sideEffect.effects[i]
-				effect.stats["duration"] = 0
-				sideEffect.effects[i] = Factory.statusEffects.statusEffects[effect.script].new()
-				sideEffect.effects[i].init(effect.stats, Globals.player, Globals.player)
+	for sideEffect in item.data.sideEffects:
+		for effect in sideEffect.effects:
+			effect.add(Globals.player)
+			
 	soundEquip.play()
 	placeholder.hide()
 
@@ -51,3 +35,5 @@ func use_item():
 		soundUnequip.play()
 		pick_item()
 		emitItemChanged()
+	else:
+		pass

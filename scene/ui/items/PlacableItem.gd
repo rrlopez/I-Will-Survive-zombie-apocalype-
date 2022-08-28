@@ -6,5 +6,3 @@ func use():
 	return self
 
 
-func deserialize(savedData):
-	data = savedData

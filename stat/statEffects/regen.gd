@@ -4,7 +4,7 @@ var data = {}
 var timer = 0
 var rateTimer = 0
 
-func init(_data, _opponent, _parent):
+func init(_data):
 	data = _data
 	reset()
 	for i in data.modifiers.size():
@@ -22,6 +22,15 @@ func run(agent, delta):
 	timer+=delta
 	rateTimer+=delta
 	return false
+	
+func remove(agent):
+	for modifier in data.modifiers:
+		Utils.getProp(agent, modifier.type).removeModifier(modifier)
+		
+
+func add(opponent, _parent=null):
+	for modifier in data.modifiers:
+		Utils.getProp(opponent, modifier.type).addModifier(modifier)
 
 func reset():
 	timer = 0
@@ -41,7 +50,7 @@ func serialize():
 		"rateTimer": rateTimer
 	}
 
-func deserialize(savedData): 
+func deserialize(savedData, _agent): 
 	data = savedData.data
 	for i in data.modifiers.size(): data.modifiers[i] = Factory.statsModifiers.deserialize(data.modifiers[i])
 	timer = savedData.timer

@@ -18,18 +18,19 @@ func create(data, oponent=Globals.player, parent=Globals.player):
 	for i in data.effects.size():
 		var effect = data.effects[i]
 		data.effects[i] = statusEffects[effect.script].new()
-		data.effects[i].init(effect.stats, oponent, parent)
+		data.effects[i].init(effect.stats)
+		data.effects[i].add(oponent, parent)
 	
 	var statusEffect = StatusEffect.new()
 	statusEffect.init(data)
 	oponent.addStatusEffect(statusEffect)
 	
 	
-func deserialize(data):
+func deserialize(data, agent):
 	for i in data.effects.size():
 		var effect = data.effects[i]
 		data.effects[i] = statusEffects[effect.script].new()
-		data.effects[i].deserialize(effect)
+		data.effects[i].deserialize(effect, agent)
 	var statusEffect = StatusEffect.new()
 	statusEffect.init(data)
 	

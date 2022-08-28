@@ -44,7 +44,7 @@ func _input(event:InputEvent):
 		if event is InputEventScreenTouch and panelPressed == event.index and !event.is_pressed():
 			item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_IGNORE
 			if(cur_slot): 
-				if item_in_hand.data.static.has("equipment_type") and (cur_slot.type or item_in_hand.data.static.equipment_type == "craft") and item_in_hand.data.static.equipment_type != cur_slot.type: 
+				if item_in_hand.staticData.has("equipment_type") and (cur_slot.type or item_in_hand.staticData.equipment_type == "craft") and item_in_hand.staticData.equipment_type != cur_slot.type: 
 					item_in_hand_node.remove_child(item_in_hand)
 					prev_slot.put_item(item_in_hand)
 					item_in_hand = null
@@ -91,7 +91,7 @@ func updateSlot(event, slot):
 		item_in_hand_node.remove_child(item_in_hand)
 	
 		if slot.item:
-			if(slot.item.data.static.id == item_in_hand.data.static.id) and slot.item.data.quantity < slot.item.data.static.stock_size:
+			if(slot.item.data.id == item_in_hand.data.id) and slot.item.data.quantity < slot.item.staticData.stock_size:
 				var remainder = slot.item.add_item_quantity(item_in_hand.data.quantity)
 				if remainder > 0:
 					item_in_hand.set_quantity(remainder)

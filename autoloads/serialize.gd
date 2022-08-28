@@ -1,11 +1,16 @@
 extends Node2D
 
+var defaultData = {
+	"player": null,
+	"others": []
+}
+
 var filePath = "user://savegame.json"
-var data = []
+var data = defaultData
 
 func saveGame():
 	Globals.HUD.notifs.addNotif('saved...')
-	data=[]
+	data = defaultData
 	
 	for node in get_tree().get_nodes_in_group('serializable'): node.serialize(data)
 	
@@ -27,8 +32,11 @@ func loadGame():
 
 	save_game.open(filePath, File.READ)
 	var game_data = parse_json(save_game.get_as_text())
-	for data in game_data:
-		var new_object = load(data["filename"]).instance()
-		get_node(data["parent"]).add_child(new_object)
-		new_object.deserialize(data)
+	deserializeScene(game_data.player)
+	for data in game_data.others: deserializeScene(data)
 	save_game.close()
+
+func deserializeScene(data):
+	var new_object = load(data["filename"]).instance()
+	get_node(data["parent"]).add_child(new_object)
+	new_object.deserialize(data)

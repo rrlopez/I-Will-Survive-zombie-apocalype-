@@ -332,7 +332,7 @@
               "script": "buff",
               "stats":{
                 "modifiers": [
-                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.8}
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
                 ]
               }
             }

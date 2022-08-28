@@ -158,11 +158,14 @@ func serialize(savedData):
 		},
 		"global_rotation_degrees": global_rotation_degrees,
 		"statusEffects": statusEffects.serialize(),
-		"data": data.duplicate(true)
+		"id": data.static.id,
+		"growl": data.growl,
+		"behaviour": behavior,
+		"stats": {},
 	}
 	
-	for stat in serializedData.data.stats: 
-		serializedData.data.stats[stat] = data.stats[stat].serialize()
+	for stat in data.stats: 
+		serializedData.stats[stat] = data.stats[stat].serialize()
 	
 	var body = null
 
@@ -170,23 +173,18 @@ func serialize(savedData):
 	for attack in attacks:
 		serializedData.attacks.append(attack.serialize())
 	
-	savedData.append(serializedData)
+	savedData.others.append(serializedData)
 
 
 
 func deserialize(savedData):
+	data = Factory.enemies.data(savedData.id)
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
-	data = savedData.data
+	data.growl = savedData.growl
+	data.behaviour = savedData.behaviour
+	init()
+	for stat in data.stats: data.stats[stat].deserialize(savedData.stats[stat])
 	
-	body = Factory.enemies.bodies[data.static.id].instance()
-	add_child(body)
-	for stat in data.stats: data.stats[stat] = Factory.stats.deserialize(data.stats[stat], self)
-	
-	statusEffects = StatusEffects.new(self)
 	statusEffects.deserialize(savedData.statusEffects)
-	
-	soundGrowl.stream = Factory.enemies.growl[data.growl]
-	setBehavior(data.behavior)
-	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
 	

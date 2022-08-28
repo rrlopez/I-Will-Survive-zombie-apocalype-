@@ -1,7 +1,7 @@
 class_name ConsumableItem extends Item
 
-func init(itemData): 
-	.init(itemData)
+func init(itemData, staticData): 
+	.init(itemData, staticData)
 	Factory.statsModifiers.createAll(data.modifiers)
 
 func use():
@@ -12,10 +12,7 @@ func use():
 	return self
 
 func serialize():
-	var serializedData = data.duplicate(true)
-	for i in data.modifiers.size(): serializedData.modifiers[i] = data.modifiers[i].serialize()
-	return serializedData
-
-func deserialize(savedData):
-	data = savedData
-	for i in data.modifiers.size(): data.modifiers[i] = Factory.statsModifiers.deserialize(data.modifiers[i])
+	return {
+		"id":data.id,
+		"quantity":data.quantity
+	}

@@ -11,6 +11,3 @@ func setVal(modifier):
 func reset():
 	.reset()
 	agent.healthStatCallback(self)
-
-func serialize(script = "health"):
-	return .serialize(script)

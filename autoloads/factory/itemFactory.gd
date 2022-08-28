@@ -16,7 +16,8 @@ var placeholders = {
 }
 
 
-var items = {}
+var dynamicData = {}
+var staticData = {}
 var itemTexture = {}
 var itemObjectTexture = {}
 
@@ -24,25 +25,21 @@ func _init():
 	for item in Utils.import_data("res://data/items.json"):
 		itemTexture[item.static_data.id] = load("res://scene/ui/items/sprites/"+item.static_data.id+".png")
 		itemObjectTexture[item.static_data.id] = load("res://assets/entities/"+item.static_data.id+".png")
-		items[item.static_data.id] = item
+		staticData[item.static_data.id] = item.static_data
+		dynamicData[item.static_data.id] = {}
+		if item.has("dynamic_data"): dynamicData[item.static_data.id] = item.dynamic_data
+		dynamicData[item.static_data.id]["id"] = item.static_data.id
 	
 	
-func data(name):
-	var data = {"static": items[name].static_data}
-	data.quantity = 0
-	if items[name].has("dynamic_data"):
-		var dynamicData = items[name].dynamic_data.duplicate(true)
-		for key in dynamicData.keys():
-			data[key] = dynamicData[key]
-	return data	
 	
-	
-func create(name, data=data(name)):
-	var item = itemClasses[data.static.type].new()
-	item.init(data)
+func create(id, quantity = 0):
+	var data = dynamicData[id].duplicate(true)
+	data.quantity = quantity
+	var item = itemClasses[staticData[id].type].new()
+	item.init(data, staticData[id])
 	return item
 
 func deserialize(data):
-	var item = itemClasses[data.static.type].new()
+	var item = create(data.id)
 	item.deserialize(data)
 	return item

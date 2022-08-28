@@ -11,9 +11,7 @@ func recompute():
 func update():
 	agent.scale = Vector2(val/100.0, val/100.0)
 
-func serialize(script = "size"):
-	return .serialize(script)
 	
-func deserialize(savedData, _agent):
-	.deserialize(savedData, _agent)
+func deserialize(savedData):
+	.deserialize(savedData)
 	update()

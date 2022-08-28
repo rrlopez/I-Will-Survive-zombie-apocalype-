@@ -10,6 +10,3 @@ func run(delta):
 		healthModifier.val = delta*agent.data.stats.hunger_tolerance.val
 		if agent.data.stats.health.setVal(healthModifier): agent.dead()
 	else: val-=delta
-
-func serialize(script = "hunger"):
-	return .serialize(script)

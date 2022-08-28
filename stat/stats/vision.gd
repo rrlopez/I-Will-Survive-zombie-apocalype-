@@ -29,9 +29,15 @@ func update():
 		agent.vision.add_child(ray)
 
 
-func serialize(script = "vision"):
-	return .serialize(script)
-	
-func deserialize(savedData, _agent):
-	.deserialize(savedData, _agent)
+func serialize():
+	return {
+		"difference": {
+			"width": maxVal.width - val.width,
+			"height": maxVal.height - val.height
+		}
+	}
+
+func deserialize(savedData):
+	val.width = maxVal.width-savedData.difference.width
+	val.height = maxVal.height-savedData.difference.height
 	update()

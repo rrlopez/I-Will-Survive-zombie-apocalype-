@@ -52,7 +52,7 @@ func add_item(item):
 			
 func put_item(item):
 	for s in slots:
-		if s.item and s.item.data.static.id == item.data.static.id:
+		if s.item and s.item.data.id == item.data.id:
 			if !s.is_full(): 
 				item.data.quantity = s.item.add_item_quantity(item.data.quantity)
 				if item.data.quantity<1: return 0
@@ -71,7 +71,7 @@ func put_item(item):
 
 func get_item(itemID):
 	for s in slots:
-		if s.item and s.item.data.static.id == itemID: return s
+		if s.item and s.item.data.id == itemID: return s
 	return null
 
 
@@ -103,7 +103,6 @@ func deserialize(savedData):
 	slot_scene_type = savedData.slot_scene_type
 	slot_type = savedData.slot_type
 	columns = savedData.columns
-	
 	for item in savedData.items:
 		var new_slot = Constants.slotScene[slot_scene_type].instance()
 		new_slot.type = slot_type

@@ -55,7 +55,7 @@ func spawnEnemyWave():
 
 
 func serialize(savedData):
-	savedData.append({
+	savedData.others.append({
 		"filename" : get_filename(),
 		"parent" : get_parent().get_path(),
 		"time":time,

@@ -45,7 +45,7 @@ func _on_removeBtn_pressed():
 
 
 func serialize(savedData): 
-	savedData.append({
+	savedData.others.append({
 		"filename" : get_filename(),
 		"parent" : get_parent().get_path(),
 		"global_position":{

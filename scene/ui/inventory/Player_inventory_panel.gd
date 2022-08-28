@@ -29,4 +29,3 @@ func _on_Armor_item_changed():
 
 func _on_Weapon_item_changed(weapon):
 	Globals.player.setWeapon(weapon)
-
