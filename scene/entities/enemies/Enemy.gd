@@ -61,7 +61,7 @@ func setEnableVision(enabled = self.visible):
 
 func hurt(_opponent, dmg):
 	Factory.particles.createBlood(global_position, Color.green)
-	if ._hurt(dmg): return true
+	if ._hurt(dmg): return data.stats.exp.val
 	
 	_on_View_body_entered(_opponent)
 	return false
@@ -160,7 +160,6 @@ func serialize(savedData):
 		"statusEffects": statusEffects.serialize(),
 		"id": data.static.id,
 		"growl": data.growl,
-		"behaviour": behavior,
 		"stats": {},
 	}
 	
@@ -182,7 +181,6 @@ func deserialize(savedData):
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
 	data.growl = savedData.growl
-	data.behaviour = savedData.behaviour
 	init()
 	for stat in data.stats: data.stats[stat].deserialize(savedData.stats[stat])
 	

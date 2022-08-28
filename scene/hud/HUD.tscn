@@ -21,13 +21,10 @@
 [ext_resource path="res://scene/ui/items/sprites/m14.png" type="Texture" id=19]
 [ext_resource path="res://scene/hud/weaponPanel.gd" type="Script" id=20]
 [ext_resource path="res://scene/hud/notifContainer/notifContainer.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scene/hud/gage/levelGage.tscn" type="PackedScene" id=22]
 
 [sub_resource type="DynamicFont" id=2]
 size = 12
-font_data = ExtResource( 4 )
-
-[sub_resource type="DynamicFont" id=1]
-size = 14
 font_data = ExtResource( 4 )
 
 [node name="HUD" type="CanvasLayer"]
@@ -146,35 +143,16 @@ iconTexture = ExtResource( 15 )
 statName = "health"
 
 [node name="hungerGage" parent="gages" instance=ExtResource( 8 )]
-margin_top = 22.0
-margin_bottom = 42.0
+margin_top = 21.0
+margin_bottom = 41.0
 rectColor = Color( 0.74902, 0.74902, 0.243137, 1 )
 iconColor = Color( 0.541176, 0.545098, 0.0196078, 1 )
 iconTexture = ExtResource( 11 )
 statName = "hunger"
 
-[node name="levelGage" type="ColorRect" parent="gages"]
-margin_top = 44.0
-margin_right = 148.0
-margin_bottom = 61.0
-color = Color( 0.419608, 0.403922, 0.94902, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="gages/levelGage"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 1.0
-margin_bottom = 1.0
-custom_fonts/font = SubResource( 1 )
-text = "lvl. 1"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+[node name="levelGage" parent="gages" instance=ExtResource( 22 )]
+margin_top = 42.0
+margin_bottom = 62.0
 
 [node name="Callendar" parent="gages" instance=ExtResource( 16 )]
 margin_top = 64.0
@@ -204,7 +182,7 @@ margin_right = 256.0
 margin_bottom = 404.0
 
 [node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
-position = Vector2( -5, -5 )
+position = Vector2( -5, -6 )
 item_info = NodePath("../Item_info")
 
 [node name="Inventory_panel" parent="." instance=ExtResource( 6 )]

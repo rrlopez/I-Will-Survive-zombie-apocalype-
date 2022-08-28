@@ -1,4 +1,4 @@
-extends ColorRect
+class_name Gage extends ColorRect
 
 export(Color) var rectColor
 export(Color) var iconColor

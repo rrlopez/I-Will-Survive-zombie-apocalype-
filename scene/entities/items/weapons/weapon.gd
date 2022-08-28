@@ -13,7 +13,9 @@ func init(_parent, _item):
 func hit(body):
 	for statusEffect in item.data.statusEffects:
 		Factory.statusEffects.create(statusEffect.duplicate(true), body, parent)
-	body.hurt(parent, item.data.stats.fire_dmg.val)
+	var experience = body.hurt(parent, item.data.stats.fire_dmg.val)
+	if experience:
+		parent.data.stats.level.setVal(Factory.statsModifiers.create("add", experience))
 
 func setLastFired(value):
 	lastFired = value

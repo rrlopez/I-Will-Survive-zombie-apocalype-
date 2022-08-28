@@ -5,7 +5,7 @@
 [node name="gage" type="ColorRect"]
 margin_right = 148.0
 margin_bottom = 20.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.219608, 0.207843, 0.207843, 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -10,7 +10,7 @@ var data = defaultData
 
 func saveGame():
 	Globals.HUD.notifs.addNotif('saved...')
-	data = defaultData
+	data = defaultData.duplicate(true)
 	
 	for node in get_tree().get_nodes_in_group('serializable'): node.serialize(data)
 	

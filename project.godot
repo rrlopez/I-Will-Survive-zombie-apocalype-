@@ -109,6 +109,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stat/stats/fireAccuracy.gd"
 }, {
+"base": "ColorRect",
+"class": "Gage",
+"language": "GDScript",
+"path": "res://scene/hud/gage/gage.gd"
+}, {
 "base": "Stat",
 "class": "HealthStat",
 "language": "GDScript",
@@ -158,6 +163,11 @@ _global_script_classes=[ {
 "class": "Leaf",
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Leaf.gd"
+}, {
+"base": "Stat",
+"class": "LevelStat",
+"language": "GDScript",
+"path": "res://stat/stats/level.gd"
 }, {
 "base": "Task",
 "class": "Limit",
@@ -450,6 +460,7 @@ _global_script_class_icons={
 "EquipmentItem": "",
 "Equipment_slot": "",
 "FireAccuracyStat": "",
+"Gage": "",
 "HealthStat": "",
 "HotBar": "",
 "HouseFactory": "",
@@ -460,6 +471,7 @@ _global_script_class_icons={
 "ItemFactory": "",
 "ItemInfoWindow": "",
 "Leaf": "",
+"LevelStat": "",
 "Limit": "res://ai/behaviorTree/icons/limit.png",
 "Loot_slot": "",
 "MapFactory": "",

@@ -148,7 +148,6 @@ func _on_Pickup_body_entered(dropItem):
 	dropItem.pick_item()
 	
 	
-	
 
 func serialize(savedData):
 	var serializedData = {

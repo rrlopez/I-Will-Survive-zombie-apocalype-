@@ -10,6 +10,7 @@ var stats = {
 	'aggressionRange': AggressionRangeStat,
 	'vision': VisionStat,
 	'hunger': HungerStat,
+	'level': LevelStat,
 	'default': DefaultStat
 }
 
