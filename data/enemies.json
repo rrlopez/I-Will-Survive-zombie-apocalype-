@@ -7,16 +7,17 @@
 		"dynamic_data":{
 			"behavior": "basic",
 			"stats": {
-				"size": {"script": "size", "val": {"min": 80, "max": 120}},
-				"move_speed": {"script": "moveSpeed", "val": {"min": 100, "max": 140}},
-				"health": {"script": "health", "val": {"min": 100, "max": 240}},
-				"angle_speed": {"script": "default", "val": {"min": 10, "max": 10}},
-				"attack_range": {"script": "default", "val": {"min": 15, "max": 15}},
-				"attack_dmg": {"script": "default", "val": {"min": 10, "max": 20}},
-				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
-				"loose_range": {"script": "default", "val": {"min": 1000, "max": 2000}},
-				"vision": {"script": "vision", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}},
-				"exp": {"script": "default", "val": {"min": 15, "max": 15}}
+				"size": {"script": "size", "val": 80, "multiplier": 1},
+				"move_speed": {"script": "moveSpeed", "val": 100, "multiplier": 1},
+				"health": {"script": "health", "val": 100, "multiplier": 1},
+				"angle_speed": {"script": "default", "val": 10, "multiplier": 1},
+				"attack_range": {"script": "default", "val": 15, "multiplier": 1},
+				"attack_dmg": {"script": "default", "val": 10, "multiplier": 1},
+				"aggression_range": {"script": "aggressionRange", "val": 50, "multiplier": 1},
+				"loose_range": {"script": "default", "val": 1000, "multiplier": 1},
+				"vision": {"script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
+				"exp": {"script": "default", "val": 15, "multiplier": 1},
+				"level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
 			},
 			"drops":[
 				{ "name": "machine gun ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80},
@@ -35,16 +36,17 @@
 		"dynamic_data":{
 			"behavior": "basic",
 			"stats": {
-				"size": {"script": "size", "val": {"min": 80, "max": 120}},
-				"move_speed": {"script": "moveSpeed", "val": {"min": 100, "max": 140}},
-				"health": {"script": "health", "val": {"min": 100, "max": 240}},
-				"angle_speed": {"script": "default", "val": {"min": 10, "max": 10}},
-				"attack_range": {"script": "default", "val": {"min": 15, "max": 15}},
-				"attack_dmg": {"script": "default", "val": {"min": 15, "max": 25}},
-				"aggression_range": {"script": "aggressionRange", "val": {"min": 50, "max": 50}},
-				"loose_range": {"script": "default", "val": {"min": 2000, "max": 5000}},
-				"vision": {"script": "vision", "val": {"width": {"min": 15, "max": 30}, "height": {"min": 200, "max": 400}}},
-				"exp": {"script": "default", "val": {"min": 15, "max": 15}}
+				"size": {"script": "size", "val": 80, "multiplier": 1},
+				"move_speed": {"script": "moveSpeed", "val": 100, "multiplier": 1},
+				"health": {"script": "health", "val": 100, "multiplier": 1},
+				"angle_speed": {"script": "default", "val": 10, "multiplier": 1},
+				"attack_range": {"script": "default", "val": 15, "multiplier": 1},
+				"attack_dmg": {"script": "default", "val": 15, "multiplier": 1},
+				"aggression_range": {"script": "aggressionRange", "val": 50, "multiplier": 1},
+				"loose_range": {"script": "default", "val": 2000, "multiplier": 1},
+				"vision": {"script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
+				"exp": {"script": "default", "val": 15, "multiplier": 1},
+				"level": {"script": "level", "val": {"min": 1, "max": 100}, "multiplier": 0}
 			},
 			"drops":[
 				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},

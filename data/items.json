@@ -100,10 +100,11 @@
       "stock_size": 1
     },
     "dynamic_data":{
-      "sideEffects":[],
       "stats":{
-        "size":  {"script": "size", "val": {"min": 20, "max": 20}}
-      }
+        "size":  {"script": "size", "val": 20, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects":[]
     }
   },
   {
@@ -119,15 +120,14 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
-        "fire_accuracy": {"script": "fireAccuracy", "val": {
-          "x":{"min": 10, "max": 10},
-          "y":{"min": 20, "max": 20}
-        }},
-        "fire_range": {"script": "default", "val": {"min": 400, "max": 400}},
-        "fire_dmg": {"script": "default", "val": {"min": 40, "max": 40}},
-        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}}
+        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
+        "fire_range": {"script": "default", "val": 400, "multiplier": 0},
+        "fire_dmg": {"script": "default", "val": 40, "multiplier": 0},
+        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
+      "sideEffects": [],
       "statusEffects": [
         {
           "id": "knockback",
@@ -185,15 +185,14 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
-        "fire_accuracy": {"script": "fireAccuracy", "val": {
-          "x":{"min": 10, "max": 10},
-          "y":{"min": 20, "max": 20}
-        }},
-        "fire_range": {"script": "default", "val": {"min": 400, "max": 400}},
-        "fire_dmg": {"script": "default", "val": {"min": 40, "max": 40}},
-        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}}
+        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"script": "default", "val": 400, "multiplier": 0},
+        "fire_dmg": {"script": "default", "val": 40, "multiplier": 0},
+        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
+      "sideEffects": [],
       "statusEffects": [
         {
           "id": "knockback",
@@ -226,17 +225,15 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": {"min": 15, "max": 15}},
-        "fire_accuracy": {"script": "fireAccuracy", "val": {
-          "x":{"min": 10, "max": 10},
-          "y":{"min": 20, "max": 20}
-        }},
-        "fire_range": {"script": "default", "val": {"min": 500, "max": 500}},
-        "fire_dmg": {"script": "default", "val": {"min": 500, "max": 500}},
-        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}},
-        "ammo": {"script": "ammo", "val": {"min": 10, "max": 10}},
-        "reload_duration": {"script": "default", "val": {"min": 1, "max": 1}},
-        "reload_rate": {"script": "default", "val": {"min": 10, "max": 10}}
+        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"script": "default", "val": 500, "multiplier": 0},
+        "fire_dmg": {"script": "default", "val": 500, "multiplier": 0},
+        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"script": "ammo", "val": 10, "multiplier": 0},
+        "reload_duration": {"script": "default", "val": 1, "multiplier": 0},
+        "reload_rate": {"script": "default", "val": 10, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[],
       "statusEffects": [
@@ -270,15 +267,14 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": {"min": 30, "max": 30}},
-        "fire_accuracy": {"script": "fireAccuracy", "val": {
-          "x":{"min": 10, "max": 10},
-          "y":{"min": 20, "max": 20}
-        }},
-        "fire_range": {"script": "default", "val": {"min": 600, "max": 600}},
-        "fire_dmg": {"script": "default", "val": {"min": 700, "max": 700}},
-        "fire_sound": {"script": "default", "val": {"min": 600, "max": 600}}
+        "fire_speed": {"script": "default", "val": 30, "multiplier": 0},
+        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"script": "default", "val": 600, "multiplier": 0},
+        "fire_dmg": {"script": "default", "val": 700, "multiplier": 0},
+        "fire_sound": {"script": "default", "val": 600, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
+      "sideEffects":[],
       "statusEffects": [
         {
           "id": "knockback",
@@ -311,17 +307,15 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": {"min": 5, "max": 5}},
-        "fire_accuracy": {"script": "fireAccuracy", "val": {
-          "x":{"min": 10, "max": 10},
-          "y":{"min": 20, "max": 20}
-        }},
-        "fire_range": {"script": "default", "val": {"min": 500, "max": 500}},
-        "fire_dmg": {"script": "default", "val": {"min": 500, "max": 500}},
-        "fire_sound": {"script": "default", "val": {"min": 250, "max": 250}},
-        "ammo": {"script": "ammo", "val": {"min": 100, "max": 100}},
-        "reload_duration": {"script": "default", "val": {"min": 2, "max": 2}},
-        "reload_rate": {"script": "default", "val": {"min": 100, "max": 100}}
+        "fire_speed": {"script": "default", "val": 5, "multiplier": 0},
+        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
+        "fire_range": {"script": "default", "val": 500, "multiplier": 0},
+        "fire_dmg": {"script": "default", "val": 500, "multiplier": 0},
+        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"script": "ammo", "val": 100, "multiplier": 0},
+        "reload_duration": {"script": "default", "val": 2, "multiplier": 0},
+        "reload_rate": {"script": "default", "val": 100, "multiplier": 0},
+        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[
         {
