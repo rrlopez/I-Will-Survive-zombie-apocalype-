@@ -1,21 +1,23 @@
 class_name Stat extends Resource
 
 var modifiers = []
+var multiplier = 0
 var name
 var agent
+
 var defaultVal
 var maxVal
 var val
 
-func init(_name, _val, _agent):
-	_val = Constants.rand.randi_range(_val.min, _val.max)
-	initValues(_name, _val, _agent)
+func init(data, _agent):
+	initValues(data, _agent)
 
-func initValues(_name, _val, _agent):
-	name = _name
-	maxVal = _val
-	defaultVal = _val
-	val = _val
+func initValues(data, _agent):
+	name = data.name
+	maxVal = data.val
+	defaultVal = data.val
+	val = data.val
+	multiplier = data.multiplier
 	agent = _agent
 	
 func addModifier(modifier):
@@ -27,8 +29,9 @@ func removeModifier(modifier):
 	recompute()
 
 func recompute():
-	val = defaultVal
-	maxVal = defaultVal
+	var amount = agent.data.stats.level.val*multiplier
+	val = defaultVal+amount
+	maxVal = defaultVal+amount
 	for modifier in modifiers:
 		maxVal = modifier.execute(maxVal)
 		setVal(modifier)

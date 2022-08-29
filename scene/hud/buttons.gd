@@ -20,7 +20,7 @@ func _on_BagBtn_pressed():
 		Globals.HUD.itemInfo.hide()
 		Globals.HUD.hotbar.rect_position = Vector2(610, 12)
 	else: 
-		Globals.HUD.hotbar.rect_position = Vector2(347, 29)
+		Globals.HUD.hotbar.rect_position = Vector2(350, 29)
 		Globals.player.placable.hide()
 		Globals.HUD.craftPanel.hide()
 		Globals.HUD.inventoryPanel.show()

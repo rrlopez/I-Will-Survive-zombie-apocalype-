@@ -1,21 +1,14 @@
 class_name AmmoStat extends Stat
 
-func init(_name, _val, _agent):
-	.init(_name, _val, _agent)
-	update()
+func init(data, _agent):
+	.init(data, _agent)
 
 func recompute():
 	.recompute()
-	update()
 
 
 func setVal(modifier):
 	.setVal(modifier)
-	update()
-	
-func update():
-	Globals.HUD.weaponPanel.label.text = String(val)
 
 func deserialize(savedData):
 	.deserialize(savedData)
-	update()

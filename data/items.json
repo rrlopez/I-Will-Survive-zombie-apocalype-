@@ -3,6 +3,7 @@
     "static_data":{
       "id": "bandage",
       "name": "Bandage",
+      "description": "a strip of material used to bind a wound or to protect an injured part of the body.",
       "type": "consumable",
       "stock_size": 100,
       "equipment_type": ""
@@ -18,6 +19,7 @@
     "static_data":{
       "id": "bread",
       "name": "Bread",
+      "description": "a staple food prepared from a dough of flour (usually wheat) and water, usually by baking.",
       "type": "consumable",
       "stock_size": 100,
       "equipment_type": ""
@@ -59,6 +61,7 @@
     "static_data":{
       "id": "crafting table",
       "name": "Crafting Table",
+      "description": "a utility block that gives access to all crafting recipes, including many not available from the inventory's crafting grid.",
       "type": "placable",
       "stock_size": 1,
       "placable_type": "table",
@@ -80,6 +83,7 @@
     "static_data":{
       "id": "campfire",
       "name": "Campfire",
+      "description": "a fire at a campsite that provides light and warmth, and heat for cooking.",
       "type": "placable",
       "stock_size": 1,
       "placable_type": "campfire",
@@ -94,6 +98,7 @@
     "static_data":{
       "id": "torch",
       "name": "Torch",
+      "description": "a stick with combustible material at one end, which is ignited and used as a light source.",
       "script": "torch",
       "type": "equipment",
       "equipment_type": "hand",
@@ -111,6 +116,7 @@
     "static_data":{
       "id": "machette",
       "name": "Machette",
+      "description": "a broad blade used either as an agricultural implement similar to an axe, or in combat like a long-bladed knife.",
       "script": "melle",
       "type": "equipment",
       "equipment_type": "weapon",
@@ -176,6 +182,7 @@
     "static_data":{
       "id": "AMT AutoMag III",
       "name": "AMT AutoMag III",
+      "description": "a single action semi-automatic handgun, designed by Harry Sanford, creator of the first Automag.",
       "script": "pistol",
       "stock_size": 1,
       "type": "equipment",
@@ -215,6 +222,7 @@
     "static_data":{
       "id": "m13",
       "name": "m13",
+      "description": "",
       "script": "riffle",
       "stock_size": 1,
       "type": "equipment",
@@ -258,6 +266,7 @@
     "static_data":{
       "id": "m14",
       "name": "m14",
+      "description": "",
       "script": "riffle",
       "stock_size": 1,
       "type": "equipment",
@@ -297,6 +306,7 @@
     "static_data":{
       "id": "machine gun",
       "name": "Machine Gun",
+      "description": "",
       "script": "machine gun",
       "stock_size": 1,
       "type": "equipment",
@@ -355,6 +365,7 @@
     "static_data":{
       "id": "riffle ammo",
       "name": "Riffle Ammo",
+      "description": "",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""
@@ -364,6 +375,7 @@
     "static_data":{
       "id": "machine gun ammo",
       "name": "machine gun ammo",
+      "description": "",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""

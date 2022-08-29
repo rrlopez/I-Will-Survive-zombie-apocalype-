@@ -11,6 +11,11 @@ func use():
 	if(data.quantity<1): return null
 	return self
 
+func getInfo():
+	var info = .getInfo()
+	info["btnText"] = "Use"
+	return info
+
 func serialize():
 	return {
 		"id":data.id,

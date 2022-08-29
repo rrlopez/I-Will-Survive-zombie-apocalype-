@@ -1,7 +1,7 @@
 class_name SizeStat extends Stat
 
-func init(_name, _val, _agent):
-	.init(_name, _val, _agent)
+func init(data, _agent):
+	initValues(data, _agent)
 	update()
 
 func recompute():

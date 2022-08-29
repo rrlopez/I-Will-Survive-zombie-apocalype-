@@ -202,10 +202,10 @@ margin_bottom = -149.0
 
 [node name="Item_info" parent="." instance=ExtResource( 7 )]
 visible = false
-margin_left = 367.0
-margin_top = 118.0
-margin_right = 650.0
-margin_bottom = 276.0
+margin_left = 351.0
+margin_top = 116.0
+margin_right = 675.0
+margin_bottom = 231.0
 
 [node name="Craft_panel" parent="." instance=ExtResource( 3 )]
 visible = false

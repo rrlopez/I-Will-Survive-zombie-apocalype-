@@ -28,6 +28,7 @@ func _ready():
 func init():
 	data = Utils.import_data("res://data/player.json")
 	.init()
+	recomputeStats()
 	inventory = Utils.createInventory(data.inventory)
 	craftInventory = Utils.createInventory(data.craft_inventory, "craft_inventory")
 	Globals.HUD.inventoryPanel.add_inventory(inventory)

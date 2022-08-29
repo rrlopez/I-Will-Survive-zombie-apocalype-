@@ -5,10 +5,12 @@ var lastFired = 0
 var parent
 
 var item
+var data
 
 func init(_parent, _item):
 	parent = _parent
 	item = _item
+	data = _item.data
 	
 func hit(body):
 	for statusEffect in item.data.statusEffects:
@@ -20,6 +22,8 @@ func hit(body):
 func setLastFired(value):
 	lastFired = value
 
+func recomputeStats():
+	for stat in data.stats: data.stats[stat].recompute()
 
 func serialize():
 	return item.serialize()
@@ -28,3 +32,4 @@ func serialize():
 func deserialize(_parent, _data):
 	parent = _parent
 	item.deserialize(_data)
+

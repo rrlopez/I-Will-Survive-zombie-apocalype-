@@ -14,8 +14,8 @@ func init(itemData, _staticData):
 			effect.stats["duration"] = 0
 			sideEffect.effects[i] = Factory.statusEffects.statusEffects[effect.script].new()
 			sideEffect.effects[i].init(effect.stats)
-
-	print(data["object"], data["object"].parent, Globals.player)
+	
+	data["object"].recomputeStats()
 
 func use():
 	var slot = Globals.HUD.inventoryPanel.current_inventories[0][staticData.equipment_type]
@@ -29,7 +29,11 @@ func use():
 		slot.put_item(self)
 		return null
 
-
+func getInfo():
+	var info = .getInfo()
+	info["btnText"] = "Equip"
+	return info
+	
 func serialize():
 	var serializedData = {
 		"id":data.id,

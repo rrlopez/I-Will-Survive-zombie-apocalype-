@@ -5,26 +5,27 @@ export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider  = get_node(areaCollider) as CollisionShape2D
 export(NodePath) onready var buttons  = get_node(buttons) as Node2D
 
+var staticData = null
 var data = null
 var inventory: Inventory
 
 func _ready():
 	yield(get_tree(), "idle_frame")
-	sprite.rect_position = Vector2(-data.static.size.x/2, -data.static.size.y/2)
-	sprite.rect_min_size = Vector2(data.static.size.x, data.static.size.y)
-	sprite.texture = Factory.items.itemObjectTexture[data.static.id]
+	sprite.rect_position = Vector2(-staticData.size.x/2, -staticData.size.y/2)
+	sprite.rect_min_size = Vector2(staticData.size.x, staticData.size.y)
+	sprite.texture = Factory.items.itemObjectTexture[staticData.id]
 	
-	collider.shape.extents = Vector2(data.static.size.x/2, data.static.size.y/2)
+	collider.shape.extents = Vector2(staticData.size.x/2, staticData.size.y/2)
 	areaCollider.shape.extents = collider.shape.extents + Vector2(10, 10)
 	
-	inventory = Utils.createInventory(data.static.inventory)
+	inventory = Utils.createInventory(staticData.inventory)
 	inventory.slot_type = "crafting_slot"
 
 
 func _on_OpenBtn_pressed():
 	buttons.hide()
 	Globals.inventoryManager.hide()
-	Globals.HUD.craftPanel.label.text = data.static.name
+	Globals.HUD.craftPanel.label.text = staticData.name
 	Globals.HUD.craftPanel.clear_inventory()
 	Globals.HUD.craftPanel.add_inventory(inventory)
 	Globals.HUD.craftPanel.show()

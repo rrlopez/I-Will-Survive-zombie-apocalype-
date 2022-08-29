@@ -1,9 +1,7 @@
 class_name VisionStat extends Stat
 
-func init(_name, _val, _agent):
-	_val.width = Constants.rand.randi_range(_val.width.min, _val.width.max)
-	_val.height = Constants.rand.randi_range(_val.height.min, _val.height.max)
-	initValues(_name, _val, _agent)
+func init(data, _agent):
+	initValues(data, _agent)
 	update()
 
 
@@ -13,7 +11,11 @@ func setVal(modifier):
 
 
 func recompute():
-	val = defaultVal
+	var amount = agent.data.stats.level.val*multiplier
+	val.width = defaultVal.width+amount
+	val.height = defaultVal.height+amount
+	maxVal.width = defaultVal.width+amount
+	maxVal.height = defaultVal.height+amount
 	for modifier in modifiers:
 		maxVal.width = modifier.execute(maxVal.width, modifier.val.width)
 		maxVal.height = modifier.execute(maxVal.height, modifier.val.height)

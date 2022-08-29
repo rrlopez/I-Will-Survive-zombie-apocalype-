@@ -25,6 +25,7 @@ func init():
 	body = Factory.enemies.bodies[data.static.id].instance()
 	add_child(body)
 	.init()
+	recomputeStats()
 	soundGrowl.stream = Factory.enemies.growl[data.growl]
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
 		visible = false

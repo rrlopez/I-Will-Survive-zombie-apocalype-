@@ -42,6 +42,7 @@ func fire(delta):
 			Globals.mapManager.add_child(projectile)
 			
 			item.data.stats.ammo.setVal(Factory.statsModifiers.create("subtruct", 1))
+			Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
 			if item.data.stats.ammo.val<1: _on_reloadBtn_pressed()
 			
 		else: setLastFired(lastFired + (100*delta))
@@ -124,4 +125,5 @@ func _on_RangeWeapon_tree_exiting():
 
 func _on_Riffle_tree_entered():
 	if item.data.stats.ammo.val<1: _on_reloadBtn_pressed()
+	Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
 

@@ -17,7 +17,8 @@ var stats = {
 	
 func create(name, data, agent):
 	var stat = stats[data.script].new()
-	stat.init(name, data.val, agent)
+	data["name"] = name
+	stat.init(data, agent)
 	return stat
 
 func deserialize(data, agent):

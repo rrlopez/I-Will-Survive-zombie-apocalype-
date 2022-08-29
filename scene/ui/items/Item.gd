@@ -35,6 +35,9 @@ func add_item_quantity(value):
 func use():
 	return self
 	
+func getInfo():
+	return {"staticData": staticData}
+	
 func serialize():
 	return data
 

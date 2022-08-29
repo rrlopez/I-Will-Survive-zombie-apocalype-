@@ -1,6 +1,7 @@
 extends Light2D
 
 var item
+var data
 var parent
 
 func _ready():
@@ -10,6 +11,10 @@ func _ready():
 func init(_parent, _item):
 	parent = _parent
 	item = _item
+	data = _item.data
+	
+func recomputeStats():
+	for stat in data.stats: data.stats[stat].recompute()
 
 func serialize():
 	return item.serialize()

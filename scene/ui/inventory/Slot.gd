@@ -3,7 +3,7 @@ class_name Slot extends NinePatchRect
 signal item_changed
 
 export(NodePath) onready var item_container  = get_node(item_container) as Control
-export(NodePath) onready var area  = get_node(area) as Area2D
+#export(NodePath) onready var area  = get_node(area) as Area2D
 
 var item
 export(String) var type 
@@ -37,6 +37,10 @@ func use_item():
 		var new_item = item.use()
 		pick_item()
 		if(new_item): put_item(new_item)
+	return item
+
+func get_item_info():
+	return item.getInfo()
 
 func add_item_quantity(value):
 	item.add_item_quantity(value)

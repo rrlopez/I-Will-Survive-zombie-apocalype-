@@ -6,14 +6,15 @@ export(NodePath) onready var areaCollider  = get_node(areaCollider) as Collision
 export(NodePath) onready var light  = get_node(light) as Light2D
 export(NodePath) onready var buttons  = get_node(buttons) as Node2D
 
+var staticData = null
 var data = null
 
 func _ready():
 	yield(get_tree(), "idle_frame")
-	sprite.rect_position = Vector2(-data.static.size.x/2, -data.static.size.y/2)
-	sprite.rect_min_size = Vector2(data.static.size.x, data.static.size.y)
-	sprite.texture = Factory.items.itemObjectTexture[data.static.id]
-	collider.shape.radius = data.static.size.x/2
+	sprite.rect_position = Vector2(-staticData.size.x/2, -staticData.size.y/2)
+	sprite.rect_min_size = Vector2(staticData.size.x, staticData.size.y)
+	sprite.texture = Factory.items.itemObjectTexture[staticData.id]
+	collider.shape.radius = staticData.size.x/2
 	areaCollider.shape.radius = collider.shape.radius + 10
 
 

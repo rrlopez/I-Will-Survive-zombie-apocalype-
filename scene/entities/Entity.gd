@@ -32,3 +32,6 @@ func addStatusEffect(statusEffect):
 func removeStatusEffect(statusEffect):
 	statusEffects.removeVal(statusEffect)
 
+
+func recomputeStats():
+	for stat in data.stats: data.stats[stat].recompute()

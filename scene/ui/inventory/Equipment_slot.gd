@@ -37,3 +37,8 @@ func use_item():
 		emitItemChanged()
 	else:
 		pass
+
+func get_item_info():
+	var info = item.getInfo()
+	info.btnText = "Unequip"
+	return info

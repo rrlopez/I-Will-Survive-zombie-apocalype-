@@ -32,10 +32,12 @@ func _on_inventory_ready(inventory):
 			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 	else:
 		for slot in inventory.slots:
-			slot.connect("mouse_entered", self, "_on_mouse_entered_slot", [slot])
-			slot.connect("mouse_exited", self, "_on_mouse_exited_slot")
+			#slot.connect("mouse_entered", self, "_on_mouse_entered_slot", [slot])
+			#slot.connect("mouse_exited", self, "_on_mouse_exited_slot")
 			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 		
+func _unhandled_input(event):
+	if event is InputEventScreenTouch and event.is_pressed(): item_info.hide()
 
 func _input(event:InputEvent):
 	if(item_in_hand):
@@ -62,7 +64,7 @@ func _input(event:InputEvent):
 	elif event is InputEventScreenTouch:
 		if event.is_pressed(): 
 			if (OS.get_ticks_msec()-lastTap)<300 and prev_slot:
-				prev_slot.use_item()
+				item_info._on_Button_button_up()
 				yield(get_tree(), "idle_frame")
 				prev_slot = null
 			lastTap = OS.get_ticks_msec()
@@ -84,7 +86,7 @@ func _on_gui_input_slot(event: InputEvent, slot: Slot):
 		panelPressed = event.index
 		clickPosition = slot.get_global_mouse_position()
 		prev_slot = slot
-
+		_on_mouse_entered_slot(slot)
 
 func updateSlot(event, slot):
 	if item_in_hand:

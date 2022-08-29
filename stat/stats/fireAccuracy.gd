@@ -1,9 +1,7 @@
 class_name FireAccuracyStat extends Stat
 
-func init(_name, _val, _agent):
-	_val.x = Constants.rand.randi_range(_val.x.min, _val.x.max)
-	_val.y = Constants.rand.randi_range(_val.y.min, _val.y.max)
-	initValues(_name, _val, _agent)
+func init(data, _agent):
+	initValues(data, _agent)
 
 
 func setVal(modifier):
@@ -12,7 +10,11 @@ func setVal(modifier):
 
 
 func recompute():
-	val = defaultVal
+	var amount = agent.data.stats.level.val*multiplier
+	val.x = defaultVal.x+amount
+	val.y = defaultVal.y+amount
+	maxVal.x = defaultVal.x+amount
+	maxVal.y = defaultVal.y+amount
 	for modifier in modifiers:
 		maxVal.x = modifier.execute(maxVal.x, modifier.val.x)
 		maxVal.y = modifier.execute(maxVal.y, modifier.val.y)
