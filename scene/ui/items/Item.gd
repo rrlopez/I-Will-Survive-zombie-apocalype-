@@ -36,7 +36,10 @@ func use():
 	return self
 	
 func getInfo():
-	return {"staticData": staticData}
+	return {
+		"staticData": staticData,
+		"sections": []
+	}
 	
 func serialize():
 	return data

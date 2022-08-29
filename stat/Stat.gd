@@ -2,6 +2,7 @@ class_name Stat extends Resource
 
 var modifiers = []
 var multiplier = 0
+var id
 var name
 var agent
 
@@ -13,6 +14,7 @@ func init(data, _agent):
 	initValues(data, _agent)
 
 func initValues(data, _agent):
+	id = data.id
 	name = data.name
 	maxVal = data.val
 	defaultVal = data.val
@@ -41,6 +43,9 @@ func setVal(modifier):
 	
 func reset():
 	recompute()
+	
+func getInfo():
+	return {"name": name, "value": String(val)}
 
 func serialize():
 	return {

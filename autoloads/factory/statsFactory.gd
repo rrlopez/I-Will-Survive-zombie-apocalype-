@@ -15,9 +15,9 @@ var stats = {
 }
 
 	
-func create(name, data, agent):
+func create(id, data, agent):
 	var stat = stats[data.script].new()
-	data["name"] = name
+	data["id"] = id
 	stat.init(data, agent)
 	return stat
 

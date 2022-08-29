@@ -32,6 +32,14 @@ func use():
 func getInfo():
 	var info = .getInfo()
 	info["btnText"] = "Equip"
+	
+	var statsContent = []
+	for stat in data.stats: statsContent.append(data.stats[stat].getInfo())
+	
+	info.sections.append({
+		"title": "STATS",
+		"content":statsContent
+	})
 	return info
 	
 func serialize():

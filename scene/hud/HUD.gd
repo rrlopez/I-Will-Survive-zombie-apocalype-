@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 export(NodePath) onready var lootPanel = get_node(lootPanel) as Window
-export(NodePath) onready var itemInfo = get_node(itemInfo) as ItemInfoWindow
+export(NodePath) onready var itemInfo = get_node(itemInfo) as Control
 export(NodePath) onready var inventoryPanel = get_node(inventoryPanel) as Window
 export(NodePath) onready var craftPanel = get_node(craftPanel) as Window
 export(NodePath) onready var controller = get_node(controller) as Node2D
@@ -9,6 +9,7 @@ export(NodePath) onready var cameraEffect = get_node(cameraEffect) as Sprite
 export(NodePath) onready var statusEffectIcons = get_node(statusEffectIcons) as GridContainer
 export(NodePath) onready var weaponPanel = get_node(weaponPanel) as ColorRect
 export(NodePath) onready var notifs = get_node(notifs) as VBoxContainer
+export(NodePath) onready var hotBarContainer = get_node(hotBarContainer) as VBoxContainer
 
 var hotbar setget setHotbar
 
@@ -21,5 +22,5 @@ func _ready():
 
 func setHotbar(value):
 	hotbar = value
-	add_child(hotbar)
-	move_child(hotbar, 7)
+	hotBarContainer.add_child(hotbar)
+	hotBarContainer.move_child(hotbar, 0)

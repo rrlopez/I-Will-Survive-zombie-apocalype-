@@ -106,8 +106,8 @@
     },
     "dynamic_data":{
       "stats":{
-        "size":  {"script": "size", "val": 20, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "size":  {"name": "Size", "script": "size", "val": 20, "multiplier": 0},
+        "level": {"name": "Level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[]
     }
@@ -126,12 +126,12 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
-        "fire_range": {"script": "default", "val": 400, "multiplier": 0},
-        "fire_dmg": {"script": "default", "val": 40, "multiplier": 0},
-        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
+        "fire_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "fire_dmg": {"name": "Damage", "script": "default", "val": 40, "multiplier": 0},
+        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects": [],
       "statusEffects": [
@@ -192,12 +192,12 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"script": "default", "val": 400, "multiplier": 0},
-        "fire_dmg": {"script": "default", "val": 40, "multiplier": 0},
-        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "fire_dmg": {"name": "Damage", "script": "default", "val": 40, "multiplier": 0},
+        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects": [],
       "statusEffects": [
@@ -222,7 +222,7 @@
     "static_data":{
       "id": "m13",
       "name": "m13",
-      "description": "",
+      "description": "a long-barreled firearm designed for accurate shooting, with a barrel that has a helical pattern of grooves (rifling) cut into the bore wall.",
       "script": "riffle",
       "stock_size": 1,
       "type": "equipment",
@@ -233,15 +233,15 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"script": "default", "val": 500, "multiplier": 0},
-        "fire_dmg": {"script": "default", "val": 500, "multiplier": 0},
-        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
-        "ammo": {"script": "ammo", "val": 10, "multiplier": 0},
-        "reload_duration": {"script": "default", "val": 1, "multiplier": 0},
-        "reload_rate": {"script": "default", "val": 10, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"name": "Range", "script": "default", "val": 500, "multiplier": 0},
+        "fire_dmg": {"name": "Damage", "script": "default", "val": 500, "multiplier": 0},
+        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"name": "Ammo", "script": "ammo", "val": 10, "multiplier": 0},
+        "reload_duration": {"name": "Reload speed", "script": "default", "val": 1, "multiplier": 0},
+        "reload_rate": {"name": "Reload rate", "script": "default", "val": 10, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[],
       "statusEffects": [
@@ -266,7 +266,7 @@
     "static_data":{
       "id": "m14",
       "name": "m14",
-      "description": "",
+      "description": "is a high-precision, long-range rifle.",
       "script": "riffle",
       "stock_size": 1,
       "type": "equipment",
@@ -276,12 +276,12 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": 30, "multiplier": 0},
-        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"script": "default", "val": 600, "multiplier": 0},
-        "fire_dmg": {"script": "default", "val": 700, "multiplier": 0},
-        "fire_sound": {"script": "default", "val": 600, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "fire_speed": {"name": "Speed", "script": "default", "val": 30, "multiplier": 0},
+        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "fire_range": {"name": "Range", "script": "default", "val": 600, "multiplier": 0},
+        "fire_dmg": {"name": "Damage", "script": "default", "val": 700, "multiplier": 0},
+        "fire_sound": {"name": "Noise", "script": "default", "val": 600, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[],
       "statusEffects": [
@@ -306,7 +306,7 @@
     "static_data":{
       "id": "machine gun",
       "name": "Machine Gun",
-      "description": "",
+      "description": "a fully automatic, rifled autoloading firearm designed for sustained direct fire with rifle cartridges.",
       "script": "machine gun",
       "stock_size": 1,
       "type": "equipment",
@@ -317,15 +317,15 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"script": "default", "val": 5, "multiplier": 0},
-        "fire_accuracy": {"script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
-        "fire_range": {"script": "default", "val": 500, "multiplier": 0},
-        "fire_dmg": {"script": "default", "val": 500, "multiplier": 0},
-        "fire_sound": {"script": "default", "val": 250, "multiplier": 0},
-        "ammo": {"script": "ammo", "val": 100, "multiplier": 0},
-        "reload_duration": {"script": "default", "val": 2, "multiplier": 0},
-        "reload_rate": {"script": "default", "val": 100, "multiplier": 0},
-        "level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+        "fire_speed": {"name": "Speed", "script": "default", "val": 5, "multiplier": 0},
+        "fire_accuracy": {"name": "Accuracy","script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
+        "fire_range": {"name": "Range","script": "default", "val": 500, "multiplier": 0},
+        "fire_dmg": {"name": "Damage","script": "default", "val": 500, "multiplier": 0},
+        "fire_sound": {"name": "Noise","script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"name": "Ammo","script": "ammo", "val": 100, "multiplier": 0},
+        "reload_duration": {"name": "Reload speed","script": "default", "val": 2, "multiplier": 0},
+        "reload_rate": {"name": "Reload rate","script": "default", "val": 100, "multiplier": 0},
+        "level": {"name": "Level","script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[
         {
@@ -365,7 +365,7 @@
     "static_data":{
       "id": "riffle ammo",
       "name": "Riffle Ammo",
-      "description": "",
+      "description": "a round is a type of pre-assembled firearm ammunition packaging a projectile (bullet, shot, or slug), a propellant substance (usually either smokeless powder or black powder) and an ignition device (primer) within a metallic, paper, or plastic case that is precisely made to fit within the barrel chamber of a breechloading gun, for the practical purpose of convenient transportation and handling during shooting.",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""

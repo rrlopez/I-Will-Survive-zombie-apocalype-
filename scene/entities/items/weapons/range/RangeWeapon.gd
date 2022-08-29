@@ -59,6 +59,7 @@ func reloading(delta):
 			var currentAmmo = item.data.stats.ammo.val
 			item.data.stats.ammo.setVal(Factory.statsModifiers.create("add", min(item.data.stats.reload_rate.val, ammoInventorySlot.item.data.quantity)))
 			ammoInventorySlot.add_item_quantity(currentAmmo-item.data.stats.ammo.maxVal)
+			Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
 			
 			if !ammoInventorySlot.item: 
 				ammoInventorySlot = null

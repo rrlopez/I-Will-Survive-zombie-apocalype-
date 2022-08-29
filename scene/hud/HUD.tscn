@@ -6,7 +6,7 @@
 [ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scene/ui/inventory/inventory_manager.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/ui/inventory/Player_inventory_panel.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scene/ui/items/Item_info.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scene/ui/items/itemInfo/Item_info.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scene/hud/gage/gage.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/gui/bag.png" type="Texture" id=9]
 [ext_resource path="res://scene/hud/miniMap/minimap.tscn" type="PackedScene" id=10]
@@ -31,7 +31,7 @@ font_data = ExtResource( 4 )
 layer = 2
 script = ExtResource( 2 )
 lootPanel = NodePath("Loot_panel")
-itemInfo = NodePath("Item_info")
+itemInfo = NodePath("hotBarContainer/Item_info")
 inventoryPanel = NodePath("Inventory_panel")
 craftPanel = NodePath("Craft_panel")
 controller = NodePath("Controller")
@@ -39,6 +39,7 @@ cameraEffect = NodePath("cameraEffect")
 statusEffectIcons = NodePath("statusEffects")
 weaponPanel = NodePath("weaponPanel")
 notifs = NodePath("notifContainer")
+hotBarContainer = NodePath("hotBarContainer")
 
 [node name="buttons" type="Node2D" parent="."]
 script = ExtResource( 14 )
@@ -183,7 +184,7 @@ margin_bottom = 404.0
 
 [node name="Inventory_manager" parent="." instance=ExtResource( 5 )]
 position = Vector2( -5, -6 )
-item_info = NodePath("../Item_info")
+item_info = NodePath("../hotBarContainer/Item_info")
 
 [node name="Inventory_panel" parent="." instance=ExtResource( 6 )]
 visible = false
@@ -193,19 +194,29 @@ margin_right = 511.0
 margin_bottom = 22.0
 title = "Inventory"
 
+[node name="hotBarContainer" type="VBoxContainer" parent="."]
+margin_left = 610.0
+margin_top = 12.0
+margin_right = 933.0
+margin_bottom = 121.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item_info" parent="hotBarContainer" instance=ExtResource( 7 )]
+visible = false
+anchor_top = -0.0366972
+anchor_bottom = -0.0366972
+margin_right = 323.0
+margin_bottom = 109.784
+
 [node name="Loot_panel" parent="." instance=ExtResource( 3 )]
 visible = false
 margin_left = -510.0
 margin_top = -275.0
 margin_right = -165.0
 margin_bottom = -149.0
-
-[node name="Item_info" parent="." instance=ExtResource( 7 )]
-visible = false
-margin_left = 351.0
-margin_top = 116.0
-margin_right = 675.0
-margin_bottom = 231.0
 
 [node name="Craft_panel" parent="." instance=ExtResource( 3 )]
 visible = false

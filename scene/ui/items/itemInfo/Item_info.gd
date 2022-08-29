@@ -1,10 +1,13 @@
-class_name ItemInfoWindow extends Control
+extends PanelContainer
 
+var infoSectionScene = load("res://scene/ui/items/itemInfo/info_section.tscn")
 
 export(NodePath) onready var item_name  = get_node(item_name) as Label
 export(NodePath) onready var button  = get_node(button) as Button
 export(NodePath) onready var sprite  = get_node(sprite) as TextureRect
 export(NodePath) onready var description  = get_node(description) as RichTextLabel
+export(NodePath) onready var sections  = get_node(sections) as VBoxContainer
+
 
 var slot = null
 var curItemId = null
@@ -16,6 +19,13 @@ func display(_slot:Slot = slot):
 	curItemId = info.staticData.id
 	sprite.texture = Factory.items.itemTexture[curItemId]
 	description.text = info.staticData.description
+	
+	for section in sections.get_children(): section.queue_free()
+	for section in info.sections:
+		var infoSection = infoSectionScene.instance()
+		infoSection.info = section
+		sections.add_child(infoSection)
+		
 	
 	if(info.has("btnText")):
 		button.text = info.btnText

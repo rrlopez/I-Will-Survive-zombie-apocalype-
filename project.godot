@@ -154,11 +154,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://autoloads/factory/itemFactory.gd"
 }, {
-"base": "Control",
-"class": "ItemInfoWindow",
-"language": "GDScript",
-"path": "res://scene/ui/items/Item_info.gd"
-}, {
 "base": "Task",
 "class": "Leaf",
 "language": "GDScript",
@@ -469,7 +464,6 @@ _global_script_class_icons={
 "Invert": "res://ai/behaviorTree/icons/invert.png",
 "Item": "",
 "ItemFactory": "",
-"ItemInfoWindow": "",
 "Leaf": "",
 "LevelStat": "",
 "Limit": "res://ai/behaviorTree/icons/limit.png",

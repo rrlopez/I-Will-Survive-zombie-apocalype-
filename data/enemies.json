@@ -7,17 +7,17 @@
 		"dynamic_data":{
 			"behavior": "basic",
 			"stats": {
-				"size": {"script": "size", "val": 80, "multiplier": 1},
-				"move_speed": {"script": "moveSpeed", "val": 100, "multiplier": 1},
-				"health": {"script": "health", "val": 100, "multiplier": 1},
-				"angle_speed": {"script": "default", "val": 10, "multiplier": 1},
-				"attack_range": {"script": "default", "val": 15, "multiplier": 1},
-				"attack_dmg": {"script": "default", "val": 10, "multiplier": 1},
-				"aggression_range": {"script": "aggressionRange", "val": 50, "multiplier": 1},
-				"loose_range": {"script": "default", "val": 1000, "multiplier": 1},
-				"vision": {"script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
-				"exp": {"script": "default", "val": 15, "multiplier": 1},
-				"level": {"script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+				"size": {"name": "Size", "script": "size", "val": 80, "multiplier": 1},
+				"move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 100, "multiplier": 1},
+				"health": {"name": "Health", "script": "health", "val": 100, "multiplier": 1},
+				"angle_speed": {"name": "Angle speed", "script": "default", "val": 10, "multiplier": 1},
+				"attack_range": {"name": "Attack range", "script": "default", "val": 15, "multiplier": 1},
+				"attack_dmg": {"name": "Damage", "script": "default", "val": 10, "multiplier": 1},
+				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 50, "multiplier": 1},
+				"loose_range": {"name": "Loose range", "script": "default", "val": 1000, "multiplier": 1},
+				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
+				"exp": {"name": "Experience", "script": "default", "val": 15, "multiplier": 1},
+				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
 			},
 			"drops":[
 				{ "name": "machine gun ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80},
@@ -36,17 +36,17 @@
 		"dynamic_data":{
 			"behavior": "basic",
 			"stats": {
-				"size": {"script": "size", "val": 80, "multiplier": 1},
-				"move_speed": {"script": "moveSpeed", "val": 100, "multiplier": 1},
-				"health": {"script": "health", "val": 100, "multiplier": 1},
-				"angle_speed": {"script": "default", "val": 10, "multiplier": 1},
-				"attack_range": {"script": "default", "val": 15, "multiplier": 1},
-				"attack_dmg": {"script": "default", "val": 15, "multiplier": 1},
-				"aggression_range": {"script": "aggressionRange", "val": 50, "multiplier": 1},
-				"loose_range": {"script": "default", "val": 2000, "multiplier": 1},
-				"vision": {"script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
-				"exp": {"script": "default", "val": 15, "multiplier": 1},
-				"level": {"script": "level", "val": {"min": 1, "max": 100}, "multiplier": 0}
+				"size": {"name": "Size", "script": "size", "val": 80, "multiplier": 1},
+				"move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 100, "multiplier": 1},
+				"health": {"name": "Health", "script": "health", "val": 100, "multiplier": 1},
+				"angle_speed": {"name": "Angle speed", "script": "default", "val": 10, "multiplier": 1},
+				"attack_range": {"name": "Attack range", "script": "default", "val": 15, "multiplier": 1},
+				"attack_dmg": {"name": "Damage", "script": "default", "val": 15, "multiplier": 1},
+				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 50, "multiplier": 1},
+				"loose_range": {"name": "Loose range", "script": "default", "val": 2000, "multiplier": 1},
+				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
+				"exp": {"name": "Experience", "script": "default", "val": 15, "multiplier": 1},
+				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 100}, "multiplier": 0}
 			},
 			"drops":[
 				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},
