@@ -12,8 +12,8 @@ func setVal(modifier):
 
 func recompute():
 	var amount = agent.data.stats.level.val*multiplier
-	val.width = defaultVal.width+amount
-	val.height = defaultVal.height+amount
+	#val.width = defaultVal.width+amount
+	#val.height = defaultVal.height+amount
 	maxVal.width = defaultVal.width+amount
 	maxVal.height = defaultVal.height+amount
 	for modifier in modifiers:

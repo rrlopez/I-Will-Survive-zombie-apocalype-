@@ -12,6 +12,7 @@ func init(_data):
 
 
 func run(agent, delta):
+	if data.duration<0: return false
 	if(timer>data.duration):
 		remove(agent)
 		return true
@@ -29,6 +30,18 @@ func add(opponent, _parent=null):
 		
 func reset():
 	timer = 0
+	
+	
+func getInfo():
+	var modifiers = []
+	
+	for modifier in data.modifiers: 
+		var info = modifier.getInfo()
+		if data.duration>0: info.value = info.value + " in " + String(data.duration) + "s"
+		modifiers.append(info)
+	
+	return modifiers
+
 
 func serialize():
 	var modifierObject = []

@@ -11,7 +11,7 @@ func init(itemData, _staticData):
 	for sideEffect in data.sideEffects:
 		for i in sideEffect.effects.size():
 			var effect = sideEffect.effects[i]
-			effect.stats["duration"] = 0
+			effect.stats["duration"] = -1
 			sideEffect.effects[i] = Factory.statusEffects.statusEffects[effect.script].new()
 			sideEffect.effects[i].init(effect.stats)
 	
@@ -32,15 +32,65 @@ func use():
 func getInfo():
 	var info = .getInfo()
 	info["btnText"] = "Equip"
+	info.sections.append(getStatsInfo())
+	if data.sideEffects.size() > 0:
+		info.sections.append(getSideEffectsInfo())
+	if data.statusEffects.size() > 0:
+		info.sections.append(getStatusEffectsInfo())
+	return info
 	
+	
+func getStatsInfo():
 	var statsContent = []
 	for stat in data.stats: statsContent.append(data.stats[stat].getInfo())
 	
-	info.sections.append({
+	return{
 		"title": "STATS",
+		"columns": 3,
+		"vseparation": 5,
 		"content":statsContent
-	})
-	return info
+	}
+	
+	
+func getStatusEffectsInfo():
+	var effectsContent = []
+	for statusEffect in data.statusEffects: 
+		var effects = []
+		for effect in statusEffect.effects.duplicate(true): 
+			var e = Factory.statusEffects.statusEffects[effect.script].new()
+			e.init(effect.stats)
+			for info in e.getInfo():
+				effects.append(info)
+		
+		effectsContent.append({
+			"labelType": 1,
+			"name": statusEffect.name,
+			"value": String(statusEffect.chance)+"%",
+			"effects": effects
+		})
+	
+	
+	return{
+		"title": "SKILLS",
+		"columns": 1,
+		"vseparation": 20,
+		"content":effectsContent
+	}
+
+
+func getSideEffectsInfo():
+	var effects = []
+	for statusEffect in data.sideEffects: 
+		for effect in statusEffect.effects.duplicate(true): 
+			for info in effect.getInfo():
+				effects.append(info)
+		
+	return{
+		"title": "EFFECTS",
+		"columns": 4,
+		"vseparation": 5,
+		"content":effects
+	}
 	
 func serialize():
 	var serializedData = {

@@ -5,7 +5,7 @@
 [ext_resource path="res://scene/maps/world.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 19065, 19065 )
+extents = Vector2( 12608, 11648 )
 
 [sub_resource type="NavigationPolygon" id=2]
 

@@ -32,7 +32,7 @@ func removeModifier(modifier):
 
 func recompute():
 	var amount = agent.data.stats.level.val*multiplier
-	val = defaultVal+amount
+	#val = defaultVal+amount
 	maxVal = defaultVal+amount
 	for modifier in modifiers:
 		maxVal = modifier.execute(maxVal)
@@ -45,7 +45,11 @@ func reset():
 	recompute()
 	
 func getInfo():
-	return {"name": name, "value": String(val)}
+	return {
+		"labelType": 0, 
+		"icon": load("res://assets/statsIcon/"+id+".png"), 
+		"value": String(val)
+	}
 
 func serialize():
 	return {

@@ -18,7 +18,7 @@ func _process(delta):
 	
 
 func _hurt(dmg):
-	return data.stats.health.setVal(Factory.statsModifiers.create("subtruct", dmg))
+	return data.stats.health.setVal(Factory.statsModifiers.create("subtruct", {"name": "Health", "amount": dmg}))
 
 
 func revive():

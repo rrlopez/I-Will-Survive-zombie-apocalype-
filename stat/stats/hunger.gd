@@ -1,6 +1,6 @@
 class_name HungerStat extends Stat
 
-var healthModifier = Factory.statsModifiers.create("subtruct", 0)
+var healthModifier = Factory.statsModifiers.create("subtruct", {"name": "Health", "amount": 0})
 
 func init(data, _agent):
 	initValues(data, _agent)

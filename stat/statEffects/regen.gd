@@ -17,10 +17,11 @@ func run(agent, delta):
 		for modifier in data.modifiers:
 			Utils.getProp(agent, modifier.type).setVal(modifier)
 	
-	if(timer>data.duration):
-		return true
-	timer+=delta
 	rateTimer+=delta
+	
+	if data.duration<0: return false
+	if(timer>data.duration): return true
+	timer+=delta
 	return false
 	
 func remove(agent):
@@ -35,6 +36,19 @@ func add(opponent, _parent=null):
 func reset():
 	timer = 0
 	rateTimer = 0
+
+
+func getInfo():
+	var modifiers = []
+	
+	for modifier in data.modifiers: 
+		var info = modifier.getInfo()
+		info.value = info.symbol+String(modifier.val*(60*data.rate)) + "/s"
+		if data.duration>0: info.value = info.value + " in " + String(data.duration) + "s"
+		modifiers.append(info)
+	
+	return modifiers
+
 
 func serialize():
 	var modifierObject = []

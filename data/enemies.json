@@ -12,7 +12,7 @@
 				"health": {"name": "Health", "script": "health", "val": 100, "multiplier": 1},
 				"angle_speed": {"name": "Angle speed", "script": "default", "val": 10, "multiplier": 1},
 				"attack_range": {"name": "Attack range", "script": "default", "val": 15, "multiplier": 1},
-				"attack_dmg": {"name": "Damage", "script": "default", "val": 10, "multiplier": 1},
+				"attack_dmg": {"name": "Damage", "script": "damage", "val": 10, "multiplier": 1},
 				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 50, "multiplier": 1},
 				"loose_range": {"name": "Loose range", "script": "default", "val": 1000, "multiplier": 1},
 				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
@@ -41,7 +41,7 @@
 				"health": {"name": "Health", "script": "health", "val": 100, "multiplier": 1},
 				"angle_speed": {"name": "Angle speed", "script": "default", "val": 10, "multiplier": 1},
 				"attack_range": {"name": "Attack range", "script": "default", "val": 15, "multiplier": 1},
-				"attack_dmg": {"name": "Damage", "script": "default", "val": 15, "multiplier": 1},
+				"attack_dmg": {"name": "Damage", "script": "damage", "val": 15, "multiplier": 1},
 				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 50, "multiplier": 1},
 				"loose_range": {"name": "Loose range", "script": "default", "val": 2000, "multiplier": 1},
 				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
@@ -67,7 +67,7 @@
 									"stats":{
 										"duration": 200,
 										"modifiers": [
-											{"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
+											{"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "Movespeed", "amount": 0.5}}
 										]
 									}
 								},
@@ -77,7 +77,7 @@
 										"duration": 20,
 										"rate": 0.2,
 										"modifiers": [
-											{"type":"data.stats.health", "script": "subtruct", "val": 1}
+											{"type":"data.stats.health", "script": "subtruct", "val": { "name": "Health", "amount": 1}}
 										]
 									}
 								}

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/ui/items/itemInfo/labelType2.gd" type="Script" id=1]
+
+[node name="item" type="TextureRect"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 25, 25 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

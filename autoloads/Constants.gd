@@ -32,4 +32,11 @@ var notif = {
 	"noAmmo": preload("res://assets/gui/noAmmoNotif.png")
 }
 
+
+var infoSectionScene = load("res://scene/ui/items/itemInfo/info_section.tscn")
+var labelType = [
+	load("res://scene/ui/items/itemInfo/labelType0.tscn"),
+	load("res://scene/ui/items/itemInfo/labelType1.tscn"),
+	load("res://scene/ui/items/itemInfo/labelType2.tscn"),
+]
 	

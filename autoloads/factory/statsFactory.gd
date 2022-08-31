@@ -5,6 +5,7 @@ var stats = {
 	'ammo': AmmoStat,
 	
 	'health': HealthStat,
+	'damage': DamageStat,
 	'size': SizeStat,
 	'moveSpeed': MoveSpeedStat,
 	'aggressionRange': AggressionRangeStat,

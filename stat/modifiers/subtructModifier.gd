@@ -1,15 +1,25 @@
 class_name SubtructModifier extends Resource
 
+var name
 var val
 var type
 
 func _init(_val, _type=null):
-	val = _val
+	name = _val.name
+	val = _val.amount
 	type = _type
 
 func execute(value, amount = val):
 	return value-amount
 
+func getInfo():
+	return{
+		"labelType": 0,
+		"icon": load("res://assets/statsIcon/"+name+".png"), 
+		"value": "-"+String(val),
+		"symbol": "-"
+	}
+	
 func serialize():
 	return { "script": "subtruct", "val": val, "type": type}
 

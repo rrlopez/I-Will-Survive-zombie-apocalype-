@@ -10,8 +10,39 @@
     },
     "dynamic_data":{
       "modifiers": [
-        {"type": "data.stats.health", "script": "add", "val": 10},
-        {"type": "statusEffects", "script": "pop", "val": "openWounds"}
+        {"type": "data.stats.health", "script": "add", "val": { "name": "health", "amount": 10}}
+      ],
+      "removedEffects":[
+        {"type": "statusEffects", "script": "pop", "val": { "name": "Open Wounds", "id": "openWounds", "icon": "wounded"}}
+      ],
+      "addedEffects":[
+        {"type": "statusEffects", "script": "push", "val": {
+          "id": "inspire",
+          "name": "Inspire",
+          "chance": 100,
+          "icon": "wounded",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 2,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "move_speed", "amount": 1.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 2,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "add", "val": { "name": "health", "amount": 10}}
+                ]
+              }
+            }
+          ]
+        }}
       ]
     }
   },
@@ -26,35 +57,10 @@
     },
     "dynamic_data":{
       "modifiers": [
-        {"type": "data.stats.hunger", "script": "add", "val": 10},
-        {"type": "statusEffects", "script": "push", "val": {
-          "id": "inspire",
-          "name": "Inspire",
-          "chance": 100,
-          "icon": "wounded",
-          "effects": [
-            {
-              "script": "buff",
-              "stats":{
-                "duration": 2,
-                "modifiers": [
-                  {"type":"data.stats.move_speed", "script": "multiply", "val": 1.5}
-                ]
-              }
-            },
-            {
-              "script": "regen",
-              "stats":{
-                "duration": 2,
-                "rate": 0.2,
-                "modifiers": [
-                  {"type":"data.stats.health", "script": "add", "val": 1}
-                ]
-              }
-            }
-          ]
-        }}
-      ]
+        {"type": "data.stats.hunger", "script": "add", "val": { "name": "Hunger", "amount": 10}}
+      ],
+      "removedEffects":[],
+      "addedEffects":[]
     }
   },
   {
@@ -109,7 +115,8 @@
         "size":  {"name": "Size", "script": "size", "val": 20, "multiplier": 0},
         "level": {"name": "Level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
-      "sideEffects":[]
+      "sideEffects":[],
+      "statusEffects": []
     }
   },
   {
@@ -126,11 +133,11 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
-        "fire_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
-        "fire_dmg": {"name": "Damage", "script": "default", "val": 40, "multiplier": 0},
-        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 40, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
         "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects": [],
@@ -159,7 +166,7 @@
               "stats":{
                 "duration": 2,
                 "modifiers": [
-                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "moveSpeed", "amount": 0.5}}
                 ]
               }
             },
@@ -169,7 +176,7 @@
                 "duration": 2,
                 "rate": 0.2,
                 "modifiers": [
-                  {"type":"data.stats.health", "script": "subtruct", "val": 1}
+                  {"type":"data.stats.health", "script": "subtruct", "val": { "name": "Health", "amount": 1}}
                 ]
               }
             }
@@ -192,11 +199,11 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
-        "fire_dmg": {"name": "Damage", "script": "default", "val": 40, "multiplier": 0},
-        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 40, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
         "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects": [],
@@ -233,11 +240,11 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
-        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"name": "Range", "script": "default", "val": 500, "multiplier": 0},
-        "fire_dmg": {"name": "Damage", "script": "default", "val": 500, "multiplier": 0},
-        "fire_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 500, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 500, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
         "ammo": {"name": "Ammo", "script": "ammo", "val": 10, "multiplier": 0},
         "reload_duration": {"name": "Reload speed", "script": "default", "val": 1, "multiplier": 0},
         "reload_rate": {"name": "Reload rate", "script": "default", "val": 10, "multiplier": 0},
@@ -276,11 +283,11 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"name": "Speed", "script": "default", "val": 30, "multiplier": 0},
-        "fire_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
-        "fire_range": {"name": "Range", "script": "default", "val": 600, "multiplier": 0},
-        "fire_dmg": {"name": "Damage", "script": "default", "val": 700, "multiplier": 0},
-        "fire_sound": {"name": "Noise", "script": "default", "val": 600, "multiplier": 0},
+        "attack_speed": {"name": "Speed", "script": "default", "val": 30, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 600, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 700, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 600, "multiplier": 0},
         "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
       },
       "sideEffects":[],
@@ -317,11 +324,11 @@
     },
     "dynamic_data":{
       "stats": {
-        "fire_speed": {"name": "Speed", "script": "default", "val": 5, "multiplier": 0},
-        "fire_accuracy": {"name": "Accuracy","script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
-        "fire_range": {"name": "Range","script": "default", "val": 500, "multiplier": 0},
-        "fire_dmg": {"name": "Damage","script": "default", "val": 500, "multiplier": 0},
-        "fire_sound": {"name": "Noise","script": "default", "val": 250, "multiplier": 0},
+        "attack_speed": {"name": "Speed", "script": "default", "val": 5, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy","script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
+        "attack_range": {"name": "Range","script": "default", "val": 500, "multiplier": 0},
+        "attack_dmg": {"name": "Damage","script": "damage", "val": 10, "multiplier": 0},
+        "attack_sound": {"name": "Noise","script": "default", "val": 250, "multiplier": 0},
         "ammo": {"name": "Ammo","script": "ammo", "val": 100, "multiplier": 0},
         "reload_duration": {"name": "Reload speed","script": "default", "val": 2, "multiplier": 0},
         "reload_rate": {"name": "Reload rate","script": "default", "val": 100, "multiplier": 0},
@@ -336,7 +343,16 @@
               "script": "buff",
               "stats":{
                 "modifiers": [
-                  {"type":"data.stats.move_speed", "script": "multiply", "val": 0.5}
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": {"name": "move_speed", "amount": 0.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "subtruct", "val": {"name": "health", "amount": 10}}
                 ]
               }
             }
@@ -354,6 +370,33 @@
               "stats": {
                 "force": 200, 
                 "friction": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "openWounds",
+          "name": "Open Wounds",
+          "icon": "wounded",
+          "chance": 70,
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 200,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "move_speed", "amount": 0.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 20,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "subtruct", "val": { "name": "Health", "amount": 1}}
+                ]
               }
             }
           ]

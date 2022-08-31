@@ -9,6 +9,11 @@ func recompute():
 
 func setVal(modifier):
 	.setVal(modifier)
+	
+func getInfo():
+	var info = .getInfo()
+	info.value = String(val) + "/" + String(maxVal)
+	return info
 
 func deserialize(savedData):
 	.deserialize(savedData)

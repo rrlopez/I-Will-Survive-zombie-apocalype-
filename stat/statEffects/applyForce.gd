@@ -30,6 +30,13 @@ func reset():
 	force = defaultForce
 
 
+func getInfo():
+	return [{
+		"labelType": 2,
+		"icon": load("res://assets/statusEffectIcons/wounded.png"),
+		"value": String(force)
+	}]
+
 func serialize():
 	return {
 		"script": "applyForce",

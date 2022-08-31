@@ -1,7 +1,5 @@
 extends PanelContainer
 
-var infoSectionScene = load("res://scene/ui/items/itemInfo/info_section.tscn")
-
 export(NodePath) onready var item_name  = get_node(item_name) as Label
 export(NodePath) onready var button  = get_node(button) as Button
 export(NodePath) onready var sprite  = get_node(sprite) as TextureRect
@@ -22,7 +20,7 @@ func display(_slot:Slot = slot):
 	
 	for section in sections.get_children(): section.queue_free()
 	for section in info.sections:
-		var infoSection = infoSectionScene.instance()
+		var infoSection = Constants.infoSectionScene.instance()
 		infoSection.info = section
 		sections.add_child(infoSection)
 		
@@ -31,6 +29,9 @@ func display(_slot:Slot = slot):
 		button.text = info.btnText
 		button.show()
 	else: button.hide()
+	
+	sections.rect_size.y = min(sections.rect_size.y, 100)
+	print(sections.rect_size)
 	show()
 	
 
