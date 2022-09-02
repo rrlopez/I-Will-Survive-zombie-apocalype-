@@ -8,6 +8,6 @@ func _on_TouchScreenButton_pressed():
 	Globals.stateManager.remove_child(self)
 
 
-
-func _on_loadingState_tree_entered():
+func _on_pauseState_tree_entered():
 	get_tree().paused = true
+
