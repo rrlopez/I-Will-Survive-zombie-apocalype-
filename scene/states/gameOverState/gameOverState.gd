@@ -3,13 +3,12 @@ extends Node2D
 func _ready():
 	Serialize.saveGame()
 
-func _on_pauseState_tree_entered():
+func _on_gameOverState_tree_entered():
 	get_tree().paused = true
-	add_child(Globals.stateManager.currentStates[1])
-
-
+	
 func _on_ReviveBtn_pressed():
-	Globals.player.revive()
 	get_tree().paused = false
-	remove_child(Globals.stateManager.currentStates[1])
-	Globals.stateManager.popState()
+	Globals.player.revive()
+	yield(get_tree(),"idle_frame")
+	Globals.stateManager.remove_child(self)
+

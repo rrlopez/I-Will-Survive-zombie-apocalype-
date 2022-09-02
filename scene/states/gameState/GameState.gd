@@ -1,12 +1,16 @@
 extends Node2D
 
-var timer = 5
+var timer = 10
+var curTimer = timer
+
+func _ready():
+	Serialize.connect("dataSaved", self, "resetTimer")
+	
 
 func _process(delta):
-	if timer < 0:
-		timer = 5
+	if curTimer < 0:
 		Serialize.saveGame()
-	else: timer-=delta
+	else: curTimer-=delta
 
 
 func continueGame():
@@ -37,3 +41,6 @@ func createNewDayNightCycle():
 	var dayNightCycle = dayNightCycleScene.instance()
 	add_child(dayNightCycle)
 	dayNightCycle.init()
+
+func resetTimer():
+	curTimer = timer

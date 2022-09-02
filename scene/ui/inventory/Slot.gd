@@ -51,6 +51,6 @@ func is_full():
 	return false
 
 
-func _on_area_area_entered(area):
+func _on_area_area_entered(_area):
 	Globals.inventoryManager.cur_slot = self
 

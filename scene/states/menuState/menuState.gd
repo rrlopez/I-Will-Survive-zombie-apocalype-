@@ -8,11 +8,13 @@ func _ready():
 
 func _on_ContinueBtn_button_up():
 	Globals.stateManager.pushState("gameState")
+	Globals.stateManager.addOverlayState("loadingState")
 	Globals.stateManager.currentStates[0].continueGame()
 
 
 func _on_NewGameBtn_button_up():
 	Globals.stateManager.pushState("gameState")
+	Globals.stateManager.addOverlayState("loadingState")
 	Globals.stateManager.currentStates[0].newGame()
 
 

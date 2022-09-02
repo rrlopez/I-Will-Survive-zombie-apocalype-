@@ -31,12 +31,14 @@ func removeModifier(modifier):
 	recompute()
 
 func recompute():
+	var difference = maxVal - val
 	var amount = agent.data.stats.level.val*multiplier
-	#val = defaultVal+amount
+	val = defaultVal+amount
 	maxVal = defaultVal+amount
 	for modifier in modifiers:
 		maxVal = modifier.execute(maxVal)
 		setVal(modifier)
+	val = val-difference
 
 func setVal(modifier):
 	val = min(modifier.execute(val), maxVal)

@@ -1,4 +1,4 @@
-extends ColorRect
+extends Node2D
 
 export(NodePath) onready var playerMark = get_node(playerMark) as Sprite
 export(NodePath) onready var camera = get_node(camera) as Camera2D
@@ -8,10 +8,13 @@ var last_mouse_position
 var sensitivity = 20
 
 func _on_CloseBtn_pressed():
-	Globals.stateManager.popState()
+	get_tree().paused = false
+	yield(get_tree(),"idle_frame")
+	Globals.stateManager.remove_child(self)
 
 
 func _on_map_tree_entered():
+	get_tree().paused = true
 	yield(get_tree(), "idle_frame")
 	playerMark.global_position = Vector2(Globals.player.global_position)
 	playerMark.rotation_degrees = Globals.player.rotation_degrees

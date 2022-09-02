@@ -201,16 +201,104 @@ __meta__ = {
 [node name="House" parent="." instance=ExtResource( 2 )]
 position = Vector2( 4881, 7341 )
 
+[node name="House3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7384, 7341 )
+
+[node name="House27" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7394, 6156 )
+
+[node name="House28" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7394, 4719 )
+
+[node name="House29" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4881, 4719 )
+
+[node name="House30" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4881, 6156 )
+
+[node name="House31" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3073, 4719 )
+
+[node name="House32" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3073, 6156 )
+
+[node name="House35" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10999, 5834 )
+
+[node name="House36" parent="." instance=ExtResource( 2 )]
+position = Vector2( 9273, 5826 )
+
+[node name="House37" parent="." instance=ExtResource( 2 )]
+position = Vector2( 9273, 3924 )
+
+[node name="House38" parent="." instance=ExtResource( 2 )]
+position = Vector2( 9241, 2810 )
+
+[node name="House39" parent="." instance=ExtResource( 2 )]
+position = Vector2( 9241, 1756 )
+
+[node name="House42" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10999, 1756 )
+
+[node name="House43" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10999, 2810 )
+
+[node name="House44" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10999, 3924 )
+
+[node name="House47" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7834, 8832 )
+
+[node name="House48" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8823, 8832 )
+
+[node name="House49" parent="." instance=ExtResource( 2 )]
+position = Vector2( 9925, 8832 )
+
+[node name="House52" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3528, 8832 )
+
+[node name="House53" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2328, 8832 )
+
+[node name="House54" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1020, 8832 )
+
+[node name="House6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 570, 10215 )
+
+[node name="House16" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1878, 10215 )
+
+[node name="House19" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7834, 10215 )
+
+[node name="House21" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4881, 1756 )
+
+[node name="House22" parent="." instance=ExtResource( 2 )]
+position = Vector2( 10609, 10215 )
+
+[node name="House23" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7384, 1756 )
+
+[node name="House26" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3073, 1756 )
+
 [node name="House4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7552, 6258 )
-rotation = 1.5708
+position = Vector2( 9241, 7341 )
 
 [node name="House5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7552, 5148 )
-rotation = 1.5708
+position = Vector2( 10999, 7341 )
 
-[node name="House2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 6160, 7341 )
+[node name="House9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3073, 7341 )
 
-[node name="House3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 7445, 7328 )
+[node name="House12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3073, 3353 )
+
+[node name="House13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4881, 3353 )
+
+[node name="House15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 7384, 3353 )

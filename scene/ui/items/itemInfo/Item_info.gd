@@ -1,18 +1,25 @@
 extends PanelContainer
 
+onready var infoContainerScene = preload("res://scene/ui/items/itemInfo/info_container.tscn")
+
 export(NodePath) onready var item_name  = get_node(item_name) as Label
 export(NodePath) onready var button  = get_node(button) as Button
 export(NodePath) onready var sprite  = get_node(sprite) as TextureRect
 export(NodePath) onready var description  = get_node(description) as RichTextLabel
 export(NodePath) onready var sections  = get_node(sections) as VBoxContainer
+export(NodePath) onready var scrollContainer  = get_node(scrollContainer) as ScrollContainer
 
 
 var slot = null
 var curItemId = null
 
-func display(_slot:Slot = slot):
+func setSlot(_slot:Slot = slot):
 	slot = _slot
-	var info = _slot.get_item_info()
+	scrollContainer.rect_size.y = 0
+	scrollContainer.rect_min_size.y = 0
+
+func show():
+	var info = slot.get_item_info()
 	item_name.text = info.staticData.name
 	curItemId = info.staticData.id
 	sprite.texture = Factory.items.itemTexture[curItemId]
@@ -29,11 +36,9 @@ func display(_slot:Slot = slot):
 		button.text = info.btnText
 		button.show()
 	else: button.hide()
-	
-	sections.rect_size.y = min(sections.rect_size.y, 100)
-	print(sections.rect_size)
-	show()
-	
+	.show()
+	yield(get_tree(),"idle_frame")
+	scrollContainer.rect_min_size.y = clamp(scrollContainer.get_child(0).rect_size.y, 55, 350)
 
 
 func _on_Button_button_up():

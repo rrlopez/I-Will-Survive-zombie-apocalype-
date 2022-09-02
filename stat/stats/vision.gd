@@ -11,15 +11,22 @@ func setVal(modifier):
 
 
 func recompute():
+	var difference = {
+		"width": maxVal.width - val.width,
+		"height": maxVal.height - val.height
+	}
 	var amount = agent.data.stats.level.val*multiplier
-	#val.width = defaultVal.width+amount
-	#val.height = defaultVal.height+amount
+	val.width = defaultVal.width+amount
+	val.height = defaultVal.height+amount
 	maxVal.width = defaultVal.width+amount
 	maxVal.height = defaultVal.height+amount
 	for modifier in modifiers:
 		maxVal.width = modifier.execute(maxVal.width, modifier.val.width)
 		maxVal.height = modifier.execute(maxVal.height, modifier.val.height)
 		setVal(modifier)
+	
+	val.width = val.width+difference.width
+	val.height = val.height+difference.height
 	update()
 		
 

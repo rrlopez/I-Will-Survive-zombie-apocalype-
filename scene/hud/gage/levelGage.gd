@@ -10,6 +10,6 @@ func _ready():
 	yield(get_tree(),"idle_frame")
 	stat = Globals.player.data.stats.level
 
-func _process(delta):
+func _process(_delta):
 	$rect.rect_size = Vector2((stat.experience*maxWidth)/stat.maxExperience, $rect.rect_size.y)
 	label.text = "lvl "+String(stat.val)

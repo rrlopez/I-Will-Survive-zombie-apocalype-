@@ -1,28 +1,54 @@
 extends Node2D
 
+signal dataSaved
+
 var defaultData = {
 	"player": null,
 	"others": []
 }
 
+var thread_timer = Timer.new()
 var filePath = "user://savegame.json"
 var data = defaultData
+var thread
+
+func _ready():
+	thread_timer.connect("timeout", self,"savingDone")
+	thread_timer.wait_time = 0.4
+	thread_timer.one_shot = true
+	add_child(thread_timer)
 
 func saveGame():
+	if thread: return
+	thread = Thread.new()
+	thread.start(self, "saving", data)
+
+
+func saving(threadData):
 	Globals.HUD.notifs.addNotif('saved...')
 	data = defaultData.duplicate(true)
 	
-	for node in get_tree().get_nodes_in_group('serializable'): node.serialize(data)
+	var serializables = get_tree().get_nodes_in_group('serializable')
+	for node in serializables: node.serialize(data)
 	
 	var save_game = File.new()
 	save_game.open(filePath, File.WRITE)
 
 	save_game.store_line(to_json(data))
 	save_game.close()
+	thread_timer.start()
+
+
+func savingDone():
+	thread.wait_to_finish()
+	thread = null
+	emit_signal("dataSaved")
+	
 
 func hasLoadData():
 	var save_game = File.new()
 	return save_game.file_exists(filePath)
+
 
 func loadGame():
 	Globals.HUD.notifs.addNotif('loaded...')
@@ -35,6 +61,7 @@ func loadGame():
 	deserializeScene(game_data.player)
 	for data in game_data.others: deserializeScene(data)
 	save_game.close()
+
 
 func deserializeScene(data):
 	var new_object = load(data["filename"]).instance()

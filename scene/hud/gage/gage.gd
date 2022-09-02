@@ -15,5 +15,5 @@ func _ready():
 	yield(get_tree(),"idle_frame")
 	stat = Globals.player.data.stats[statName]
 
-func _process(delta):
+func _process(_delta):
 	$rect.rect_size = Vector2((stat.val*maxWidth)/stat.maxVal, $rect.rect_size.y)

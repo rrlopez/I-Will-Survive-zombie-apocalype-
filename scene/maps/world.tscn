@@ -1,28 +1,31 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/maps/Navigation.gd" type="Script" id=1]
-[ext_resource path="res://scene/maps/maps/blocks.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/maps/world.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 12608, 11648 )
+extents = Vector2( 50752, 51528 )
 
 [sub_resource type="NavigationPolygon" id=2]
 
 [node name="world" type="Area2D"]
 script = ExtResource( 3 )
 collider = NodePath("Collider")
+navigation = NodePath("Navigation")
+regions = NodePath("blocks")
 
 [node name="Collider" type="CollisionShape2D" parent="." groups=["map"]]
+position = Vector2( 24, -912 )
 shape = SubResource( 3 )
 
 [node name="Navigation" type="Navigation2D" parent="." groups=["navigation"]]
+pause_mode = 2
 z_index = 1000
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
-blocks = NodePath("../blocks")
+navPolygon = NodePath("Polygon")
 
 [node name="Polygon" type="NavigationPolygonInstance" parent="Navigation"]
 navpoly = SubResource( 2 )
@@ -30,4 +33,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="blocks" parent="." instance=ExtResource( 2 )]
+[node name="blocks" type="Node2D" parent="."]

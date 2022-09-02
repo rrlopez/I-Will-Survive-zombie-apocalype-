@@ -10,9 +10,13 @@ func setVal(modifier):
 
 
 func recompute():
+	var difference = {
+		"x": maxVal.x - val.x,
+		"y": maxVal.y - val.y
+	}
 	var amount = agent.data.stats.level.val*multiplier
-	#val.x = defaultVal.x+amount
-	#val.y = defaultVal.y+amount
+	val.x = defaultVal.x+amount
+	val.y = defaultVal.y+amount
 	maxVal.x = defaultVal.x+amount
 	maxVal.y = defaultVal.y+amount
 	for modifier in modifiers:
@@ -20,6 +24,8 @@ func recompute():
 		maxVal.y = modifier.execute(maxVal.y, modifier.val.y)
 		setVal(modifier)
 		
+	val.x = val.x+difference.x
+	val.y = val.y+difference.y
 
 
 func serialize():

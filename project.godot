@@ -591,6 +591,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_10="player"
 2d_physics/layer_11="slot"
 2d_physics/layer_12="item"
+2d_physics/layer_13="regionSensor"
 
 [physics]
 

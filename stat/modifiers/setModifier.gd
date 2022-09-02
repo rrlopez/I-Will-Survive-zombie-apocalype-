@@ -21,7 +21,7 @@ func getInfo():
 	}
 
 func serialize():
-	return { "script": "set", "val": val, "type": type}
+	return { "script": "set", "val": {"name": name, "amount":val}, "type": type}
 
 	
 func deserialize(savedData):

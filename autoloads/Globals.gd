@@ -15,6 +15,8 @@ var mapManager = null
 var currentMap = null
 var currentNavigation = null
 
+var loadingBlocksCount = 0
+
 
 var currentController = null setget setCurrentController
 func setCurrentController(controller):

@@ -25,7 +25,7 @@ func serialize():
 	for i in data.effects.size(): serializedData.effects[i] = data.effects[i].serialize()
 	return serializedData
 
-func deserialize(savedData):
+func deserialize(_savedData):
 	var serializedData = data.duplicate(true)
 	for effect in serializedData.effects: effect = effect.deserialize()
 	return serializedData

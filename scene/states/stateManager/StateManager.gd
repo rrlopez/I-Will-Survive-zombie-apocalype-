@@ -5,7 +5,8 @@ onready var states = {
 	"pauseState": preload("res://scene/states/pauseState/pauseState.tscn").instance(),
 	"mapState": preload("res://scene/states/mapState/mapState.tscn").instance(),
 	"gameOverState": preload("res://scene/states/gameOverState/gameOverState.tscn").instance(),
-	"menuState": preload("res://scene/states/menuState/menuState.tscn").instance()
+	"menuState": preload("res://scene/states/menuState/menuState.tscn").instance(),
+	"loadingState": preload("res://scene/states/loadingState/loadingState.tscn").instance()
 }
 
 onready var currentStates = []
@@ -27,3 +28,9 @@ func pushState(name):
 		remove_child(currentStates[0])
 	currentStates.push_front(state)
 	add_child(currentStates[0])
+
+func addOverlayState(name):
+	add_child(states[name])
+	
+func removeOverlayState(name):
+	remove_child(states[name])

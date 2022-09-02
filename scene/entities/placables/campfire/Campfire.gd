@@ -18,11 +18,11 @@ func _ready():
 	areaCollider.shape.radius = collider.shape.radius + 10
 
 
-func _on_Area_body_entered(body):
+func _on_Area_body_entered(_body):
 	buttons.show()
 
 
-func _on_Area_body_exited(body):
+func _on_Area_body_exited(_body):
 	buttons.hide()
 
 

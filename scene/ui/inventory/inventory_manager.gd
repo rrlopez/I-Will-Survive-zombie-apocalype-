@@ -6,6 +6,8 @@ signal inventory_ready
 export(NodePath) onready var item_in_hand_node  = get_node(item_in_hand_node) as Control
 export(NodePath) onready var item_info  = get_node(item_info) as Control
 
+var timer = Timer.new()
+
 var panels: Array = []
 var inventories: Array = []
 var clickPosition = null
@@ -23,6 +25,10 @@ func _init():
 
 func _ready():
 	connect("inventory_ready", self, "_on_inventory_ready")
+	timer.connect("timeout", self,"show_item_info")
+	timer.wait_time = 0.4
+	timer.one_shot = true
+	add_child(timer)
 	
 	
 func _on_inventory_ready(inventory):
@@ -32,12 +38,15 @@ func _on_inventory_ready(inventory):
 			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 	else:
 		for slot in inventory.slots:
-			#slot.connect("mouse_entered", self, "_on_mouse_entered_slot", [slot])
-			#slot.connect("mouse_exited", self, "_on_mouse_exited_slot")
 			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 		
 func _unhandled_input(event):
-	if event is InputEventScreenTouch and event.is_pressed(): item_info.hide()
+	if event is InputEventScreenTouch and event.is_pressed():
+		prev_slot = null
+		item_info.hide()
+	
+func show_item_info():
+	if(prev_slot): item_info.show()
 
 func _input(event:InputEvent):
 	if(item_in_hand):
@@ -59,6 +68,7 @@ func _input(event:InputEvent):
 			prev_slot = null
 	elif clickPosition and event is InputEventScreenDrag and event.position.distance_to(clickPosition)>10: 
 		item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_STOP
+		timer.stop()
 		clickPosition = null
 		updateSlot(event, prev_slot)
 	elif event is InputEventScreenTouch:
@@ -70,23 +80,17 @@ func _input(event:InputEvent):
 			lastTap = OS.get_ticks_msec()
 			
 		else: clickPosition = null
-	
 
-#if(prev_slot.item.data.static.equipment_type != "craft"): 
-func _on_mouse_entered_slot(slot):
-	if(slot.item):
-		item_info.display(slot)
-
-func _on_mouse_exited_slot():
-	item_info.hide()
-	
 
 func _on_gui_input_slot(event: InputEvent, slot: Slot):
 	if event is InputEventScreenTouch and event.is_pressed() and slot.item:
 		panelPressed = event.index
 		clickPosition = slot.get_global_mouse_position()
 		prev_slot = slot
-		_on_mouse_entered_slot(slot)
+		if(slot.item): 
+			item_info.setSlot(slot)
+			if item_info.visible: item_info.show()
+			else: timer.start()
 
 func updateSlot(event, slot):
 	if item_in_hand:

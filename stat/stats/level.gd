@@ -21,6 +21,7 @@ func setVal(modifier):
 	experience = modifier.execute(experience)
 	if experience >= maxExperience:
 		levelUp()
+		agent.data.stats.health.val = agent.data.stats.health.maxVal
 		for stat in agent.data.stats:
 			 agent.data.stats[stat].recompute()
 	

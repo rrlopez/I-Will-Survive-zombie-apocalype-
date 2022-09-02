@@ -17,7 +17,7 @@ func run(agent, _delta):
 	force*=friction
 	return false
 	
-func remove(agent):
+func remove(_agent):
 	pass
 		
 
