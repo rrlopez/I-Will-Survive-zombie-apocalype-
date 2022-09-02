@@ -1,12 +1,11 @@
 extends Node2D
 
 
-
-func _on_TouchScreenButton_pressed():
+func _on_loadingState_tree_exiting():
 	get_tree().paused = false
 	yield(get_tree(),"idle_frame")
-	Globals.stateManager.remove_child(self)
 
 
-func _on_pauseState_tree_entered():
+func _on_loadingState_tree_entered():
 	get_tree().paused = true
+	Physics2DServer.set_active(true)

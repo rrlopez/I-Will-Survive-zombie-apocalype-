@@ -27,9 +27,9 @@ func _on_BagBtn_pressed():
 
 
 func _on_mapBtn_pressed():
-	Globals.stateManager.overlayState("mapState")
+	Globals.stateManager.addOverlayState("mapState")
 
 
 
 func _on_pauseBtn_pressed():
-	Globals.stateManager.overlayState("pauseState")
+	Globals.stateManager.addOverlayState("pauseState")

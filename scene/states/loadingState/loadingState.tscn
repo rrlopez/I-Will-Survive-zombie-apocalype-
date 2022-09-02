@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://scene/states/pauseState/pauseState.gd" type="Script" id=2]
+[ext_resource path="res://scene/states/loadingState/loadingState.gd" type="Script" id=1]
 [ext_resource path="res://font/Roboto-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -8,7 +8,7 @@ size = 58
 font_data = ExtResource( 3 )
 
 [node name="loadingState" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="canvas" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -35,5 +35,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="tree_entered" from="." to="." method="_on_pauseState_tree_entered"]
+[connection signal="tree_entered" from="." to="." method="_on_loadingState_tree_entered"]
 [connection signal="tree_exiting" from="." to="." method="_on_loadingState_tree_exiting"]
