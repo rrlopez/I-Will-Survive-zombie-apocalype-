@@ -1,32 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/maps/regionSensor/regionSensor.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+resource_local_to_scene = true
+radius = 50.0
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 6304.0
-
-[node name="regionSensor" type="Node2D"]
+[node name="regionSensor" type="Area2D"]
 pause_mode = 2
-script = ExtResource( 1 )
-
-[node name="EnterSensor" type="Area2D" parent="."]
-position = Vector2( 6304, 6304 )
-collision_layer = 16
+collision_layer = 0
 collision_mask = 4096
+script = ExtResource( 1 )
+collider = NodePath("Collider")
 
-[node name="Collider" type="CollisionShape2D" parent="EnterSensor"]
+[node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="LeaveSensor" type="Area2D" parent="."]
-position = Vector2( 6304, 6304 )
-collision_layer = 16
-collision_mask = 4096
-
-[node name="Collider" type="CollisionShape2D" parent="LeaveSensor"]
-shape = SubResource( 2 )
-
-[connection signal="area_entered" from="EnterSensor" to="." method="_on_EnterSensor_area_entered"]
-[connection signal="area_exited" from="LeaveSensor" to="." method="_on_LeaveSensor_area_exited"]
+[connection signal="area_entered" from="." to="." method="_on_regionSensor_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_regionSensor_area_exited"]

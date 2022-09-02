@@ -18,6 +18,7 @@ func _ready():
 	
 	
 func generateNavigationPolygon(block):
+	yield(get_tree(),"idle_frame")
 	blocks.append(block)
 	Globals.loadingBlocksCount-=1
 	if Globals.loadingBlocksCount>0: return

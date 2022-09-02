@@ -1,12 +1,8 @@
 extends Camera2D
 
-export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 
 var shake = null
 var lastZoom = Vector2.ZERO
-
-func _ready():
-	collider.shape.radius = Constants.BLOCK_SIZE
 	
 func _process(delta):
 	if shake:

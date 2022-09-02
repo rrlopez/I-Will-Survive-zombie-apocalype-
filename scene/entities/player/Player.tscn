@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scene/entities/player/sprites/body/arm.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/player/sprites/body/tigh.png" type="Texture" id=2]
@@ -1361,8 +1361,9 @@ tracks/11/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="CircleShape2D" id=18]
+
 [node name="Player" type="KinematicBody2D" groups=["serializable"]]
-position = Vector2( 515, 506 )
 z_index = 10
 z_as_relative = false
 collision_mask = 8
@@ -1372,6 +1373,7 @@ hand_container = NodePath("Equipments/Hand")
 placable = NodePath("Equipments/Placable")
 body = NodePath("Body")
 notif = NodePath("notif")
+collider = NodePath("Sensor/Collider")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
@@ -1583,6 +1585,13 @@ visible = false
 position = Vector2( 48, -41 )
 scale = Vector2( 0.518681, 0.518681 )
 texture = ExtResource( 15 )
+
+[node name="Sensor" type="Area2D" parent="."]
+collision_layer = 4096
+collision_mask = 0
+
+[node name="Collider" type="CollisionShape2D" parent="Sensor"]
+shape = SubResource( 18 )
 
 [connection signal="tree_entered" from="." to="." method="_on_player_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Player_tree_exited"]

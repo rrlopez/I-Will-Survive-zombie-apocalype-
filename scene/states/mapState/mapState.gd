@@ -21,8 +21,8 @@ func _on_map_tree_entered():
 	setCameraPosition(playerMark.global_position)
 	
 func setCameraPosition(position):
-	camera.position.x = clamp(position.x, -extents.x+(Constants.WIDTH*(camera.zoom.x/2)), extents.x-(Constants.WIDTH*(camera.zoom.x/2)))
-	camera.position.y = clamp(position.y, -extents.y+(Constants.HEIGHT*(camera.zoom.y/2)), extents.y-(Constants.HEIGHT*(camera.zoom.y/2)))
+	camera.position.x = clamp(position.x, -extents.x, extents.x)
+	camera.position.y = clamp(position.y, -extents.y, extents.y)
 	
 func _on_Control_gui_input(event):
 	if event is InputEventScreenTouch:

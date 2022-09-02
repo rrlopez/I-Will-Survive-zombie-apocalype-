@@ -1,20 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://scene/entities/objects/camera/Camera.gd" type="Script" id=1]
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 12608.0
 
 [node name="Camera" type="Camera2D"]
 pause_mode = 2
 rotating = true
 current = true
 script = ExtResource( 1 )
-collider = NodePath("Sensor/Collider")
-
-[node name="Sensor" type="Area2D" parent="."]
-collision_layer = 4096
-collision_mask = 0
-
-[node name="Collider" type="CollisionShape2D" parent="Sensor"]
-shape = SubResource( 1 )

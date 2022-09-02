@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scene/maps/sprites/tilemap.png" type="Texture" id=1]
-[ext_resource path="res://scene/entities/houses/House.tscn" type="PackedScene" id=2]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -75,9 +74,7 @@
 4/shapes = [  ]
 4/z_index = 0
 
-[node name="block1" type="Node2D"]
-
-[node name="Map" type="TileMap" parent="."]
+[node name="Map" type="TileMap"]
 z_index = -1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 128 )
@@ -86,46 +83,3 @@ tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="House" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4288, 2826 )
-rotation = -1.5708
-
-[node name="House2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4288, 3912 )
-rotation = -1.5708
-
-[node name="House3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4288, 5009 )
-rotation = -1.5708
-
-[node name="House4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1833, 2826 )
-rotation = 1.5708
-
-[node name="House5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1833, 3912 )
-rotation = 1.5708
-
-[node name="House6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1833, 5009 )
-rotation = 1.5708
-
-[node name="House7" parent="." instance=ExtResource( 2 )]
-position = Vector2( 635, 940 )
-
-[node name="House8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1705, 940 )
-
-[node name="House9" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2943, 940 )
-
-[node name="House11" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3063, 5076 )
-
-[node name="House12" parent="." instance=ExtResource( 2 )]
-position = Vector2( 3075, 2731 )
-rotation = -3.14159
-
-[node name="House10" parent="." instance=ExtResource( 2 )]
-position = Vector2( 4098, 940 )

@@ -8,23 +8,26 @@ export(NodePath) onready var regions  = get_node(regions) as Node2D
 
 
 var blocks = [
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
-	["block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
+	["block3","block3","block3","block3","block3","block3","block3","block3","block3"],
 ]
 
 func _ready():
 	collider.shape.extents = Vector2(blocks.size()*Constants.BLOCK_SIZE, blocks[0].size()*Constants.BLOCK_SIZE)
+	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
 	
 	var xOffset = -blocks.size()/2
 	var yOffset = -blocks[0].size()/2
 	for x in blocks.size():
 		for y in blocks[x].size():
 			var region = regionScene.instance()
-			region.position = Vector2((x+xOffset)*Constants.BLOCK_SIZE, (y+yOffset)*Constants.BLOCK_SIZE)
+			region.position = Vector2((x+xOffset)*(Constants.BLOCK_SIZE*2), (y+yOffset)*(Constants.BLOCK_SIZE*2))
 			region.blockName = blocks[x][y]
 			regions.add_child(region)

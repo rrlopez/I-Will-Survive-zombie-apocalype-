@@ -12,7 +12,7 @@ extents = Vector2( 50752, 51528 )
 script = ExtResource( 3 )
 collider = NodePath("Collider")
 navigation = NodePath("Navigation")
-regions = NodePath("blocks")
+regions = NodePath("regions")
 
 [node name="Collider" type="CollisionShape2D" parent="." groups=["map"]]
 position = Vector2( 24, -912 )
@@ -33,4 +33,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="blocks" type="Node2D" parent="."]
+[node name="regions" type="Node2D" parent="."]

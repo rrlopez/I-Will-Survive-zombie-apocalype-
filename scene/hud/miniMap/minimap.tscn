@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scene/hud/miniMap/minimap.gd" type="Script" id=1]
-[ext_resource path="res://scene/maps/maps/blocks.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/maps/maps/blocks/blocks.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/gui/navigationMarker.png" type="Texture" id=3]
 
 [node name="Minimap" type="ColorRect"]

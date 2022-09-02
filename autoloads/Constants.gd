@@ -7,7 +7,7 @@ const MOVE_SPEED_MULTIPLYER = 100
 const EXP_MULTIPLYER = 100
 const ANGLE_BETWEEN_RAYS = deg2rad(5)
 const STAT_RANDOM = 0.7
-var BLOCK_SIZE = 12608
+var BLOCK_SIZE = 3200
 
 
 var rand = RandomNumberGenerator.new()

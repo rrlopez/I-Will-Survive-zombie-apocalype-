@@ -33,4 +33,4 @@ func addOverlayState(name):
 	add_child(states[name])
 	
 func removeOverlayState(name):
-	remove_child(states[name])
+	if get_child_count() > 1: remove_child(states[name])

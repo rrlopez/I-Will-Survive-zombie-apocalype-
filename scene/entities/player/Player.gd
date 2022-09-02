@@ -5,6 +5,7 @@ export(NodePath) onready var hand_container  = get_node(hand_container) as Node2
 export(NodePath) onready var placable  = get_node(placable) as Node2D
 export(NodePath) onready var body  = get_node(body) as Node2D
 export(NodePath) onready var notif  = get_node(notif) as Sprite
+export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
@@ -22,6 +23,7 @@ func _ready():
 	Globals.currentController = controller
 	
 	_on_player_tree_entered()
+	collider.shape.radius = Constants.BLOCK_SIZE*2
 	
 	Globals.player = self
 
