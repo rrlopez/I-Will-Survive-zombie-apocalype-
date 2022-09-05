@@ -30,8 +30,9 @@ func generateNavigationPolygon(block):
 	navPolygon.set_navigation_polygon(polygon)
 	navPolygon.enabled = false
 	navPolygon.enabled = true
-	
 	Globals.stateManager.removeOverlayState("loadingState")
+	Serialize.loadMap()
+	Globals.currentMap.emit_signal("onReady")
 
 func createNavigationBound(polygon):
 	var bounds = get_parent().get_child(0).shape.extents
@@ -46,7 +47,6 @@ func createNavigationBound(polygon):
 func createNavigationCuts(polygon):
 	for block in blocks:
 		var obstacles = Utils.findNodeDescendantsInGroup(block, 'obstacle')
-		#print(obstacles.size())
 		for obstacle in obstacles:
 			var newPolygon = PoolVector2Array()
 			var polygon_transform = obstacle.get_global_transform()

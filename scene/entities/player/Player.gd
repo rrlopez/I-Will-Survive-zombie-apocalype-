@@ -42,7 +42,7 @@ func _process(delta):
 
 func _physics_process(delta):
 	var motion = velocity.back().value.rotated(deg2rad(rotation_degrees))*data.stats.move_speed.val
-	move_and_slide((motion+applyedForce)*delta, Vector2.UP)
+	motion = move_and_slide((motion+applyedForce)*delta, Vector2.UP)
 
 
 func setupInventory():
@@ -53,7 +53,7 @@ func setupInventory():
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 
 func addCamera():
-	Globals.camera.attachTo(self, 1.5, 220)
+	Globals.camera.attachTo(self, 2, 220)
 	
 func hurt(dmg):
 	Factory.particles.createBlood(global_position, Color.red)

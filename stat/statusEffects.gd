@@ -31,4 +31,4 @@ func serialize():
 
 func deserialize(savedData):
 	val = savedData
-	for i in val.size(): val[i] = Factory.statusEffects.deserialize(val[i])
+	for i in val.size(): val[i] = Factory.statusEffects.deserialize(val[i], agent)

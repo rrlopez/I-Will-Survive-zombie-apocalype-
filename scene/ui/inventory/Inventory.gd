@@ -2,7 +2,7 @@ class_name Inventory extends Control
 
 export(String) var inventory_name
 export(String) var slot_scene_type = "slot" setget set_inventory_slot_scene_type
-export(float) var columns = 6
+export(int) var columns = 6
 export(int) var size = 0 setget set_inventory_size
 export(String) var slot_type = "" setget set_slot_type
 

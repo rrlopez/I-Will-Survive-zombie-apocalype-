@@ -55,7 +55,7 @@ func serialize(savedData):
 		},
 		"global_rotation_degrees": global_rotation_degrees,
 		"inventory": inventory.serialize(),
-		"data": data
+		"data": data,
 	})
 
 
@@ -64,6 +64,7 @@ func deserialize(savedData):
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
 	data = savedData.data
+	staticData = Factory.items.staticData[data.id]
 	
 	inventory = Utils.deserializeInventory(savedData.inventory)
 	

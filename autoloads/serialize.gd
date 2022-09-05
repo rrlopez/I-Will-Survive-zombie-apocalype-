@@ -4,7 +4,8 @@ signal dataSaved
 
 var defaultData = {
 	"player": null,
-	"others": []
+	"others": [],
+	"map": []
 }
 
 var thread_timer = Timer.new()
@@ -24,7 +25,7 @@ func saveGame():
 	thread.start(self, "saving", data)
 
 
-func saving(threadData):
+func saving(_threadData):
 	Globals.HUD.notifs.addNotif('saved...')
 	data = defaultData.duplicate(true)
 	
@@ -59,11 +60,22 @@ func loadGame():
 	save_game.open(filePath, File.READ)
 	var game_data = parse_json(save_game.get_as_text())
 	deserializeScene(game_data.player)
-	for data in game_data.others: deserializeScene(data)
+	for otherData in game_data.others: deserializeScene(otherData)
 	save_game.close()
+	
+	
+func loadMap():
+	var save_game = File.new()
+	if not save_game.file_exists(filePath):
+		return # Error! We don't have a save to load.
 
-
-func deserializeScene(data):
-	var new_object = load(data["filename"]).instance()
-	get_node(data["parent"]).add_child(new_object)
-	new_object.deserialize(data)
+	save_game.open(filePath, File.READ)
+	var game_data = parse_json(save_game.get_as_text())
+	for otherData in game_data.map: deserializeScene(otherData)
+	save_game.close()
+	
+	
+func deserializeScene(savedData):
+	var new_object = load(savedData["filename"]).instance()
+	get_node(savedData["parent"]).add_child(new_object)
+	new_object.deserialize(savedData)

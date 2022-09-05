@@ -3,7 +3,7 @@ extends ColorRect
 export(NodePath) onready var dayLabel = get_node(dayLabel) as Label
 
 func _ready():
-	yield(get_tree(),"idle_frame")
+	yield(get_tree(), "idle_frame")
 	Globals.dayNightCycle.connect("dayStarted", self, "setDay")
 
 func setDay(day):

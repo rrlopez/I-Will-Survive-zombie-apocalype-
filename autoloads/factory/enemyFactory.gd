@@ -49,8 +49,6 @@ func create(name, x, y, rotation):
 	Constants.rand.randomize()
 	enemy.data.growl = Constants.rand.randi_range(0, growl.size()-1)
 	
-	Globals.mapManager.enemies.add_child(enemy)
-	enemy.init()
 	return enemy
 	
 	

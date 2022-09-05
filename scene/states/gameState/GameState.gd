@@ -15,7 +15,6 @@ func _process(delta):
 
 func continueGame():
 	Serialize.loadGame()
-	Globals.player.addCamera()
 	
 
 func newGame():
@@ -32,7 +31,6 @@ func createNewHotbar():
 func createNewPlayer():
 	var playerScene = load("res://scene/entities/player/Player.tscn")
 	var player = playerScene.instance()
-	player.addCamera()
 	add_child(player)
 	player.init()
 	

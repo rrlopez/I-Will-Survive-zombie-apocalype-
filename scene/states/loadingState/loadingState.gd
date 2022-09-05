@@ -6,6 +6,7 @@ func _on_loadingState_tree_exiting():
 	yield(get_tree(),"idle_frame")
 
 
+
 func _on_loadingState_tree_entered():
 	get_tree().paused = true
 	Physics2DServer.set_active(true)

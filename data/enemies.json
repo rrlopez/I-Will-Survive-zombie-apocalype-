@@ -67,7 +67,7 @@
 									"stats":{
 										"duration": 200,
 										"modifiers": [
-											{"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "Movespeed", "amount": 0.5}}
+											{"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "Movespeed", "amount": 1.5}}
 										]
 									}
 								},

@@ -7,5 +7,5 @@ func _ready():
 	for x in Globals.currentMap.blocks.size():
 		for y in Globals.currentMap.blocks[x].size():
 			var map = load("res://scene/maps/maps/"+Globals.currentMap.blocks[x][y]+"/map.tscn").instance()
-			map.position = Vector2((x+xOffset)*(Constants.BLOCK_SIZE*2), (y+yOffset)*(Constants.BLOCK_SIZE*2))
+			map.position = Vector2((y+yOffset)*(Constants.BLOCK_SIZE*2), (x+xOffset)*(Constants.BLOCK_SIZE*2))
 			add_child(map)

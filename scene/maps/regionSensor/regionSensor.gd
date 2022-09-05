@@ -1,6 +1,7 @@
 extends Area2D
 
 export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
+
 var thread_timer = Timer.new()
 var blockName = "block3"
 var block
@@ -15,14 +16,14 @@ func _ready():
 	add_child(thread_timer)
 
 	
-func _on_regionSensor_area_entered(area):
+func _on_regionSensor_area_entered(_area):
 	if thread: return
 	Globals.loadingBlocksCount+=1
 	thread = Thread.new()
 	thread.start(self, "entered", "loading")
 
 
-func _on_regionSensor_area_exited(area):
+func _on_regionSensor_area_exited(_area):
 	if thread: return
 	thread = Thread.new()
 	thread.start(self, "leaved", "loading")

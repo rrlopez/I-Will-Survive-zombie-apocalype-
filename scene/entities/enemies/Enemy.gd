@@ -167,13 +167,11 @@ func serialize(savedData):
 	for stat in data.stats: 
 		serializedData.stats[stat] = data.stats[stat].serialize()
 	
-	var body = null
-
 	serializedData.attacks = []
 	for attack in attacks:
 		serializedData.attacks.append(attack.serialize())
 	
-	savedData.others.append(serializedData)
+	savedData.map.append(serializedData)
 
 
 

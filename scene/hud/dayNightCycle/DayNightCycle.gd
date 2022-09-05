@@ -2,7 +2,7 @@ extends CanvasModulate
 
 var time = 20
 var speed = 0.2
-var day = 1
+var lastDay = 1
 var waveCount = 0
 
 signal dayStarted
@@ -38,9 +38,9 @@ func day(_delta):
 
 
 func dayStarted():
-	day+=1
+	lastDay+=1
 	waveCount = 0
-	emit_signal("dayStarted", day)
+	emit_signal("dayStarted", lastDay)
 	
 	
 func spawnEnemyWave():
@@ -50,6 +50,8 @@ func spawnEnemyWave():
 		Constants.rand.randomize()
 		var position = Globals.player.global_position + Vector2.UP.rotated(Constants.rand.randi_range(-360, 360))* Constants.rand.randi_range(Constants.WIDTH, Constants.WIDTH*1.7)
 		var enemy = Factory.enemies.create('normal', position.x, position.y, 0)
+		Globals.mapManager.enemies.add_child(enemy)
+		enemy.init()
 		enemy.behavior = "chase"
 
 
@@ -60,7 +62,7 @@ func serialize(savedData):
 		"parent" : get_parent().get_path(),
 		"time":time,
 		"speed": speed,
-		"day": day,
+		"lastDay": lastDay,
 		"waveCount": waveCount,
 	})
 
@@ -69,6 +71,6 @@ func serialize(savedData):
 func deserialize(savedData):
 	time = savedData.time
 	speed = savedData.speed
-	day = savedData.day
+	lastDay = savedData.lastDay
 	waveCount = savedData.waveCount
 	init()

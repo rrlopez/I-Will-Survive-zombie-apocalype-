@@ -49,4 +49,5 @@ func deserialize(savedData):
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
 	data = savedData.data
+	staticData = Factory.items.staticData[data.id]
 	
