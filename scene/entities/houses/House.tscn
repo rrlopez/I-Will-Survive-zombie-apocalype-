@@ -11,7 +11,7 @@ resource_local_to_scene = true
 extents = Vector2( 1171.5, 1012.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 350, 544 )
+extents = Vector2( 608, 525.5 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "tilemap.png 0"
@@ -742,6 +742,7 @@ __meta__ = {
 }
 
 [node name="Roof" type="Node2D" parent="lot/House"]
+visible = false
 z_index = 100
 z_as_relative = false
 script = ExtResource( 5 )

@@ -742,6 +742,7 @@ __meta__ = {
 }
 
 [node name="Roof" type="Node2D" parent="lot/House"]
+visible = false
 z_index = 100
 z_as_relative = false
 script = ExtResource( 3 )
