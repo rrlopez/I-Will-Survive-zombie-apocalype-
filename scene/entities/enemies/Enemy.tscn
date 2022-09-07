@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/entities/enemies/hitBox.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
@@ -19,6 +19,9 @@ radius = 0.01
 [sub_resource type="CircleShape2D" id=12]
 resource_local_to_scene = true
 custom_solver_bias = 1.0
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id=13]
 radius = 1.0
 
 [node name="Enemy" type="KinematicBody2D"]
@@ -79,9 +82,6 @@ collision_mask = 2
 [node name="Collider" type="CollisionShape2D" parent="bodySensor"]
 shape = SubResource( 9 )
 
-[node name="SoundGrowl" type="AudioStreamPlayer2D" parent="."]
-max_distance = 500.0
-
 [node name="BlockerSensor" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 4
@@ -97,6 +97,16 @@ collider = NodePath("Collider")
 [node name="Collider" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource( 12 )
 
+[node name="area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8192
+
+[node name="collider" type="CollisionShape2D" parent="area"]
+shape = SubResource( 13 )
+
+[node name="SoundGrowl" type="AudioStreamPlayer2D" parent="."]
+max_distance = 500.0
+
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
 [connection signal="body_entered" from="Sense" to="." method="_on_View_body_entered"]
@@ -105,3 +115,4 @@ shape = SubResource( 12 )
 [connection signal="body_entered" from="BlockerSensor" to="." method="_on_BlockerSensor_body_entered"]
 [connection signal="body_entered" from="hitBox" to="hitBox" method="_on_hitBox_body_entered"]
 [connection signal="body_exited" from="hitBox" to="hitBox" method="_on_hitBox_body_exited"]
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

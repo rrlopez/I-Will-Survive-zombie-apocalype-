@@ -5,7 +5,9 @@ signal dataSaved
 var defaultData = {
 	"player": null,
 	"others": [],
-	"map": []
+	"map": [],
+	"updateOnly": [],
+	"regions": {}
 }
 
 var thread_timer = Timer.new()
@@ -28,6 +30,7 @@ func saveGame():
 func saving(_threadData):
 	Globals.HUD.notifs.addNotif('saved...')
 	data = defaultData.duplicate(true)
+	if Globals.curRegion: data.regions[Globals.curRegion.name] = []
 	
 	var serializables = get_tree().get_nodes_in_group('serializable')
 	for node in serializables: node.serialize(data)
@@ -59,8 +62,9 @@ func loadGame():
 
 	save_game.open(filePath, File.READ)
 	var game_data = parse_json(save_game.get_as_text())
-	deserializeScene(game_data.player)
-	for otherData in game_data.others: deserializeScene(otherData)
+	createAndDeserializeScene(game_data.player)
+	for otherData in game_data.others: createAndDeserializeScene(otherData)
+	defaultData.regions = game_data.regions
 	save_game.close()
 	
 	
@@ -71,11 +75,18 @@ func loadMap():
 
 	save_game.open(filePath, File.READ)
 	var game_data = parse_json(save_game.get_as_text())
-	for otherData in game_data.map: deserializeScene(otherData)
+	for otherData in game_data.map: createAndDeserializeScene(otherData)
+	for updateOnlyData in game_data.updateOnly: deserializeScene(updateOnlyData)
 	save_game.close()
+
+func loadRegion(name):
+	if defaultData.regions.has(name):
+		for otherData in defaultData.regions[name]: createAndDeserializeScene(otherData)
 	
-	
-func deserializeScene(savedData):
+func createAndDeserializeScene(savedData):
 	var new_object = load(savedData["filename"]).instance()
 	get_node(savedData["parent"]).add_child(new_object)
 	new_object.deserialize(savedData)
+	
+func deserializeScene(savedData):
+	get_node(savedData["path"]).deserialize(savedData)

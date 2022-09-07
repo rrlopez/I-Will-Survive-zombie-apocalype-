@@ -17,6 +17,7 @@ var blocks = [
 	["bot2_left2", "bot2_left1", "bot2", "bot2_right1", "bot2_right2"],
 ]
 
+
 func _ready():
 	collider.shape.extents = Vector2(blocks.size()*Constants.BLOCK_SIZE, blocks[0].size()*Constants.BLOCK_SIZE)
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
@@ -29,6 +30,7 @@ func _ready():
 			var region = regionScene.instance()
 			region.position = Vector2((x+xOffset)*(Constants.BLOCK_SIZE*2), (y+yOffset)*(Constants.BLOCK_SIZE*2))
 			region.blockName = blocks[x][y]
+			region.set_name(blocks[x][y])
 			regions.add_child(region)
 
 func init():

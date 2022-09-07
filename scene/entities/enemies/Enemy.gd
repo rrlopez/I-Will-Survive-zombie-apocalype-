@@ -35,6 +35,7 @@ func init():
 	
 	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
 	
+		
 func _physics_process(delta):
 	process(delta)
 	velocity = move_and_slide((applyedForce+velocity)*delta)
@@ -185,3 +186,12 @@ func deserialize(savedData):
 	
 	statusEffects.deserialize(savedData.statusEffects)
 	
+
+func _on_area_area_entered(area):
+	return
+	if(velocity.length()>1):
+		var parent = get_parent()
+		parent.remove_child(self)
+		Globals.mapManager.add_child(self)
+		position = position + parent.global_position
+		$area.disconnect("area_entered", self, "_on_area_area_entered")

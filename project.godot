@@ -598,6 +598,11 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_11="slot"
 2d_physics/layer_12="item"
 2d_physics/layer_13="regionSensor"
+2d_physics/layer_14="blockSensor"
+
+[memory]
+
+limits/multithreaded_server/rid_pool_prealloc=120
 
 [physics]
 

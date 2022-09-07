@@ -675,7 +675,7 @@ points = PoolVector2Array( 64, 0, 64, 31.9607, 46.8981, 32.0521, 47.233, 16.9817
 
 [node name="building" type="Node2D"]
 
-[node name="lot" type="Area2D" parent="."]
+[node name="lot" type="Area2D" parent="." groups=["serializable"]]
 collision_layer = 16
 script = ExtResource( 3 )
 enemies = NodePath("../enemies")

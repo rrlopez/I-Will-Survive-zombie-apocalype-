@@ -45,4 +45,18 @@ func _on_visibility_screen_entered():
 func _on_visibility_screen_exited():
 	Globals.dayNightCycle.disconnect("dayStarted", self, "spawnEnemies")
 	hide()
+	
 
+
+func serialize(savedData):
+	var serializedData = {
+		"path" : get_path(),
+		"day": day
+	}
+	
+	savedData.updateOnly.append(serializedData)
+
+
+
+func deserialize(savedData):
+	day = savedData.day

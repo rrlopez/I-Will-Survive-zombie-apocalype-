@@ -9,7 +9,6 @@ var enable = true
 
 func build(new_itemData):
 	itemData = new_itemData
-	print(itemData)
 	Globals.inventoryManager.hide()
 	position = Vector2(0, -(50+itemData.size.y/2))
 	sprite.rect_position = Vector2(-itemData.size.x/2, -itemData.size.y/2)
