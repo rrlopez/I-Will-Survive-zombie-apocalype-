@@ -20,8 +20,8 @@
 				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
 			},
 			"drops":[
-				{ "name": "machine gun ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80},
-				{ "name": "bandage", "quantity": {"min": 1, "max": 2}, "rarity": 80}
+				{ "name": "machine gun ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80, "life": 20},
+				{ "name": "bandage", "quantity": {"min": 1, "max": 2}, "rarity": 80, "life": 20}
 			],
 			"attacks": [
 				{"script": "melle", "statusEffects":[]}
@@ -49,8 +49,8 @@
 				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 100}, "multiplier": 0}
 			},
 			"drops":[
-				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80},
-				{ "name": "riffle ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80}
+				{ "name": "bread", "quantity": {"min": 1, "max": 10}, "rarity": 80, "life": 20},
+				{ "name": "riffle ammo", "quantity": {"min": 1, "max": 2}, "rarity": 80, "life": 20}
 			],
 			"attacks": [
 				{

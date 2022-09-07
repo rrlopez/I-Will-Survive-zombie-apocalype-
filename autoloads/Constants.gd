@@ -42,3 +42,4 @@ var labelType = [
 	load("res://scene/ui/items/itemInfo/labelType2.tscn"),
 ]
 	
+var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")

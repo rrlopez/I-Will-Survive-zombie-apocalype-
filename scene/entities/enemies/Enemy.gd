@@ -69,7 +69,8 @@ func hurt(_opponent, dmg):
 	return false
 
 func dead():
-	Globals.mapManager.spawnDropItems(data.drops, global_position)
+	for drop in Globals.mapManager.spawnDropItems(data.drops, global_position):
+		 Globals.mapManager.add_child(drop)
 	queue_free()
 	
 func healthStatCallback(health):
@@ -188,7 +189,6 @@ func deserialize(savedData):
 	
 
 func _on_area_area_entered(area):
-	return
 	if(velocity.length()>1):
 		var parent = get_parent()
 		parent.remove_child(self)

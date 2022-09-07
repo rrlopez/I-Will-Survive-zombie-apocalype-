@@ -53,7 +53,7 @@ func setupInventory():
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 
 func addCamera():
-	Globals.camera.attachTo(self, 2, 220)
+	Globals.camera.attachTo(self, 1.7, 220)
 	
 func hurt(dmg):
 	Factory.particles.createBlood(global_position, Color.red)

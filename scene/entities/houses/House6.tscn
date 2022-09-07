@@ -679,6 +679,7 @@ points = PoolVector2Array( 64, 0, 64, 31.9607, 46.8981, 32.0521, 47.233, 16.9817
 collision_layer = 16
 script = ExtResource( 1 )
 enemies = NodePath("../enemies")
+loots = NodePath("loots")
 
 [node name="Collider" type="CollisionShape2D" parent="lot"]
 shape = SubResource( 30 )
@@ -780,6 +781,8 @@ expand = true
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="loots" type="Node2D" parent="lot"]
 
 [node name="enemies" type="Node2D" parent="."]
 

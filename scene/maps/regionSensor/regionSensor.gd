@@ -4,7 +4,6 @@ export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider = get_node(areaCollider) as CollisionShape2D
 
 var thread_timer = Timer.new()
-var blockName = "block3"
 var block
 var thread
 
@@ -34,7 +33,7 @@ func _on_regionSensor_area_exited(_area):
 
 func entered(_userdata):
 	if !block: 
-		block = load("res://scene/maps/maps/"+blockName+"/block.tscn").instance()
+		block = load("res://scene/maps/maps/"+name+"/block.tscn").instance()
 		self.call_deferred("add_child", block)
 		Serialize.call_deferred("loadRegion", name)
 		Globals.currentMap.navigation.generateNavigationPolygon(block)

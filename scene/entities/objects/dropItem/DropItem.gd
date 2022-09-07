@@ -16,9 +16,10 @@ func _ready():
 	Constants.rand.randomize()
 	angular_velocity = Constants.rand.randi_range(-7, 7)
 	
-func init(name, position):
+func init(_data, position):
 	global_position = position
-	data = Factory.items.staticData[name]
+	data = Factory.items.staticData[_data.name]
+	life = _data.life
 	data.quantity = 0
 
 func _process(delta):

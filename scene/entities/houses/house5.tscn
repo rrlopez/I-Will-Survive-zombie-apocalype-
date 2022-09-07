@@ -837,6 +837,7 @@ points = PoolVector2Array( 64, 0, 64, 31.9607, 46.8981, 32.0521, 47.233, 16.9817
 collision_layer = 16
 script = ExtResource( 1 )
 enemies = NodePath("../enemies")
+loots = NodePath("loots")
 
 [node name="Collider" type="CollisionShape2D" parent="lot"]
 position = Vector2( -23.5, -4.5 )
@@ -981,6 +982,8 @@ __meta__ = {
 
 [node name="Tree3" parent="lot" instance=ExtResource( 6 )]
 position = Vector2( -522, -759 )
+
+[node name="loots" type="Node2D" parent="lot"]
 
 [node name="enemies" type="Node2D" parent="."]
 

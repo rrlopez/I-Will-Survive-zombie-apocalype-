@@ -2,7 +2,6 @@ extends Node2D
 
 onready var currentMapScene = preload("res://scene/maps/world.tscn")
 onready	var soundScene = load("res://scene/entities/objects/sound/Sound.tscn")
-onready var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
 onready var CameraScene = preload("res://scene/entities/objects/camera/Camera.tscn")
 
 export(NodePath) onready var enemies  = get_node(enemies) as Node2D
@@ -24,20 +23,22 @@ func spawnSound(origin, scale = 100):
 	add_child(sound) 
 
 
-func spawnDropItems(items, position):
+func spawnDropItems(items, position=Vector2.ZERO):
+	var drops = []
 	for item in items: 
 		Constants.rand.randomize()
 		if Constants.rand.randi()%100<item.rarity: 
 			Constants.rand.randomize()
 			item.quantity = Constants.rand.randi_range(item.quantity.min, item.quantity.max)
-			createItem(item, position)
+			createItem(drops, item, position)
+	return drops
 
-func createItem(item, position):
-	var dropItem = dropItemScene.instance()
-	dropItem.init(item.name, position)
+func createItem(drops, item, position):
+	var dropItem = Constants.dropItemScene.instance()
+	dropItem.init(item, position)
 	item.quantity = dropItem.add_item_quantity(item.quantity)
-	add_child(dropItem)
-	if item.quantity > 0: createItem(item, position)
+	drops.append(dropItem)
+	if item.quantity > 0: createItem(drops, item, position)
 
 
 func spawnRays(width, height):
