@@ -10,8 +10,8 @@
 resource_local_to_scene = true
 extents = Vector2( 1171.5, 1012.5 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 350, 544 )
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 601, 438 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "tilemap.png 0"
@@ -680,6 +680,7 @@ collision_layer = 16
 script = ExtResource( 3 )
 enemies = NodePath("../enemies")
 loots = NodePath("loots")
+objects = NodePath("objects")
 
 [node name="Collider" type="CollisionShape2D" parent="lot"]
 position = Vector2( 107.5, 168 )
@@ -694,14 +695,13 @@ scale = Vector2( 91.85, 73.6 )
 
 [node name="House" type="Area2D" parent="lot"]
 collision_layer = 132
-collision_mask = 129
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Collider" type="CollisionShape2D" parent="lot/House"]
-position = Vector2( 92, 196 )
-shape = SubResource( 3 )
+[node name="collider" type="CollisionShape2D" parent="lot/House"]
+position = Vector2( 98, 186 )
+shape = SubResource( 30 )
 
 [node name="Floors" type="TileMap" parent="lot/House"]
 tile_set = SubResource( 2 )
@@ -788,6 +788,8 @@ texture = ExtResource( 4 )
 expand = true
 
 [node name="loots" type="Node2D" parent="lot"]
+
+[node name="objects" type="Node2D" parent="lot"]
 
 [node name="enemies" type="Node2D" parent="."]
 

@@ -28,7 +28,11 @@ func _on_CancelBtn_pressed():
 func _on_PlaceBtn_pressed():
 	if(!enable): return
 	var item = Factory.placables.create(itemData, global_position, Globals.player.rotation_degrees)
-	Globals.mapManager.add_child(item)
+	if Globals.curHouse: 
+		Globals.curHouse.objects.add_child(item)
+		item.position = global_position - Globals.curHouse.global_position
+	else: Globals.mapManager.add_child(item)
+	item.init()
 	_on_CancelBtn_pressed()
 
 

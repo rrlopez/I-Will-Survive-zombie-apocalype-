@@ -17,7 +17,7 @@ func _on_map_tree_entered():
 	get_tree().paused = true
 	yield(get_tree(), "idle_frame")
 	playerMark.global_position = Vector2(Globals.player.global_position)
-	playerMark.rotation_degrees = Globals.player.rotation_degrees
+	playerMark.global_rotation_degrees = Globals.player.global_rotation_degrees
 	setCameraPosition(playerMark.global_position)
 	
 func setCameraPosition(position):

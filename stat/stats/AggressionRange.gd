@@ -10,7 +10,7 @@ func recompute():
 	
 func update():
 	agent.sense.shape.radius = val
-	agent.blockerSensor.shape.radius = val
+	agent.blockerSensor.cast_to = Vector2(val*2, 0)
 
 	
 func deserialize(savedData):

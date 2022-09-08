@@ -31,8 +31,8 @@ func generateNavigationPolygon(block):
 	navPolygon.enabled = false
 	navPolygon.enabled = true
 	Globals.stateManager.removeOverlayState("loadingState")
-	Serialize.loadMap()
 	Globals.currentMap.emit_signal("onReady")
+	Serialize.loadMap()
 
 func createNavigationBound(polygon):
 	var bounds = get_parent().get_child(0).shape.extents

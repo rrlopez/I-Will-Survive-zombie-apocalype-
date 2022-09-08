@@ -34,8 +34,7 @@ func _on_regionSensor_area_exited(_area):
 func entered(_userdata):
 	if !block: 
 		block = load("res://scene/maps/maps/"+name+"/block.tscn").instance()
-		self.call_deferred("add_child", block)
-		Serialize.call_deferred("loadRegion", name)
+		self.call_deferred("loadBlock", block)
 		Globals.currentMap.navigation.generateNavigationPolygon(block)
 	else:
 		self.call_deferred("add_child", block)
@@ -47,6 +46,20 @@ func leaved(_userdata):
 	self.call_deferred("remove_child", block)
 	thread_timer.call_deferred("start")
 	collider.shape.radius = 50
+
+
+func loadBlock(block):
+	add_child(block)
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	Serialize.loadRegion(name)
 	
 func loadingDone():
 	thread.wait_to_finish()

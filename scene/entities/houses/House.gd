@@ -2,6 +2,7 @@ extends Area2D
 
 export(NodePath) onready var enemies  = get_node(enemies) as Node2D
 export(NodePath) onready var loots  = get_node(loots) as Node2D
+export(NodePath) onready var objects  = get_node(objects) as Node2D
 
 var day
 var totalEnemy = 0
@@ -24,7 +25,7 @@ func init():
 
 
 func spawner(_day=0):
-	if day == _day: return
+	if day == _day || objects.get_child_count()>data.capacity: return
 	day = _day
 	spawnEnemies(_day)
 	spawnLoots(_day)
@@ -66,15 +67,22 @@ func _on_visibility_screen_exited():
 	
 
 
+func _on_House_body_entered(body):
+	Globals.curHouse = self
+
+
+func _on_House_body_exited(body):
+	if Globals.curHouse == self: Globals.curHouse = null
+
+
+
 func serialize(savedData):
-	var serializedData = {
+	savedData.updateOnly.append({
 		"path" : get_path(),
 		"day": day
-	}
-	
-	savedData.updateOnly.append(serializedData)
-
+	})
 
 
 func deserialize(savedData):
 	day = savedData.day
+

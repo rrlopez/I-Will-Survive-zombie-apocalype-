@@ -8,7 +8,7 @@
 
 [node name="Placable" type="Area2D"]
 collision_layer = 16
-collision_mask = 6
+collision_mask = 38
 script = ExtResource( 2 )
 controller = NodePath("Controller")
 collider = NodePath("Collider")

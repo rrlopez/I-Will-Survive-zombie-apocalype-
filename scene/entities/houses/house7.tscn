@@ -680,6 +680,7 @@ collision_layer = 16
 script = ExtResource( 1 )
 enemies = NodePath("../enemies")
 loots = NodePath("loots")
+objects = NodePath("objects")
 
 [node name="Collider" type="CollisionShape2D" parent="lot"]
 position = Vector2( 0, -14.75 )
@@ -794,6 +795,8 @@ __meta__ = {
 }
 
 [node name="loots" type="Node2D" parent="lot"]
+
+[node name="objects" type="Node2D" parent="lot"]
 
 [node name="enemies" type="Node2D" parent="."]
 

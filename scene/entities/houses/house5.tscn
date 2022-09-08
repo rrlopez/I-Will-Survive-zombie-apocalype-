@@ -11,7 +11,7 @@
 extents = Vector2( 770.5, 977.5 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 350, 539.5 )
+extents = Vector2( 427, 621 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "tilemap.png 0"
@@ -42,6 +42,20 @@ extents = Vector2( 350, 539.5 )
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
+3/name = "tilemap.png 3"
+3/texture = ExtResource( 3 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 512, 0, 64, 64 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 points = PoolVector2Array( 0, 0, 0.000427246, 0.000419617, 64, 0, 64, 17.2104, 17.6174, 17.1733, 16.7453, 64, 0, 64 )
@@ -838,6 +852,7 @@ collision_layer = 16
 script = ExtResource( 1 )
 enemies = NodePath("../enemies")
 loots = NodePath("loots")
+objects = NodePath("objects")
 
 [node name="Collider" type="CollisionShape2D" parent="lot"]
 position = Vector2( -23.5, -4.5 )
@@ -852,12 +867,12 @@ scale = Vector2( 76.45, 98.3 )
 
 [node name="House" type="Area2D" parent="lot"]
 collision_layer = 132
-collision_mask = 129
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Collider" type="CollisionShape2D" parent="lot/House"]
+position = Vector2( -31, 44 )
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -985,7 +1000,11 @@ position = Vector2( -522, -759 )
 
 [node name="loots" type="Node2D" parent="lot"]
 
+[node name="objects" type="Node2D" parent="lot"]
+
 [node name="enemies" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="lot" to="lot/House/Roof" method="_on_lot_body_entered"]
 [connection signal="body_exited" from="lot" to="lot/House/Roof" method="_on_lot_body_exited"]
+[connection signal="body_entered" from="lot/House" to="lot" method="_on_House_body_entered"]
+[connection signal="body_exited" from="lot/House" to="lot" method="_on_House_body_exited"]

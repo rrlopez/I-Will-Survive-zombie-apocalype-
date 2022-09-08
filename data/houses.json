@@ -2,9 +2,10 @@
   {
     "id": "normal",
     "name": "Normal",
+    "capacity": 10,
     "enemies": [
-      {"type": "normal", "count": 10},
-      {"type": "charger", "count": 10}
+      {"type": "normal", "count": 1},
+      {"type": "charger", "count": 0}
     ],
     "loots":[
       { "name": "machine gun ammo", "quantity": {"min": 1, "max": 2}, "rarity": 100, "life": 500},

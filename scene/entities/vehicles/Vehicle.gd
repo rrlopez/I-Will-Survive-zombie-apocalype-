@@ -37,6 +37,7 @@ func _ready():
 	controller.connect("use_rotateArea_released", self, "_on_Controller_use_rotateArea_released")
 	
 	
+	
 func _physics_process(delta):
 	if(isMaunted || velocity.length()>0):
 		acceleration = Vector2.ZERO
@@ -142,3 +143,12 @@ func hurt(_opponen, _dmg):
 
 func _on_Bumper_body_entered(_body):
 	pass # Replace with function body.
+
+
+func _on_area_area_entered(area):
+	if velocity.length()>1:
+		var parent = self.get_parent()
+		parent.remove_child(self)
+		Globals.mapManager.add_child(self)
+		position = position + parent.global_position
+		$area.disconnect("area_entered", self, "_on_area_area_entered")

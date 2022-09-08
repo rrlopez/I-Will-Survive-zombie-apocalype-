@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/entities/enemies/hitBox.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
@@ -11,9 +11,6 @@ radius = 24.0832
 radius = 65.0077
 
 [sub_resource type="CircleShape2D" id=9]
-radius = 0.01
-
-[sub_resource type="CircleShape2D" id=10]
 radius = 0.01
 
 [sub_resource type="CircleShape2D" id=12]
@@ -32,7 +29,7 @@ script = ExtResource( 2 )
 vision = NodePath("Vision")
 collider = NodePath("Collider")
 sense = NodePath("Sense/Collider")
-blockerSensor = NodePath("bodySensor/Collider")
+blockerSensor = NodePath("blockerSensor")
 soundGrowl = NodePath("SoundGrowl")
 hitBox = NodePath("hitBox")
 
@@ -75,6 +72,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="blockerSensor" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 4
+
 [node name="bodySensor" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 2
@@ -82,15 +83,9 @@ collision_mask = 2
 [node name="Collider" type="CollisionShape2D" parent="bodySensor"]
 shape = SubResource( 9 )
 
-[node name="BlockerSensor" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 4
-
-[node name="Collider" type="CollisionShape2D" parent="BlockerSensor"]
-shape = SubResource( 10 )
-
 [node name="hitBox" type="Area2D" parent="."]
 collision_layer = 16
+collision_mask = 5
 script = ExtResource( 1 )
 collider = NodePath("Collider")
 
@@ -112,7 +107,6 @@ max_distance = 500.0
 [connection signal="body_entered" from="Sense" to="." method="_on_View_body_entered"]
 [connection signal="body_exited" from="Sense" to="." method="_on_View_body_exited"]
 [connection signal="body_entered" from="bodySensor" to="." method="_on_bodySensor_body_entered"]
-[connection signal="body_entered" from="BlockerSensor" to="." method="_on_BlockerSensor_body_entered"]
 [connection signal="body_entered" from="hitBox" to="hitBox" method="_on_hitBox_body_entered"]
 [connection signal="body_exited" from="hitBox" to="hitBox" method="_on_hitBox_body_exited"]
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

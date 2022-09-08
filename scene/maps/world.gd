@@ -28,7 +28,7 @@ func _ready():
 	for x in blocks.size():
 		for y in blocks[x].size():
 			var region = regionScene.instance()
-			region.position = Vector2((x+xOffset)*(Constants.BLOCK_SIZE*2), (y+yOffset)*(Constants.BLOCK_SIZE*2))
+			region.position = Vector2((y+yOffset)*(Constants.BLOCK_SIZE*2), (x+xOffset)*(Constants.BLOCK_SIZE*2))
 			region.set_name(blocks[x][y])
 			regions.add_child(region)
 

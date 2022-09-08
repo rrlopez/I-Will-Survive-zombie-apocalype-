@@ -7,13 +7,14 @@ var minBlockTime = 0.5
 var blockedTime = 0
 
 func run(delta):
-	if agent.blocker && agent.global_position.distance_to(last_position)<1:
+	if agent.opponent.size()<2 and agent.global_position.distance_to(last_position)<1:
 		blockedTime+=delta
-		if blockedTime>minBlockTime: 
-			agent.opponent.push_front(agent.blocker)
-			last_position = Vector2.ZERO
-			blockedTime = 0
-			return success()
+		if blockedTime>minBlockTime:
+			if(agent.blockerSensor.is_colliding()): 
+				agent.opponent.push_front(agent.blockerSensor.get_collider())
+				last_position = Vector2.ZERO
+				blockedTime = 0
+				return success()
 	last_position = agent.global_position
 	return fail()
 	

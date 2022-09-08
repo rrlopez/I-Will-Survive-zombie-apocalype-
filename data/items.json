@@ -83,6 +83,11 @@
           { "name": "crafting table", "quantity": 1}
         ]
       }
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
     }
   },
   {

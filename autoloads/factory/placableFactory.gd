@@ -14,7 +14,7 @@ func data(name):
 func create(staticData, position, rotation):
 	var placable = placesables[staticData.placable_type].instance()
 	placable.staticData = staticData
-	placable.data = Factory.items.dynamicData[staticData.id]
+	placable.data = Factory.items.dynamicData[staticData.id].duplicate(true)
 	placable.global_position = position
 	placable.rotation_degrees = rotation
 	return placable

@@ -3,7 +3,7 @@ class_name Enemy extends Entity
 export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var sense  = get_node(sense) as CollisionShape2D
-export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as CollisionShape2D
+export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 
@@ -12,7 +12,6 @@ var body = null
 var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
 
-var blocker = null
 var opponent = []
 var behavior = null setget setBehavior
 
@@ -146,8 +145,13 @@ func _on_bodySensor_body_entered(_opponent):
 	if(!opponent.empty() and _opponent.opponent.empty()): _opponent._on_View_body_entered(opponent[0])
 
 
-func _on_BlockerSensor_body_entered(object):
-	blocker = object
+func _on_area_area_entered(area):
+	if(velocity.length()>1):
+		var parent = get_parent()
+		parent.remove_child(self)
+		Globals.mapManager.add_child(self)
+		position = position + parent.global_position
+		$area.disconnect("area_entered", self, "_on_area_area_entered")
 
 
 
@@ -186,12 +190,3 @@ func deserialize(savedData):
 	for stat in data.stats: data.stats[stat].deserialize(savedData.stats[stat])
 	
 	statusEffects.deserialize(savedData.statusEffects)
-	
-
-func _on_area_area_entered(area):
-	if(velocity.length()>1):
-		var parent = get_parent()
-		parent.remove_child(self)
-		Globals.mapManager.add_child(self)
-		position = position + parent.global_position
-		$area.disconnect("area_entered", self, "_on_area_area_entered")

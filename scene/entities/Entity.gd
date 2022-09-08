@@ -9,7 +9,6 @@ func _ready():
 	pass
 
 func init():
-	#position = position + get_parent().global_position
 	statusEffects = StatusEffects.new(self)
 	for stat in data.stats:
 		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)

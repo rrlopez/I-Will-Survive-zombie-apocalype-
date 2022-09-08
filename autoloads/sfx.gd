@@ -11,7 +11,6 @@ func _ready():
 		soundEffects[file.get_basename()] = load("res://assets/sfx/"+file)
 
 func play(type):
-	print(type)
 	if(curType!=type):
 		curType = type
 		soundEffect.stream = soundEffects[type]
