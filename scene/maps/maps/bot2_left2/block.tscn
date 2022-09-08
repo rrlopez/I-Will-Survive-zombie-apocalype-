@@ -3,7 +3,7 @@
 [ext_resource path="res://scene/maps/maps/center/buildings.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scene/maps/maps/bot2_left2/map.tscn" type="PackedScene" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="block" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource( 2 )]
 

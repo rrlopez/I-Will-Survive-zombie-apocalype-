@@ -103,6 +103,11 @@
         "x": 88,
         "y": 88
       }
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
     }
   },
   {

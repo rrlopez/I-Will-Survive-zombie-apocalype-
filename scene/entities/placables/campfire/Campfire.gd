@@ -1,19 +1,13 @@
-extends StaticBody2D
+extends Placesable
 
-export(NodePath) onready var sprite  = get_node(sprite) as TextureRect
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider  = get_node(areaCollider) as CollisionShape2D
 export(NodePath) onready var light  = get_node(light) as Light2D
 export(NodePath) onready var buttons  = get_node(buttons) as Node2D
 
-var staticData = null
-var data = null
-
-func _ready():
+func init():
+	.init()
 	yield(get_tree(), "idle_frame")
-	sprite.rect_position = Vector2(-staticData.size.x/2, -staticData.size.y/2)
-	sprite.rect_min_size = Vector2(staticData.size.x, staticData.size.y)
-	sprite.texture = Factory.items.itemObjectTexture[staticData.id]
 	collider.shape.radius = staticData.size.x/2
 	areaCollider.shape.radius = collider.shape.radius + 10
 
@@ -32,22 +26,10 @@ func _on_removeBtn_pressed():
 
 
 func serialize(savedData): 
-	savedData.others.append({
-		"filename" : get_filename(),
-		"parent" : get_parent().get_path(),
-		"global_position":{
-			"x": global_position.x,
-			"y": global_position.y
-		},
-		"global_rotation_degrees": global_rotation_degrees,
-		"data": data
-	})
+	savedData.others.append(.serialize(savedData))
 
 
 
 func deserialize(savedData):
-	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
-	global_rotation_degrees = savedData.global_rotation_degrees
-	data = savedData.data
-	staticData = Factory.items.staticData[data.id]
+	.deserialize(savedData)
 	
