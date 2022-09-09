@@ -4,12 +4,15 @@ extends Node2D
 func _on_CraftBtn_pressed():
 	if(Globals.HUD.craftPanel.visible): 
 		Globals.HUD.craftPanel.close()
+		Globals.HUD.hotBarContainer.rect_position = Vector2(610, 12)
 	else:
+		Globals.HUD.hotBarContainer.rect_position = Vector2(350, 29)
 		Globals.player.placable.hide()
 		Globals.HUD.inventoryPanel.hide()
 		Globals.HUD.craftPanel.clear_inventory()
 		Globals.HUD.craftPanel.label.text = "Blueprints"
-		Globals.HUD.craftPanel.add_inventory(Globals.player.craftInventory)
+		Globals.HUD.craftPanel.add_inventory(Globals.player.placableInventory)
+		Globals.HUD.craftPanel.add_inventory(Globals.player.craftableInventory)
 		Globals.HUD.craftPanel.show()
 
 

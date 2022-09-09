@@ -21,16 +21,26 @@
       { "name": "stone", "quantity": 2},
       { "name": "cloth", "quantity": 2},
       { "name": "gasoline", "quantity": 2},
+      { "name": "alcohol", "quantity": 2},
       { "name": "torch", "quantity": 1}
     ]
   },
-  "craft_inventory": {
-    "name": "Craftables",
+  "placable_inventory": {
+    "name": "Placables",
     "slot_type": "craft",
-    "size": 36,
+    "size": 24,
     "items": [
       { "name": "crafting table", "quantity": 1},
       { "name": "campfire", "quantity": 1}
+    ]
+  },
+  "craftable_inventory": {
+    "name": "Craftables",
+    "slot_type": "craft",
+    "size": 24,
+    "items": [
+      { "name": "torch", "quantity": 1, "type": "craftable"},
+      { "name": "bandage", "quantity": 1, "type": "craftable"}
     ]
   }
 }

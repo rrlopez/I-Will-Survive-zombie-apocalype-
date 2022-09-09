@@ -33,12 +33,8 @@ func _ready():
 	
 func _on_inventory_ready(inventory):
 	inventories.append(inventory)
-	if inventory.slot_type == 'hotbar':
-		for slot in inventory.slots:
-			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
-	else:
-		for slot in inventory.slots:
-			slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
+	for slot in inventory.slots:
+		slot.connect("gui_input", self, "_on_gui_input_slot", [slot])
 		
 func _unhandled_input(event):
 	if event is InputEventScreenTouch and event.is_pressed():
@@ -55,7 +51,7 @@ func _input(event:InputEvent):
 		if event is InputEventScreenTouch and panelPressed == event.index and !event.is_pressed():
 			item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_IGNORE
 			if(cur_slot): 
-				if item_in_hand.staticData.has("equipment_type") and (cur_slot.type or item_in_hand.staticData.equipment_type == "craft") and item_in_hand.staticData.equipment_type != cur_slot.type: 
+				if item_in_hand.staticData.has("equipment_type") and (cur_slot.type) and  item_in_hand.staticData.equipment_type != cur_slot.type: 
 					item_in_hand_node.remove_child(item_in_hand)
 					prev_slot.put_item(item_in_hand)
 					item_in_hand = null
@@ -66,7 +62,7 @@ func _input(event:InputEvent):
 				item_in_hand = null
 			prev_slot.emitItemChanged()
 			prev_slot = null
-	elif clickPosition and event is InputEventScreenDrag and event.position.distance_to(clickPosition)>10: 
+	elif clickPosition  and event is InputEventScreenDrag and prev_slot.item.name!= "craft" and event.position.distance_to(clickPosition)>10: 
 		item_in_hand_node.mouse_filter = item_in_hand_node.MOUSE_FILTER_STOP
 		timer.stop()
 		clickPosition = null

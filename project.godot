@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Craft_inventory.gd"
 }, {
+"base": "Item",
+"class": "CraftableItem",
+"language": "GDScript",
+"path": "res://scene/ui/items/CraftableItem.gd"
+}, {
 "base": "Stat",
 "class": "DamageStat",
 "language": "GDScript",
@@ -461,6 +466,7 @@ _global_script_class_icons={
 "Buff": "",
 "ConsumableItem": "",
 "Craft_inventory": "",
+"CraftableItem": "",
 "DamageStat": "",
 "DefaultStat": "",
 "DivideModifier": "",

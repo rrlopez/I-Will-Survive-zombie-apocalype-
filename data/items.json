@@ -7,7 +7,12 @@
       "type": "consumable",
       "stock_size": 100,
       "cooldown": 1,
-      "equipment_type": ""
+      "equipment_type": "",
+      "recipe":[
+        { "name": "cloth", "quantity": 1},
+        { "name": "alcohol", "quantity": 1}
+      ],
+      "craft_amount": 10
     },
     "dynamic_data":{
       "modifiers": [
@@ -82,11 +87,48 @@
       "recipe":[
         { "name": "wood", "quantity": 1}
       ],
-      "inventory": {
-        "name": "Craftables",
-        "size": 42,
+      "placable_inventory": {
+        "name": "Placables",
+        "size": 24,
         "items": [
-          { "name": "crafting table", "quantity": 1}
+          { "name": "smithing table", "quantity": 1}
+        ]
+      },
+      "craftable_inventory": {
+        "name": "Craftables",
+        "size": 24,
+        "items": [
+          { "name": "torch", "quantity": 1, "type": "craftable"}
+        ]
+      }
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
+    }
+  },{
+    "static_data":{
+      "id": "smithing table",
+      "name": "Smithing Table",
+      "description": "a table to create and upgrade weaponry.",
+      "type": "placable",
+      "stock_size": 1,
+      "cooldown": 1,
+      "placable_type": "table",
+      "equipment_type": "craft",
+      "size": {
+        "x": 180,
+        "y": 88
+      },
+      "recipe":[
+        { "name": "wood", "quantity": 1}
+      ],
+      "craftable_inventory": {
+        "name": "Craftables",
+        "size": 24,
+        "items": [
+          { "name": "m13", "quantity": 1, "type": "craftable"}
         ]
       }
     },
@@ -131,7 +173,13 @@
       "type": "equipment",
       "equipment_type": "hand",
       "stock_size": 1,
-      "cooldown": 1
+      "cooldown": 1,
+      "recipe":[
+        { "name": "wood", "quantity": 1},
+        { "name": "cloth", "quantity": 1},
+        { "name": "gasoline", "quantity": 1}
+      ],
+      "craft_amount": 1
     },
     "dynamic_data":{
       "stats":{
@@ -262,7 +310,11 @@
       "equipment_type": "weapon",
       "weapon_type": "range",
       "animation_type": "riffle",
-      "ammo_type": "riffle ammo"
+      "ammo_type": "riffle ammo",
+      "recipe":[
+        { "name": "cloth", "quantity": 1}
+      ],
+      "craft_amount": 1
     },
     "dynamic_data":{
       "stats": {
@@ -487,6 +539,16 @@
       "id": "gasoline",
       "name": "Gasoline",
       "description": "a volatile flammable liquid hydrocarbon mixture used as a fuel especially for internal combustion engines and usually blended from several products of natural gas and petroleum.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "alcohol",
+      "name": "Alcohol",
+      "description": "disinfectant.",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""

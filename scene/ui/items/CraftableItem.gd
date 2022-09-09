@@ -1,23 +1,35 @@
-class_name PlacableItem extends Item
+class_name CraftableItem extends Item
 
 func _ready():
+	label_quantity.visible = false
 	set_name("craft")
-	
+
 func use():
-	if canBuild():
-		Globals.HUD.craftPanel.hide()
-		Globals.player.placable.build(staticData)
+	if canCraft(): 
+		if .use(): return self
 	return self
 
-func canBuild():
+func cooldownFinished():
+	for item in staticData.recipe:
+		var slot = Globals.player.inventory.get_item(item.name)
+		slot.add_item_quantity(-item.quantity)
+	Globals.player.inventory.put_item(Factory.items.create(data.id, staticData.craft_amount))
+	Globals.HUD.notifs.addNotif(staticData.name+" x"+String(staticData.craft_amount))
+	pass
+
+func canCraft():
+	if Globals.player.inventory.is_full(): 
+		Globals.HUD.notifs.addNotif("Inventory is full!")
+		return false
 	for item in staticData.recipe:
 		if !Globals.player.inventory.get_item(item.name):
+			Globals.HUD.notifs.addNotif("Required item is incomplete!")
 			return false
 	return true
 
 func getInfo():
 	var info = .getInfo()
-	info["btnText"] = "Build"
+	info["btnText"] = "Craft"
 	
 	info.sections.append(getRecipeInfo())
 	

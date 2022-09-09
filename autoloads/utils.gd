@@ -38,7 +38,9 @@ func deserializeInventory(data, sceneType='inventory'):
 	return inventory
 
 func createItem(inventory, data):
-	var item = Factory.items.create(data.name)
+	var type = null
+	if data.has("type"): type = data.type
+	var item = Factory.items.create(data.name, 0, type)
 	data.quantity = item.add_item_quantity(data.quantity)
 	inventory.add_item(item)
 	if data.quantity > 0: createItem(inventory, data)

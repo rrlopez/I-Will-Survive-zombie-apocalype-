@@ -4,6 +4,7 @@ class_name ItemFactory extends Node
 var itemClasses = {
 	"resource": ResourceItem,
 	"consumable": ConsumableItem,
+	"craftable": CraftableItem,
 	"placable": PlacableItem,
 	"equipment": EquipmentItem,
 }
@@ -32,10 +33,12 @@ func _init():
 	
 	
 	
-func create(id, quantity = 0):
+func create(id, quantity = 0, type = null):
+	if !type: type = staticData[id].type
+	
 	var data = dynamicData[id].duplicate(true)
 	data.quantity = quantity
-	var item = itemClasses[staticData[id].type].new()
+	var item = itemClasses[type].new()
 	item.init(data, staticData[id])
 	return item
 

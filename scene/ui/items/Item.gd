@@ -41,6 +41,7 @@ func _process(delta):
 	if cooldownTimer>staticData.cooldown:
 		sweep.value=0
 		set_process(false)
+		cooldownFinished()
 		return
 		
 	sweep.value = int((cooldownTimer/staticData.cooldown)*100)
@@ -56,6 +57,9 @@ func add_item_quantity(value):
 	var remainder = max((data.quantity+value)-staticData.stock_size, 0)
 	set_quantity(min(data.quantity+value, staticData.stock_size))
 	return remainder
+	
+func cooldownFinished():
+	pass
 
 func use():
 	if sweep.value > 0: return true

@@ -28,9 +28,6 @@ margin_bottom = 103.0
 rect_min_size = Vector2( 0, 43 )
 custom_styles/panel = SubResource( 3 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 title = NodePath("Control/Label")
 slot_container = NodePath("MarginContainer/Slots")
 

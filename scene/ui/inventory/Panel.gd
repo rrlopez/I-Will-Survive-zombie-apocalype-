@@ -33,7 +33,7 @@ func remove_inventory(inventory):
 func clear_inventory():
 	for inventory in current_inventories:
 		container.remove_child(inventory)
-		current_inventories.erase(inventory)
+	current_inventories = []
 
 
 func show():

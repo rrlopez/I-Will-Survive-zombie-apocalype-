@@ -56,17 +56,15 @@ func put_item(item):
 			if !s.is_full(): 
 				item.data.quantity = s.item.add_item_quantity(item.data.quantity)
 				if item.data.quantity<1: return 0
-	
 	if(item.data.quantity):
 		for s in slots:
 			if !s.item:
 				var quantity = item.data.quantity
+				if quantity<1: return 0
 				item.data = item.data.duplicate(true)
 				item.data.quantity = 0
-				s.put_item(item)
-				var remainder = s.item.add_item_quantity(quantity)
-				
-				return remainder 
+				s.put_item(Factory.items.create(item.data.id))
+				item.data.quantity = s.item.add_item_quantity(quantity)
 	return item.data.quantity
 
 func get_item(itemID):
@@ -74,6 +72,10 @@ func get_item(itemID):
 		if s.item and s.item.data.id == itemID: return s
 	return null
 
+func is_full():
+	for s in slots:
+		if !s.is_full(): return false
+	return true
 
 func _on_Inventory_mouse_entered():
 	Globals.inventoryManager.cur_inventory = self

@@ -10,7 +10,8 @@ export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 
 var velocity = [{'key': 'default', 'value': Vector2()}]
 var inventory:Inventory
-var craftInventory:Inventory
+var craftableInventory:Inventory
+var placableInventory:Inventory
 
 var controller
 
@@ -32,7 +33,8 @@ func init():
 	.init()
 	recomputeStats()
 	inventory = Utils.createInventory(data.inventory)
-	craftInventory = Utils.createInventory(data.craft_inventory, "craft_inventory")
+	placableInventory = Utils.createInventory(data.placable_inventory, "craft_inventory")
+	craftableInventory = Utils.createInventory(data.craftable_inventory, "craft_inventory")
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
 
@@ -162,7 +164,8 @@ func serialize(savedData):
 		},
 		"global_rotation_degrees": global_rotation_degrees,
 		"inventory": inventory.serialize(),
-		"craft": craftInventory.serialize(),
+		"placableInventory": craftableInventory.serialize(),
+		"craftableInventory": craftableInventory.serialize(),
 		"statusEffects": statusEffects.serialize(),
 		"data": data.duplicate(true)
 	}
@@ -185,7 +188,8 @@ func deserialize(savedData):
 	
 	for stat in savedData.data.stats: data.stats[stat].deserialize(savedData.data.stats[stat])
 	
-	craftInventory = Utils.deserializeInventory(savedData.craft)
+	placableInventory = Utils.createInventory(data.placable_inventory, "craft_inventory")
+	craftableInventory = Utils.createInventory(data.craftable_inventory, "craft_inventory")
 	inventory = Utils.deserializeInventory(savedData.inventory)
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
