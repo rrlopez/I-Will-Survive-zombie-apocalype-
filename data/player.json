@@ -17,6 +17,10 @@
       { "name": "machine gun ammo", "quantity": 999},
       { "name": "bandage", "quantity": 20},
       { "name": "bread", "quantity": 20},
+      { "name": "wood", "quantity": 2},
+      { "name": "stone", "quantity": 2},
+      { "name": "cloth", "quantity": 2},
+      { "name": "gasoline", "quantity": 2},
       { "name": "torch", "quantity": 1}
     ]
   },

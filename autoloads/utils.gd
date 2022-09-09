@@ -4,7 +4,6 @@ onready var	inventoryScene = {
 	"inventory": preload("res://scene/ui/inventory/Inventory.tscn"),
 	"craft_inventory": preload("res://scene/ui/inventory/Craft_inventory.tscn")
 }
-onready var	itemScene = preload("res://scene/ui/items/Item.tscn")
 
 func import_data(path):
 	var file = File.new()

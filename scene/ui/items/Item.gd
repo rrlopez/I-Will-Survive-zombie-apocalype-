@@ -1,12 +1,9 @@
 class_name Item extends TextureRect
 
-export(String) var id
-export(String) var item_name
-var label_quantity
-
 var staticData = {}
 var data = {}
 
+var label_quantity
 var cooldownTimer = 0
 var sweep
 

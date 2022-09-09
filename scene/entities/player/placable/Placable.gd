@@ -27,6 +27,11 @@ func _on_CancelBtn_pressed():
 
 func _on_PlaceBtn_pressed():
 	if(!enable): return
+	
+	for item in itemData.recipe:
+		var slot = Globals.player.inventory.get_item(item.name)
+		slot.add_item_quantity(-item.quantity)
+	
 	var item = Factory.placables.create(itemData, global_position, Globals.player.rotation_degrees)
 	if Globals.curHouse: 
 		Globals.curHouse.objects.add_child(item)

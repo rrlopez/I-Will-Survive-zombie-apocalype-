@@ -79,6 +79,9 @@
         "x": 180,
         "y": 88
       },
+      "recipe":[
+        { "name": "wood", "quantity": 1}
+      ],
       "inventory": {
         "name": "Craftables",
         "size": 42,
@@ -106,7 +109,12 @@
       "size": {
         "x": 88,
         "y": 88
-      }
+      },
+      "recipe":[
+        { "name": "wood", "quantity": 1},
+        { "name": "stone", "quantity": 1},
+        { "name": "gasoline", "quantity": 1}
+      ]
     },
     "dynamic_data":{
       "stats":{
@@ -439,6 +447,46 @@
       "id": "machine gun ammo",
       "name": "machine gun ammo",
       "description": "",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "wood",
+      "name": "Wood",
+      "description": "is a porous and fibrous structural tissue found in the stems and roots of trees and other woody plants.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "stone",
+      "name": "Stone",
+      "description": "hard solid nonmetallic mineral matter of which rock is made, especially as a building material.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "cloth",
+      "name": "Cloth",
+      "description": "is fabric which is made by weaving or knitting a substance such as cotton, wool, silk, or nylon.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "gasoline",
+      "name": "Gasoline",
+      "description": "a volatile flammable liquid hydrocarbon mixture used as a fuel especially for internal combustion engines and usually blended from several products of natural gas and petroleum.",
       "type": "resource",
       "stock_size": 999,
       "equipment_type": ""
