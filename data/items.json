@@ -6,6 +6,7 @@
       "description": "a strip of material used to bind a wound or to protect an injured part of the body.",
       "type": "consumable",
       "stock_size": 100,
+      "cooldown": 1,
       "equipment_type": ""
     },
     "dynamic_data":{
@@ -53,6 +54,7 @@
       "description": "a staple food prepared from a dough of flour (usually wheat) and water, usually by baking.",
       "type": "consumable",
       "stock_size": 100,
+      "cooldown": 1,
       "equipment_type": ""
     },
     "dynamic_data":{
@@ -70,6 +72,7 @@
       "description": "a utility block that gives access to all crafting recipes, including many not available from the inventory's crafting grid.",
       "type": "placable",
       "stock_size": 1,
+      "cooldown": 1,
       "placable_type": "table",
       "equipment_type": "craft",
       "size": {
@@ -97,6 +100,7 @@
       "description": "a fire at a campsite that provides light and warmth, and heat for cooking.",
       "type": "placable",
       "stock_size": 1,
+      "cooldown": 1,
       "placable_type": "campfire",
       "equipment_type": "craft",
       "size": {
@@ -118,7 +122,8 @@
       "script": "torch",
       "type": "equipment",
       "equipment_type": "hand",
-      "stock_size": 1
+      "stock_size": 1,
+      "cooldown": 1
     },
     "dynamic_data":{
       "stats":{
@@ -139,6 +144,7 @@
       "equipment_type": "weapon",
       "weapon_type": "melle",
       "stock_size": 1,
+      "cooldown": 1,
       "animation_type": "melle"
     },
     "dynamic_data":{
@@ -202,6 +208,7 @@
       "description": "a single action semi-automatic handgun, designed by Harry Sanford, creator of the first Automag.",
       "script": "pistol",
       "stock_size": 1,
+      "cooldown": 1,
       "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
@@ -242,6 +249,7 @@
       "description": "a long-barreled firearm designed for accurate shooting, with a barrel that has a helical pattern of grooves (rifling) cut into the bore wall.",
       "script": "riffle",
       "stock_size": 1,
+      "cooldown": 1,
       "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
@@ -286,6 +294,7 @@
       "description": "is a high-precision, long-range rifle.",
       "script": "riffle",
       "stock_size": 1,
+      "cooldown": 1,
       "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",
@@ -326,6 +335,7 @@
       "description": "a fully automatic, rifled autoloading firearm designed for sustained direct fire with rifle cartridges.",
       "script": "machine gun",
       "stock_size": 1,
+      "cooldown": 1,
       "type": "equipment",
       "equipment_type": "weapon",
       "weapon_type": "range",

@@ -43,3 +43,6 @@ var labelType = [
 ]
 	
 var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn")
+
+
+var itemCooldownTexture = preload("res://assets/shadow/square.png")

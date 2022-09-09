@@ -7,6 +7,7 @@ func init(itemData, staticData):
 	Factory.statsModifiers.createAll(data.removedEffects)
 
 func use():
+	if .use(): return self
 	set_quantity(data.quantity-1)
 	for modifier in data.modifiers:
 		Utils.getProp(Globals.player, modifier.type).setVal(modifier)
