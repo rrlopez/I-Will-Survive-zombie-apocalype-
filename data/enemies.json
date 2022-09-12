@@ -5,7 +5,7 @@
 			"name": "Normal"
     },
 		"dynamic_data":{
-			"behavior": "basic",
+			"behavior": "wander",
 			"stats": {
 				"size": {"name": "Size", "script": "size", "val": 80, "multiplier": 1},
 				"move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 100, "multiplier": 1},

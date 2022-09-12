@@ -400,6 +400,11 @@ _global_script_classes=[ {
 "path": "res://ai/leaves/ChooseAttack.gd"
 }, {
 "base": "Leaf",
+"class": "findDestination",
+"language": "GDScript",
+"path": "res://ai/leaves/findDestination.gd"
+}, {
+"base": "Leaf",
 "class": "findOpponent",
 "language": "GDScript",
 "path": "res://ai/leaves/findOpponent.gd"
@@ -533,6 +538,7 @@ _global_script_class_icons={
 "Window": "",
 "attackOpponent": "",
 "chooseOpponent": "",
+"findDestination": "",
 "findOpponent": "",
 "generatePath": "",
 "hasOpponent": "",

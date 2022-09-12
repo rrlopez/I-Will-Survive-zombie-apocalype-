@@ -11,6 +11,7 @@ var body = null
 
 var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
+var destination = null
 
 var opponent = []
 var behavior = null setget setBehavior
@@ -103,6 +104,9 @@ func growl():
 		Constants.rand.randomize()
 		if (Constants.rand.randi()%1000)<10: soundGrowl.play()
 
+func getDestination():
+	if opponent.empty() or opponent[0] == null: return destination
+	return opponent[0].global_position
 
 #---------- CONNECT FUNCTIONS --------------#
 

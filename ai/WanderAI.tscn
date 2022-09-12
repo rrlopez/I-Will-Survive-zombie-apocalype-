@@ -1,0 +1,51 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://ai/leaves/isOpponentOnView.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ai/actions/wander.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ai/behaviorTree/Composites/Selector.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ai/leaves/hasOpponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ai/leaves/isOpponentNeerby.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ai/actions/combat.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ai/behaviorTree/Decorators/UntilFail.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ai/behaviorTree/Decorators/UntilFail.gd" type="Script" id=8]
+[ext_resource path="res://ai/behaviorTree/Composites/Selector.gd" type="Script" id=9]
+[ext_resource path="res://ai/behaviorTree/Composites/Sequence.gd" type="Script" id=10]
+[ext_resource path="res://ai/leaves/hasOpponent.gd" type="Script" id=11]
+[ext_resource path="res://ai/leaves/isOpponentOnView.gd" type="Script" id=12]
+[ext_resource path="res://ai/leaves/isOpponentNeerby.gd" type="Script" id=13]
+[ext_resource path="res://ai/behaviorTree/Decorators/UntilSuccess.gd" type="Script" id=14]
+[ext_resource path="res://ai/behaviorTree/Decorators/UntilSuccess.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ai/behaviorTree/Decorators/AlwaysFail.gd" type="Script" id=16]
+
+[node name="Sequence" type="Node"]
+script = ExtResource( 10 )
+
+[node name="UntilSuccess" type="Node" parent="." instance=ExtResource( 15 )]
+script = ExtResource( 14 )
+
+[node name="find_opponent" type="Node" parent="UntilSuccess" instance=ExtResource( 3 )]
+script = ExtResource( 9 )
+
+[node name="AlwaysFail" type="Node" parent="UntilSuccess/find_opponent"]
+script = ExtResource( 16 )
+
+[node name="wander" type="Node" parent="UntilSuccess/find_opponent/AlwaysFail" instance=ExtResource( 2 )]
+script = ExtResource( 10 )
+
+[node name="hasOpponent" type="Node" parent="UntilSuccess/find_opponent" instance=ExtResource( 4 )]
+script = ExtResource( 11 )
+
+[node name="isOpponentOnView" type="Node" parent="UntilSuccess/find_opponent" instance=ExtResource( 1 )]
+script = ExtResource( 12 )
+
+[node name="UntilFail" type="Node" parent="." instance=ExtResource( 7 )]
+script = ExtResource( 8 )
+
+[node name="searchOpponent" type="Node" parent="UntilFail"]
+script = ExtResource( 10 )
+
+[node name="isOpponentNeerby" type="Node" parent="UntilFail/searchOpponent" instance=ExtResource( 5 )]
+script = ExtResource( 13 )
+
+[node name="Combat" type="Node" parent="UntilFail/searchOpponent" instance=ExtResource( 6 )]
+script = ExtResource( 10 )

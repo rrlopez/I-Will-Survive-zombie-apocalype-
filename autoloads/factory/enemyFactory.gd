@@ -4,7 +4,8 @@ var enemyScene = preload("res://scene/entities/enemies/Enemy.tscn")
 
 var behaviors = {
 	"basic": preload("res://ai/BasicAI.tscn"),
-	"chase": preload("res://ai/ChaseAI.tscn")
+	"chase": preload("res://ai/ChaseAI.tscn"),
+	"wander": preload("res://ai/WanderAI.tscn")
 }
 
 var growl = [
