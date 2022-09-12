@@ -65,3 +65,4 @@ __meta__ = {
 
 [connection signal="tree_entered" from="." to="." method="_on_pauseState_tree_entered"]
 [connection signal="pressed" from="canvas/TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
+[connection signal="pressed" from="canvas/QuitBtn" to="." method="_on_QuitBtn_pressed"]

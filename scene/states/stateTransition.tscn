@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scene/states/stateTransition.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath("disolveRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.101961, 0.101961, 0.101961, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "disolve"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("disolveRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.101961, 0.101961, 0.101961, 0 ), Color( 0.101961, 0.101961, 0.101961, 1 ) ]
+}
+
+[node name="stateTransition" type="CanvasLayer"]
+layer = 10
+script = ExtResource( 1 )
+animation = NodePath("AnimationPlayer")
+
+[node name="disolveRect" type="ColorRect" parent="."]
+modulate = Color( 0.101961, 0.101961, 0.101961, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/disolve = SubResource( 2 )

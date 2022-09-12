@@ -4,8 +4,8 @@ var timer = 10
 var curTimer = timer
 
 func _ready():
+	Globals.stateManager.addOverlayState("loadingState")
 	Serialize.connect("dataSaved", self, "resetTimer")
-	
 
 func _process(delta):
 	if curTimer < 0:

@@ -7,17 +7,15 @@ func _ready():
 
 
 func _on_ContinueBtn_button_up():
-	yield(get_tree(), "idle_frame")
+	Globals.stateManager.states.gameState = Globals.stateManager.gameStateScene.instance()
 	Globals.stateManager.pushState("gameState")
-	Globals.stateManager.addOverlayState("loadingState")
-	Globals.stateManager.currentStates[0].continueGame()
+	Globals.stateManager.connect("stateReady", Globals.stateManager.currentStates[0], "continueGame", [], CONNECT_ONESHOT)
 
 
 func _on_NewGameBtn_button_up():
-	yield(get_tree(), "idle_frame")
+	Globals.stateManager.states.gameState = Globals.stateManager.gameStateScene.instance()
 	Globals.stateManager.pushState("gameState")
-	Globals.stateManager.addOverlayState("loadingState")
-	Globals.stateManager.currentStates[0].newGame()
+	Globals.stateManager.connect("stateReady", Globals.stateManager.currentStates[0], "newGame", [], CONNECT_ONESHOT)
 
 
 func _on_ExitBtn_button_up():
