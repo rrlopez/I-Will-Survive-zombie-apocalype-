@@ -5,4 +5,5 @@
 
 [node name="Texture" type="TextureRect"]
 texture = ExtResource( 2 )
+expand = true
 script = ExtResource( 1 )

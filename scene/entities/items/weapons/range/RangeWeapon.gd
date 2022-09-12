@@ -42,7 +42,7 @@ func fire(delta):
 			Globals.mapManager.add_child(projectile)
 			
 			item.data.stats.ammo.setVal(Factory.statsModifiers.create("subtruct", {"name": "Ammo", "amount": 1}))
-			Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
+			Globals.HUD.infoPanel.updateText(self)
 			if item.data.stats.ammo.val<1: _on_reloadBtn_pressed()
 			
 		else: setLastFired(lastFired + (100*delta))
@@ -53,13 +53,13 @@ func reloading(delta):
 	if ammoInventorySlot and isReloading:
 		if item.data.stats.reload_duration.val<item.data.stats.reload_duration.maxVal:
 			item.data.stats.reload_duration.setVal(Factory.statsModifiers.create("add", {"name": "Reload Duration", "amount": delta}))
-			Globals.HUD.weaponPanel.setCooldown((item.data.stats.reload_duration.val/item.data.stats.reload_duration.maxVal)*100)
+			Globals.HUD.infoPanel.setCooldown((item.data.stats.reload_duration.val/item.data.stats.reload_duration.maxVal)*100, self)
 			return true
 		else:
 			var currentAmmo = item.data.stats.ammo.val
 			item.data.stats.ammo.setVal(Factory.statsModifiers.create("add", {"name": "Ammo", "amount": min(item.data.stats.reload_rate.val, ammoInventorySlot.item.data.quantity)}))
 			ammoInventorySlot.add_item_quantity(currentAmmo-item.data.stats.ammo.maxVal)
-			Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
+			Globals.HUD.infoPanel.updateText(self)
 			
 			if !ammoInventorySlot.item: 
 				ammoInventorySlot = null
@@ -108,14 +108,14 @@ func _on_reloadBtn_pressed():
 	item.data.stats.reload_duration.setVal(Factory.statsModifiers.create("set", {"name": "Reload Duration", "amount": 0}))
 	ammoInventorySlot = parent.inventory.get_item(item.staticData.ammo_type)
 	if !ammoInventorySlot: ammoInventorySlot = Globals.HUD.hotbar.get_item(item.staticData.ammo_type)
-	Globals.HUD.weaponPanel.setCooldown(0)
+	Globals.HUD.infoPanel.setCooldown(0, self)
 	parent.notif.show()
 	parent.notif.texture = Constants.notif.reloadAmmo
 	isReloading = true
 
 func setLastFired(value):
 	.setLastFired(value)
-	Globals.HUD.weaponPanel.setCooldown(((value+1)/item.data.stats.attack_speed.val)*100)
+	Globals.HUD.infoPanel.setCooldown(((value+1)/item.data.stats.attack_speed.val)*100, self)
 
 
 func _on_RangeWeapon_tree_exiting():
@@ -126,5 +126,7 @@ func _on_RangeWeapon_tree_exiting():
 
 func _on_Riffle_tree_entered():
 	if item.data.stats.ammo.val<1: _on_reloadBtn_pressed()
-	Globals.HUD.weaponPanel.label.text = String(item.data.stats.ammo.val)
+	Globals.HUD.infoPanel.updateText(self)
 
+func getInfoPanelText():
+	return String(item.data.stats.ammo.val)

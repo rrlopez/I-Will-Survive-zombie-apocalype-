@@ -37,7 +37,7 @@ craftPanel = NodePath("Craft_panel")
 controller = NodePath("Controller")
 cameraEffect = NodePath("cameraEffect")
 statusEffectIcons = NodePath("statusEffects")
-weaponPanel = NodePath("weaponPanel")
+infoPanel = NodePath("infoPanel")
 notifs = NodePath("notifContainer")
 hotBarContainer = NodePath("hotBarContainer")
 
@@ -64,7 +64,7 @@ position = Vector2( 955, 10 )
 scale = Vector2( 0.6, 0.6 )
 normal = ExtResource( 13 )
 
-[node name="weaponPanel" type="ColorRect" parent="."]
+[node name="infoPanel" type="ColorRect" parent="."]
 visible = false
 margin_left = 904.0
 margin_top = 137.0
@@ -81,7 +81,7 @@ sprite = NodePath("CenterContainer/Sprite")
 label = NodePath("Label")
 cooldown = NodePath("cooldown")
 
-[node name="ColorRect" type="ColorRect" parent="weaponPanel"]
+[node name="ColorRect" type="ColorRect" parent="infoPanel"]
 margin_left = 28.0
 margin_top = 15.0
 margin_right = 91.0
@@ -91,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="weaponPanel"]
+[node name="CenterContainer" type="CenterContainer" parent="infoPanel"]
 anchor_right = 1.0
 margin_bottom = 92.0
 mouse_filter = 2
@@ -99,7 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="TextureRect" parent="weaponPanel/CenterContainer"]
+[node name="Sprite" type="TextureRect" parent="infoPanel/CenterContainer"]
 margin_left = 35.0
 margin_top = 21.0
 margin_right = 85.0
@@ -110,7 +110,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="weaponPanel"]
+[node name="Label" type="Label" parent="infoPanel"]
 anchor_right = 1.0
 margin_top = 75.0
 margin_bottom = 89.0
@@ -122,7 +122,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="cooldown" type="ColorRect" parent="weaponPanel"]
+[node name="cooldown" type="ColorRect" parent="infoPanel"]
 margin_left = 10.0
 margin_top = 92.0
 margin_right = 11.0

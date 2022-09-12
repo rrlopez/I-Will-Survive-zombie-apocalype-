@@ -46,3 +46,4 @@ var dropItemScene = preload("res://scene/entities/objects/dropItem/DropItem.tscn
 
 
 var itemCooldownTexture = preload("res://assets/shadow/square.png")
+var itemBlueprintTexture = preload("res://scene/ui/inventory/sprites/blueprint.png")

@@ -14,12 +14,24 @@ func init():
 		data.stats[stat] = Factory.stats.create(stat, data.stats[stat], self)
 
 func hurt(dmg):
+	Globals.HUD.infoPanel.updateText(self)
 	return data.stats.health.setVal(Factory.statsModifiers.create("subtruct", {"name": "Health", "amount": dmg}))
 	
 func healthStatCallback(health):
 	if(health.val<=0): queue_free()
 
 
+func _on_Area_body_entered(_body):
+	Globals.HUD.infoPanel.addItem(self)
+	Globals.HUD.infoPanel.updateText()
+
+
+func _on_Area_body_exited(_body):
+	Globals.HUD.infoPanel.delItem(self)
+	
+func getInfoPanelText():
+	Globals.HUD.infoPanel.setCooldown((data.stats.health.val/data.stats.health.maxVal)*100, self)
+	return String(data.stats.health.val)
 
 func serialize(_savedData): 
 	var serializedData = {

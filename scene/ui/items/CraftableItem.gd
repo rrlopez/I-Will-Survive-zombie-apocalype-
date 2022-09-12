@@ -2,6 +2,14 @@ class_name CraftableItem extends Item
 
 func _ready():
 	label_quantity.visible = false
+	texture = Constants.itemBlueprintTexture
+	
+	var itemTexture = TextureRect.new()
+	itemTexture.texture = Factory.items.itemTexture[data.id]
+	itemTexture.expand = true
+	itemTexture.rect_min_size = get_parent().rect_size*0.7
+	itemTexture.rect_position = get_parent().rect_size*0.15
+	add_child(itemTexture)
 	set_name("craft")
 
 func use():

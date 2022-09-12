@@ -144,6 +144,7 @@ func setHandItem(item):
 func setWeapon(item):
 	for child in weapon_container.get_children(): weapon_container.remove_child(child)
 	if(item):
+		Globals.HUD.infoPanel.addItem(item.data.object)
 		weapon_container.add_child(item.data.object)
 		body.upperBodyAnimation.play(item.staticData.animation_type)
 	else:

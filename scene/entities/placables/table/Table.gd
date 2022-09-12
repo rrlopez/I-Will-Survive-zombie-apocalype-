@@ -35,10 +35,12 @@ func _on_OpenBtn_pressed():
 
 
 func _on_Area_body_entered(_body):
+	._on_Area_body_entered(_body)
 	buttons.show()
 
 
 func _on_Area_body_exited(_body):
+	._on_Area_body_exited(_body)
 	Globals.HUD.hotBarContainer.rect_position = Vector2(610, 12)
 	Globals.HUD.craftPanel.hide()
 	Globals.HUD.itemInfo.hide()
@@ -48,6 +50,11 @@ func _on_Area_body_exited(_body):
 func _on_removeBtn_pressed():
 	self.queue_free()
 
+
+func _on_repairBtn_pressed():
+	data.stats.health.setVal(Factory.statsModifiers.create("add", {"name": "Health", "amount": 10}))
+	Globals.HUD.infoPanel.updateText()
+	
 
 func serialize(savedData): 
 	var serializedData = .serialize(savedData)
