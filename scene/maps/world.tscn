@@ -22,9 +22,6 @@ shape = SubResource( 3 )
 pause_mode = 2
 z_index = 1000
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
 navPolygon = NodePath("Polygon")
 
 [node name="Polygon" type="NavigationPolygonInstance" parent="Navigation"]

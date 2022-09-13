@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/gui/navigationMarker.png" type="Texture" id=3]
 [ext_resource path="res://assets/gui/closeIcon.png" type="Texture" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="mapState" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 2 )
 playerMark = NodePath("Node2D/map/ViewportContainer/mapViewport/playerMark")

@@ -35,6 +35,7 @@ func entered(_userdata):
 	if !block: 
 		block = load("res://scene/maps/maps/"+name+"/block.tscn").instance()
 		self.call_deferred("add_child", block)
+		print("block loaded")
 		Globals.currentMap.navigation.generateNavigationPolygon(block)
 	else:
 		self.call_deferred("add_child", block)

@@ -16,7 +16,6 @@ var placableInventory:Inventory
 var controller
 
 func _ready():
-	._ready()
 	controller = Constants.player_controllerScene.instance()
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")
@@ -39,7 +38,6 @@ func init():
 	
 
 func _process(delta):
-	._process(delta)
 	data.stats.hunger.run(delta)
 
 func _physics_process(delta):

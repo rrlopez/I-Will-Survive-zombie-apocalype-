@@ -66,18 +66,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Texture" type="TextureRect" parent="Leaves"]
-margin_left = -158.0
-margin_top = -158.0
-margin_right = 482.0
-margin_bottom = 485.0
-rect_scale = Vector2( 0.5, 0.5 )
-mouse_filter = 2
+[node name="Texture" type="Sprite" parent="Leaves" groups=["map"]]
+scale = Vector2( 0.4625, 0.472784 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="Leaves"]
 
@@ -125,9 +116,6 @@ rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 50, 50 )
 mouse_filter = 2
 texture = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Tween" type="Tween" parent="Shadow"]
 
