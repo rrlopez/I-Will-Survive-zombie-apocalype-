@@ -2,7 +2,7 @@ extends Leaf
 
 class_name navigatePath
 
-func run(delta):
+func run(_delta):
 	if agent.path.size() > 0:
 		agent.velocity = agent.global_position.direction_to(agent.path[0]).normalized() * agent.data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
 		

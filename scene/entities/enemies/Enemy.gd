@@ -149,7 +149,7 @@ func _on_bodySensor_body_entered(_opponent):
 	if(!opponent.empty() and _opponent.opponent.empty()): _opponent._on_View_body_entered(opponent[0])
 
 
-func _on_area_area_entered(area):
+func _on_area_area_entered(_area):
 	if(velocity.length()>1):
 		var parent = get_parent()
 		parent.remove_child(self)

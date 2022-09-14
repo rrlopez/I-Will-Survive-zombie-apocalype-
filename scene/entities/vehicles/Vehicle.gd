@@ -145,7 +145,7 @@ func _on_Bumper_body_entered(_body):
 	pass # Replace with function body.
 
 
-func _on_area_area_entered(area):
+func _on_area_area_entered(_area):
 	if velocity.length()>1:
 		var parent = self.get_parent()
 		parent.remove_child(self)

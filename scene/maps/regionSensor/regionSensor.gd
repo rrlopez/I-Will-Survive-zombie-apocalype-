@@ -34,26 +34,33 @@ func _on_regionSensor_area_exited(_area):
 func entered(_userdata):
 	if !block: 
 		block = load("res://scene/maps/maps/"+name+"/block.tscn").instance()
-		self.call_deferred("add_child", block)
-		print("block loaded")
-		Globals.currentMap.navigation.generateNavigationPolygon(block)
+		self.call_deferred("onEntered")
 	else:
 		self.call_deferred("add_child", block)
 	
 	thread_timer.call_deferred("start")
 	collider.shape.radius = Constants.BLOCK_SIZE
 
-func leaved(_userdata):
-	self.call_deferred("remove_child", block)
-	thread_timer.call_deferred("start")
-	collider.shape.radius = 50
+func onEntered():
+	self.add_child(block)
+	Globals.currentMap.navigation.generateNavigationPolygon(block)
+	
 
+
+func leaved(_userdata):
+	self.call_deferred("onLeaved")
+
+
+func onLeaved():
+	self.remove_child(block)
+	thread_timer.start()
+	collider.shape.radius = 50
 	
 func loadingDone():
 	thread.wait_to_finish()
 	thread = null
 
-func _on_area_body_entered(body):
+func _on_area_body_entered(_body):
 	Globals.curRegion = self
 
 

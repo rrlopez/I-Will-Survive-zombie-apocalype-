@@ -194,10 +194,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://stat/stats/moveSpeed.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "MultiplyModifier",
 "language": "GDScript",
-"path": "res://stat/modifiers/multiplyModifier.gd"
+"path": "res://stat/modifiers/MultiplyModifier.gd"
 }, {
 "base": "Task",
 "class": "Parallel",
@@ -630,7 +630,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 threads/thread_model=2
 vram_compression/import_etc=true
-vram_compression/import_etc2=false

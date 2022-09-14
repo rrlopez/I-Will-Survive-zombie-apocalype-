@@ -25,7 +25,6 @@ func loadMap():
 		for node in map:
 			var newNode = node.duplicate()
 			newNode.position = node.global_position
-			print(node.global_position)
 			add_child(newNode)
 		child.queue_free()
 	
