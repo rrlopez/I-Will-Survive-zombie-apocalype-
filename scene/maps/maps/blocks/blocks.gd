@@ -25,13 +25,13 @@ func loadMap():
 		for y in Globals.currentMap.blocks[x].size():
 			var map = load("res://scene/maps/maps/"+Globals.currentMap.blocks[x][y]+"/block.tscn").instance()
 			map.position = Vector2((y+yOffset)*(Constants.BLOCK_SIZE*2), (x+xOffset)*(Constants.BLOCK_SIZE*2))
-			map.add_child(map)
+			add_child(map)
 
-	for child in map.get_children():
+	for child in get_children():
 		var map = Utils.findNodeDescendantsInGroup(child, 'map')
 		for node in map:
 			var newNode = node.duplicate()
 			newNode.position = node.global_position
-			map.add_child(newNode)
+			add_child(newNode)
 		child.queue_free()
 	
