@@ -12,10 +12,8 @@ margin_bottom = 205.0
 rect_scale = Vector2( 0.5, 0.5 )
 color = Color( 0.121569, 0.117647, 0.117647, 1 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 playerMark = NodePath("ViewportContainer/minmapViewport/blocks/playerMark")
+blocks = NodePath("ViewportContainer/minmapViewport/blocks")
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 anchor_right = 1.0
@@ -34,6 +32,8 @@ usage = 0
 render_target_update_mode = 3
 
 [node name="blocks" parent="ViewportContainer/minmapViewport" instance=ExtResource( 2 )]
+
+[node name="map" type="Node2D" parent="ViewportContainer/minmapViewport/blocks"]
 
 [node name="playerMark" type="Sprite" parent="ViewportContainer/minmapViewport/blocks"]
 position = Vector2( 100, 100 )

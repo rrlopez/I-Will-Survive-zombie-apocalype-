@@ -10,6 +10,7 @@ export(NodePath) onready var statusEffectIcons = get_node(statusEffectIcons) as 
 export(NodePath) onready var infoPanel = get_node(infoPanel) as ColorRect
 export(NodePath) onready var notifs = get_node(notifs) as VBoxContainer
 export(NodePath) onready var hotBarContainer = get_node(hotBarContainer) as VBoxContainer
+export(NodePath) onready var minimap = get_node(minimap) as ColorRect
 
 var hotbar setget setHotbar
 

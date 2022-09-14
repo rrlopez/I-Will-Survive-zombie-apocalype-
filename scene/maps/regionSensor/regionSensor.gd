@@ -44,6 +44,7 @@ func entered(_userdata):
 func onEntered():
 	self.add_child(block)
 	Globals.currentMap.navigation.generateNavigationPolygon(block)
+	Globals.HUD.minimap.blocks.emit_signal("rerender")
 	
 
 
@@ -60,7 +61,7 @@ func loadingDone():
 	thread.wait_to_finish()
 	thread = null
 
-func _on_area_body_entered(_body):
+func _on_area_body_entered(body):
 	Globals.curRegion = self
 
 

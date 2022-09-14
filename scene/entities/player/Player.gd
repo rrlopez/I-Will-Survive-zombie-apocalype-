@@ -22,7 +22,6 @@ func _ready():
 	controller.connect("use_rotateArea_degrees", self, "_on_Controller_use_rotateArea_degrees")
 	Globals.currentController = controller
 	
-	_on_player_tree_entered()
 	collider.shape.radius = Constants.BLOCK_SIZE*2
 	
 	Globals.player = self
