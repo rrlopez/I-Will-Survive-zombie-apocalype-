@@ -5,34 +5,29 @@ var blocks = []
 export(NodePath) onready var navPolygon  = get_node(navPolygon) as NavigationPolygonInstance
 
 func _ready():
-	var polygon = navPolygon.get_navigation_polygon()
+	var polygon = navPolygon.navpoly
 	polygon.clear_polygons()
 	polygon.clear_outlines()
 	
 	createNavigationBound(polygon)
 	
 	polygon.make_polygons_from_outlines()
-	navPolygon.set_navigation_polygon(polygon)
-	navPolygon.enabled = false
-	navPolygon.enabled = true
+	navPolygon.navpoly = polygon
 	
 	
 func generateNavigationPolygon(block):
-	yield(get_tree(),"idle_frame")
 	blocks.append(block)
 	Globals.loadingBlocksCount-=1
 	if Globals.loadingBlocksCount>0: return
-	var polygon = navPolygon.get_navigation_polygon()
-	yield(get_tree(),"idle_frame")
-	createNavigationCuts(polygon)
-		
-	polygon.make_polygons_from_outlines()
-	navPolygon.set_navigation_polygon(polygon)
-	navPolygon.enabled = false
-	navPolygon.enabled = true
 	Globals.stateManager.removeOverlayState("loadingState")
 	Globals.currentMap.emit_signal("onReady")
 	Serialize.loadMap()
+	
+	var polygon = navPolygon.navpoly
+	createNavigationCuts(polygon)
+		
+	polygon.make_polygons_from_outlines()
+	navPolygon.navpoly = polygon
 
 func createNavigationBound(polygon):
 	var bounds = get_parent().get_child(0).shape.extents

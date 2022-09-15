@@ -43,8 +43,8 @@ func entered(_userdata):
 
 func onEntered():
 	self.add_child(block)
-	Globals.currentMap.navigation.generateNavigationPolygon(block)
 	Globals.HUD.minimap.blocks.emit_signal("rerender")
+	Globals.currentMap.navigation.generateNavigationPolygon(block)
 	
 
 

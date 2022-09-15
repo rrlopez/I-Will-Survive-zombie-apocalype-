@@ -16,6 +16,7 @@ func init():
 	for node in get_tree().get_nodes_in_group("map"):
 		var newNode = node.duplicate()
 		newNode.global_position = node.global_position
+		newNode.rotation = node.global_rotation
 		map.add_child(newNode)
 
 func loadMap():
@@ -32,6 +33,7 @@ func loadMap():
 		for node in map:
 			var newNode = node.duplicate()
 			newNode.position = node.global_position
+			newNode.rotation = node.global_rotation
 			add_child(newNode)
 		child.queue_free()
 	
