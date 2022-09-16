@@ -151,10 +151,11 @@ func _on_bodySensor_body_entered(_opponent):
 
 func _on_area_area_entered(_area):
 	if(velocity.length()>1):
+		var savedPosition = self.global_position
 		var parent = get_parent()
 		parent.remove_child(self)
 		Globals.mapManager.add_child(self)
-		position = position + parent.global_position
+		self.global_position = savedPosition
 		$area.disconnect("area_entered", self, "_on_area_area_entered")
 
 

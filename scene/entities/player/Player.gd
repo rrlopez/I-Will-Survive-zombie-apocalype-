@@ -35,6 +35,10 @@ func init():
 	craftableInventory = Utils.createInventory(data.craftable_inventory, "craft_inventory")
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
+	self.connect("tree_entered", self, "_on_player_tree_entered")
+	_on_player_tree_entered()
+	
+	
 
 func _process(delta):
 	data.stats.hunger.run(delta)
@@ -198,3 +202,7 @@ func deserialize(savedData):
 		Globals.HUD.inventoryPanel.current_inventories[0].weapon.put_item(Factory.items.deserialize(savedData.weapon))
 	if savedData.has("handItem"): 
 		Globals.HUD.inventoryPanel.current_inventories[0].hand.put_item(Factory.items.deserialize(savedData.handItem))
+	
+	yield(get_tree(),"idle_frame")
+	self.connect("tree_entered", self, "_on_player_tree_entered")
+	self.set_collision_layer_bit(0, true)

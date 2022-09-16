@@ -1,21 +1,27 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scene/maps/regionSensor/regionSensor.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
 radius = 50.0
 
 [sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+
+[sub_resource type="NavigationPolygon" id=3]
+resource_local_to_scene = true
 
 [node name="regionSensor" type="Area2D"]
-pause_mode = 2
 collision_layer = 16
 collision_mask = 4096
 script = ExtResource( 1 )
 collider = NodePath("Collider")
 areaCollider = NodePath("area/collider")
+navigation = NodePath("Navigation")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="area" type="Area2D" parent="."]
@@ -23,6 +29,11 @@ collision_layer = 8192
 
 [node name="collider" type="CollisionShape2D" parent="area"]
 shape = SubResource( 2 )
+
+[node name="Navigation" type="Navigation2D" parent="."]
+
+[node name="Polygon" type="NavigationPolygonInstance" parent="Navigation"]
+navpoly = SubResource( 3 )
 
 [connection signal="area_entered" from="." to="." method="_on_regionSensor_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_regionSensor_area_exited"]

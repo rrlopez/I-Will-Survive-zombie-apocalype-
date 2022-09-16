@@ -1366,6 +1366,7 @@ tracks/11/keys = {
 [node name="Player" type="KinematicBody2D" groups=["serializable"]]
 z_index = 10
 z_as_relative = false
+collision_layer = 0
 collision_mask = 8
 script = ExtResource( 8 )
 weapon_container = NodePath("Equipments/Weapon")
@@ -1587,12 +1588,12 @@ scale = Vector2( 0.518681, 0.518681 )
 texture = ExtResource( 15 )
 
 [node name="Sensor" type="Area2D" parent="."]
+visible = false
 collision_layer = 4096
 collision_mask = 0
 
 [node name="Collider" type="CollisionShape2D" parent="Sensor"]
 shape = SubResource( 18 )
 
-[connection signal="tree_entered" from="." to="." method="_on_player_tree_entered"]
 [connection signal="tree_exited" from="." to="." method="_on_Player_tree_exited"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]

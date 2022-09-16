@@ -105,15 +105,6 @@ position = Vector2( 649, 5923 )
 [node name="building4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1874, 5923 )
 
-[node name="building" parent="building4" instance=ExtResource( 4 )]
-position = Vector2( 2120, -4726 )
-
-[node name="building5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1874, 5923 )
-
-[node name="building" parent="building5" instance=ExtResource( 4 )]
-position = Vector2( 3691, -4726 )
-
 [node name="building6" parent="." instance=ExtResource( 3 )]
 position = Vector2( 3195, 5923 )
 
@@ -121,12 +112,19 @@ position = Vector2( 3195, 5923 )
 position = Vector2( 4498, 5911 )
 
 [node name="building8" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1290, 1484 )
+position = Vector2( 1177, 1461 )
 rotation = -1.5708
 
-[node name="building" parent="building8" instance=ExtResource( 6 )]
-position = Vector2( -2663, -322 )
+[node name="building12" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1177, 465 )
+rotation = -1.5708
 
-[node name="building9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1260, 548 )
+[node name="building9" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3994, 1197 )
+
+[node name="building10" parent="." instance=ExtResource( 4 )]
+position = Vector2( 5565, 1197 )
+
+[node name="building11" parent="." instance=ExtResource( 6 )]
+position = Vector2( 968.01, 4147 )
 rotation = -1.5708

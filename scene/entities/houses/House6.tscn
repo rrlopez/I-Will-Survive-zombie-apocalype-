@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/entities/houses/House.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/houses/sprites/tilemap.png" type="Texture" id=2]
@@ -28,6 +28,12 @@ extents = Vector2( 608, 525.5 )
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="OccluderPolygon2D" id=31]
+polygon = PoolVector2Array( -63, -321, -63, -303, -367, -302, -367, 367, -64, 367, -64, 384, -384, 384, -384, -320 )
+
+[sub_resource type="OccluderPolygon2D" id=32]
+polygon = PoolVector2Array( 64, -320, 64, -303, 367, -303, 367, 367, 64, 367, 64, 384, 384, 384, 384, -320 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -474,6 +480,12 @@ polygon = PoolVector2Array( -63, -321, -63, -304, -367, -303, -367, 367, -64, 36
 
 [node name="collider2" type="CollisionPolygon2D" parent="lot/House/Walls"]
 polygon = PoolVector2Array( 64, -320, 64, -303, 366, -303, 368, 367, 64, 368, 64, 384, 384, 385, 385, -320 )
+
+[node name="occluder" type="LightOccluder2D" parent="lot/House/Walls"]
+occluder = SubResource( 31 )
+
+[node name="occluder2" type="LightOccluder2D" parent="lot/House/Walls"]
+occluder = SubResource( 32 )
 
 [node name="texture" type="TileMap" parent="lot/House/Walls" groups=["map"]]
 tile_set = SubResource( 1 )

@@ -13,7 +13,6 @@ var inventory = null
 
 var mapManager = null
 var currentMap = null
-var currentNavigation = null
 var curRegion = null
 var curHouse = null
 

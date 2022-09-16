@@ -2,6 +2,7 @@ extends Area2D
 
 export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider = get_node(areaCollider) as CollisionShape2D
+export(NodePath) onready var navigation = get_node(navigation) as Navigation2D
 
 var thread_timer = Timer.new()
 var block
@@ -11,7 +12,8 @@ var thread
 func _ready():
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
 	areaCollider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
-	areaCollider.shape.extents = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
+	areaCollider.shape.extents = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)*0.99
+		
 	thread_timer.connect("timeout", self,"loadingDone")
 	thread_timer.wait_time = 0.4
 	thread_timer.one_shot = true
@@ -44,9 +46,8 @@ func entered(_userdata):
 func onEntered():
 	self.add_child(block)
 	Globals.HUD.minimap.blocks.emit_signal("rerender")
-	Globals.currentMap.navigation.generateNavigationPolygon(block)
-	
-
+	generateNavigationPolygon()
+	Globals.currentMap.mapLoaded(block)
 
 func leaved(_userdata):
 	self.call_deferred("onLeaved")
@@ -67,12 +68,28 @@ func _on_area_body_entered(body):
 
 func _on_regionSensor_child_entered_tree(node):
 	if(node.name == "block"):
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
-		yield(get_tree(),"idle_frame")
 		Serialize.loadRegion(name)
+
+
+
+func generateNavigationPolygon():
+	var polygon = navigation.get_child(0).navpoly
+	
+	var newPolygon = PoolVector2Array()
+	newPolygon.append(Vector2(0, Constants.BLOCK_SIZE*2)*0.99)
+	newPolygon.append(Vector2(0, 0)*0.99)
+	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, 0)*0.99)
+	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, Constants.BLOCK_SIZE*2)*0.99)
+	polygon.add_outline(newPolygon)
+	
+	var obstacles = Utils.findNodeDescendantsInGroup(block, 'obstacle')
+	for obstacle in obstacles:
+		newPolygon = PoolVector2Array()
+		var polygon_transform = obstacle.get_global_transform()
+		var polygon_bp = obstacle.get_polygon()
+		for vertex in polygon_bp: newPolygon.append(polygon_transform.xform(vertex)-block.global_position)
+		polygon.add_outline(newPolygon)
+	
+	polygon.make_polygons_from_outlines()
+	navigation.get_child(0).navpoly = polygon
+	

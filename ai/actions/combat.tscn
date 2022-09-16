@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://ai/behaviorTree/Composites/Selector.gd" type="Script" id=1]
 [ext_resource path="res://ai/behaviorTree/Decorators/UntilFail.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://ai/leaves/isBlocked.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ai/leaves/attackOpponent.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ai/leaves/ChooseAttack.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ai/leaves/isAttackCooldown.tscn" type="PackedScene" id=11]
 
 [node name="Combat" type="Node"]
 script = ExtResource( 7 )
@@ -29,6 +30,8 @@ script = ExtResource( 1 )
 [node name="AttackOpponent" parent="UntilFail/attack_opponent" instance=ExtResource( 9 )]
 
 [node name="ChooseAttack" parent="UntilFail/attack_opponent" instance=ExtResource( 10 )]
+
+[node name="isAttackCooldown" parent="UntilFail/attack_opponent" instance=ExtResource( 11 )]
 
 [node name="Skip" parent="." instance=ExtResource( 6 )]
 skipTime = 0.1

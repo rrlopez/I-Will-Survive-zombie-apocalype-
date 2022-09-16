@@ -5,10 +5,9 @@ signal onReady
 onready var regionScene = preload("res://scene/maps/regionSensor/regionSensor.tscn")
 
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
-export(NodePath) onready var navigation  = get_node(navigation) as Navigation2D
 export(NodePath) onready var regions  = get_node(regions) as Node2D
 
-
+	
 var blocks = [
 	["top2_left2", "top2_left1", "top2", "top2_right1", "top2_right2"],
 	["top1_left2", "top1_left1", "top1", "top1_right1", "top1_right2"],
@@ -17,9 +16,10 @@ var blocks = [
 	["bot2_left2", "bot2_left1", "bot2", "bot2_right1", "bot2_right2"],
 ]
 
+var loadedBlocks = []
 
 func _ready():
-	collider.shape.extents = Vector2(blocks.size()*Constants.BLOCK_SIZE, blocks[0].size()*Constants.BLOCK_SIZE)
+	collider.shape.extents = Vector2(blocks[0].size()*Constants.BLOCK_SIZE, blocks.size()*Constants.BLOCK_SIZE)
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
 	connect("onReady", self, "init", [], CONNECT_ONESHOT)
 	
@@ -34,3 +34,19 @@ func _ready():
 
 func init():
 	Globals.player.addCamera()
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	Serialize.loadMap()
+	
+
+	
+func mapLoaded(block):
+	loadedBlocks.append(block)
+	Globals.loadingBlocksCount-=1
+	if Globals.loadingBlocksCount>0: return
+	
+	Globals.stateManager.removeOverlayState("loadingState")
+	Globals.currentMap.emit_signal("onReady")
+	loadedBlocks = []
+	
+

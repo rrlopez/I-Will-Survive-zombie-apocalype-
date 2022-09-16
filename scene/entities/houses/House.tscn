@@ -470,6 +470,12 @@ __meta__ = {
 collision_layer = 32
 collision_mask = 67
 
+[node name="collider" type="CollisionPolygon2D" parent="lot/House/Walls"]
+polygon = PoolVector2Array( -65, -449, -65, -430, -496, -430, -495, 64, -66, 64, -66, 79, -496, 81, -495, 624, -64, 623, -64, 640, -511, 640, -511, -448 )
+
+[node name="collider2" type="CollisionPolygon2D" parent="lot/House/Walls"]
+polygon = PoolVector2Array( 111, -130, 127, -132, 129, -431, 688, -431, 687, 64, 128, 64, 128, 32, 111, 32, 111, 64, 96, 64, 96, 81, 111, 81, 111, 96, 128, 96, 128, 81, 686, 81, 687, 623, 128, 623, 128, 256, 111, 256, 111, 623, 96, 623, 96, 640, 704, 640, 704, -448, 96, -448, 96, -431, 111, -431 )
+
 [node name="texture" type="TileMap" parent="lot/House/Walls" groups=["map"]]
 tile_set = SubResource( 1 )
 collision_layer = 32
@@ -479,12 +485,6 @@ tile_data = PoolIntArray( -393224, 0, 0, -393223, 5, 0, -393222, 5, 0, -393221, 
 __meta__ = {
 "_edit_lock_": true
 }
-
-[node name="collider" type="CollisionPolygon2D" parent="lot/House/Walls"]
-polygon = PoolVector2Array( -65, -449, -65, -430, -496, -430, -495, 64, -66, 64, -66, 79, -496, 81, -495, 624, -64, 623, -64, 640, -511, 640, -511, -448 )
-
-[node name="collider2" type="CollisionPolygon2D" parent="lot/House/Walls"]
-polygon = PoolVector2Array( 111, -130, 127, -132, 129, -431, 688, -431, 687, 64, 128, 64, 128, 32, 111, 32, 111, 64, 96, 64, 96, 81, 111, 81, 111, 96, 128, 96, 128, 81, 686, 81, 687, 623, 128, 623, 128, 256, 111, 256, 111, 623, 96, 623, 96, 640, 704, 640, 704, -448, 96, -448, 96, -431, 111, -431 )
 
 [node name="obstacles" type="Area2D" parent="lot/House"]
 visible = false

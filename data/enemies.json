@@ -3,7 +3,7 @@
 		"static_data":{
 			"id": "normal",
 			"name": "Normal"
-    },
+    	},
 		"dynamic_data":{
 			"behavior": "wander",
 			"stats": {
@@ -24,7 +24,7 @@
 				{ "name": "bandage", "quantity": {"min": 1, "max": 2}, "rarity": 80, "life": 20}
 			],
 			"attacks": [
-				{"script": "melle", "statusEffects":[]}
+				{"script": "melle", "cooldown": 2, "statusEffects":[]}
 			]
 		}
 	},
@@ -32,7 +32,7 @@
 		"static_data":{
 			"id": "charger",
 			"name": "Charger"
-    },
+    	},
 		"dynamic_data":{
 			"behavior": "basic",
 			"stats": {
@@ -55,6 +55,7 @@
 			"attacks": [
 				{
 					"script": "charge",
+					"cooldown": 2,
 					"statusEffects": [
 						{
 							"id": "openWounds",

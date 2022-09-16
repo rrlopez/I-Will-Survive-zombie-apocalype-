@@ -420,6 +420,11 @@ _global_script_classes=[ {
 "path": "res://ai/leaves/hasOpponent.gd"
 }, {
 "base": "Leaf",
+"class": "isAttackCooldown",
+"language": "GDScript",
+"path": "res://ai/leaves/isAttackCooldown.gd"
+}, {
+"base": "Leaf",
 "class": "isBlocked",
 "language": "GDScript",
 "path": "res://ai/leaves/isBlocked.gd"
@@ -542,6 +547,7 @@ _global_script_class_icons={
 "findOpponent": "",
 "generatePath": "",
 "hasOpponent": "",
+"isAttackCooldown": "",
 "isBlocked": "",
 "isOpponentInRange": "",
 "isOpponentNeerby": "",
@@ -620,7 +626,7 @@ pointing/emulate_touch_from_mouse=true
 
 [memory]
 
-limits/multithreaded_server/rid_pool_prealloc=120
+limits/multithreaded_server/rid_pool_prealloc=360
 
 [physics]
 

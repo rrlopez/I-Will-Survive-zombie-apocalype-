@@ -12,7 +12,6 @@ func _init():
 func _ready():
 	Globals.camera = CameraScene.instance()
 	Globals.currentMap = currentMapScene.instance()
-	Globals.currentNavigation = Globals.currentMap.get_node("Navigation")
 	add_child(Globals.currentMap)
 
 	

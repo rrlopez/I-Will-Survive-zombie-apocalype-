@@ -72,7 +72,7 @@ func loadMap():
 	var save_game = File.new()
 	if not save_game.file_exists(filePath):
 		return # Error! We don't have a save to load.
-
+		
 	save_game.open(filePath, File.READ)
 	var game_data = parse_json(save_game.get_as_text())
 	for otherData in game_data.map: createAndDeserializeScene(otherData)
@@ -89,4 +89,5 @@ func createAndDeserializeScene(savedData):
 	new_object.deserialize(savedData)
 	
 func deserializeScene(savedData):
+	return
 	get_node(savedData["path"]).deserialize(savedData)

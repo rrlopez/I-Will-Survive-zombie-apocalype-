@@ -31,6 +31,7 @@ func createNewHotbar():
 func createNewPlayer():
 	var playerScene = load("res://scene/entities/player/Player.tscn")
 	var player = playerScene.instance()
+	player.position = Vector2(600, 1700)
 	add_child(player)
 	player.init()
 	

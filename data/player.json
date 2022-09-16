@@ -1,7 +1,7 @@
 {
   "stats":{
     "size":  {"name": "Size", "script": "size", "val": 100, "multiplier": 0},
-    "move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 180, "multiplier": 0},
+    "move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 280, "multiplier": 0},
     "health": {"name": "Health", "script": "health", "val": 12400, "multiplier": 0},
     "hunger": {"name": "Hunger", "script": "hunger", "val": 240, "multiplier": 0},
     "hunger_tolerance": {"name": "Hunger tolerance", "script": "default", "val": 10, "multiplier": 0},

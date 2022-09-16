@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/maps/sprites/tilemap.png" type="Texture" id=1]
+[ext_resource path="res://scene/entities/houses/House6.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scene/entities/vehicles/Vehicle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/entities/houses/House4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/entities/houses/house7.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/entities/houses/House2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scene/entities/houses/house5.tscn" type="PackedScene" id=8]
 
@@ -96,10 +99,37 @@ position = Vector2( 1810, 645 )
 rotation = 1.5708
 
 [node name="building2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5734, 3746 )
+position = Vector2( 5914, 4015 )
 
 [node name="building3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 3863, 3780 )
+position = Vector2( 3683, 3996 )
+
+[node name="building4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 4743, 2793 )
 
 [node name="building" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1342, 3805 )
+
+[node name="building5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 4762, 4144 )
+
+[node name="building6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 5840, 2653 )
+
+[node name="building7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3631, 2635 )
+
+[node name="building8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1548, 2635 )
+
+[node name="building9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 524, 2617 )
+
+[node name="building" parent="building9" instance=ExtResource( 4 )]
+position = Vector2( 431, -2190 )
+
+[node name="building10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3900, 553 )
+
+[node name="building11" parent="." instance=ExtResource( 5 )]
+position = Vector2( 5608, 564 )
