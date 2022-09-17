@@ -25,6 +25,7 @@ func attack():
 	agent.set_collision_mask_bit(1, false)
 
 func isAttacking(delta):
+	if !force: return false
 	if force.run(agent, delta):
 		use()
 		return false

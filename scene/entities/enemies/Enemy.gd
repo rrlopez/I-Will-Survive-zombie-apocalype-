@@ -19,6 +19,7 @@ var behavior = null setget setBehavior
 
 var attacks = []
 var curAttack = null
+var attackTimer = 0
 
 
 	
@@ -45,7 +46,7 @@ func _physics_process(delta):
 func process(delta):
 	behavior.run(delta)
 	
-	if path.size() > 0:
+	if body.lowerBodyAnimation.is_playing() and path.size() > 0:
 		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
 		
 		look_at(path[0])

@@ -47,11 +47,11 @@ shape = SubResource( 11 )
 visible = false
 
 [node name="blockerSensor" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 collision_mask = 4
 
 [node name="attackRange" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 collision_mask = 5
 

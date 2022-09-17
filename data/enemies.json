@@ -24,7 +24,7 @@
 				{ "name": "bandage", "quantity": {"min": 1, "max": 2}, "rarity": 80, "life": 20}
 			],
 			"attacks": [
-				{"script": "melle", "cooldown": 2, "statusEffects":[]}
+				{"script": "melle", "cooldown": 0.1, "statusEffects":[]}
 			]
 		}
 	},
@@ -55,7 +55,7 @@
 			"attacks": [
 				{
 					"script": "charge",
-					"cooldown": 2,
+					"cooldown": 1,
 					"statusEffects": [
 						{
 							"id": "openWounds",

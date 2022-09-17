@@ -425,6 +425,11 @@ _global_script_classes=[ {
 "path": "res://ai/leaves/isAttackCooldown.gd"
 }, {
 "base": "Leaf",
+"class": "isAttacking",
+"language": "GDScript",
+"path": "res://ai/leaves/isAttacking.gd"
+}, {
+"base": "Leaf",
 "class": "isBlocked",
 "language": "GDScript",
 "path": "res://ai/leaves/isBlocked.gd"
@@ -548,6 +553,7 @@ _global_script_class_icons={
 "generatePath": "",
 "hasOpponent": "",
 "isAttackCooldown": "",
+"isAttacking": "",
 "isBlocked": "",
 "isOpponentInRange": "",
 "isOpponentNeerby": "",
