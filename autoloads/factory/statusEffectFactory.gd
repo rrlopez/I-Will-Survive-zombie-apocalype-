@@ -9,7 +9,7 @@ var statusEffects = {
 	
 func create(data, oponent=Globals.player, parent=Globals.player):
 	Constants.rand.randomize()
-	if Constants.rand.randi()%100>data.chance: return
+	if not "statusEffects" in oponent or Constants.rand.randi()%100>data.chance: return
 	for statusEffect in oponent.statusEffects.val:
 		if statusEffect.data.id == data.id:
 			statusEffect.reset()

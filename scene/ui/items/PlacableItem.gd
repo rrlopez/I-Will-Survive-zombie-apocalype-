@@ -12,6 +12,7 @@ func use():
 func canBuild():
 	for item in staticData.recipe:
 		if !Globals.player.inventory.get_item(item.name):
+			Globals.HUD.notifs.addNotif("required items are incomplete!")
 			return false
 	return true
 

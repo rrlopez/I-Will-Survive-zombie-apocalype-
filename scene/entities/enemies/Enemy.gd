@@ -4,6 +4,7 @@ export(NodePath) onready var vision  = get_node(vision) as Node2D
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var sense  = get_node(sense) as CollisionShape2D
 export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as RayCast2D
+export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 
@@ -116,6 +117,7 @@ func _on_View_body_entered(_opponent):
 	$Sense/Collider.disabled = true
 	setEnableVision(false)
 	opponent = [_opponent]
+	attackRange.set_collision_mask_bit(2, false)
 
 
 func _on_View_body_exited(_body):

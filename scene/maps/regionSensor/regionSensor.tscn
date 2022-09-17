@@ -25,6 +25,7 @@ visible = false
 shape = SubResource( 1 )
 
 [node name="area" type="Area2D" parent="."]
+visible = false
 collision_layer = 8192
 
 [node name="collider" type="CollisionShape2D" parent="area"]

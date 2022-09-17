@@ -3,7 +3,7 @@ extends Leaf
 class_name isBlocked
 
 var last_position = Vector2.ZERO
-var minBlockTime = 0.5
+var minBlockTime = 0.1
 var blockedTime = 0
 
 func run(delta):
@@ -14,6 +14,7 @@ func run(delta):
 				agent.opponent.push_front(agent.blockerSensor.get_collider())
 				last_position = Vector2.ZERO
 				blockedTime = 0
+				agent.attackRange.set_collision_mask_bit(2, true)
 				return success()
 	last_position = agent.global_position
 	return fail()

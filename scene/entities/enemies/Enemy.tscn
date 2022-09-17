@@ -30,6 +30,7 @@ vision = NodePath("Vision")
 collider = NodePath("Collider")
 sense = NodePath("Sense/Collider")
 blockerSensor = NodePath("blockerSensor")
+attackRange = NodePath("attackRange")
 soundGrowl = NodePath("SoundGrowl")
 hitBox = NodePath("hitBox")
 
@@ -42,14 +43,17 @@ physics_process_parent = true
 position = Vector2( 0, -2 )
 shape = SubResource( 11 )
 
-[node name="Sense" type="Area2D" parent="."]
-collision_layer = 16
-monitorable = false
-
-[node name="Collider" type="CollisionShape2D" parent="Sense"]
-shape = SubResource( 2 )
-
 [node name="Vision" type="Node2D" parent="."]
+visible = false
+
+[node name="blockerSensor" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 4
+
+[node name="attackRange" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+collision_mask = 5
 
 [node name="Shadow" type="Node2D" parent="." groups=["shadow"]]
 z_index = -1
@@ -72,11 +76,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="blockerSensor" type="RayCast2D" parent="."]
-enabled = true
-collision_mask = 4
+[node name="Sense" type="Area2D" parent="."]
+visible = false
+collision_layer = 16
+monitorable = false
+
+[node name="Collider" type="CollisionShape2D" parent="Sense"]
+shape = SubResource( 2 )
 
 [node name="bodySensor" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 2
 
@@ -93,6 +102,7 @@ collider = NodePath("Collider")
 shape = SubResource( 12 )
 
 [node name="area" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8192
 

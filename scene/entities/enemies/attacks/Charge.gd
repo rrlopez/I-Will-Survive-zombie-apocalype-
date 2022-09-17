@@ -7,8 +7,7 @@ func _init(_agent, _data):
 
 func use():
 	.use()
-	agent.hitBox.collider.scale = Vector2(agent.data.stats.vision.val.height/2, agent.data.stats.size.val/4)
-	agent.hitBox.collider.position = Vector2(agent.data.stats.vision.val.height/2, 0)
+	agent.attackRange.cast_to = Vector2(agent.data.stats.vision.val.height/2, 0)
 	agent.set_collision_layer_bit(1, true)
 	agent.set_collision_mask_bit(0, true)
 	agent.set_collision_mask_bit(1, true)
