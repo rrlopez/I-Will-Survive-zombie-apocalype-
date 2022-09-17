@@ -8,9 +8,7 @@ func _init(_agent, _data):
 func use():
 	.use()
 	agent.attackRange.cast_to = Vector2(agent.data.stats.vision.val.height/2, 0)
-	agent.set_collision_layer_bit(1, true)
-	agent.set_collision_mask_bit(0, true)
-	agent.set_collision_mask_bit(1, true)
+	agent.collider.disabled = false
 
 func attack():
 	.attack()
@@ -20,9 +18,7 @@ func attack():
 	force = ApplyForce.new()
 	force.init({"force": agent.data.stats.vision.val.height/7,  "friction": 0.9 })
 	force.add(agent.opponent[0], agent)
-	agent.set_collision_layer_bit(1, false)
-	agent.set_collision_mask_bit(0, false)
-	agent.set_collision_mask_bit(1, false)
+	agent.collider.disabled = true
 
 func isAttacking(delta):
 	if !force: return false

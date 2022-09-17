@@ -32,7 +32,6 @@ func init():
 	if(global_position.distance_to(Globals.camera.global_position)>Constants.WIDTH): 
 		visible = false
 		setEnableVision(false)
-	
 	setBehavior(data.behavior)
 	
 	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
@@ -46,18 +45,23 @@ func _physics_process(delta):
 func process(delta):
 	behavior.run(delta)
 	
-	if body.lowerBodyAnimation.is_playing() and path.size() > 0:
-		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
-		
-		look_at(path[0])
-		
-		if global_position.distance_to(path[0])<10:
-			path.pop_front()
-			
+	if body.lowerBodyAnimation.is_playing(): move(delta)
+	
 	growl()
 	._process(delta)
-
 	
+func move(delta):
+	if path.size() > 0:
+		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
+		
+		var direction = (path[0] - global_position)
+		var angleTo = self.transform.x.angle_to(direction)
+		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
+		
+		if global_position.distance_to(path[0])<10: path.pop_front()
+	
+	return path.size() > 0
+			
 func setEnableVision(enabled = self.visible):
 	for ray in $Vision.get_children():
 		ray.enabled = enabled

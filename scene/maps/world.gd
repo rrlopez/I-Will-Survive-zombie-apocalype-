@@ -1,6 +1,7 @@
 extends Area2D
 
 signal onReady
+signal mapLoaded
 
 onready var regionScene = preload("res://scene/maps/regionSensor/regionSensor.tscn")
 
@@ -21,7 +22,7 @@ var loadedBlocks = []
 func _ready():
 	collider.shape.extents = Vector2(blocks[0].size()*Constants.BLOCK_SIZE, blocks.size()*Constants.BLOCK_SIZE)
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
-	connect("onReady", self, "init", [], CONNECT_ONESHOT)
+	connect("mapLoaded", self, "init", [], CONNECT_ONESHOT)
 	
 	var xOffset = -blocks.size()/2
 	var yOffset = -blocks[0].size()/2
@@ -34,9 +35,8 @@ func _ready():
 
 func init():
 	Globals.player.addCamera()
-	yield(get_tree(),"idle_frame")
-	yield(get_tree(),"idle_frame")
 	Serialize.loadMap()
+	emit_signal("onReady")
 	
 
 	
@@ -46,7 +46,7 @@ func mapLoaded(block):
 	if Globals.loadingBlocksCount>0: return
 	
 	Globals.stateManager.removeOverlayState("loadingState")
-	Globals.currentMap.emit_signal("onReady")
+	emit_signal("mapLoaded")
 	loadedBlocks = []
 	
 

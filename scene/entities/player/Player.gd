@@ -20,7 +20,6 @@ func _ready():
 	controller.connect("use_joystick_vector", self, "_on_Controller_use_joystick_vector")
 	controller.connect("on_joystick_release", self, "_on_Controller_on_joystick_release")
 	controller.connect("use_rotateArea_degrees", self, "_on_Controller_use_rotateArea_degrees")
-	controller.rotated = global_rotation_degrees
 	Globals.currentController = controller
 	
 	collider.shape.radius = Constants.BLOCK_SIZE*2
@@ -186,6 +185,7 @@ func deserialize(savedData):
 	data = Utils.import_data("res://data/player.json")
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
+	controller.rotated = global_rotation_degrees
 	.init()
 	
 	for stat in savedData.data.stats: data.stats[stat].deserialize(savedData.data.stats[stat])

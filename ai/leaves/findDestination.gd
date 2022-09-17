@@ -3,7 +3,7 @@ extends Leaf
 class_name findDestination
 
 var wanderTimer = 0
-var maxWanderTimer = 12
+var maxWanderTimer = 1
 var wanderDistance = 200
 
 func start(agent):
