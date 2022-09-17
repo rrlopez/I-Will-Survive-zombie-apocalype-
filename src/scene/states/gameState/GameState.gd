@@ -43,3 +43,11 @@ func createNewDayNightCycle():
 
 func resetTimer():
 	curTimer = timer
+
+
+func _on_GameState_tree_entered():
+	Pathfinder.set_physics_process(true)
+
+
+func _on_GameState_tree_exited():
+	Pathfinder.set_physics_process(false)

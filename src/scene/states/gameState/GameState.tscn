@@ -12,3 +12,5 @@ script = ExtResource( 2 )
 [node name="MapManager" parent="." instance=ExtResource( 1 )]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_GameState_child_entered_tree"]
+[connection signal="tree_entered" from="." to="." method="_on_GameState_tree_entered"]
+[connection signal="tree_exited" from="." to="." method="_on_GameState_tree_exited"]

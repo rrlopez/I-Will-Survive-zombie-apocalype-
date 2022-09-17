@@ -10,9 +10,10 @@ export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 
 var body = null
 
+var isPathGenerated = false
 var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
-var destination = null
+var destination = Vector2.ZERO
 
 var opponent = []
 var behavior = null setget setBehavior
@@ -50,6 +51,13 @@ func process(delta):
 	growl()
 	._process(delta)
 	
+func generatePath():
+	var destination = getDestination()
+	path = Globals.curRegion.navigation.get_simple_path(global_position, destination, true)
+	path.pop_front()
+	isPathGenerated = true
+
+
 func move(delta):
 	if path.size() > 0:
 		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER

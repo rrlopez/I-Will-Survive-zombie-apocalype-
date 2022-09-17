@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ai/behaviorTree/Composites/Selector.gd" type="Script" id=1]
 [ext_resource path="res://ai/behaviorTree/Decorators/UntilSuccess.gd" type="Script" id=2]
-[ext_resource path="res://ai/leaves/generatePath.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ai/leaves/requestPath.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ai/leaves/isOpponentInRange.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ai/behaviorTree/Decorators/AlwaysSucceed.gd" type="Script" id=5]
 [ext_resource path="res://ai/behaviorTree/Decorators/Skip.tscn" type="PackedScene" id=6]
@@ -13,6 +13,7 @@
 [ext_resource path="res://ai/leaves/isAttackCooldown.tscn" type="PackedScene" id=11]
 [ext_resource path="res://ai/behaviorTree/Decorators/AlwaysFail.gd" type="Script" id=12]
 [ext_resource path="res://ai/leaves/isAttacking.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ai/leaves/isPathGenerated.tscn" type="PackedScene" id=14]
 
 [node name="Combat" type="Node"]
 script = ExtResource( 7 )
@@ -36,9 +37,17 @@ script = ExtResource( 1 )
 script = ExtResource( 12 )
 
 [node name="Skip" parent="UntilSucces/canAttack/AlwaysFail" instance=ExtResource( 6 )]
-skipTime = 0.1
+skipTime = 0.3
 
-[node name="generatePath" parent="UntilSucces/canAttack/AlwaysFail/Skip" instance=ExtResource( 3 )]
+[node name="Sequence" type="Node" parent="UntilSucces/canAttack/AlwaysFail/Skip"]
+script = ExtResource( 7 )
+
+[node name="requestPath" parent="UntilSucces/canAttack/AlwaysFail/Skip/Sequence" instance=ExtResource( 3 )]
+
+[node name="UntilSucces" type="Node" parent="UntilSucces/canAttack/AlwaysFail/Skip/Sequence"]
+script = ExtResource( 2 )
+
+[node name="isPathGenerated" parent="UntilSucces/canAttack/AlwaysFail/Skip/Sequence/UntilSucces" instance=ExtResource( 14 )]
 
 [node name="attack" type="Node" parent="."]
 script = ExtResource( 7 )

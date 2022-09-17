@@ -450,6 +450,11 @@ _global_script_classes=[ {
 "path": "res://ai/leaves/isOpponentOnView.gd"
 }, {
 "base": "Leaf",
+"class": "isPathGenerated",
+"language": "GDScript",
+"path": "res://ai/leaves/isPathGenerated.gd"
+}, {
+"base": "Leaf",
 "class": "isVisible",
 "language": "GDScript",
 "path": "res://ai/leaves/isVisible.gd"
@@ -458,6 +463,11 @@ _global_script_classes=[ {
 "class": "navigatePath",
 "language": "GDScript",
 "path": "res://ai/leaves/navigatePath.gd"
+}, {
+"base": "Leaf",
+"class": "requestPath",
+"language": "GDScript",
+"path": "res://ai/leaves/requestPath.gd"
 }, {
 "base": "Leaf",
 "class": "running",
@@ -558,8 +568,10 @@ _global_script_class_icons={
 "isOpponentInRange": "",
 "isOpponentNeerby": "",
 "isOpponentOnView": "",
+"isPathGenerated": "",
 "isVisible": "",
 "navigatePath": "",
+"requestPath": "",
 "running": "",
 "success": ""
 }
@@ -577,6 +589,7 @@ Constants="*res://autoloads/Constants.gd"
 Globals="*res://autoloads/Globals.gd"
 Factory="*res://autoloads/factory/Factory.gd"
 Serialize="*res://autoloads/serialize.gd"
+Pathfinder="*res://autoloads/pathfinder.gd"
 
 [display]
 
