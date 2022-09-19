@@ -119,9 +119,9 @@ func growl():
 		if (Constants.rand.randi()%1000)<10: soundGrowl.play()
 
 func getDestination():
-	if opponent.empty() or opponent[0] == null: return destination
+	if opponent.empty() or opponent[0] == null or !weakref(opponent[0]).get_ref(): return destination
 	return opponent[0].global_position
-
+ 
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(_opponent):

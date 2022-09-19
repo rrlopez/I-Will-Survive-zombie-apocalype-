@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/entities/objects/tree/sprites/trunk.png" type="Texture" id=1]
-[ext_resource path="res://scene/entities/objects/tree/sprites/leaves.png" type="Texture" id=2]
+[ext_resource path="res://scene/entities/objects/tree/sprites/leaves1.png" type="Texture" id=2]
 [ext_resource path="res://assets/shadow/circle.png" type="Texture" id=3]
 [ext_resource path="res://scene/entities/objects/tree/tree.gd" type="Script" id=4]
 [ext_resource path="res://scene/entities/objects/tree/Leaves.gd" type="Script" id=5]
@@ -14,7 +14,7 @@ radius = 39.0512
 radius = 31.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 148.014
+radius = 203.022
 
 [node name="Tree" type="Area2D"]
 collision_layer = 16
@@ -39,15 +39,15 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Trunk"]
-margin_left = -33.0
-margin_top = -32.0
-margin_right = 293.0
-margin_bottom = 291.0
+margin_left = -78.0
+margin_top = -77.0
+margin_right = 702.0
+margin_bottom = 696.0
 rect_scale = Vector2( 0.2, 0.2 )
 mouse_filter = 2
 texture = ExtResource( 1 )
+expand = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -67,7 +67,7 @@ __meta__ = {
 }
 
 [node name="Texture" type="Sprite" parent="Leaves" groups=["map"]]
-scale = Vector2( 0.4625, 0.472784 )
+scale = Vector2( 2.3343, 2.38621 )
 texture = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Leaves"]

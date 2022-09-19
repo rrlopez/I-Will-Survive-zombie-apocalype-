@@ -10,8 +10,8 @@
 resource_local_to_scene = true
 extents = Vector2( 1171.5, 1012.5 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 608, 525.5 )
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 624.5, 564 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "tilemap.png 0"
@@ -451,10 +451,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Collider" type="CollisionShape2D" parent="lot/House"]
+[node name="collider" type="CollisionShape2D" parent="lot/House"]
 visible = false
-position = Vector2( 92, 98 )
-shape = SubResource( 3 )
+position = Vector2( 97.5, 97 )
+shape = SubResource( 5 )
 
 [node name="Floors" type="TileMap" parent="lot/House" groups=["map"]]
 tile_set = SubResource( 2 )
@@ -516,10 +516,10 @@ __meta__ = {
 }
 
 [node name="Texture" type="TextureRect" parent="lot/House/Roof"]
-margin_left = -622.0
-margin_top = -554.0
-margin_right = 409.0
-margin_bottom = 549.0
+margin_left = -544.0
+margin_top = -447.0
+margin_right = 364.0
+margin_bottom = 466.0
 rect_scale = Vector2( 1.4, 1.2 )
 mouse_filter = 2
 texture = ExtResource( 1 )
@@ -554,7 +554,7 @@ __meta__ = {
 
 [node name="enemies" type="Node2D" parent="."]
 
-[connection signal="body_entered" from="lot" to="lot/House/Roof" method="_on_lot_body_entered"]
-[connection signal="body_exited" from="lot" to="lot/House/Roof" method="_on_lot_body_exited"]
 [connection signal="body_entered" from="lot/House" to="lot" method="_on_House_body_entered"]
+[connection signal="body_entered" from="lot/House" to="lot/House/Roof" method="_on_House_body_entered"]
 [connection signal="body_exited" from="lot/House" to="lot" method="_on_House_body_exited"]
+[connection signal="body_exited" from="lot/House" to="lot/House/Roof" method="_on_House_body_exited"]
