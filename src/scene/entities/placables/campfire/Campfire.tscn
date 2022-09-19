@@ -20,6 +20,7 @@ light = NodePath("light")
 buttons = NodePath("Controller/buttons")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Sprite" type="TextureRect" parent="."]
@@ -35,12 +36,13 @@ __meta__ = {
 }
 
 [node name="light" type="Light2D" parent="."]
-scale = Vector2( 5, 5 )
+scale = Vector2( 8, 8 )
 texture = ExtResource( 3 )
 mode = 2
 shadow_enabled = true
 
 [node name="Area" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 
 [node name="Collider" type="CollisionShape2D" parent="Area"]

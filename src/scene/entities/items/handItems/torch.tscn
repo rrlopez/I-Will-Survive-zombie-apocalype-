@@ -4,6 +4,7 @@
 [ext_resource path="res://scene/entities/items/handItems/torch.gd" type="Script" id=2]
 
 [node name="torch" type="Light2D"]
+scale = Vector2( 8, 8 )
 texture = ExtResource( 1 )
 mode = 2
 shadow_enabled = true

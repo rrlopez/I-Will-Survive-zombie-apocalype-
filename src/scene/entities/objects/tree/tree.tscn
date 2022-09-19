@@ -21,6 +21,7 @@ collision_layer = 16
 script = ExtResource( 4 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 3 )
 __meta__ = {
 "_edit_lock_": true
@@ -33,6 +34,7 @@ __meta__ = {
 }
 
 [node name="Collider" type="CollisionShape2D" parent="Trunk"]
+visible = false
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -61,6 +63,7 @@ __meta__ = {
 }
 
 [node name="collider" type="CollisionShape2D" parent="Leaves"]
+visible = false
 shape = SubResource( 2 )
 __meta__ = {
 "_edit_lock_": true

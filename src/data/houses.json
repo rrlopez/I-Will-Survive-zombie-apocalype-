@@ -4,7 +4,7 @@
     "name": "Normal",
     "capacity": 10,
     "enemies": [
-      {"type": "normal", "count": 10},
+      {"type": "normal", "count": 50},
       {"type": "charger", "count": 2}
     ],
     "loots":[

@@ -51,9 +51,8 @@ func process(delta):
 	growl()
 	._process(delta)
 	
-func generatePath():
-	var destination = getDestination()
-	path = Globals.curRegion.navigation.get_simple_path(global_position, destination, true)
+func generatePath(_path):
+	path = _path
 	path.pop_front()
 	isPathGenerated = true
 
@@ -63,7 +62,7 @@ func move(delta):
 		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
 		
 		var direction = (path[0] - global_position)
-		var angleTo = self.transform.x.angle_to(direction)
+		var angleTo = self.global_transform.x.angle_to(direction)
 		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
 		
 		if global_position.distance_to(path[0])<10: path.pop_front()
@@ -75,7 +74,7 @@ func setEnableVision(enabled = self.visible):
 		ray.enabled = enabled
 
 
-func hurt(_opponent, dmg):
+func hurt(dmg, _opponent):
 	Factory.particles.createBlood(global_position, Color.green)
 	if ._hurt(dmg): return data.stats.exp.val
 	
