@@ -18,18 +18,18 @@ func _ready():
 	thread_timer.wait_time = 0.4
 	thread_timer.one_shot = true
 	add_child(thread_timer)
+		
+	thread = Thread.new()
 
 	
 func _on_regionSensor_area_entered(_area):
-	if thread: return
+	if thread.is_active(): return
 	Globals.loadingBlocksCount+=1
-	thread = Thread.new()
 	thread.start(self, "entered", "loading")
 
 
 func _on_regionSensor_area_exited(_area):
-	if thread: return
-	thread = Thread.new()
+	if thread.is_active(): return
 	thread.start(self, "leaved", "loading")
 
 
@@ -60,7 +60,6 @@ func onLeaved():
 	
 func loadingDone():
 	thread.wait_to_finish()
-	thread = null
 
 func _on_area_body_entered(body):
 	Globals.curRegion = self

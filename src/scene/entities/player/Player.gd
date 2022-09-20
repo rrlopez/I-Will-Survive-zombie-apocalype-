@@ -51,8 +51,6 @@ func _physics_process(delta):
 func setupInventory():
 	inventory.size = 40
 	inventory.inventory_name = "Inventory"
-
-	inventory.add_item(load("res://scene/ui/items/data/Cristal.tscn").instance())
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 
 func addCamera():
@@ -118,7 +116,7 @@ func _on_player_tree_entered():
 	visible = true
 	set_collision_layer_bit(0, true)
 	set_collision_mask_bit(3, true)
-	$Collider.disabled = false
+	$Collider.set_deferred("disabled", false)
 	$Body/Lower/Animation.stop(false)
 
 
@@ -128,7 +126,7 @@ func _on_Player_tree_exited():
 	set_collision_layer_bit(0, false)
 	set_collision_mask_bit(3, false)
 	velocity = [{'key': 'default', 'value': Vector2()}]
-	$Collider.disabled = false
+	$Collider.set_deferred("disabled", false)
 	$Body/Lower/Animation.stop(false)
 
 

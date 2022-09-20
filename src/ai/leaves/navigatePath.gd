@@ -3,8 +3,7 @@ extends Leaf
 class_name navigatePath
 
 func run(_delta):
-	if agent.move(_delta): success()
-	else: 
-		agent.velocity = Vector2.ZERO
-		agent.body.lowerBodyAnimation.stop()
-		fail()
+	if agent.body.lowerBodyAnimation.is_playing() and agent.path.size()>0: return success()
+	agent.path = []
+	agent.body.lowerBodyAnimation.stop()
+	return fail()

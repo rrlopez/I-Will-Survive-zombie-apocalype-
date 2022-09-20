@@ -3,7 +3,8 @@ extends Leaf
 class_name findDestination
 
 var wanderTimer = 0
-var maxWanderTimer = 0.5
+var maxWanderTimer = 1
+var minWanderTimer = 0.5
 var wanderDistance = 200
 
 func start(agent):
@@ -25,4 +26,4 @@ func run(_delta):
 
 func resetTimer():
 	Constants.rand.randomize()
-	wanderTimer = Constants.rand.randi_range(10, maxWanderTimer)
+	wanderTimer = Constants.rand.randi_range(minWanderTimer, maxWanderTimer)

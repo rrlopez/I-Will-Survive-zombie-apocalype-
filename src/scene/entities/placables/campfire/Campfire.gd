@@ -2,7 +2,6 @@ extends Placesable
 
 export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider  = get_node(areaCollider) as CollisionShape2D
-export(NodePath) onready var light  = get_node(light) as Light2D
 export(NodePath) onready var buttons  = get_node(buttons) as Node2D
 
 func init():

@@ -7,6 +7,7 @@ export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as RayCast
 export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
+export(NodePath) onready var animation  = get_node(animation) as AnimationPlayer
 
 var body = null
 
@@ -14,6 +15,7 @@ var isPathGenerated = false
 var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
 var destination = Vector2.ZERO
+var lastPosition = Vector2.ZERO
 
 var opponent = []
 var behavior = null setget setBehavior
@@ -40,13 +42,12 @@ func init():
 		
 func _physics_process(delta):
 	process(delta)
-	velocity = move_and_slide((applyedForce+velocity)*delta)
+	move(delta)
 	
 	
 func process(delta):
 	behavior.run(delta)
 	
-	if body.lowerBodyAnimation.is_playing(): move(delta)
 	
 	growl()
 	._process(delta)
@@ -60,13 +61,18 @@ func generatePath(_path):
 func move(delta):
 	if path.size() > 0:
 		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
+		velocity = move_and_slide((applyedForce+velocity)*delta)
 		
 		var direction = (path[0] - global_position)
 		var angleTo = self.global_transform.x.angle_to(direction)
 		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
 		
 		if global_position.distance_to(path[0])<10: path.pop_front()
-	
+		
+		if lastPosition.distance_to(global_position) > 1: body.lowerBodyAnimation.play("run_stright")
+		else: body.lowerBodyAnimation.stop()
+		
+		lastPosition = global_position
 	return path.size() > 0
 			
 func setEnableVision(enabled = self.visible):
@@ -76,6 +82,7 @@ func setEnableVision(enabled = self.visible):
 
 func hurt(dmg, _opponent):
 	Factory.particles.createBlood(global_position, Color.green)
+	animation.play("hurt")
 	if ._hurt(dmg): return data.stats.exp.val
 	
 	_on_View_body_entered(_opponent)
@@ -126,7 +133,7 @@ func getDestination():
 func _on_View_body_entered(_opponent):
 	chooseAttack()
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
-	$Sense/Collider.disabled = true
+	$Sense/Collider.set_deferred("disabled", true)
 	setEnableVision(false)
 	opponent = [_opponent]
 	attackRange.set_collision_mask_bit(2, false)
@@ -134,7 +141,7 @@ func _on_View_body_entered(_opponent):
 
 func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
-	$Sense/Collider.disabled = false
+	$Sense/Collider.set_deferred("disabled", false)
 	$Body/Lower/Animation.stop()
 	setEnableVision()
 	path = []
@@ -165,14 +172,15 @@ func _on_bodySensor_body_entered(_opponent):
 
 func _on_area_area_entered(_area):
 	if(velocity.length()>1):
-		var savedPosition = self.global_position
-		var parent = get_parent()
-		parent.remove_child(self)
-		Globals.mapManager.add_child(self)
-		self.global_position = savedPosition
-		$area.disconnect("area_entered", self, "_on_area_area_entered")
+		self.call_deferred("reperent")
 
-
+func reperent():
+	var savedPosition = self.global_position
+	var parent = get_parent()
+	parent.remove_child(self)
+	Globals.mapManager.add_child(self)
+	self.global_position = savedPosition
+	$area.disconnect("area_entered", self, "_on_area_area_entered")
 
 func serialize(savedData):
 	var serializedData = {

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scene/entities/enemies/hitBox.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/light/light.png" type="Texture" id=3]
 [ext_resource path="res://assets/shadow/circle.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=11]
@@ -21,6 +22,49 @@ radius = 1.0
 [sub_resource type="CircleShape2D" id=13]
 radius = 1.0
 
+[sub_resource type="Animation" id=15]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("light:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("light:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0, 0.0 ]
+}
+
 [node name="Enemy" type="KinematicBody2D"]
 z_index = 10
 collision_layer = 258
@@ -33,6 +77,7 @@ blockerSensor = NodePath("blockerSensor")
 attackRange = NodePath("attackRange")
 soundGrowl = NodePath("SoundGrowl")
 hitBox = NodePath("hitBox")
+animation = NodePath("animation")
 
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
@@ -44,7 +89,6 @@ position = Vector2( 0, -2 )
 shape = SubResource( 11 )
 
 [node name="Vision" type="Node2D" parent="."]
-visible = false
 
 [node name="blockerSensor" type="RayCast2D" parent="."]
 visible = false
@@ -108,6 +152,16 @@ collision_mask = 8192
 
 [node name="collider" type="CollisionShape2D" parent="area"]
 shape = SubResource( 13 )
+
+[node name="animation" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 15 )
+anims/hurt = SubResource( 14 )
+
+[node name="light" type="Light2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+energy = 0.0
+mode = 2
 
 [node name="SoundGrowl" type="AudioStreamPlayer2D" parent="."]
 max_distance = 500.0

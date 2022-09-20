@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/entities/machine gun.png" type="Texture" id=14]
 [ext_resource path="res://assets/gui/reloadNotif.png" type="Texture" id=15]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=19]
 radius = 28.0713
 
 [sub_resource type="CircleShape2D" id=12]
@@ -1377,11 +1377,7 @@ notif = NodePath("notif")
 collider = NodePath("Sensor/Collider")
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource( 19 )
 
 [node name="Equipments" type="Node2D" parent="." groups=["player"]]
 z_index = 10
@@ -1425,15 +1421,6 @@ texture = ExtResource( 12 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
-}
-
-[node name="light" type="Light2D" parent="." groups=["light"]]
-scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 11 )
-energy = 0.8
-mode = 2
-__meta__ = {
-"_edit_lock_": true
 }
 
 [node name="Pickup" type="Area2D" parent="."]
@@ -1594,6 +1581,15 @@ collision_mask = 0
 
 [node name="Collider" type="CollisionShape2D" parent="Sensor"]
 shape = SubResource( 18 )
+
+[node name="light" type="Light2D" parent="." groups=["light"]]
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 11 )
+energy = 0.8
+mode = 2
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="tree_exited" from="." to="." method="_on_Player_tree_exited"]
 [connection signal="body_entered" from="Pickup" to="." method="_on_Pickup_body_entered"]

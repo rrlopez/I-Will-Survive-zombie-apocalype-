@@ -24,10 +24,10 @@ func _on_hitBox_body_entered(body):
 	.hit(body)
 	
 func attackFinished():
-	hitBox.disabled = true
+	hitBox.set_deferred("disabled", true)
 
 func attackLanded():
-	hitBox.disabled = false	
+	hitBox.set_deferred("disabled", false)
 
 
 func _on_fireBtn_released():
