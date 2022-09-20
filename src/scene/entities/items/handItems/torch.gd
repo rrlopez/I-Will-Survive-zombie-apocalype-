@@ -5,7 +5,6 @@ var data
 var parent
 
 func _ready():
-	
 	texture_scale = item.data.stats.size.val
 
 func init(_parent, _item):

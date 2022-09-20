@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scene/entities/player/sprites/body/arm.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/player/sprites/body/tigh.png" type="Texture" id=2]
@@ -1363,6 +1363,9 @@ tracks/11/keys = {
 
 [sub_resource type="CircleShape2D" id=18]
 
+[sub_resource type="OccluderPolygon2D" id=20]
+polygon = PoolVector2Array( -853, -857, -866, 432, 889, 427, 906, -878 )
+
 [node name="Player" type="KinematicBody2D" groups=["serializable"]]
 z_index = 10
 z_as_relative = false
@@ -1587,6 +1590,13 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 11 )
 energy = 0.8
 mode = 2
+shadow_enabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource( 20 )
 __meta__ = {
 "_edit_lock_": true
 }

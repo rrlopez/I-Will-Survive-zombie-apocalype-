@@ -39,6 +39,7 @@ scale = Vector2( 5, 5 )
 texture = ExtResource( 3 )
 color = Color( 1, 0.772549, 0.490196, 1 )
 mode = 2
+shadow_enabled = true
 
 [node name="Area" type="Area2D" parent="."]
 visible = false

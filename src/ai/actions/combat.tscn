@@ -37,7 +37,7 @@ script = ExtResource( 1 )
 script = ExtResource( 12 )
 
 [node name="Skip" parent="UntilSucces/canAttack/AlwaysFail" instance=ExtResource( 6 )]
-skipTime = 0.3
+skipTime = 0.1
 
 [node name="Sequence" type="Node" parent="UntilSucces/canAttack/AlwaysFail/Skip"]
 script = ExtResource( 7 )

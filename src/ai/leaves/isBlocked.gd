@@ -3,7 +3,7 @@ extends Leaf
 class_name isBlocked
 
 var last_position = Vector2.ZERO
-var minBlockTime = 0.1
+var minBlockTime = 0.2
 var blockedTime = 0
 
 func run(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scene/entities/houses/House.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/houses/sprites/tilemap.png" type="Texture" id=2]
@@ -70,12 +70,6 @@ extents = Vector2( 398.5, 364.5 )
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
-
-[sub_resource type="OccluderPolygon2D" id=31]
-polygon = PoolVector2Array( -63, -321, -63, -303, -367, -302, -367, 367, -64, 367, -64, 384, -384, 384, -384, -320 )
-
-[sub_resource type="OccluderPolygon2D" id=32]
-polygon = PoolVector2Array( 64, -320, 64, -303, 367, -303, 367, 367, 64, 367, 64, 384, 384, 384, 384, -320 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -470,6 +464,62 @@ polygon = PoolVector2Array( 64, -320, 64, -303, 367, -303, 367, 367, 64, 367, 64
 27/shape_one_way_margin = 0.0
 27/shapes = [  ]
 27/z_index = 0
+28/name = "tilemap.png 28"
+28/texture = ExtResource( 2 )
+28/tex_offset = Vector2( 0, 0 )
+28/modulate = Color( 1, 1, 1, 1 )
+28/region = Rect2( 256, 256, 64, 64 )
+28/tile_mode = 0
+28/occluder_offset = Vector2( 0, 0 )
+28/navigation_offset = Vector2( 0, 0 )
+28/shape_offset = Vector2( 0, 0 )
+28/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+28/shape_one_way = false
+28/shape_one_way_margin = 0.0
+28/shapes = [  ]
+28/z_index = 0
+29/name = "tilemap.png 29"
+29/texture = ExtResource( 2 )
+29/tex_offset = Vector2( 0, 0 )
+29/modulate = Color( 1, 1, 1, 1 )
+29/region = Rect2( 320, 256, 64, 64 )
+29/tile_mode = 0
+29/occluder_offset = Vector2( 0, 0 )
+29/navigation_offset = Vector2( 0, 0 )
+29/shape_offset = Vector2( 0, 0 )
+29/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+29/shape_one_way = false
+29/shape_one_way_margin = 0.0
+29/shapes = [  ]
+29/z_index = 0
+30/name = "tilemap.png 30"
+30/texture = ExtResource( 2 )
+30/tex_offset = Vector2( 0, 0 )
+30/modulate = Color( 1, 1, 1, 1 )
+30/region = Rect2( 256, 320, 64, 64 )
+30/tile_mode = 0
+30/occluder_offset = Vector2( 0, 0 )
+30/navigation_offset = Vector2( 0, 0 )
+30/shape_offset = Vector2( 0, 0 )
+30/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+30/shape_one_way = false
+30/shape_one_way_margin = 0.0
+30/shapes = [  ]
+30/z_index = 0
+31/name = "tilemap.png 31"
+31/texture = ExtResource( 2 )
+31/tex_offset = Vector2( 0, 0 )
+31/modulate = Color( 1, 1, 1, 1 )
+31/region = Rect2( 320, 320, 64, 64 )
+31/tile_mode = 0
+31/occluder_offset = Vector2( 0, 0 )
+31/navigation_offset = Vector2( 0, 0 )
+31/shape_offset = Vector2( 0, 0 )
+31/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+31/shape_one_way = false
+31/shape_one_way_margin = 0.0
+31/shapes = [  ]
+31/z_index = 0
 
 [node name="building" type="Node2D"]
 
@@ -519,12 +569,6 @@ polygon = PoolVector2Array( -63, -321, -63, -304, -367, -303, -367, 367, -64, 36
 
 [node name="collider2" type="CollisionPolygon2D" parent="lot/House/Walls"]
 polygon = PoolVector2Array( 64, -320, 64, -303, 366, -303, 368, 367, 64, 368, 64, 384, 384, 385, 385, -320 )
-
-[node name="occluder" type="LightOccluder2D" parent="lot/House/Walls"]
-occluder = SubResource( 31 )
-
-[node name="occluder2" type="LightOccluder2D" parent="lot/House/Walls"]
-occluder = SubResource( 32 )
 
 [node name="texture" type="TileMap" parent="lot/House/Walls" groups=["map"]]
 tile_set = SubResource( 1 )

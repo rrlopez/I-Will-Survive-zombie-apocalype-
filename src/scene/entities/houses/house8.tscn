@@ -525,6 +525,7 @@ __meta__ = {
 }
 
 [node name="Texture" type="TextureRect" parent="lot/House/Roof"]
+light_mask = 0
 margin_left = -883.0
 margin_top = -192.0
 margin_right = 512.0

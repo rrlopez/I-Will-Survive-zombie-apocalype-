@@ -8,6 +8,7 @@ export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 export(NodePath) onready var animation  = get_node(animation) as AnimationPlayer
+export(NodePath) onready var notif  = get_node(notif) as Sprite
 
 var body = null
 
@@ -16,6 +17,10 @@ var path: Array = []
 var velocity: Vector2 = Vector2.ZERO
 var destination = Vector2.ZERO
 var lastPosition = Vector2.ZERO
+
+var maxblockTime = 1
+var timer = 0
+
 
 var opponent = []
 var behavior = null setget setBehavior
@@ -41,15 +46,13 @@ func init():
 	
 		
 func _physics_process(delta):
-	process(delta)
 	move(delta)
 	
 	
-func process(delta):
+func _process(delta):
 	behavior.run(delta)
-	
-	
 	growl()
+	setNotifPosition()
 	._process(delta)
 	
 func generatePath(_path):
@@ -67,9 +70,14 @@ func move(delta):
 		var angleTo = self.global_transform.x.angle_to(direction)
 		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
 		
-		if global_position.distance_to(path[0])<10: path.pop_front()
+		if global_position.distance_to(path[0])<20: path.pop_front()
 		
-		if lastPosition.distance_to(global_position) > 1: body.lowerBodyAnimation.play("run_stright")
+		if lastPosition.distance_to(global_position) > 1:
+			if timer>maxblockTime:
+				timer = 0
+				path = []
+			timer+=delta
+			body.lowerBodyAnimation.play("run_stright")
 		else: body.lowerBodyAnimation.stop()
 		
 		lastPosition = global_position
@@ -137,7 +145,9 @@ func _on_View_body_entered(_opponent):
 	setEnableVision(false)
 	opponent = [_opponent]
 	attackRange.set_collision_mask_bit(2, false)
-
+	notif.show()
+	for i in 100: yield(get_tree(),"idle_frame")
+	notif.hide()
 
 func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
@@ -181,6 +191,11 @@ func reperent():
 	Globals.mapManager.add_child(self)
 	self.global_position = savedPosition
 	$area.disconnect("area_entered", self, "_on_area_area_entered")
+
+func setNotifPosition():
+	if visible:
+		notif.position = (Vector2(0.5,-0.5)*65).rotated(deg2rad(-global_rotation_degrees+Globals.camera.global_rotation_degrees))
+		notif.rotation_degrees = -global_rotation_degrees+Globals.camera.global_rotation_degrees
 
 func serialize(savedData):
 	var serializedData = {

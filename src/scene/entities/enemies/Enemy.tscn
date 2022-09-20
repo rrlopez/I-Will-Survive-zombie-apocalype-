@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scene/entities/enemies/hitBox.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/light/light.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/alertIcon.png" type="Texture" id=4]
 [ext_resource path="res://assets/shadow/circle.png" type="Texture" id=9]
 
 [sub_resource type="CircleShape2D" id=11]
@@ -78,6 +79,7 @@ attackRange = NodePath("attackRange")
 soundGrowl = NodePath("SoundGrowl")
 hitBox = NodePath("hitBox")
 animation = NodePath("animation")
+notif = NodePath("notif")
 
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
@@ -152,6 +154,14 @@ collision_mask = 8192
 
 [node name="collider" type="CollisionShape2D" parent="area"]
 shape = SubResource( 13 )
+
+[node name="notif" type="Sprite" parent="."]
+visible = false
+position = Vector2( -33.1, -31.1341 )
+scale = Vector2( 0.437363, 0.437363 )
+z_index = 50
+z_as_relative = false
+texture = ExtResource( 4 )
 
 [node name="animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 15 )

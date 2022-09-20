@@ -7,4 +7,5 @@
 texture = ExtResource( 1 )
 color = Color( 0.964706, 0.603922, 0.329412, 1 )
 mode = 2
+shadow_enabled = true
 script = ExtResource( 2 )
