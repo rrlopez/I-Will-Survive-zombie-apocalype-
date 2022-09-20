@@ -70,15 +70,16 @@ func move(delta):
 		var angleTo = self.global_transform.x.angle_to(direction)
 		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
 		
-		if global_position.distance_to(path[0])<20: path.pop_front()
+		if global_position.distance_to(path[0])<10: path.pop_front()
 		
-		if lastPosition.distance_to(global_position) > 1:
+		if lastPosition.distance_to(global_position) < 1:
 			if timer>maxblockTime:
 				timer = 0
 				path = []
+				body.lowerBodyAnimation.stop()
 			timer+=delta
-			body.lowerBodyAnimation.play("run_stright")
-		else: body.lowerBodyAnimation.stop()
+			
+		else: body.lowerBodyAnimation.play("run_stright")
 		
 		lastPosition = global_position
 	return path.size() > 0

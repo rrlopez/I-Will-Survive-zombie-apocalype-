@@ -5,7 +5,7 @@ class_name findDestination
 var wanderTimer = 0
 var maxWanderTimer = 1
 var minWanderTimer = 0.5
-var wanderDistance = 200
+var wanderDistance = 600
 
 func start(agent):
 	.start(agent)

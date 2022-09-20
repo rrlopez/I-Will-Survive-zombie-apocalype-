@@ -4,6 +4,5 @@ class_name navigatePath
 
 func run(_delta):
 	if agent.body.lowerBodyAnimation.is_playing() and agent.path.size()>0: return success()
-	agent.path = []
 	agent.body.lowerBodyAnimation.stop()
 	return fail()
