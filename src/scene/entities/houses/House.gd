@@ -6,13 +6,9 @@ export(NodePath) onready var objectsContainer  = get_node(objectsContainer) as N
 
 var day
 var totalEnemy = 0
-var totalLoot = 0
-
-var data = {
-	"disabled": false
-}
 
 export(int) var capacity = 10
+
 export(String, MULTILINE) var enemies = "[" \
 + "\n{\"type\": \"normal\", \"count\": 5}," \
 + "\n{\"type\": \"charger\", \"count\": 1}" \
