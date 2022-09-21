@@ -1,17 +1,17 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scene/entities/houses/House.gd" type="Script" id=1]
-[ext_resource path="res://scene/entities/houses/sprites/tilemap.png" type="Texture" id=2]
-[ext_resource path="res://assets/shadow/square.png" type="Texture" id=3]
-[ext_resource path="res://scene/entities/houses/sprites/roof.png" type="Texture" id=4]
-[ext_resource path="res://scene/entities/houses/Roof.gd" type="Script" id=5]
+[ext_resource path="res://assets/shadow/square.png" type="Texture" id=1]
+[ext_resource path="res://scene/entities/houses/Roof.gd" type="Script" id=2]
+[ext_resource path="res://scene/entities/houses/sprites/roof.png" type="Texture" id=3]
+[ext_resource path="res://scene/entities/houses/sprites/tilemap.png" type="Texture" id=4]
+[ext_resource path="res://scene/entities/houses/House.gd" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 400, 368 )
+[sub_resource type="RectangleShape2D" id=33]
+extents = Vector2( 271.5, 367 )
 
 [sub_resource type="TileSet" id=2]
 0/name = "tilemap.png 0"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 256, 0, 64, 64 )
@@ -25,7 +25,7 @@ extents = Vector2( 400, 368 )
 0/shapes = [  ]
 0/z_index = 0
 1/name = "tilemap.png 1"
-1/texture = ExtResource( 2 )
+1/texture = ExtResource( 4 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 256, 64, 64, 64 )
@@ -39,7 +39,7 @@ extents = Vector2( 400, 368 )
 1/shapes = [  ]
 1/z_index = 0
 2/name = "tilemap.png 2"
-2/texture = ExtResource( 2 )
+2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 320, 0, 64, 64 )
@@ -53,7 +53,7 @@ extents = Vector2( 400, 368 )
 2/shapes = [  ]
 2/z_index = 0
 3/name = "tilemap.png 3"
-3/texture = ExtResource( 2 )
+3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 320, 64, 64, 64 )
@@ -69,7 +69,7 @@ extents = Vector2( 400, 368 )
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 64, 64 )
@@ -83,7 +83,7 @@ extents = Vector2( 400, 368 )
 0/shapes = [  ]
 0/z_index = 0
 1/name = "tilemap.png 1"
-1/texture = ExtResource( 2 )
+1/texture = ExtResource( 4 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 64, 0, 64, 64 )
@@ -97,7 +97,7 @@ extents = Vector2( 400, 368 )
 1/shapes = [  ]
 1/z_index = 0
 2/name = "tilemap.png 2"
-2/texture = ExtResource( 2 )
+2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 128, 0, 64, 64 )
@@ -111,7 +111,7 @@ extents = Vector2( 400, 368 )
 2/shapes = [  ]
 2/z_index = 0
 3/name = "tilemap.png 3"
-3/texture = ExtResource( 2 )
+3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 192, 0, 64, 64 )
@@ -125,7 +125,7 @@ extents = Vector2( 400, 368 )
 3/shapes = [  ]
 3/z_index = 0
 4/name = "tilemap.png 4"
-4/texture = ExtResource( 2 )
+4/texture = ExtResource( 4 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 192, 64, 64, 64 )
@@ -139,7 +139,7 @@ extents = Vector2( 400, 368 )
 4/shapes = [  ]
 4/z_index = 0
 5/name = "tilemap.png 5"
-5/texture = ExtResource( 2 )
+5/texture = ExtResource( 4 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 128, 64, 64, 64 )
@@ -153,7 +153,7 @@ extents = Vector2( 400, 368 )
 5/shapes = [  ]
 5/z_index = 0
 6/name = "tilemap.png 6"
-6/texture = ExtResource( 2 )
+6/texture = ExtResource( 4 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 64, 64, 64, 64 )
@@ -167,7 +167,7 @@ extents = Vector2( 400, 368 )
 6/shapes = [  ]
 6/z_index = 0
 7/name = "tilemap.png 7"
-7/texture = ExtResource( 2 )
+7/texture = ExtResource( 4 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 64, 64, 64 )
@@ -181,7 +181,7 @@ extents = Vector2( 400, 368 )
 7/shapes = [  ]
 7/z_index = 0
 8/name = "tilemap.png 8"
-8/texture = ExtResource( 2 )
+8/texture = ExtResource( 4 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 128, 64, 64 )
@@ -195,7 +195,7 @@ extents = Vector2( 400, 368 )
 8/shapes = [  ]
 8/z_index = 0
 9/name = "tilemap.png 9"
-9/texture = ExtResource( 2 )
+9/texture = ExtResource( 4 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 64, 128, 64, 64 )
@@ -209,7 +209,7 @@ extents = Vector2( 400, 368 )
 9/shapes = [  ]
 9/z_index = 0
 10/name = "tilemap.png 10"
-10/texture = ExtResource( 2 )
+10/texture = ExtResource( 4 )
 10/tex_offset = Vector2( 0, 0 )
 10/modulate = Color( 1, 1, 1, 1 )
 10/region = Rect2( 128, 128, 64, 64 )
@@ -223,7 +223,7 @@ extents = Vector2( 400, 368 )
 10/shapes = [  ]
 10/z_index = 0
 11/name = "tilemap.png 11"
-11/texture = ExtResource( 2 )
+11/texture = ExtResource( 4 )
 11/tex_offset = Vector2( 0, 0 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 192, 128, 64, 64 )
@@ -237,7 +237,7 @@ extents = Vector2( 400, 368 )
 11/shapes = [  ]
 11/z_index = 0
 12/name = "tilemap.png 12"
-12/texture = ExtResource( 2 )
+12/texture = ExtResource( 4 )
 12/tex_offset = Vector2( 0, 0 )
 12/modulate = Color( 1, 1, 1, 1 )
 12/region = Rect2( 256, 128, 64, 64 )
@@ -251,7 +251,7 @@ extents = Vector2( 400, 368 )
 12/shapes = [  ]
 12/z_index = 0
 13/name = "tilemap.png 13"
-13/texture = ExtResource( 2 )
+13/texture = ExtResource( 4 )
 13/tex_offset = Vector2( 0, 0 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 320, 128, 64, 64 )
@@ -265,7 +265,7 @@ extents = Vector2( 400, 368 )
 13/shapes = [  ]
 13/z_index = 0
 14/name = "tilemap.png 14"
-14/texture = ExtResource( 2 )
+14/texture = ExtResource( 4 )
 14/tex_offset = Vector2( 0, 0 )
 14/modulate = Color( 1, 1, 1, 1 )
 14/region = Rect2( 320, 192, 64, 64 )
@@ -279,7 +279,7 @@ extents = Vector2( 400, 368 )
 14/shapes = [  ]
 14/z_index = 0
 15/name = "tilemap.png 15"
-15/texture = ExtResource( 2 )
+15/texture = ExtResource( 4 )
 15/tex_offset = Vector2( 0, 0 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 256, 192, 64, 64 )
@@ -293,7 +293,7 @@ extents = Vector2( 400, 368 )
 15/shapes = [  ]
 15/z_index = 0
 16/name = "tilemap.png 16"
-16/texture = ExtResource( 2 )
+16/texture = ExtResource( 4 )
 16/tex_offset = Vector2( 0, 0 )
 16/modulate = Color( 1, 1, 1, 1 )
 16/region = Rect2( 192, 192, 64, 64 )
@@ -307,7 +307,7 @@ extents = Vector2( 400, 368 )
 16/shapes = [  ]
 16/z_index = 0
 17/name = "tilemap.png 17"
-17/texture = ExtResource( 2 )
+17/texture = ExtResource( 4 )
 17/tex_offset = Vector2( 0, 0 )
 17/modulate = Color( 1, 1, 1, 1 )
 17/region = Rect2( 128, 192, 64, 64 )
@@ -321,7 +321,7 @@ extents = Vector2( 400, 368 )
 17/shapes = [  ]
 17/z_index = 0
 18/name = "tilemap.png 18"
-18/texture = ExtResource( 2 )
+18/texture = ExtResource( 4 )
 18/tex_offset = Vector2( 0, 0 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 64, 192, 64, 64 )
@@ -335,7 +335,7 @@ extents = Vector2( 400, 368 )
 18/shapes = [  ]
 18/z_index = 0
 19/name = "tilemap.png 19"
-19/texture = ExtResource( 2 )
+19/texture = ExtResource( 4 )
 19/tex_offset = Vector2( 0, 0 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 0, 192, 64, 64 )
@@ -349,7 +349,7 @@ extents = Vector2( 400, 368 )
 19/shapes = [  ]
 19/z_index = 0
 20/name = "tilemap.png 20"
-20/texture = ExtResource( 2 )
+20/texture = ExtResource( 4 )
 20/tex_offset = Vector2( 0, 0 )
 20/modulate = Color( 1, 1, 1, 1 )
 20/region = Rect2( 0, 256, 64, 64 )
@@ -363,7 +363,7 @@ extents = Vector2( 400, 368 )
 20/shapes = [  ]
 20/z_index = 0
 21/name = "tilemap.png 21"
-21/texture = ExtResource( 2 )
+21/texture = ExtResource( 4 )
 21/tex_offset = Vector2( 0, 0 )
 21/modulate = Color( 1, 1, 1, 1 )
 21/region = Rect2( 64, 256, 64, 64 )
@@ -377,7 +377,7 @@ extents = Vector2( 400, 368 )
 21/shapes = [  ]
 21/z_index = 0
 22/name = "tilemap.png 22"
-22/texture = ExtResource( 2 )
+22/texture = ExtResource( 4 )
 22/tex_offset = Vector2( 0, 0 )
 22/modulate = Color( 1, 1, 1, 1 )
 22/region = Rect2( 192, 256, 64, 64 )
@@ -391,7 +391,7 @@ extents = Vector2( 400, 368 )
 22/shapes = [  ]
 22/z_index = 0
 23/name = "tilemap.png 23"
-23/texture = ExtResource( 2 )
+23/texture = ExtResource( 4 )
 23/tex_offset = Vector2( 0, 0 )
 23/modulate = Color( 1, 1, 1, 1 )
 23/region = Rect2( 128, 256, 64, 64 )
@@ -405,7 +405,7 @@ extents = Vector2( 400, 368 )
 23/shapes = [  ]
 23/z_index = 0
 24/name = "tilemap.png 24"
-24/texture = ExtResource( 2 )
+24/texture = ExtResource( 4 )
 24/tex_offset = Vector2( 0, 0 )
 24/modulate = Color( 1, 1, 1, 1 )
 24/region = Rect2( 192, 320, 64, 64 )
@@ -419,7 +419,7 @@ extents = Vector2( 400, 368 )
 24/shapes = [  ]
 24/z_index = 0
 25/name = "tilemap.png 25"
-25/texture = ExtResource( 2 )
+25/texture = ExtResource( 4 )
 25/tex_offset = Vector2( 0, 0 )
 25/modulate = Color( 1, 1, 1, 1 )
 25/region = Rect2( 128, 320, 64, 64 )
@@ -433,7 +433,7 @@ extents = Vector2( 400, 368 )
 25/shapes = [  ]
 25/z_index = 0
 26/name = "tilemap.png 26"
-26/texture = ExtResource( 2 )
+26/texture = ExtResource( 4 )
 26/tex_offset = Vector2( 0, 0 )
 26/modulate = Color( 1, 1, 1, 1 )
 26/region = Rect2( 64, 320, 64, 64 )
@@ -447,7 +447,7 @@ extents = Vector2( 400, 368 )
 26/shapes = [  ]
 26/z_index = 0
 27/name = "tilemap.png 27"
-27/texture = ExtResource( 2 )
+27/texture = ExtResource( 4 )
 27/tex_offset = Vector2( 0, 0 )
 27/modulate = Color( 1, 1, 1, 1 )
 27/region = Rect2( 0, 320, 64, 64 )
@@ -461,7 +461,7 @@ extents = Vector2( 400, 368 )
 27/shapes = [  ]
 27/z_index = 0
 28/name = "tilemap.png 28"
-28/texture = ExtResource( 2 )
+28/texture = ExtResource( 4 )
 28/tex_offset = Vector2( 0, 0 )
 28/modulate = Color( 1, 1, 1, 1 )
 28/region = Rect2( 256, 256, 64, 64 )
@@ -475,7 +475,7 @@ extents = Vector2( 400, 368 )
 28/shapes = [  ]
 28/z_index = 0
 29/name = "tilemap.png 29"
-29/texture = ExtResource( 2 )
+29/texture = ExtResource( 4 )
 29/tex_offset = Vector2( 0, 0 )
 29/modulate = Color( 1, 1, 1, 1 )
 29/region = Rect2( 320, 256, 64, 64 )
@@ -489,7 +489,7 @@ extents = Vector2( 400, 368 )
 29/shapes = [  ]
 29/z_index = 0
 30/name = "tilemap.png 30"
-30/texture = ExtResource( 2 )
+30/texture = ExtResource( 4 )
 30/tex_offset = Vector2( 0, 0 )
 30/modulate = Color( 1, 1, 1, 1 )
 30/region = Rect2( 256, 320, 64, 64 )
@@ -503,7 +503,7 @@ extents = Vector2( 400, 368 )
 30/shapes = [  ]
 30/z_index = 0
 31/name = "tilemap.png 31"
-31/texture = ExtResource( 2 )
+31/texture = ExtResource( 4 )
 31/tex_offset = Vector2( 0, 0 )
 31/modulate = Color( 1, 1, 1, 1 )
 31/region = Rect2( 320, 320, 64, 64 )
@@ -518,7 +518,7 @@ extents = Vector2( 400, 368 )
 31/z_index = 0
 
 [node name="lot" type="Node2D" groups=["serializable"]]
-script = ExtResource( 1 )
+script = ExtResource( 5 )
 enemiesContainer = NodePath("enemies")
 lootsContainer = NodePath("House/loots")
 objectsContainer = NodePath("House/objects")
@@ -531,8 +531,9 @@ __meta__ = {
 }
 
 [node name="collider" type="CollisionShape2D" parent="House"]
-position = Vector2( 0, 32 )
-shape = SubResource( 3 )
+visible = false
+position = Vector2( 0.5, 31 )
+shape = SubResource( 33 )
 
 [node name="visibility" type="VisibilityNotifier2D" parent="House"]
 visible = false
@@ -543,7 +544,7 @@ tile_set = SubResource( 2 )
 collision_layer = 0
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -262150, 2, 0, -262149, 2, 0, -262148, 2, 0, -262147, 2, 0, -262146, 2, 0, -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 2, 0, -327677, 2, 0, -327676, 2, 0, -327675, 2, 0, -196614, 2, 0, -196613, 2, 0, -196612, 2, 0, -196611, 2, 0, -196610, 2, 0, -196609, 2, 0, -262144, 2, 0, -262143, 2, 0, -262142, 2, 0, -262141, 2, 0, -262140, 2, 0, -262139, 2, 0, -131078, 2, 0, -131077, 2, 0, -131076, 2, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -196605, 2, 0, -196604, 2, 0, -196603, 2, 0, -65542, 2, 0, -65541, 2, 0, -65540, 2, 0, -65539, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131067, 2, 0, -6, 2, 0, -5, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, 65530, 2, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 131066, 2, 0, 131067, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 196602, 2, 0, 196603, 2, 0, 196604, 2, 0, 196605, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 262138, 2, 0, 262139, 2, 0, 262140, 2, 0, 262141, 2, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 327674, 2, 0, 327675, 2, 0, 327676, 2, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 393210, 2, 0, 393211, 2, 0, 393212, 2, 0, 393213, 2, 0, 393214, 2, 0, 393215, 2, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0 )
+tile_data = PoolIntArray( -262148, 2, 0, -262147, 2, 0, -262146, 2, 0, -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 2, 0, -327677, 2, 0, -196612, 2, 0, -196611, 2, 0, -196610, 2, 0, -196609, 2, 0, -262144, 2, 0, -262143, 2, 0, -262142, 2, 0, -262141, 2, 0, -131076, 2, 0, -131075, 2, 0, -131074, 2, 0, -131073, 2, 0, -196608, 2, 0, -196607, 2, 0, -196606, 2, 0, -196605, 2, 0, -65540, 2, 0, -65539, 2, 0, -65538, 2, 0, -65537, 2, 0, -131072, 2, 0, -131071, 2, 0, -131070, 2, 0, -131069, 2, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 196604, 2, 0, 196605, 2, 0, 196606, 2, 0, 196607, 2, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 262140, 2, 0, 262141, 2, 0, 262142, 2, 0, 262143, 2, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 327676, 2, 0, 327677, 2, 0, 327678, 2, 0, 327679, 2, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 393212, 2, 0, 393213, 2, 0, 393214, 2, 0, 393215, 2, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -553,23 +554,22 @@ collision_layer = 32
 collision_mask = 67
 
 [node name="collider" type="CollisionPolygon2D" parent="House/Walls"]
-polygon = PoolVector2Array( -63, -321, -63, -304, -367, -303, -367, 367, -64, 368, -64, 383, -384, 384, -384, -320 )
+polygon = PoolVector2Array( -64, -320, -64, -304, -240, -304, -240, 368, -160, 368, -160, 384, -256, 384, -256, -320 )
 
 [node name="collider2" type="CollisionPolygon2D" parent="House/Walls"]
-polygon = PoolVector2Array( 64, -320, 64, -303, 366, -303, 368, 367, 64, 368, 64, 384, 384, 385, 385, -320 )
+polygon = PoolVector2Array( 64, -320, 256, -320, 256, 384, 160, 384, 160, 368, 240, 368, 240, -304, 64, -304 )
 
 [node name="texture" type="TileMap" parent="House/Walls" groups=["map"]]
 tile_set = SubResource( 1 )
 collision_layer = 32
 collision_mask = 67
 format = 1
-tile_data = PoolIntArray( -262150, 0, 0, -262149, 5, 0, -262148, 5, 0, -262147, 5, 0, -262146, 5, 0, -327679, 5, 0, -327678, 5, 0, -327677, 5, 0, -327676, 5, 0, -327675, 1, 0, -196614, 3, 0, -262139, 2, 0, -131078, 3, 0, -196603, 2, 0, -65542, 3, 0, -131067, 2, 0, -6, 3, 0, -65531, 2, 0, 65530, 3, 0, 5, 2, 0, 131066, 3, 0, 65541, 2, 0, 196602, 3, 0, 131077, 2, 0, 262138, 3, 0, 196613, 2, 0, 327674, 3, 0, 262149, 2, 0, 393210, 7, 0, 393211, 4, 0, 393212, 4, 0, 393213, 4, 0, 393214, 4, 0, 327681, 4, 0, 327682, 4, 0, 327683, 4, 0, 327684, 4, 0, 327685, 6, 0 )
+tile_data = PoolIntArray( -262148, 0, 0, -262147, 5, 0, -262146, 5, 0, -327679, 5, 0, -327678, 5, 0, -327677, 1, 0, -196612, 3, 0, -262141, 2, 0, -131076, 3, 0, -196605, 2, 0, -65540, 3, 0, -131069, 2, 0, -4, 3, 0, -65533, 2, 0, 65532, 3, 0, 3, 2, 0, 131068, 3, 0, 65539, 2, 0, 196604, 3, 0, 131075, 2, 0, 262140, 3, 0, 196611, 2, 0, 327676, 3, 0, 262147, 2, 0, 393212, 7, 0, 393213, 17, 0, 327682, 16, 0, 327683, 6, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="obstacles" type="Area2D" parent="House"]
-visible = false
 collision_layer = 8
 collision_mask = 3
 __meta__ = {
@@ -577,13 +577,13 @@ __meta__ = {
 }
 
 [node name="obstacle" type="CollisionPolygon2D" parent="House/obstacles" groups=["obstacle"]]
-polygon = PoolVector2Array( 38, -366, 38, -259, 326, -259, 326, 323, 35, 325, 35, 430, 422, 427, 414, -366 )
+polygon = PoolVector2Array( 43, -345, 47, -275, 214, -280, 216, 340, 137, 342, 133, 405, 276, 409, 283, -349 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="obstacle2" type="CollisionPolygon2D" parent="House/obstacles" groups=["obstacle"]]
-polygon = PoolVector2Array( -45, -353, -45, -265, -336, -270, -344, 333, -48, 331, -45, 424, -413, 424, -405, -358 )
+polygon = PoolVector2Array( -49, -346, -51, -276, -216, -280, -217, 347, -140, 345, -142, 406, -276, 408, -278, -344 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -592,20 +592,20 @@ __meta__ = {
 visible = false
 z_index = 100
 z_as_relative = false
-script = ExtResource( 5 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Texture" type="TextureRect" parent="House/Roof"]
 light_mask = 0
-margin_left = -403.0
+margin_left = -273.0
 margin_top = -321.0
-margin_right = 170.0
-margin_bottom = 272.0
+margin_right = 111.0
+margin_bottom = 271.0
 rect_scale = Vector2( 1.4, 1.2 )
 mouse_filter = 2
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 expand = true
 
 [node name="Tween" type="Tween" parent="House/Roof"]
@@ -618,14 +618,14 @@ __meta__ = {
 
 [node name="Texture" type="TextureRect" parent="House/Shadow"]
 modulate = Color( 1, 1, 1, 0.117647 )
-margin_left = 557.0
-margin_top = 308.0
-margin_right = 650.0
-margin_bottom = 422.0
+margin_left = 674.0
+margin_top = 333.0
+margin_right = 741.0
+margin_bottom = 443.0
 rect_scale = Vector2( 9, 7 )
 rect_pivot_offset = Vector2( 122, 114 )
 mouse_filter = 2
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
 expand = true
 __meta__ = {
 "_edit_lock_": true

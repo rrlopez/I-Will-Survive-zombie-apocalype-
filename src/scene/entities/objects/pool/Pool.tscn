@@ -28,7 +28,7 @@ __meta__ = {
 
 [node name="Obstacle" type="CollisionPolygon2D" parent="Obstacles" groups=["obstacle"]]
 scale = Vector2( -41156.9, -2309.92 )
-polygon = PoolVector2Array( -3.63168e-10, 1.47207e-07, 3.55292e-10, 1.52073e-07, 3.55292e-10, -1.61806e-07, -3.59668e-10, -1.63022e-07 )
+polygon = PoolVector2Array( -3.22038e-10, 1.23483e-07, 3.19413e-10, 1.23483e-07, 3.21163e-10, -1.41732e-07, -3.25539e-10, -1.42949e-07 )
 __meta__ = {
 "_edit_lock_": true
 }
