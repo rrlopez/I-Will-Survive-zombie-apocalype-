@@ -1,14 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scene/entities/houses/sprites/roof.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/houses/sprites/tilemap.png" type="Texture" id=2]
 [ext_resource path="res://scene/entities/houses/House.gd" type="Script" id=3]
 [ext_resource path="res://assets/shadow/square.png" type="Texture" id=4]
 [ext_resource path="res://scene/entities/houses/Roof.gd" type="Script" id=5]
-
-[sub_resource type="RectangleShape2D" id=4]
-resource_local_to_scene = true
-extents = Vector2( 1171.5, 1012.5 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 632.5, 471 )
@@ -423,40 +419,29 @@ extents = Vector2( 632.5, 471 )
 27/shapes = [  ]
 27/z_index = 0
 
-[node name="building" type="Node2D"]
-
-[node name="lot" type="Area2D" parent="." groups=["serializable"]]
-collision_layer = 16
+[node name="lot" type="Node2D" groups=["serializable"]]
 script = ExtResource( 3 )
-enemies = NodePath("../enemies")
-loots = NodePath("loots")
-objects = NodePath("objects")
+enemiesContainer = NodePath("enemies")
+lootsContainer = NodePath("House/loots")
+objectsContainer = NodePath("House/objects")
 
-[node name="Collider" type="CollisionShape2D" parent="lot"]
-visible = false
-position = Vector2( 107.5, 168 )
-shape = SubResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="visibility" type="VisibilityNotifier2D" parent="lot"]
-visible = false
-position = Vector2( 109.5, 167 )
-scale = Vector2( 91.85, 73.6 )
-
-[node name="House" type="Area2D" parent="lot"]
+[node name="House" type="Area2D" parent="."]
 collision_layer = 132
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="collider" type="CollisionShape2D" parent="lot/House"]
+[node name="collider" type="CollisionShape2D" parent="House"]
 visible = false
 position = Vector2( 96.5, 189 )
 shape = SubResource( 5 )
 
-[node name="Floors" type="TileMap" parent="lot/House" groups=["map"]]
+[node name="visibility" type="VisibilityNotifier2D" parent="House"]
+visible = false
+position = Vector2( 109.5, 167 )
+scale = Vector2( 91.85, 73.6 )
+
+[node name="Floors" type="TileMap" parent="House" groups=["map"]]
 tile_set = SubResource( 2 )
 collision_layer = 0
 collision_mask = 0
@@ -466,20 +451,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Walls" type="StaticBody2D" parent="lot/House"]
+[node name="Walls" type="StaticBody2D" parent="House"]
 collision_layer = 32
 collision_mask = 67
 
-[node name="collider" type="CollisionPolygon2D" parent="lot/House/Walls"]
+[node name="collider" type="CollisionPolygon2D" parent="House/Walls"]
 polygon = PoolVector2Array( -512, -2, -495, -1, -495, -239, 685, -238, 687, -2, 704, -1, 704, -257, -513, -254 )
 
-[node name="collider2" type="CollisionPolygon2D" parent="lot/House/Walls"]
+[node name="collider2" type="CollisionPolygon2D" parent="House/Walls"]
 polygon = PoolVector2Array( -514, 128, -495, 127, -495, 366, -191, 366, -192, 622, 0, 621, 0, 638, -208, 637, -208, 384, -510, 384 )
 
-[node name="collider3" type="CollisionPolygon2D" parent="lot/House/Walls"]
+[node name="collider3" type="CollisionPolygon2D" parent="House/Walls"]
 polygon = PoolVector2Array( 687, 128, 703, 128, 703, 384, 402, 385, 400, 639, 193, 639, 194, 623, 387, 622, 387, 368, 687, 370 )
 
-[node name="texture" type="TileMap" parent="lot/House/Walls" groups=["map"]]
+[node name="texture" type="TileMap" parent="House/Walls" groups=["map"]]
 tile_set = SubResource( 1 )
 collision_layer = 32
 collision_mask = 67
@@ -489,7 +474,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="obstacles" type="Area2D" parent="lot/House"]
+[node name="obstacles" type="Area2D" parent="House"]
 visible = false
 collision_layer = 8
 collision_mask = 3
@@ -497,25 +482,25 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="obstacle" type="CollisionPolygon2D" parent="lot/House/obstacles" groups=["obstacle"]]
+[node name="obstacle" type="CollisionPolygon2D" parent="House/obstacles" groups=["obstacle"]]
 polygon = PoolVector2Array( -453, 41, -453, -195, 627, -200, 629, 24, 739, 24, 743, -293, -546, -297, -549, 43 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="obstacle2" type="CollisionPolygon2D" parent="lot/House/obstacles" groups=["obstacle"]]
+[node name="obstacle2" type="CollisionPolygon2D" parent="House/obstacles" groups=["obstacle"]]
 polygon = PoolVector2Array( -558, 95, -561, 424, -246, 416, -244, 681, 32, 681, 22, 571, -149, 573, -158, 324, -456, 302, -456, 88 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="obstacle3" type="CollisionPolygon2D" parent="lot/House/obstacles" groups=["obstacle"]]
+[node name="obstacle3" type="CollisionPolygon2D" parent="House/obstacles" groups=["obstacle"]]
 polygon = PoolVector2Array( 741, 98, 646, 100, 650, 317, 339, 324, 334, 576, 156, 576, 170, 692, 448, 695, 446, 424, 758, 431 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Roof" type="Node2D" parent="lot/House"]
+[node name="Roof" type="Node2D" parent="House"]
 visible = false
 z_index = 100
 z_as_relative = false
@@ -524,7 +509,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Texture" type="TextureRect" parent="lot/House/Roof"]
+[node name="Texture" type="TextureRect" parent="House/Roof"]
 light_mask = 0
 margin_left = -547.0
 margin_top = -268.0
@@ -535,15 +520,15 @@ mouse_filter = 2
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Tween" type="Tween" parent="lot/House/Roof"]
+[node name="Tween" type="Tween" parent="House/Roof"]
 
-[node name="Shadow" type="Node2D" parent="lot/House" groups=["shadow"]]
+[node name="Shadow" type="Node2D" parent="House" groups=["shadow"]]
 z_index = -1
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Texture" type="TextureRect" parent="lot/House/Shadow"]
+[node name="Texture" type="TextureRect" parent="House/Shadow"]
 modulate = Color( 1, 1, 1, 0.117647 )
 margin_left = 342.0
 margin_top = 358.0
@@ -558,13 +543,13 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="loots" type="Node2D" parent="lot"]
+[node name="loots" type="Node2D" parent="House"]
 
-[node name="objects" type="Node2D" parent="lot"]
+[node name="objects" type="Node2D" parent="House"]
 
 [node name="enemies" type="Node2D" parent="."]
 
-[connection signal="body_entered" from="lot/House" to="lot" method="_on_House_body_entered"]
-[connection signal="body_entered" from="lot/House" to="lot/House/Roof" method="_on_House_body_entered"]
-[connection signal="body_exited" from="lot/House" to="lot" method="_on_House_body_exited"]
-[connection signal="body_exited" from="lot/House" to="lot/House/Roof" method="_on_House_body_exited"]
+[connection signal="body_entered" from="House" to="." method="_on_House_body_entered"]
+[connection signal="body_entered" from="House" to="House/Roof" method="_on_House_body_entered"]
+[connection signal="body_exited" from="House" to="." method="_on_House_body_exited"]
+[connection signal="body_exited" from="House" to="House/Roof" method="_on_House_body_exited"]

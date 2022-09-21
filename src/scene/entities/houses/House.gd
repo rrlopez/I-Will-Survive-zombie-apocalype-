@@ -1,8 +1,8 @@
-extends Area2D
+extends Node2D
 
-export(NodePath) onready var enemies  = get_node(enemies) as Node2D
-export(NodePath) onready var loots  = get_node(loots) as Node2D
-export(NodePath) onready var objects  = get_node(objects) as Node2D
+export(NodePath) onready var enemiesContainer  = get_node(enemiesContainer) as Node2D
+export(NodePath) onready var lootsContainer  = get_node(lootsContainer) as Node2D
+export(NodePath) onready var objectsContainer  = get_node(objectsContainer) as Node2D
 
 var day
 var totalEnemy = 0
@@ -12,48 +12,62 @@ var data = {
 	"disabled": false
 }
 
+export(int) var capacity = 10
+export(String, MULTILINE) var enemies = "[" \
++ "\n{\"type\": \"normal\", \"count\": 5}," \
++ "\n{\"type\": \"charger\", \"count\": 1}" \
++ "\n]"
+
+export(String, MULTILINE) var loots = "[" \
++  "\n{ \"name\": \"machine gun ammo\", \"quantity\": {\"min\": 1, \"max\": 2}, \"rarity\": 100, \"life\": 500}," \
++  "\n{ \"name\": \"bandage\", \"quantity\": {\"min\": 1, \"max\": 2}, \"rarity\": 100, \"life\": 500}" \
++ "\n]"
+
+func _init():
+	enemies = JSON.parse(enemies).result
+	loots = JSON.parse(loots).result
+
 func _ready():
 	Globals.currentMap.connect("onReady", self, "init", [], CONNECT_ONESHOT)
-	data = Factory.houses.create('normal')
-	for enemy in data.enemies:
+	for enemy in enemies:
 		totalEnemy+=enemy.count
 
 
 func init():
-	$visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
-	$visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
+	$House/visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
+	$House/visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
 
 
 func spawner(_day=0):
-	if day == _day || objects.get_child_count()>data.capacity: return
+	if day == _day || objectsContainer.get_child_count()>capacity: return
 	day = _day
 	spawnEnemies(_day)
 	spawnLoots(_day)
 	
 	
 func spawnEnemies(_day=0):
-	var enemyRemaining =  enemies.get_child_count()
+	var enemyRemaining =  enemiesContainer.get_child_count()
 	if visible and enemyRemaining<totalEnemy:
 		var count = totalEnemy-enemyRemaining
-		var size = $Collider.shape.extents
-		var enemiesData = data.enemies.duplicate(true)
+		var size = $House/collider.shape.extents
+		var enemiesData = enemies.duplicate(true)
 		for enemyData in enemiesData:
 			enemyData.count = min(enemyData.count, count)
 			count-=enemyData.count
 		for enemy in Factory.enemies.createMany(size, enemiesData):
-			enemies.add_child(enemy)
+			enemiesContainer.add_child(enemy)
 			enemy.init()
 
 func spawnLoots(_day=0):
 	if visible:
-		var size = $Collider.shape.extents
-		for drop in Globals.mapManager.spawnDropItems(data.loots.duplicate(true)):
+		var size = $House/collider.shape.extents
+		for drop in Globals.mapManager.spawnDropItems(loots.duplicate(true)):
 			Constants.rand.randomize()
 			var x = Constants.rand.randf_range(-size.x, size.x)
 			Constants.rand.randomize()
 			var y = Constants.rand.randf_range(-size.y, size.y)
 			drop.position = Vector2(x, y)
-			loots.add_child(drop)
+			lootsContainer.add_child(drop)
 
 func _on_visibility_screen_entered():
 	Globals.dayNightCycle.connect("dayStarted", self, "spawner")

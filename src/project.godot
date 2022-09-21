@@ -134,11 +134,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scene/hud/hotbar/hotbar.gd"
 }, {
-"base": "Node",
-"class": "HouseFactory",
-"language": "GDScript",
-"path": "res://autoloads/factory/houseFactory.gd"
-}, {
 "base": "Stat",
 "class": "HungerStat",
 "language": "GDScript",
@@ -183,11 +178,6 @@ _global_script_classes=[ {
 "class": "Loot_slot",
 "language": "GDScript",
 "path": "res://scene/ui/inventory/Loot_slot.gd"
-}, {
-"base": "Node",
-"class": "MapFactory",
-"language": "GDScript",
-"path": "res://autoloads/factory/mapFactory.gd"
 }, {
 "base": "Stat",
 "class": "MoveSpeedStat",
@@ -505,7 +495,6 @@ _global_script_class_icons={
 "Gage": "",
 "HealthStat": "",
 "HotBar": "",
-"HouseFactory": "",
 "HungerStat": "",
 "Inventory": "",
 "Invert": "res://ai/behaviorTree/icons/invert.png",
@@ -515,7 +504,6 @@ _global_script_class_icons={
 "LevelStat": "",
 "Limit": "res://ai/behaviorTree/icons/limit.png",
 "Loot_slot": "",
-"MapFactory": "",
 "MoveSpeedStat": "",
 "MultiplyModifier": "",
 "Parallel": "res://ai/behaviorTree/icons/parallel.png",
