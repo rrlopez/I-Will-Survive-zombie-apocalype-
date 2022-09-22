@@ -20,10 +20,10 @@ func _ready():
 	thread_timer.wait_time = 0.4
 	thread_timer.one_shot = true
 	add_child(thread_timer)
+	thread = Thread.new()
 
 func saveGame():
-	if thread: return
-	thread = Thread.new()
+	if thread.is_active(): return
 	thread.start(self, "saving", data)
 
 
@@ -45,7 +45,6 @@ func saving(_threadData):
 
 func savingDone():
 	thread.wait_to_finish()
-	thread = null
 	emit_signal("dataSaved")
 	
 

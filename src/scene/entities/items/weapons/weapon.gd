@@ -33,7 +33,6 @@ func recomputeStats():
 func serialize():
 	return item.serialize()
 
-
 func deserialize(_parent, _data):
 	parent = _parent
 	item.deserialize(_data)

@@ -35,6 +35,7 @@ position = Vector2( -23, 0 )
 shape = SubResource( 1 )
 disabled = true
 
+[connection signal="tree_entered" from="." to="." method="_on_Melle_tree_entered"]
 [connection signal="pressed" from="Controller/fireBtn" to="." method="_on_fireBtn_pressed"]
 [connection signal="released" from="Controller/fireBtn" to="." method="_on_fireBtn_released"]
 [connection signal="body_entered" from="hitBox" to="." method="_on_hitBox_body_entered"]

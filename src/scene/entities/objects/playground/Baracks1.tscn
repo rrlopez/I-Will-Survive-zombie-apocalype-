@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scene/entities/objects/playground/sprites/baracks1.png" type="Texture" id=1]
+
+[node name="Baracks" type="Sprite"]
+scale = Vector2( 4, 4 )
+z_index = 50
+z_as_relative = false
+texture = ExtResource( 1 )

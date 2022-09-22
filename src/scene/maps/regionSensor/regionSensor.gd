@@ -8,6 +8,7 @@ var thread_timer = Timer.new()
 var block
 var thread
 
+var load_mutex = Mutex.new()
 
 func _ready():
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
@@ -35,7 +36,8 @@ func _on_regionSensor_area_exited(_area):
 
 func entered(_userdata):
 	if !block: 
-		block = load("res://scene/maps/maps/"+name+"/block.tscn").instance()
+		var blockScene = load("res://scene/maps/maps/"+name+"/block.tscn")
+		block = blockScene.instance()
 		self.call_deferred("onEntered")
 	else:
 		self.call_deferred("add_child", block)

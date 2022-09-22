@@ -1,7 +1,15 @@
 extends Node2D
 
-#export(NodePath) onready var upperBodyAnimation  = get_node(upperBodyAnimation) as AnimationPlayer
-#export(NodePath) onready var lowerBodyAnimation  = get_node(lowerBodyAnimation) as AnimationPlayer
+signal attackLanded
+signal attackFinished
 
 onready var upperBodyAnimation = $Upper/Animation
 onready var lowerBodyAnimation = $Lower/Animation
+
+
+func onAttackLanded():
+	emit_signal("attackLanded")
+
+
+func onAttackFinished():
+	emit_signal("attackFinished")

@@ -140,15 +140,16 @@ func getDestination():
 #---------- CONNECT FUNCTIONS --------------#
 
 func _on_View_body_entered(_opponent):
+	if opponent.size() and opponent[0] == _opponent: return
 	chooseAttack()
 	$bodySensor/Collider.shape.radius = data.stats.aggression_range.val
 	$Sense/Collider.set_deferred("disabled", true)
 	setEnableVision(false)
 	opponent = [_opponent]
 	attackRange.set_collision_mask_bit(2, false)
-	notif.show()
-	for i in 100: yield(get_tree(),"idle_frame")
-	notif.hide()
+#	notif.show()
+#	for i in 100: yield(get_tree(),"idle_frame")
+#	notif.hide()
 
 func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0

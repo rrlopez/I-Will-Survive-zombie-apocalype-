@@ -1,8 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scene/maps/sprites/tilemap.png" type="Texture" id=1]
 [ext_resource path="res://scene/entities/houses/House10.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scene/entities/vehicles/Vehicle.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scene/entities/objects/fence/Fence2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scene/entities/objects/pool/Pool.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scene/maps/zone.gd" type="Script" id=6]
@@ -15,6 +14,10 @@
 [ext_resource path="res://scene/entities/objects/streetLight/StreetLight.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scene/entities/objects/streetLight/StreetLight2.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scene/entities/objects/fence/Fence3.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scene/entities/objects/gardenPlot/GardenPlot.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scene/entities/objects/playground/Spinner.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scene/entities/objects/playground/Slide.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scene/entities/objects/playground/Sandbox.tscn" type="PackedScene" id=23]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tilemap.png 0"
@@ -248,16 +251,10 @@ scale = Vector2( 185.2, 87 )
 [node name="lot4" parent="zone2/node" instance=ExtResource( 9 )]
 position = Vector2( 4202, 624 )
 rotation = 1.5708
-enemiesContainer = NodePath("../../../zone4/node/lot2/enemies")
-lootsContainer = NodePath("../../../zone4/node/lot2/House/loots")
-objectsContainer = NodePath("../../../zone4/node/lot2/House/objects")
 
 [node name="lot6" parent="zone2/node" instance=ExtResource( 9 )]
 position = Vector2( 2780, 638 )
 rotation = 1.5708
-enemiesContainer = NodePath("../../../zone4/node/lot2/enemies")
-lootsContainer = NodePath("../../../zone4/node/lot2/House/loots")
-objectsContainer = NodePath("../../../zone4/node/lot2/House/objects")
 
 [node name="Tree" parent="zone2/node" instance=ExtResource( 12 )]
 position = Vector2( 2216, 1107 )
@@ -433,9 +430,6 @@ scale = Vector2( 154.25, 171.85 )
 
 [node name="lot4" parent="zone3/node" instance=ExtResource( 8 )]
 position = Vector2( 2325, 3061 )
-enemiesContainer = NodePath("../../../zone4/node/lot/enemies")
-lootsContainer = NodePath("../../../zone4/node/lot/House/loots")
-objectsContainer = NodePath("../../../zone4/node/lot/House/objects")
 
 [node name="lot5" parent="zone3/node" instance=ExtResource( 10 )]
 position = Vector2( 934, 3802 )
@@ -443,6 +437,14 @@ rotation = 1.5708
 
 [node name="Tree9" parent="zone3/node" instance=ExtResource( 12 )]
 position = Vector2( 2629, 2363 )
+rotation = -1.5708
+
+[node name="Tree13" parent="zone3/node" instance=ExtResource( 12 )]
+position = Vector2( 545, 2728 )
+rotation = -1.5708
+
+[node name="Tree14" parent="zone3/node" instance=ExtResource( 12 )]
+position = Vector2( 1436, 2338 )
 rotation = -1.5708
 
 [node name="Tree10" parent="zone3/node" instance=ExtResource( 12 )]
@@ -456,6 +458,156 @@ rotation = -1.5708
 [node name="Tree12" parent="zone3/node" instance=ExtResource( 12 )]
 position = Vector2( 1692, 4497 )
 rotation = -1.5708
+
+[node name="Spinner" parent="zone3/node" instance=ExtResource( 17 )]
+position = Vector2( 876, 2473 )
+
+[node name="Slide" parent="zone3/node" instance=ExtResource( 21 )]
+position = Vector2( 230, 2646 )
+rotation = 1.5708
+
+[node name="Sandbox" parent="zone3/node" instance=ExtResource( 23 )]
+position = Vector2( 1401, 2718 )
+
+[node name="Fence33" parent="zone3/node" instance=ExtResource( 11 )]
+position = Vector2( 1667, 2191 )
+
+[node name="Fence34" parent="zone3/node" instance=ExtResource( 11 )]
+position = Vector2( 269, 2191 )
+
+[node name="Fence35" parent="zone3/node" instance=ExtResource( 11 )]
+position = Vector2( 20, 2193 )
+rotation = -1.5708
+
+[node name="Fence36" parent="zone3/node" instance=ExtResource( 11 )]
+position = Vector2( 21, 2471 )
+rotation = -1.5708
+
+[node name="Fence37" parent="zone3/node" instance=ExtResource( 11 )]
+position = Vector2( 18, 2747 )
+rotation = -1.5708
+
+[node name="Fence39" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2913, 2432 )
+rotation = 1.5708
+
+[node name="Fence68" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1720, 2937 )
+rotation = 1.5708
+
+[node name="Fence70" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1717, 2438 )
+rotation = 1.5708
+
+[node name="Fence40" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2911, 2709 )
+rotation = 1.5708
+
+[node name="Fence41" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2912, 2983 )
+rotation = 1.5708
+
+[node name="Fence42" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2916, 3255 )
+rotation = 1.5708
+
+[node name="Fence43" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2914, 3532 )
+rotation = 1.5708
+
+[node name="Fence44" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2915, 3806 )
+rotation = 1.5708
+
+[node name="Fence45" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2914, 4083 )
+rotation = 1.5708
+
+[node name="Fence46" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2908, 4607 )
+rotation = 1.5708
+
+[node name="Fence56" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 42, 4648 )
+rotation = 1.5708
+
+[node name="Fence57" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 38, 4373 )
+rotation = 1.5708
+
+[node name="Fence58" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 44, 4101 )
+rotation = 1.5708
+
+[node name="Fence59" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 40, 3826 )
+rotation = 1.5708
+
+[node name="Fence60" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 44, 3554 )
+rotation = 1.5708
+
+[node name="Fence61" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 40, 3279 )
+rotation = 1.5708
+
+[node name="Fence48" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2919, 4694 )
+
+[node name="Fence49" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2693, 4694 )
+
+[node name="Fence69" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2860, 2206 )
+
+[node name="Fence71" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2692, 2210 )
+
+[node name="Fence72" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2156, 2214 )
+
+[node name="Fence73" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2004, 2212 )
+
+[node name="Fence50" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1901, 4695 )
+
+[node name="Fence51" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1625, 4694 )
+
+[node name="Fence52" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1349, 4694 )
+
+[node name="Fence53" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 695, 4694 )
+
+[node name="Fence62" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 257, 2980 )
+
+[node name="Fence63" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 533, 2980 )
+
+[node name="Fence64" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 760, 2982 )
+
+[node name="Fence65" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1267, 2982 )
+
+[node name="Fence66" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1543, 2982 )
+
+[node name="Fence67" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 1745, 2982 )
+
+[node name="Fence54" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 421, 4695 )
+
+[node name="Fence55" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 257, 4692 )
+
+[node name="Fence47" parent="zone3/node" instance=ExtResource( 15 )]
+position = Vector2( 2910, 4716 )
+rotation = 1.5708
 
 [node name="enemies" type="Node2D" parent="zone3"]
 
@@ -482,25 +634,90 @@ scale = Vector2( 167.6, 172.9 )
 
 [node name="lot3" parent="zone4/node" instance=ExtResource( 9 )]
 position = Vector2( 4101, 2742 )
-enemiesContainer = NodePath("../lot/enemies")
-lootsContainer = NodePath("../lot/House/loots")
-objectsContainer = NodePath("../lot/House/objects")
 
 [node name="lot2" parent="zone4/node" instance=ExtResource( 7 )]
 position = Vector2( 5221, 3735 )
-enemiesContainer = NodePath("../lot/enemies")
-lootsContainer = NodePath("../lot/House/loots")
-objectsContainer = NodePath("../lot/House/objects")
 
 [node name="lot" parent="zone4/node" instance=ExtResource( 2 )]
 position = Vector2( 4023, 3859 )
 
-[node name="Vehicle" parent="zone4/node" instance=ExtResource( 3 )]
-position = Vector2( 4020, 3929 )
-rotation = 1.5708
+[node name="gardenPlot" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4745, 2406 )
+
+[node name="gardenPlot2" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4876, 2405 )
+
+[node name="gardenPlot3" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4756, 2808 )
+
+[node name="gardenPlot4" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4884, 2804 )
+
+[node name="gardenPlot5" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4750, 2672 )
+
+[node name="gardenPlot6" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4885, 2668 )
+
+[node name="gardenPlot7" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4879, 2534 )
+
+[node name="gardenPlot8" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 4748, 2536 )
+rotation = -0.00297497
+
+[node name="gardenPlot9" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5544, 2402 )
+
+[node name="gardenPlot10" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5675, 2401 )
+
+[node name="gardenPlot11" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5555, 2804 )
+
+[node name="gardenPlot12" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5683, 2800 )
+
+[node name="gardenPlot13" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5549, 2668 )
+
+[node name="gardenPlot14" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5684, 2664 )
+
+[node name="gardenPlot15" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5678, 2530 )
+
+[node name="gardenPlot16" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5547, 2532 )
+rotation = -0.00297497
+
+[node name="gardenPlot17" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5157, 2402 )
+
+[node name="gardenPlot18" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5288, 2401 )
+
+[node name="gardenPlot19" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5168, 2804 )
+
+[node name="gardenPlot20" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5296, 2800 )
+
+[node name="gardenPlot21" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5162, 2668 )
+
+[node name="gardenPlot22" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5297, 2664 )
+
+[node name="gardenPlot23" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5291, 2530 )
+
+[node name="gardenPlot24" parent="zone4/node" instance=ExtResource( 16 )]
+position = Vector2( 5160, 2532 )
+rotation = -0.00297497
 
 [node name="Tree8" parent="zone4/node" instance=ExtResource( 12 )]
-position = Vector2( 3458, 2740 )
+position = Vector2( 3389, 2361 )
 rotation = -1.5708
 
 [node name="Tree13" parent="zone4/node" instance=ExtResource( 12 )]
@@ -516,7 +733,7 @@ position = Vector2( 5906, 2413 )
 rotation = -1.5708
 
 [node name="Tree17" parent="zone4/node" instance=ExtResource( 12 )]
-position = Vector2( 5048, 2875 )
+position = Vector2( 5533, 3051 )
 rotation = -1.5708
 
 [node name="Tree18" parent="zone4/node" instance=ExtResource( 12 )]
@@ -524,7 +741,7 @@ position = Vector2( 5759, 4550 )
 rotation = -1.5708
 
 [node name="Tree14" parent="zone4/node" instance=ExtResource( 12 )]
-position = Vector2( 3458, 3548 )
+position = Vector2( 3485, 3660 )
 rotation = -1.5708
 
 [node name="Fence" parent="zone4/node" instance=ExtResource( 15 )]
@@ -582,38 +799,38 @@ position = Vector2( 3820, 4691 )
 position = Vector2( 3649, 4693 )
 
 [node name="Fence15" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3454, 4693 )
+position = Vector2( 3451, 4695 )
 
 [node name="Fence20" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3236, 4637 )
+position = Vector2( 3237, 4650 )
 rotation = 1.5708
 
 [node name="Fence21" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3241, 4360 )
+position = Vector2( 3237, 4413 )
 rotation = 1.5708
 
 [node name="Fence22" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3242, 4083 )
+position = Vector2( 3236, 4168 )
 rotation = 1.5708
 
 [node name="Fence23" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3247, 3906 )
+position = Vector2( 3235, 3906 )
 rotation = 1.5708
 
 [node name="Fence26" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3247, 3720 )
+position = Vector2( 3235, 3720 )
 rotation = 1.5708
 
 [node name="Fence24" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3242, 3308 )
+position = Vector2( 3238, 3307 )
 rotation = 1.5708
 
 [node name="Fence25" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3244, 3150 )
+position = Vector2( 3240, 3149 )
 rotation = 1.5708
 
 [node name="Fence27" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3240, 2943 )
+position = Vector2( 3236, 2942 )
 rotation = 1.5708
 
 [node name="Fence30" parent="zone4/node" instance=ExtResource( 15 )]
@@ -653,11 +870,11 @@ position = Vector2( 6110, 2505 )
 rotation = 1.5708
 
 [node name="Fence28" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3247, 2539 )
+position = Vector2( 3240, 2540 )
 rotation = 1.5708
 
 [node name="Fence29" parent="zone4/node" instance=ExtResource( 15 )]
-position = Vector2( 3245, 2437 )
+position = Vector2( 3238, 2438 )
 rotation = 1.5708
 
 [node name="enemies" type="Node2D" parent="zone4"]

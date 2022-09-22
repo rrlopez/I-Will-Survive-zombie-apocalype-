@@ -11,7 +11,7 @@ export(int) var capacity = 10
 
 export(String, MULTILINE) var enemies = "[" \
 + "\n{\"type\": \"normal\", \"count\": 5}," \
-+ "\n{\"type\": \"charger\", \"count\": 1}" \
++ "\n{\"type\": \"charger\", \"count\": 2}" \
 + "\n]"
 
 export(String, MULTILINE) var loots = "[" \

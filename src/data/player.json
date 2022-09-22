@@ -15,6 +15,7 @@
       { "name": "riffle ammo", "quantity": 999},
       { "name": "machine gun", "quantity": 1},
       { "name": "machine gun ammo", "quantity": 999},
+      { "name": "machette", "quantity": 1},
       { "name": "bandage", "quantity": 20},
       { "name": "bread", "quantity": 20},
       { "name": "wood", "quantity": 2},

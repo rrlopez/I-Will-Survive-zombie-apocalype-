@@ -9,7 +9,7 @@ var totalEnemy = 0
 
 
 export(String, MULTILINE) var enemies = "[" \
-+ "\n{\"type\": \"normal\", \"count\": 10}," \
++ "\n{\"type\": \"normal\", \"count\": 20}," \
 + "\n{\"type\": \"charger\", \"count\": 2}" \
 + "\n]"
 
@@ -49,7 +49,7 @@ func spawnEnemies(_day=0):
 		for enemy in Factory.enemies.createMany(size, enemiesData):
 			enemiesContainer.add_child(enemy)
 			enemy.init()
-			enemy.global_position+=collider.global_position
+			enemy.global_position+=(collider.global_position-global_position)
 
 func spawnLoots(_day=0):
 	if visible:

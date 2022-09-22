@@ -181,10 +181,6 @@ scale = Vector2( 130.85, 85.65 )
 
 [node name="node" type="Node2D" parent="zone1"]
 
-[node name="Vehicle" parent="zone1/node" instance=ExtResource( 3 )]
-position = Vector2( 1810, 645 )
-rotation = 1.5708
-
 [node name="building12" parent="zone1/node" instance=ExtResource( 4 )]
 position = Vector2( 929, 484 )
 
@@ -312,12 +308,10 @@ rotation = -0.390954
 [node name="Tree13" parent="zone2/node" instance=ExtResource( 7 )]
 position = Vector2( 3222, 4557 )
 rotation = -1.13334
-scale = Vector2( 1, 1 )
 
 [node name="Tree14" parent="zone2/node" instance=ExtResource( 7 )]
 position = Vector2( 3252, 2345 )
 rotation = -1.13334
-scale = Vector2( 1, 1 )
 
 [node name="Fence18" parent="zone2/node" instance=ExtResource( 10 )]
 position = Vector2( 3100, 2208 )
@@ -645,8 +639,8 @@ rotation = 1.5708
 [node name="building9" parent="zone3/node" instance=ExtResource( 2 )]
 position = Vector2( 663, 2822 )
 
-[node name="Vehicle3" parent="zone3/node" instance=ExtResource( 3 )]
-position = Vector2( 1439, 2905 )
+[node name="Vehicle" parent="zone3/node" instance=ExtResource( 3 )]
+position = Vector2( 1641, 2971 )
 
 [node name="enemies" type="Node2D" parent="zone3"]
 
@@ -670,10 +664,6 @@ position = Vector2( 4515.25, 859.25 )
 scale = Vector2( 189.275, 84.475 )
 
 [node name="node" type="Node2D" parent="zone4"]
-
-[node name="Vehicle2" parent="zone4/node" instance=ExtResource( 3 )]
-position = Vector2( 3304, 715 )
-rotation = 1.5708
 
 [node name="building10" parent="zone4/node" instance=ExtResource( 2 )]
 position = Vector2( 5840, 637 )
@@ -828,42 +818,6 @@ position = Vector2( 3201.25, 5809.75 )
 scale = Vector2( 320.075, 59.625 )
 
 [node name="node" type="Node2D" parent="zone5"]
-
-[node name="Vehicle4" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 1214, 5312 )
-rotation = 0.785397
-
-[node name="Vehicle5" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 1195, 5622 )
-rotation = -1.0472
-
-[node name="Vehicle6" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 1353, 6183 )
-rotation = 0.523598
-
-[node name="Vehicle7" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 3772, 5372 )
-rotation = 0.523598
-
-[node name="Vehicle10" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 4038, 5485 )
-rotation = -1.0472
-
-[node name="Vehicle11" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 5729, 5247 )
-rotation = -1.0472
-
-[node name="Vehicle12" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 5577, 5547 )
-rotation = -0.523598
-
-[node name="Vehicle8" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 2485, 5351 )
-rotation = 0.523598
-
-[node name="Vehicle9" parent="zone5/node" instance=ExtResource( 3 )]
-position = Vector2( 2440, 5597 )
-rotation = -0.261799
 
 [node name="enemies" type="Node2D" parent="zone5"]
 

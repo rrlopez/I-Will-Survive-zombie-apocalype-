@@ -9,6 +9,7 @@ var items = []
 func addItem(item):
 	items.push_front(item)
 	sprite.texture = Factory.items.itemTexture[items[0].data.id]
+	cooldown.show()
 	show()
 
 func delItem(item = items[0]):
