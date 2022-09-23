@@ -53,6 +53,6 @@ func addOverlayState(name):
 	move_child(states[name], 0)
 	
 func removeOverlayState(name):
-	if get_child_count() > 1:
+	if get_child_count() > 1 and get_node(name):
 		remove_child(states[name])
 	

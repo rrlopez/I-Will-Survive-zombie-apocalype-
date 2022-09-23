@@ -8,6 +8,8 @@ var shake = {
 	"intensity": 3
 }
 
+func _init():
+	hide()
 
 func hurt(_dmg):
 	health-=_dmg
@@ -27,3 +29,12 @@ func _process(delta):
 	else:
 		sprite.offset = Vector2.ZERO
 		self.set_process(false)
+
+
+
+func _on_visibility_screen_entered():
+	show()
+
+
+func _on_visibility_screen_exited():
+	hide()

@@ -8,7 +8,6 @@ export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 export(NodePath) onready var animation  = get_node(animation) as AnimationPlayer
-export(NodePath) onready var notif  = get_node(notif) as Sprite
 
 var body = null
 
@@ -52,7 +51,6 @@ func _physics_process(delta):
 func _process(delta):
 	behavior.run(delta)
 	growl()
-	setNotifPosition()
 	._process(delta)
 	
 func generatePath(_path):
@@ -147,9 +145,9 @@ func _on_View_body_entered(_opponent):
 	setEnableVision(false)
 	opponent = [_opponent]
 	attackRange.set_collision_mask_bit(2, false)
-#	notif.show()
-#	for i in 100: yield(get_tree(),"idle_frame")
-#	notif.hide()
+	var notif = Constants.notifScene.instance()
+	add_child(notif)
+	notif.init(Vector2(0.5,-0.5)*65)
 
 func _on_View_body_exited(_body):
 	$bodySensor/Collider.shape.radius = 0
@@ -194,10 +192,6 @@ func reperent():
 	self.global_position = savedPosition
 	$area.disconnect("area_entered", self, "_on_area_area_entered")
 
-func setNotifPosition():
-	if visible:
-		notif.position = (Vector2(0.5,-0.5)*65).rotated(deg2rad(-global_rotation_degrees+Globals.camera.global_rotation_degrees))
-		notif.rotation_degrees = -global_rotation_degrees+Globals.camera.global_rotation_degrees
 
 func serialize(savedData):
 	var serializedData = {

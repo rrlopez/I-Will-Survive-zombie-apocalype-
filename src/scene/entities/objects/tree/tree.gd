@@ -6,6 +6,9 @@ var data = {
 	}
 }
 
+func _init():
+	hide()
+
 func _ready():
 	$Controller/Container.visible = false
 
@@ -16,3 +19,11 @@ func _on_Tree_body_entered(_body):
 
 func _on_Tree_body_exited(_body):
 	$Controller/Container.visible = false
+
+
+func _on_visibility_screen_entered():
+	show()
+
+
+func _on_visibility_screen_exited():
+	hide()

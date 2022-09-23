@@ -21,3 +21,12 @@ texture = ExtResource( 1 )
 visible = false
 position = Vector2( -119.5, 0.5 )
 shape = SubResource( 1 )
+
+[node name="visibility" type="VisibilityEnabler2D" parent="."]
+position = Vector2( -122, 2 )
+scale = Vector2( 14.3, 4.3 )
+process_parent = true
+physics_process_parent = true
+
+[connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
+[connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]

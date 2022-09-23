@@ -33,8 +33,8 @@ func _on_PlaceBtn_pressed():
 		slot.add_item_quantity(-item.quantity)
 	
 	var item = Factory.placables.create(itemData, global_position, Globals.player.rotation_degrees)
-	if Globals.curHouse: 
-		Globals.curHouse.objects.add_child(item)
+	if Globals.curHouse:
+		Globals.curHouse.objectsContainer.add_child(item)
 		item.position = global_position - Globals.curHouse.global_position
 	else: Globals.mapManager.add_child(item)
 	item.init()

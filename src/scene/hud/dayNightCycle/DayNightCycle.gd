@@ -1,6 +1,6 @@
 extends CanvasModulate
 
-var time = 50
+var time = 90
 var speed = 0.2
 var lastDay = 1
 var waveCount = 0
