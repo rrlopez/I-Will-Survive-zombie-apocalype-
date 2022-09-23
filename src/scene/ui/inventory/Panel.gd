@@ -21,6 +21,8 @@ func _on_inventory_opened(inventory: Inventory):
 	
 func add_inventory(inventory):
 	if(current_inventories.has(inventory)): return
+	var parent = inventory.get_parent()
+	if parent: parent.remove_child(inventory)
 	container.add_child(inventory)
 	current_inventories.append(inventory)
 

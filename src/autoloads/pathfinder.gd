@@ -11,6 +11,7 @@ func _ready():
 	pathfinder_thread = Thread.new()
 	self.set_physics_process(false)
 	timer = maxTimer
+	var _val = connect("tree_exiting", self, "onExit")
 
 func _physics_process(_delta):
 	timer+=_delta
@@ -37,3 +38,6 @@ func pathGenerated(agents):
 
 func requestPath(agent):
 	agents_to_update.append([agent, agent.global_position, agent.getDestination()])
+
+func onExit():
+	if pathfinder_thread.is_active(): pathfinder_thread.wait_to_finish()

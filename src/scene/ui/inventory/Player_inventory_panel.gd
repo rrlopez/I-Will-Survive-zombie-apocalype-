@@ -27,5 +27,5 @@ func _on_Armor_item_changed():
 	pass # Replace with function body.
 
 
-func _on_Weapon_item_changed(weapon):
-	Globals.player.setWeapon(weapon)
+func _on_Weapon_item_changed(_weapon):
+	Globals.player.setWeapon(_weapon)

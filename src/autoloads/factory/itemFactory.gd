@@ -25,7 +25,8 @@ var itemObjectTexture = {}
 func _init():
 	for item in Utils.import_data("res://data/items.json"):
 		itemTexture[item.static_data.id] = load("res://scene/ui/items/sprites/"+item.static_data.id+".png")
-		itemObjectTexture[item.static_data.id] = load("res://assets/entities/"+item.static_data.id+".png")
+		if Utils.fileExist("res://assets/entities/"+item.static_data.id+".png"):
+			itemObjectTexture[item.static_data.id] = load("res://assets/entities/"+item.static_data.id+".png")
 		staticData[item.static_data.id] = item.static_data
 		dynamicData[item.static_data.id] = {}
 		if item.has("dynamic_data"): dynamicData[item.static_data.id] = item.dynamic_data

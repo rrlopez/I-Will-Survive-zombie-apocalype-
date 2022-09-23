@@ -7,7 +7,7 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	map = get_child(0)
 	if owner.name == "Minimap": 
-		connect("rerender", self, "init")
+		var _val = connect("rerender", self, "init")
 		Globals.currentMap.connect("onReady", self, "init", [], CONNECT_ONESHOT)
 	else: loadMap()
 
@@ -24,13 +24,13 @@ func loadMap():
 	var yOffset = -Globals.currentMap.blocks[0].size()/2
 	for x in Globals.currentMap.blocks.size():
 		for y in Globals.currentMap.blocks[x].size():
-			var map = load("res://scene/maps/maps/"+Globals.currentMap.blocks[x][y]+"/block.tscn").instance()
-			map.position = Vector2((y+yOffset)*(Constants.BLOCK_SIZE*2), (x+xOffset)*(Constants.BLOCK_SIZE*2))
-			add_child(map)
+			var newMap = load("res://scene/maps/maps/"+Globals.currentMap.blocks[x][y]+"/block.tscn").instance()
+			newMap.position = Vector2((y+yOffset)*(Constants.BLOCK_SIZE*2), (x+xOffset)*(Constants.BLOCK_SIZE*2))
+			add_child(newMap)
 
 	for child in get_children():
-		var map = Utils.findNodeDescendantsInGroup(child, 'map')
-		for node in map:
+		var mapObj = Utils.findNodeDescendantsInGroup(child, 'map')
+		for node in mapObj:
 			var newNode = node.duplicate()
 			newNode.position = node.global_position
 			newNode.rotation = node.global_rotation

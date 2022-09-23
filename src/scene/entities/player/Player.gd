@@ -35,7 +35,7 @@ func init():
 	craftableInventory = Utils.createInventory(data.craftable_inventory, "craft_inventory")
 	Globals.HUD.inventoryPanel.add_inventory(inventory)
 	
-	self.connect("tree_entered", self, "_on_player_tree_entered")
+	var _val = self.connect("tree_entered", self, "_on_player_tree_entered")
 	_on_player_tree_entered()
 	
 	
@@ -202,5 +202,5 @@ func deserialize(savedData):
 		Globals.HUD.inventoryPanel.current_inventories[0].hand.put_item(Factory.items.deserialize(savedData.handItem))
 	
 	yield(get_tree(),"idle_frame")
-	self.connect("tree_entered", self, "_on_player_tree_entered")
+	var _val = self.connect("tree_entered", self, "_on_player_tree_entered")
 	self.set_collision_layer_bit(0, true)

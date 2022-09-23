@@ -24,7 +24,7 @@ func _init():
 	Globals.inventoryManager = self
 
 func _ready():
-	connect("inventory_ready", self, "_on_inventory_ready")
+	var _val = connect("inventory_ready", self, "_on_inventory_ready")
 	timer.connect("timeout", self,"show_item_info")
 	timer.wait_time = 0.4
 	timer.one_shot = true

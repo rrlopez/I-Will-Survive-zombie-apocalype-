@@ -21,6 +21,7 @@ func _ready():
 	thread_timer.one_shot = true
 	add_child(thread_timer)
 	thread = Thread.new()
+	var _val = connect("tree_exiting", self, "onExit")
 
 func saveGame():
 	if thread.is_active(): return
@@ -88,5 +89,7 @@ func createAndDeserializeScene(savedData):
 	new_object.deserialize(savedData)
 	
 func deserializeScene(savedData):
-	return
 	get_node(savedData["path"]).deserialize(savedData)
+
+func onExit():
+	if thread.is_active(): thread.wait_to_finish()

@@ -21,8 +21,15 @@ func get_item(itemID):
 	for s in slots:
 		if s.item and s.item.data.static.id == itemID: return s
 	return null
+	
+	
+func _on_Inventory_mouse_entered():
+	Globals.inventoryManager.cur_inventory = self
 
-
+func _on_Inventory_mouse_exited():
+	Globals.inventoryManager.cur_inventory = null
+	
+	
 func serialize(savedData):
 	var serializedItems = []
 	for s in slots: 

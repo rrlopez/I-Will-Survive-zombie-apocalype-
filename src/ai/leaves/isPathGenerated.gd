@@ -9,5 +9,5 @@ func run(_delta):
 	if agent.isPathGenerated or timer>maxWaitTime:
 		timer = 0
 		return success()
-	return fail()
 	timer+=_delta
+	return fail()

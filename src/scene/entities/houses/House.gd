@@ -30,8 +30,8 @@ func _ready():
 
 
 func init():
-	$House/visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
-	$House/visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
+	var _val = $House/visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
+	_val = $House/visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
 
 
 func spawner(_day=0):

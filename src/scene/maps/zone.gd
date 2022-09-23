@@ -24,8 +24,8 @@ func _init():
 	loots = JSON.parse(loots).result
 
 func _ready():
-	$visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
-	$visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
+	var _val = $visibility.connect("screen_entered", self, "_on_visibility_screen_entered")
+	_val = $visibility.connect("screen_exited", self, "_on_visibility_screen_exited")
 	for enemy in enemies: totalEnemy+=enemy.count
 	
 	

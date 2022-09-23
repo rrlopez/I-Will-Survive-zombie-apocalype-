@@ -22,7 +22,7 @@ var loadedBlocks = []
 func _ready():
 	collider.shape.extents = Vector2(blocks[0].size()*Constants.BLOCK_SIZE, blocks.size()*Constants.BLOCK_SIZE)
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
-	connect("mapLoaded", self, "onMapLoad", [], CONNECT_ONESHOT)
+	var _val = connect("mapLoaded", self, "onMapLoad", [], CONNECT_ONESHOT)
 	
 	var xOffset = -blocks.size()/2
 	var yOffset = -blocks[0].size()/2
@@ -38,7 +38,7 @@ func onMapLoad():
 	Globals.player.addCamera()
 	Serialize.loadMap()
 	init()
-	connect("mapLoaded", self, "init", [])
+	var _val = connect("mapLoaded", self, "init", [])
 
 func init():
 	emit_signal("onReady")

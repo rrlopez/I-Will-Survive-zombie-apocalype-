@@ -7,8 +7,7 @@ export(NodePath) onready var navigation = get_node(navigation) as Navigation2D
 var thread_timer = Timer.new()
 var block
 var thread
-
-var load_mutex = Mutex.new()
+var blockScene
 
 func _ready():
 	collider.position = Vector2(Constants.BLOCK_SIZE, Constants.BLOCK_SIZE)
@@ -21,10 +20,12 @@ func _ready():
 	add_child(thread_timer)
 		
 	thread = Thread.new()
+	
 
 	
 func _on_regionSensor_area_entered(_area):
 	if thread.is_active(): return
+	if !block: blockScene = load("res://scene/maps/maps/"+name+"/block.tscn")
 	Globals.loadingBlocksCount+=1
 	thread.start(self, "entered", "loading")
 
@@ -35,8 +36,7 @@ func _on_regionSensor_area_exited(_area):
 
 
 func entered(_userdata):
-	if !block: 
-		var blockScene = load("res://scene/maps/maps/"+name+"/block.tscn")
+	if !block:
 		block = blockScene.instance()
 		self.call_deferred("onEntered")
 	else:
@@ -47,9 +47,10 @@ func entered(_userdata):
 
 func onEntered():
 	self.add_child(block)
-	Globals.HUD.minimap.blocks.emit_signal("rerender")
 	generateNavigationPolygon()
-	Globals.currentMap.mapLoaded(block)
+	Globals.currentMap.mapLoaded(block) 
+	yield(get_tree(),"idle_frame") 
+	Globals.HUD.minimap.blocks.emit_signal("rerender")
 
 func leaved(_userdata):
 	self.call_deferred("onLeaved")
@@ -63,7 +64,7 @@ func onLeaved():
 func loadingDone():
 	thread.wait_to_finish()
 
-func _on_area_body_entered(body):
+func _on_area_body_entered(_body):
 	Globals.curRegion = self
 
 
@@ -94,3 +95,7 @@ func generateNavigationPolygon():
 	polygon.make_polygons_from_outlines()
 	navigation.get_child(0).navpoly = polygon
 	
+
+
+func _on_regionSensor_tree_exiting():
+	if thread.is_active(): thread.wait_to_finish()

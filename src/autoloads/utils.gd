@@ -72,3 +72,7 @@ func getProp(object, path):
 	var prop = object
 	for type in path.split(".", true): prop = prop[type]
 	return prop
+
+func fileExist(path):
+	var file2Check = File.new()
+	return file2Check.file_exists(path)
