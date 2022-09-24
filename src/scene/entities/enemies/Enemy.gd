@@ -7,6 +7,7 @@ export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
 export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
 export(NodePath) onready var animation  = get_node(animation) as AnimationPlayer
+export(NodePath) onready var navAgent  = get_node(navAgent) as NavigationAgent2D
 
 var body = null
 
@@ -41,7 +42,6 @@ func init():
 	setBehavior(data.behavior)
 	
 	for attack in data.attacks: attacks.append(Factory.enemies.attacks[attack.script].new(self, attack))
-	
 		
 func _physics_process(delta):
 	move(delta)

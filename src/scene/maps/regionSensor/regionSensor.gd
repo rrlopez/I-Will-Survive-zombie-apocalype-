@@ -2,7 +2,7 @@ extends Area2D
 
 export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider = get_node(areaCollider) as CollisionShape2D
-export(NodePath) onready var navigation = get_node(navigation) as Navigation2D
+export(NodePath) onready var navigation = get_node(navigation) as NavigationPolygonInstance
 
 var thread_timer = Timer.new()
 var block
@@ -75,13 +75,13 @@ func _on_regionSensor_child_entered_tree(node):
 
 
 func generateNavigationPolygon():
-	var polygon = navigation.get_child(0).navpoly
+	var polygon = navigation.navpoly
 	
 	var newPolygon = PoolVector2Array()
-	newPolygon.append(Vector2(0, Constants.BLOCK_SIZE*2)*0.99)
-	newPolygon.append(Vector2(0, 0)*0.99)
-	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, 0)*0.99)
-	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, Constants.BLOCK_SIZE*2)*0.99)
+	newPolygon.append(Vector2(0, Constants.BLOCK_SIZE*2))
+	newPolygon.append(Vector2(0, 0))
+	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, 0))
+	newPolygon.append(Vector2(Constants.BLOCK_SIZE*2, Constants.BLOCK_SIZE*2))
 	polygon.add_outline(newPolygon)
 	
 	var obstacles = Utils.findNodeDescendantsInGroup(block, 'obstacle')
@@ -93,7 +93,7 @@ func generateNavigationPolygon():
 		polygon.add_outline(newPolygon)
 	
 	polygon.make_polygons_from_outlines()
-	navigation.get_child(0).navpoly = polygon
+	navigation.navpoly = polygon
 	
 
 

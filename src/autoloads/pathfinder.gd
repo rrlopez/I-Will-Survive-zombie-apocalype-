@@ -28,12 +28,12 @@ func _physics_process(_delta):
 func _async_pathfinder(agents):
 	var newData = []
 	for data in agents: 
-		newData.append([data[0], Globals.curRegion.navigation.get_simple_path(data[1], data[2], true)])
+		if is_instance_valid (data[0]): 
+			var path = Navigation2DServer.map_get_path(data[0].navAgent.get_navigation_map(), data[1], data[2], true)
+			data[0].generatePath(path)
 	call_deferred("pathGenerated", newData)
 
 func pathGenerated(agents):
-	for data in agents:
-		if is_instance_valid (data[0]): data[0].generatePath(data[1])
 	pathfinder_thread.wait_to_finish()
 
 func requestPath(agent):

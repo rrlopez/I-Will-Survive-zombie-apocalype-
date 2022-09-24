@@ -74,6 +74,7 @@ attackRange = NodePath("attackRange")
 soundGrowl = NodePath("SoundGrowl")
 hitBox = NodePath("hitBox")
 animation = NodePath("animation")
+navAgent = NodePath("navAgent")
 
 [node name="visibility" type="VisibilityEnabler2D" parent="."]
 scale = Vector2( 6.6, 6.45 )
@@ -83,6 +84,8 @@ physics_process_parent = true
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -2 )
 shape = SubResource( 11 )
+
+[node name="navAgent" type="NavigationAgent2D" parent="."]
 
 [node name="Vision" type="Node2D" parent="."]
 
