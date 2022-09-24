@@ -9,7 +9,7 @@ var totalEnemy = 0
 
 
 export(String, MULTILINE) var enemies = "[" \
-+ "\n{\"type\": \"normal\", \"count\": 20}," \
++ "\n{\"type\": \"normal\", \"count\": 100}," \
 + "\n{\"type\": \"charger\", \"count\": 2}" \
 + "\n]"
 

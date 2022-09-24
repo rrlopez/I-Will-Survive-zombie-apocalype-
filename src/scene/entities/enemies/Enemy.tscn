@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://scene/entities/enemies/hitBox.gd" type="Script" id=1]
 [ext_resource path="res://scene/entities/enemies/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://assets/light/light.png" type="Texture" id=3]
 [ext_resource path="res://assets/shadow/circle.png" type="Texture" id=9]
@@ -65,14 +64,14 @@ tracks/0/keys = {
 [node name="Enemy" type="KinematicBody2D"]
 z_index = 10
 collision_layer = 258
-collision_mask = 39
+collision_mask = 38
 script = ExtResource( 2 )
 vision = NodePath("Vision")
 collider = NodePath("Collider")
 blockerSensor = NodePath("blockerSensor")
 attackRange = NodePath("attackRange")
 soundGrowl = NodePath("SoundGrowl")
-hitBox = NodePath("hitBox")
+hitBoxCollider = NodePath("hitBox/Collider")
 animation = NodePath("animation")
 navAgent = NodePath("navAgent")
 
@@ -86,6 +85,10 @@ position = Vector2( 0, -2 )
 shape = SubResource( 11 )
 
 [node name="navAgent" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+navigation_layers = 0
+avoidance_enabled = true
 
 [node name="Vision" type="Node2D" parent="."]
 
@@ -119,6 +122,7 @@ __meta__ = {
 }
 
 [node name="bodySensor" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -127,16 +131,16 @@ monitorable = false
 shape = SubResource( 9 )
 
 [node name="hitBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 5
 monitorable = false
-script = ExtResource( 1 )
-collider = NodePath("Collider")
 
 [node name="Collider" type="CollisionShape2D" parent="hitBox"]
 shape = SubResource( 12 )
 
 [node name="area" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8192
 monitorable = false
@@ -159,7 +163,6 @@ max_distance = 500.0
 
 [connection signal="screen_entered" from="visibility" to="." method="_on_visibility_screen_entered"]
 [connection signal="screen_exited" from="visibility" to="." method="_on_visibility_screen_exited"]
-[connection signal="body_entered" from="bodySensor" to="." method="_on_bodySensor_body_entered"]
-[connection signal="body_entered" from="hitBox" to="hitBox" method="_on_hitBox_body_entered"]
-[connection signal="body_exited" from="hitBox" to="hitBox" method="_on_hitBox_body_exited"]
+[connection signal="body_entered" from="hitBox" to="." method="_on_hitBox_body_entered"]
+[connection signal="body_exited" from="hitBox" to="." method="_on_hitBox_body_exited"]
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 export(NodePath) onready var collider = get_node(collider) as CollisionShape2D
 export(NodePath) onready var areaCollider = get_node(areaCollider) as CollisionShape2D

@@ -1,6 +1,6 @@
 extends CanvasModulate
 
-var time = 90
+var time = 50
 var speed = 0.2
 var lastDay = 1
 var waveCount = 0
@@ -9,7 +9,7 @@ signal dayStarted
 
 func _init():
 	Globals.dayNightCycle = self
-
+	
 func init():
 	$Animation.play("cycle")
 	$Animation.playback_speed = speed

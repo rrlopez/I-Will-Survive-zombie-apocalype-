@@ -10,11 +10,9 @@ export(NodePath) onready var regions  = get_node(regions) as Node2D
 
 	
 var blocks = [
-	["top2_left2", "top2_left1", "top2", "top2_right1", "top2_right2"],
-	["top1_left2", "top1_left1", "top1", "top1_right1", "top1_right2"],
-	["left2", 		"left1", 	"center", 	"right1", 	"right2"],
-	["bot1_left2", "bot1_left1", "bot1", "bot1_right1", "bot1_right2"],
-	["bot2_left2", "bot2_left1", "bot2", "bot2_right1", "bot2_right2"],
+	["top1_left1", "top1", "top1_right1"],
+	["left1", 	"center", 	"right1"],
+	["bot1_left1", "bot1", "bot1_right1"],
 ]
 
 var loadedBlocks = []

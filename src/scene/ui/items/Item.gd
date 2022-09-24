@@ -37,13 +37,13 @@ func _ready():
 
 func _process(delta):
 	cooldownTimer+=delta
-	
+
 	if cooldownTimer>staticData.cooldown:
 		sweep.value=0
 		set_process(false)
 		cooldownFinished()
 		return
-		
+
 	sweep.value = int((cooldownTimer/staticData.cooldown)*100)
 
 func set_quantity(value):

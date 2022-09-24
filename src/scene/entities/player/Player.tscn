@@ -1345,7 +1345,7 @@ polygon = PoolVector2Array( -853, -857, -866, 432, 889, 427, 906, -878 )
 z_index = 10
 z_as_relative = false
 collision_layer = 0
-collision_mask = 8
+collision_mask = 10
 script = ExtResource( 8 )
 weapon_container = NodePath("Equipments/Weapon")
 hand_container = NodePath("Equipments/Hand")
@@ -1556,6 +1556,7 @@ scale = Vector2( 0.518681, 0.518681 )
 texture = ExtResource( 15 )
 
 [node name="Sensor" type="Area2D" parent="."]
+visible = false
 collision_layer = 4096
 collision_mask = 0
 

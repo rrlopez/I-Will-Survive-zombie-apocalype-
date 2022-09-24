@@ -89,7 +89,9 @@ func createAndDeserializeScene(savedData):
 	new_object.deserialize(savedData)
 	
 func deserializeScene(savedData):
-	get_node(savedData["path"]).deserialize(savedData)
+	var node = get_node_or_null(savedData["path"])
+	while !node: yield(get_tree(),"idle_frame")
+	node.deserialize(savedData)
 
 func onExit():
 	if thread.is_active(): thread.wait_to_finish()

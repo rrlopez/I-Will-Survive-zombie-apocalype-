@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://ai/behaviorTree/Decorators/AlwaysFail.gd"
 }, {
 "base": "Task",
+"class": "AlwaysRun",
+"language": "GDScript",
+"path": "res://ai/behaviorTree/Decorators/AlwaysRun.gd"
+}, {
+"base": "Task",
 "class": "AlwaysSucceed",
 "language": "GDScript",
 "path": "res://ai/behaviorTree/Decorators/AlwaysSucceed.gd"
@@ -478,6 +483,7 @@ _global_script_class_icons={
 "AddModifier": "",
 "AggressionRangeStat": "",
 "AlwaysFail": "res://ai/behaviorTree/icons/always-fail.png",
+"AlwaysRun": "res://ai/behaviorTree/icons/always-succeed.png",
 "AlwaysSucceed": "res://ai/behaviorTree/icons/always-succeed.png",
 "AmmoStat": "",
 "ApplyForce": "",

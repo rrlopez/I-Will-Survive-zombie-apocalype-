@@ -12,9 +12,9 @@ func use():
 
 func attack():
 	.attack()
-	agent.hitBox.collider.scale = Vector2(1, 1)
-	agent.hitBox.collider.shape.radius = agent.data.stats.size.val/2
-	agent.hitBox.collider.position = Vector2(0, 0)
+	agent.hitBoxCollider.scale = Vector2(1, 1)
+	agent.hitBoxCollider.shape.radius = agent.data.stats.size.val/2
+	agent.hitBoxCollider.position = Vector2(0, 0)
 	force = ApplyForce.new()
 	force.init({"force": agent.data.stats.vision.val.height/7,  "friction": 0.9 })
 	force.add(agent.opponent[0], agent)
@@ -26,7 +26,7 @@ func isAttacking(delta):
 		use()
 		return false
 	landed()
-	agent.hitBox.opponents = []
+	agent.enemiesAbleToAttack = []
 	return true
 
 

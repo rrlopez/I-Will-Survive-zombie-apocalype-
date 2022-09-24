@@ -20,7 +20,7 @@ func _physics_process(_delta):
 			timerCounter+=1
 			if timerCounter>maxTimerCall: pathfinder_thread.wait_to_finish()
 			return
-			
+
 		pathfinder_thread.start(self, "_async_pathfinder", agents_to_update.duplicate(), 0)
 		agents_to_update = []
 		timer=0

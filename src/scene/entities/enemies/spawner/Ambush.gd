@@ -18,7 +18,7 @@ func _process(delta):
 	Globals.player.global_position.y = clamp(Globals.player.global_position.y, global_position.y-data.size/2-Constants.HEIGHT/1.5, global_position.y+data.size/2+Constants.HEIGHT/1.5)
 	Globals.camera.global_position.x = clamp(Globals.player.global_position.x, global_position.x-data.size/2, global_position.x+data.size/2)
 	Globals.camera.global_position.y = clamp(Globals.player.global_position.y, global_position.y-data.size/2, global_position.y+data.size/2)
-	
+
 	if enemies.get_children().size()<20:
 		for _i in 100:
 			Constants.rand.randomize()
@@ -26,7 +26,7 @@ func _process(delta):
 			var enemy = Factory.enemies.create('normal', position.x, position.y, 0)
 			enemy.data.behavior = "chase"
 			enemies.add_child(enemy)
-	
+
 	life-=delta
 	if(life<0 and enemies.get_children().size()<1):
 		Globals.player.addCamera()

@@ -5,7 +5,7 @@ export(NodePath) onready var collider  = get_node(collider) as CollisionShape2D
 export(NodePath) onready var blockerSensor  = get_node(blockerSensor) as RayCast2D
 export(NodePath) onready var attackRange  = get_node(attackRange) as RayCast2D
 export(NodePath) onready var soundGrowl  = get_node(soundGrowl) as AudioStreamPlayer2D
-export(NodePath) onready var hitBox  = get_node(hitBox) as Area2D
+export(NodePath) onready var hitBoxCollider  = get_node(hitBoxCollider) as CollisionShape2D
 export(NodePath) onready var animation  = get_node(animation) as AnimationPlayer
 export(NodePath) onready var navAgent  = get_node(navAgent) as NavigationAgent2D
 
@@ -28,7 +28,7 @@ var attacks = []
 var curAttack = null
 var attackTimer = 0
 
-
+var enemiesAbleToAttack = []
 	
 func init():
 	body = Factory.enemies.bodies[data.static.id].instance()
@@ -45,8 +45,8 @@ func init():
 		
 func _physics_process(delta):
 	move(delta)
-	
-	
+
+
 func _process(delta):
 	behavior.run(delta)
 	growl()
@@ -60,14 +60,14 @@ func generatePath(_path):
 
 func move(delta):
 	if path.size() > 0:
-		velocity = global_position.direction_to(path[0]).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
+		var path1 = path[0]
+		velocity = global_position.direction_to(path1).normalized() * data.stats.move_speed.val*Constants.MOVE_SPEED_MULTIPLYER
 		velocity = move_and_slide((applyedForce+velocity)*delta)
+		var direction = (path1 - global_position)
+		if global_position.distance_to(path1)<10: path.pop_front()
 		
-		var direction = (path[0] - global_position)
 		var angleTo = self.global_transform.x.angle_to(direction)
 		self.rotate(sign(angleTo) * min(delta*data.stats.angle_speed.val, abs(angleTo)))
-		
-		if global_position.distance_to(path[0])<10: path.pop_front()
 		
 		if lastPosition.distance_to(global_position) < 1:
 			if timer>maxblockTime:
@@ -81,7 +81,7 @@ func move(delta):
 		lastPosition = global_position
 	return path.size() > 0
 			
-func setEnableVision(enabled = self.visible):
+func setEnableVision(enabled = (self.visible and !!opponent.empty())):
 	for ray in $Vision.get_children():
 		ray.enabled = enabled
 
@@ -174,7 +174,7 @@ func _on_visibility_screen_exited():
 
 
 func _on_bodySensor_body_entered(_opponent):
-	if(!opponent.empty() and _opponent.opponent.empty()): _opponent._on_View_body_entered(opponent[0])
+	if(_opponent!=self and !opponent.empty() and _opponent.opponent.empty()): _opponent._on_View_body_entered(opponent[0])
 
 
 func _on_area_area_entered(_area):
@@ -190,6 +190,13 @@ func reperent():
 	$area.disconnect("area_entered", self, "_on_area_area_entered")
 
 
+func _on_hitBox_body_entered(_body):
+	enemiesAbleToAttack.append(_body)
+	
+func _on_hitBox_body_exited(_body):
+	enemiesAbleToAttack.erase(_body)
+
+
 func serialize(savedData):
 	var serializedData = {
 		"filename" : get_filename(),
@@ -203,6 +210,7 @@ func serialize(savedData):
 		"id": data.static.id,
 		"growl": data.growl,
 		"stats": {},
+		"behavior": data.behavior
 	}
 	
 	for stat in data.stats: 
@@ -218,6 +226,7 @@ func serialize(savedData):
 
 func deserialize(savedData):
 	data = Factory.enemies.data(savedData.id)
+	data.behavior = savedData.behavior
 	global_position = Vector2(savedData.global_position.x, savedData.global_position.y)
 	global_rotation_degrees = savedData.global_rotation_degrees
 	data.growl = savedData.growl

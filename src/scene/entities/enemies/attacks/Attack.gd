@@ -8,7 +8,7 @@ func init(_agent, _data):
 	data = _data
 
 func use():
-	agent.hitBox.collider.shape.radius = 1
+	agent.hitBoxCollider.shape.radius = 1
 	agent.curAttack = self
 
 func attack():
@@ -20,7 +20,7 @@ func isAttacking(_delta):
 	pass
 
 func landed():
-	for opponent in agent.hitBox.opponents:
+	for opponent in agent.enemiesAbleToAttack:
 		for statusEffect in data.statusEffects:
 			Factory.statusEffects.create(statusEffect.duplicate(true), opponent, agent)
 		opponent.hurt(agent.data.stats.attack_dmg.val)
