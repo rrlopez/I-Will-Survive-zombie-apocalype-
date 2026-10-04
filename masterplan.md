@@ -374,16 +374,16 @@ This phase creates the clean Godot 4 project skeleton that all other phases buil
 **Data files:** Copy `player.json`, `enemies.json`, `items.json` from the old project into `res://data/`. No changes needed yet — they will be verified in Phase 17.
 
 #### Checklist
-- ⬜ Create new Godot 4 project named `I-Will-Survive-v2`
-- ⬜ Configure display settings (1080×1920, canvas_items stretch, expand aspect)
-- ⬜ Name all 9 physics layers in Project Settings → Layer Names → 2D Physics
-- ⬜ Set up input map (move_up/down/left/right, ui_accept, reload)
-- ⬜ Enable `emulate_touch_from_mouse` in Project Settings
-- ⬜ Register all 6 autoloads in correct order with stub scripts
-- ⬜ Create full folder structure (`autoloads/`, `data/`, `stat/`, `ai/`, `scene/`, `assets/`)
-- ⬜ Copy `player.json`, `enemies.json`, `items.json` into `res://data/`
-- ⬜ Set up fonts (`res://assets/fonts/`) — import Roboto or equivalent at sizes 8 and 16
-- ⬜ Confirm project opens and runs without errors (empty main scene)
+- ✅ Create new Godot 4 project named `I-Will-Survive-v2`
+- ✅ Configure display settings (1080×1920, canvas_items stretch, expand aspect)
+- ✅ Name all 9 physics layers in Project Settings → Layer Names → 2D Physics
+- ✅ Set up input map (move_up/down/left/right, ui_accept, reload)
+- ✅ Enable `emulate_touch_from_mouse` in Project Settings
+- ✅ Register all 6 autoloads in correct order with stub scripts
+- ✅ Create full folder structure (`autoloads/`, `data/`, `stat/`, `ai/`, `scene/`, `assets/`)
+- ✅ Copy `player.json`, `enemies.json`, `items.json` into `res://data/`
+- ✅ Set up fonts (`res://assets/fonts/`) — README placed, preloads deferred until font assets imported
+- ✅ Confirm project opens and runs without errors (empty main scene)
 
 ---
 
@@ -665,25 +665,26 @@ stat/
 #### Checklist
 
 **Core stat classes**
-- ⬜ `stat/stat_modifier.gd` — `Resource`: `value: float`, `enum ModifierType {FLAT, PERCENT_ADD, PERCENT_MULTIPLY, OVERRIDE}`, `type: ModifierType`, `source: WeakRef`, `is_permanent: bool`
-- ⬜ `stat/stat.gd` — `Resource`: `base_value: float`, `min_value: float`, `level_multiplier: float`; `_modifiers: Array[StatModifier]`, `_is_dirty: bool`, `_cached_value: float`; `value` getter with dirty flag; `add_modifier(mod)`, `remove_modifier(mod) -> bool`, `remove_all_from_source(source)`, `_calculate() -> float` (ordered: FLAT → PERCENT_ADD → PERCENT_MULTIPLY → OVERRIDE); signal `changed(old_val: float, new_val: float)`
-- ⬜ `stat/stats_component.gd` — `Node`: `@export` typed `Stat` vars for every stat; `@onready var effects: StatusEffectContainer`; `init_from_data(data: Dictionary)` reads JSON + creates stats; `take_damage(amount) -> bool`, `heal(amount)`, `apply_effect(effect)`, `remove_effects_from(source)`, `apply_level_scaling(level)`
-- ⬜ `stat/status_effect.gd` — `Resource`: `id: StringName`, `source: WeakRef`, `duration: float` (-1=infinite), `modifiers: Array[StatModifier]`, `tick_effects: Array`; signal `expired()`
-- ⬜ `stat/status_effect_container.gd` — `Node`: `_effects: Array[StatusEffect]`, `_process(delta)` ticks all effects + removes expired (iterates backwards); `add(effect: StatusEffect)`: checks dedup by id + applies modifiers to stats via source; `remove(effect)`: removes modifiers from stats; `remove_by_id(id)`, `remove_all_from_source(source)`, `has(id) -> bool`; signals `effect_added(effect)`, `effect_removed(effect)`
+- ✅ `stat/stat_modifier.gd` — `Resource`: `value: float`, `enum ModifierType {FLAT, PERCENT_ADD, PERCENT_MULTIPLY, OVERRIDE}`, `type: ModifierType`, `source: WeakRef`, `is_permanent: bool`
+- ✅ `stat/stat.gd` — `Resource`: `base_value: float`, `min_value: float`, `level_multiplier: float`; `_modifiers: Array[StatModifier]`, `_is_dirty: bool`, `_cached_value: float`; `value` getter with dirty flag; `add_modifier(mod)`, `remove_modifier(mod) -> bool`, `remove_all_from_source(source)`, `_calculate() -> float` (ordered: FLAT → PERCENT_ADD → PERCENT_MULTIPLY → OVERRIDE); signal `changed(old_val: float, new_val: float)`
+- ✅ `stat/stats_component.gd` — `Node`: `@export` typed `Stat` vars for every stat; `@onready var effects: StatusEffectContainer`; `init_from_data(data: Dictionary)` reads JSON + creates stats; `take_damage(amount) -> bool`, `heal(amount)`, `apply_effect(effect)`, `remove_effects_from(source)`, `apply_level_scaling(level)`
+- ✅ `stat/status_effect.gd` — `Resource`: `id: StringName`, `source: WeakRef`, `duration: float` (-1=infinite), `modifiers: Array[StatModifier]`, `tick_effects: Array`; signal `expired()`
+- ✅ `stat/status_effect_container.gd` — `Node`: `_effects: Array[StatusEffect]`, `_process(delta)` ticks all effects + removes expired (iterates backwards); `add(effect: StatusEffect)`: checks dedup by id + applies modifiers to stats via source; `remove(effect)`: removes modifiers from stats; `remove_by_id(id)`, `remove_all_from_source(source)`, `has(id) -> bool`; signals `effect_added(effect)`, `effect_removed(effect)`
 
 **Tick effects (the three stat effect types)**
-- ⬜ `stat/tick_effects/regen_effect.gd` — `rate: float`, `duration: float`, `target_stat: StringName`; `tick(stats_component, delta)` applies heal at interval; returns true when done
-- ⬜ `stat/tick_effects/drain_effect.gd` — same as regen but subtracts; `hunger_stat.gd` is implemented via drain on itself
-- ⬜ `stat/tick_effects/force_effect.gd` — `force: Vector2`, `friction: float`; `tick(entity, delta)` adds to `entity.applied_force`, decays; returns true when exhausted
+- ✅ `stat/tick_effects/regen_effect.gd` — `rate: float`, `duration: float`, `target_stat: StringName`; `tick(entity, delta)` applies heal at interval via StatsComponent lookup; returns true when done
+- ✅ `stat/tick_effects/drain_effect.gd` — same as regen but subtracts; calls `entity.die()` when health hits 0
+- ✅ `stat/tick_effects/force_effect.gd` — `magnitude: float`, `friction: float`; `init(direction)` sets force vector; `tick(entity, delta)` adds to `entity.applied_force`, decays exponentially; returns true when exhausted
 
 **Typed stat subclasses (only 3 needed)**
-- ⬜ `stat/stats/damage_stat.gd` — extends `Stat`; `spread: float`; `get_ranged_value() -> float` returns `randf_range(value - spread, value + spread)`
-- ⬜ `stat/stats/hunger_stat.gd` — extends `Stat`; `drain_rate: float`, `tolerance: float`; `_process(delta)` drains `current_value`; when <= 0 applies damage to health at tolerance rate
-- ⬜ `stat/stats/level_stat.gd` — extends `Stat` (xp as current_value); `xp_threshold: float`; `add_xp(amount)` increments, checks threshold, emits `leveled_up(new_level: int)`, recurses for multi-level; signal `leveled_up(new_level: int)`
+- ✅ `stat/stats/damage_stat.gd` — extends `Stat`; `spread: float`; `get_ranged_value() -> float` returns `randf_range(value - spread, value + spread)`
+- ✅ `stat/stats/hunger_stat.gd` — extends `Stat`; `drain_rate: float`, `tolerance: float`; `tick(delta, stats)` drains hunger then damages health at 0; calls `entity.die()`
+- ✅ `stat/stats/level_stat.gd` — extends `Stat` (xp as current_value); `xp_threshold: float`; `add_xp(amount)` increments, multi-level loop, emits `leveled_up(new_level: int)`; handles legacy `{"min","max"}` val format
 
 **Factories**
-- ⬜ `autoloads/factory/stat_factory.gd` — reads JSON stat dict; maps stat name to class (default `Stat`, "damage" → `DamageStat`, "hunger" → `HungerStat`, "level" → `LevelStat`); `create(id, data) -> Stat`
-- ⬜ `autoloads/factory/status_effect_factory.gd` — reads effect dict from JSON; chance roll; dedup check via `StatusEffectContainer.has(id)`; builds `StatusEffect` resource with correct modifiers + tick_effects; calls `stats_component.apply_effect(se)`
+- ✅ `autoloads/factory/stat_factory.gd` — `create(id, data)`, `create_all(stats_dict)` with vision/fire_accuracy split, legacy script key normalisation; `deserialize()`
+- ✅ `autoloads/factory/stat_modifier_factory.gd` — legacy (script/val/type path) + new (modifier_type/value/target_stat) JSON formats; stores `target_stat` as metadata; `create_all()`
+- ✅ `autoloads/factory/status_effect_factory.gd` — chance roll, builds buff mods + RegenEffect + DrainEffect + ForceEffect; `create_all()`; `remove_by_id()`
 
 **Entity wiring (how stats connect to visuals — replaces stat subclass side effects)**
 - ⬜ In `enemy.gd _ready()`: connect `stats.vision_width.changed` + `stats.vision_height.changed` → `_rebuild_vision_raycasts()`; connect `stats.move_speed.changed` → `body.lower_animation.speed_scale = new_val / 60.0`; connect `stats.aggression_range.changed` → `body_sensor.shape.radius = new_val`
