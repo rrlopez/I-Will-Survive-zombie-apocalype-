@@ -1,0 +1,557 @@
+[
+  {
+    "static_data":{
+      "id": "bandage",
+      "name": "Bandage",
+      "description": "a strip of material used to bind a wound or to protect an injured part of the body.",
+      "type": "consumable",
+      "stock_size": 100,
+      "cooldown": 1,
+      "equipment_type": "",
+      "recipe":[
+        { "name": "cloth", "quantity": 1},
+        { "name": "alcohol", "quantity": 1}
+      ],
+      "craft_amount": 10
+    },
+    "dynamic_data":{
+      "modifiers": [
+        {"type": "data.stats.health", "script": "add", "val": { "name": "health", "amount": 10}}
+      ],
+      "removedEffects":[
+        {"type": "statusEffects", "script": "pop", "val": { "name": "Open Wounds", "id": "openWounds", "icon": "wounded"}}
+      ],
+      "addedEffects":[
+        {"type": "statusEffects", "script": "push", "val": {
+          "id": "inspire",
+          "name": "Inspire",
+          "chance": 100,
+          "icon": "wounded",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 2,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "move_speed", "amount": 1.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 2,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "add", "val": { "name": "health", "amount": 10}}
+                ]
+              }
+            }
+          ]
+        }}
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "bread",
+      "name": "Bread",
+      "description": "a staple food prepared from a dough of flour (usually wheat) and water, usually by baking.",
+      "type": "consumable",
+      "stock_size": 100,
+      "cooldown": 1,
+      "equipment_type": ""
+    },
+    "dynamic_data":{
+      "modifiers": [
+        {"type": "data.stats.hunger", "script": "add", "val": { "name": "Hunger", "amount": 10}}
+      ],
+      "removedEffects":[],
+      "addedEffects":[]
+    }
+  },
+  {
+    "static_data":{
+      "id": "crafting table",
+      "name": "Crafting Table",
+      "description": "a utility block that gives access to all crafting recipes, including many not available from the inventory's crafting grid.",
+      "type": "placable",
+      "stock_size": 1,
+      "cooldown": 1,
+      "placable_type": "table",
+      "equipment_type": "craft",
+      "size": {
+        "x": 180,
+        "y": 88
+      },
+      "recipe":[
+        { "name": "wood", "quantity": 1}
+      ],
+      "placable_inventory": {
+        "name": "Placables",
+        "size": 24,
+        "items": [
+          { "name": "smithing table", "quantity": 1}
+        ]
+      },
+      "craftable_inventory": {
+        "name": "Craftables",
+        "size": 24,
+        "items": [
+          { "name": "torch", "quantity": 1, "type": "craftable"}
+        ]
+      }
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
+    }
+  },{
+    "static_data":{
+      "id": "smithing table",
+      "name": "Smithing Table",
+      "description": "a table to create and upgrade weaponry.",
+      "type": "placable",
+      "stock_size": 1,
+      "cooldown": 1,
+      "placable_type": "table",
+      "equipment_type": "craft",
+      "size": {
+        "x": 180,
+        "y": 88
+      },
+      "recipe":[
+        { "name": "wood", "quantity": 1}
+      ],
+      "craftable_inventory": {
+        "name": "Craftables",
+        "size": 24,
+        "items": [
+          { "name": "m13", "quantity": 1, "type": "craftable"}
+        ]
+      }
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
+    }
+  },
+  {
+    "static_data":{
+      "id": "campfire",
+      "name": "Campfire",
+      "description": "a fire at a campsite that provides light and warmth, and heat for cooking.",
+      "type": "placable",
+      "stock_size": 1,
+      "cooldown": 1,
+      "placable_type": "campfire",
+      "equipment_type": "craft",
+      "size": {
+        "x": 88,
+        "y": 88
+      },
+      "recipe":[
+        { "name": "wood", "quantity": 1},
+        { "name": "stone", "quantity": 1},
+        { "name": "gasoline", "quantity": 1}
+      ]
+    },
+    "dynamic_data":{
+      "stats":{
+        "health":  {"name": "Health", "script": "health", "val": 200, "multiplier": 0}
+      }
+    }
+  },
+  {
+    "static_data":{
+      "id": "torch",
+      "name": "Torch",
+      "description": "a stick with combustible material at one end, which is ignited and used as a light source.",
+      "script": "torch",
+      "type": "equipment",
+      "equipment_type": "hand",
+      "stock_size": 1,
+      "cooldown": 1,
+      "recipe":[
+        { "name": "wood", "quantity": 1},
+        { "name": "cloth", "quantity": 1},
+        { "name": "gasoline", "quantity": 1}
+      ],
+      "craft_amount": 1
+    },
+    "dynamic_data":{
+      "stats":{
+        "size":  {"name": "Size", "script": "size", "val": 20, "multiplier": 0},
+        "level": {"name": "Level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects":[],
+      "statusEffects": []
+    }
+  },
+  {
+    "static_data":{
+      "id": "machette",
+      "name": "Machette",
+      "description": "a broad blade used either as an agricultural implement similar to an axe, or in combat like a long-bladed knife.",
+      "script": "melle",
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "melle",
+      "stock_size": 1,
+      "cooldown": 1,
+      "animation_type": "melle"
+    },
+    "dynamic_data":{
+      "stats": {
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x": 10, "y": 20}, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 40, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects": [],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back",
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "openWounds",
+          "name": "Open Wounds",
+          "chance": 70,
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 2,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "moveSpeed", "amount": 0.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 2,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "subtruct", "val": { "name": "Health", "amount": 1}}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "AMT AutoMag III",
+      "name": "AMT AutoMag III",
+      "description": "a single action semi-automatic handgun, designed by Harry Sanford, creator of the first Automag.",
+      "script": "pistol",
+      "stock_size": 1,
+      "cooldown": 1,
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "pistol"
+    },
+    "dynamic_data":{
+      "stats": {
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 400, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 40, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects": [],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "m13",
+      "name": "m13",
+      "description": "a long-barreled firearm designed for accurate shooting, with a barrel that has a helical pattern of grooves (rifling) cut into the bore wall.",
+      "script": "riffle",
+      "stock_size": 1,
+      "cooldown": 1,
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "riffle",
+      "ammo_type": "riffle ammo",
+      "recipe":[
+        { "name": "cloth", "quantity": 1}
+      ],
+      "craft_amount": 1
+    },
+    "dynamic_data":{
+      "stats": {
+        "attack_speed": {"name": "Speed", "script": "default", "val": 15, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 500, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 500, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"name": "Ammo", "script": "ammo", "val": 10, "multiplier": 0},
+        "reload_duration": {"name": "Reload speed", "script": "default", "val": 1, "multiplier": 0},
+        "reload_rate": {"name": "Reload rate", "script": "default", "val": 10, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects":[],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "m14",
+      "name": "m14",
+      "description": "is a high-precision, long-range rifle.",
+      "script": "riffle",
+      "stock_size": 1,
+      "cooldown": 1,
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "riffle"
+    },
+    "dynamic_data":{
+      "stats": {
+        "attack_speed": {"name": "Speed", "script": "default", "val": 30, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy", "script": "fireAccuracy", "val": { "x":10, "y":20 }, "multiplier": 0},
+        "attack_range": {"name": "Range", "script": "default", "val": 600, "multiplier": 0},
+        "attack_dmg": {"name": "Damage", "script": "damage", "val": 700, "multiplier": 0},
+        "attack_sound": {"name": "Noise", "script": "default", "val": 600, "multiplier": 0},
+        "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects":[],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "machine gun",
+      "name": "Machine Gun",
+      "description": "a fully automatic, rifled autoloading firearm designed for sustained direct fire with rifle cartridges.",
+      "script": "machine gun",
+      "stock_size": 1,
+      "cooldown": 1,
+      "type": "equipment",
+      "equipment_type": "weapon",
+      "weapon_type": "range",
+      "animation_type": "machine gun",
+      "ammo_type": "machine gun ammo"
+    },
+    "dynamic_data":{
+      "stats": {
+        "attack_speed": {"name": "Speed", "script": "default", "val": 5, "multiplier": 0},
+        "attack_accuracy": {"name": "Accuracy","script": "fireAccuracy", "val": { "x":10, "y":20}, "multiplier": 0},
+        "attack_range": {"name": "Range","script": "default", "val": 500, "multiplier": 0},
+        "attack_dmg": {"name": "Damage","script": "damage", "val": 10, "multiplier": 0},
+        "attack_sound": {"name": "Noise","script": "default", "val": 250, "multiplier": 0},
+        "ammo": {"name": "Ammo","script": "ammo", "val": 100, "multiplier": 0},
+        "reload_duration": {"name": "Reload speed","script": "default", "val": 2, "multiplier": 0},
+        "reload_rate": {"name": "Reload rate","script": "default", "val": 100, "multiplier": 0},
+        "level": {"name": "Level","script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
+      },
+      "sideEffects":[
+        {
+          "id": "slow",
+          "name": "Slow",
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": {"name": "move_speed", "amount": 0.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "subtruct", "val": {"name": "health", "amount": 10}}
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "statusEffects": [
+        {
+          "id": "knockback",
+          "name": "Knock back", 
+          "chance": 70,
+          "effects": [
+            {
+              "script": "applyForce", 
+              "stats": {
+                "force": 200, 
+                "friction": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "openWounds",
+          "name": "Open Wounds",
+          "icon": "wounded",
+          "chance": 70,
+          "effects": [
+            {
+              "script": "buff",
+              "stats":{
+                "duration": 200,
+                "modifiers": [
+                  {"type":"data.stats.move_speed", "script": "multiply", "val": { "name": "move_speed", "amount": 0.5}}
+                ]
+              }
+            },
+            {
+              "script": "regen",
+              "stats":{
+                "duration": 20,
+                "rate": 0.2,
+                "modifiers": [
+                  {"type":"data.stats.health", "script": "subtruct", "val": { "name": "Health", "amount": 1}}
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "static_data":{
+      "id": "riffle ammo",
+      "name": "Riffle Ammo",
+      "description": "a round is a type of pre-assembled firearm ammunition packaging a projectile (bullet, shot, or slug), a propellant substance (usually either smokeless powder or black powder) and an ignition device (primer) within a metallic, paper, or plastic case that is precisely made to fit within the barrel chamber of a breechloading gun, for the practical purpose of convenient transportation and handling during shooting.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "machine gun ammo",
+      "name": "machine gun ammo",
+      "description": "",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "wood",
+      "name": "Wood",
+      "description": "is a porous and fibrous structural tissue found in the stems and roots of trees and other woody plants.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "stone",
+      "name": "Stone",
+      "description": "hard solid nonmetallic mineral matter of which rock is made, especially as a building material.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "cloth",
+      "name": "Cloth",
+      "description": "is fabric which is made by weaving or knitting a substance such as cotton, wool, silk, or nylon.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "gasoline",
+      "name": "Gasoline",
+      "description": "a volatile flammable liquid hydrocarbon mixture used as a fuel especially for internal combustion engines and usually blended from several products of natural gas and petroleum.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  },
+  {
+    "static_data":{
+      "id": "alcohol",
+      "name": "Alcohol",
+      "description": "disinfectant.",
+      "type": "resource",
+      "stock_size": 999,
+      "equipment_type": ""
+    }
+  }
+]

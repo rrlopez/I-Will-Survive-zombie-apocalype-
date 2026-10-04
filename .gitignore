@@ -1,0 +1,12 @@
+# Godot — generated files (both legacy and v2 projects)
+**/.godot/
+**/.import/
+**/*.import
+**/*.uid
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Editor metadata
+.kiro/

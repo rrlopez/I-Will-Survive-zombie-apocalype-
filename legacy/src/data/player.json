@@ -1,0 +1,47 @@
+{
+  "stats":{
+    "size":  {"name": "Size", "script": "size", "val": 100, "multiplier": 0},
+    "move_speed": {"name": "Move speed", "script": "moveSpeed", "val": 180, "multiplier": 0},
+    "health": {"name": "Health", "script": "health", "val": 12400, "multiplier": 0},
+    "hunger": {"name": "Hunger", "script": "hunger", "val": 240, "multiplier": 0},
+    "hunger_tolerance": {"name": "Hunger tolerance", "script": "default", "val": 10, "multiplier": 0},
+    "level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 100}
+  },
+  "inventory": {
+    "name": "Inventory",
+    "size": 36,
+    "items": [
+      { "name": "m13", "quantity": 1},
+      { "name": "riffle ammo", "quantity": 999},
+      { "name": "machine gun", "quantity": 1},
+      { "name": "machine gun ammo", "quantity": 999},
+      { "name": "machette", "quantity": 1},
+      { "name": "bandage", "quantity": 20},
+      { "name": "bread", "quantity": 20},
+      { "name": "wood", "quantity": 2},
+      { "name": "stone", "quantity": 2},
+      { "name": "cloth", "quantity": 2},
+      { "name": "gasoline", "quantity": 2},
+      { "name": "alcohol", "quantity": 2},
+      { "name": "torch", "quantity": 1}
+    ]
+  },
+  "placable_inventory": {
+    "name": "Placables",
+    "slot_type": "craft",
+    "size": 24,
+    "items": [
+      { "name": "crafting table", "quantity": 1},
+      { "name": "campfire", "quantity": 1}
+    ]
+  },
+  "craftable_inventory": {
+    "name": "Craftables",
+    "slot_type": "craft",
+    "size": 24,
+    "items": [
+      { "name": "torch", "quantity": 1, "type": "craftable"},
+      { "name": "bandage", "quantity": 1, "type": "craftable"}
+    ]
+  }
+}
