@@ -1,4 +1,4 @@
-class_name EquipmentFactory extends RefCounted
+extends RefCounted
 ## EquipmentFactory — instantiates equipment item scenes (weapons, hand items).
 ## Phase 0 stub. Full implementation in Phase 10.
 

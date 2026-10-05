@@ -13,6 +13,7 @@ var tick_effects: Array = []
 
 var _source: WeakRef = null
 
+@warning_ignore("unused_signal")
 signal expired()
 
 func set_source(obj: Object) -> void:

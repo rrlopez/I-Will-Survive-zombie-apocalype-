@@ -1,4 +1,4 @@
-class_name StatModifierFactory extends RefCounted
+extends RefCounted
 ## StatModifierFactory — creates StatModifier resources from JSON descriptor dicts.
 ## Supports both legacy JSON (script/val/type) and new format (modifier_type/value/target_stat).
 

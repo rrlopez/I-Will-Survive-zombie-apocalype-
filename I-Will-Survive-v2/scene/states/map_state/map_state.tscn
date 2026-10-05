@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://map_state"]
+
+[ext_resource type="Script" path="res://scene/states/map_state/map_state.gd" id="1_map"]
+
+[node name="MapState" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+process_mode = 3
+script = ExtResource("1_map")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.08, 0.05, 0.95)
+mouse_filter = 2
+
+[node name="MapView" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PlayerMarker" type="ColorRect" parent="MapView"]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.2, 0.8, 0.2, 1)
+
+[node name="BtnClose" type="Button" parent="."]
+anchor_right = 1.0
+offset_top = 30.0
+offset_bottom = 90.0
+text = "Close Map"
+
+[connection signal="pressed" from="BtnClose" to="." method="_on_btn_close_pressed"]

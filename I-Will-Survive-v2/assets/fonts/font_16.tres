@@ -1,0 +1,7 @@
+[gd_resource type="FontFile" load_steps=2 format=3]
+
+[ext_resource type="FontData" path="res://assets/fonts/Roboto-Regular.ttf" id="1_font"]
+
+[resource]
+font_data = ExtResource("1_font")
+fixed_size = 16

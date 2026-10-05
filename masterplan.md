@@ -1042,28 +1042,28 @@ tween.tween_property($Camera2D, "offset", Vector2.ZERO, 0.1)
 #### Checklist
 
 **Entity base**
-- ⬜ `scene/entities/entity.gd` — `CharacterBody2D`: `@onready var stats: StatsComponent`, `var applied_force: Vector2`; abstract `hurt(damage, source)`, `die()`; `_apply_knockback(dir, force)`; connect `stats.health.changed` → `_on_health_changed()` in `_ready()`
+- ✅ `scene/entities/entity.gd` — `CharacterBody2D`: `@onready var stats: StatsComponent`, `var applied_force: Vector2`; abstract `hurt(damage, source)`, `die()`; `_apply_knockback(dir, force)`; connect `stats.health.stat_changed` → `_on_health_changed()` in `_ready()`
 
 **Player core**
-- ⬜ `scene/entities/player/player.gd` — extends Entity: `_move_input: Vector2`, `_facing: float`, `_target_facing: float`; `_physics_process(delta)`: lerp_angle rotation + rotate move vector + move_and_slide + force decay; `_update_animation(local_vel)` drives AnimationTree blend position; `hurt(damage, source)` creates blood particles + camera shake; `die()` pushes GameOverState; health signal updates vignette; `set_weapon(item)`, `set_hand_item(item)`, `spawn_sound()`; serialize/deserialize
-- ⬜ `scene/entities/player/player.tscn` — full node hierarchy as above
-- ⬜ `Camera2D` as child of Player: `position_smoothing_enabled=true`, `position_smoothing_speed=8`, `zoom=(1.7,1.7)`; camera shake via `create_tween()` on `offset`
-- ⬜ Body counter-rotation: `body.rotation = -_facing` every `_physics_process` frame
-- ⬜ Constants: `ROTATION_SPEED = 12.0`, `DRAG_SENSITIVITY = 0.008`, `FORCE_FRICTION = 8.0`, `JOYSTICK_DEAD_ZONE = 8.0`, `JOYSTICK_MAX_RADIUS = 70.0`
+- ✅ `scene/entities/player/player.gd` — extends Entity: `_move_input: Vector2`, `_facing: float`, `_target_facing: float`; `_physics_process(delta)`: lerp_angle rotation + rotate move vector + move_and_slide + force decay; `_update_animation(local_vel)` drives AnimationTree blend position; `hurt(damage, source)` creates camera shake + knockback; `die()` emits EventBus.player_died; health signal emits EventBus; `set_weapon(item)`, `set_hand_item(item)`, `spawn_sound()`
+- ✅ `scene/entities/player/player.tscn` — full node hierarchy: CollisionShape2D (CapsuleShape2D), StatsComponent, StatusEffectContainer, Body (Shadow + LowerBody + UpperBody + UpperBodyAnimation), WeaponMount, HandMount, PlacablePreview, PickupArea, Camera2D
+- ✅ `Camera2D` as child of Player: `position_smoothing_enabled=true`, `position_smoothing_speed=8`, `zoom=(1.7,1.7)`; camera shake via `create_tween()` on `offset`
+- ✅ Body counter-rotation: `body.rotation = -_facing` every `_physics_process` frame
+- ✅ Constants: `ROTATION_SPEED = 12.0`, `DRAG_SENSITIVITY = 0.008`, `FORCE_FRICTION = 8.0`, `JOYSTICK_DEAD_ZONE = 8.0`, `JOYSTICK_MAX_RADIUS = 70.0`
 
 **Controller**
-- ⬜ `scene/entities/player/controller/controller.gd` — `Control` node (full screen, mouse_filter=IGNORE): signals `move_input_changed(dir: Vector2)`, `rotation_input(delta_angle: float)`, `action_pressed(action: StringName)`, `action_released(action: StringName)`; `_input(event)` handles `InputEventScreenTouch` + `InputEventScreenDrag` + `InputEventKey` + `InputEventMouseButton`; left zone (≤45% width): virtual joystick with dead zone + max radius clamp; right zone: drag→rotation + tap→fire; each touch tracked by `event.index`; joystick visual follows touch origin
-- ⬜ Joystick visual: `Sprite2D` for base ring + `Sprite2D` for thumb knob; hidden when not active; positioned at touch-down point
-- ⬜ Keyboard: WASD → `move_input_changed`, Q/E → `rotation_input`, Left click → `action_pressed("fire")`
-- ⬜ Dead zone: only emit `move_input_changed` when `joystick_offset.length() > DEAD_ZONE`
+- ✅ `scene/entities/player/controller/controller.gd` — `Control` node (full screen, mouse_filter=IGNORE): signals `move_input_changed(dir: Vector2)`, `rotation_input(delta_angle: float)`, `action_pressed(action: StringName)`, `action_released(action: StringName)`; `_input(event)` handles `InputEventScreenTouch` + `InputEventScreenDrag` + `InputEventKey` + `InputEventMouseButton`; left zone (≤45% width): virtual joystick with dead zone + max radius clamp; right zone: drag→rotation + tap→fire; each touch tracked by `event.index`; joystick visual follows touch origin
+- ✅ Joystick visual: `Sprite2D` for base ring + `Sprite2D` for thumb knob; hidden when not active; positioned at touch-down point
+- ✅ Keyboard: WASD → `move_input_changed`, Q/E → `rotation_input`, Left click → `action_pressed("fire")`
+- ✅ Dead zone: only emit `move_input_changed` when `joystick_offset.length() > DEAD_ZONE`
 
 **Animation**
 - ⬜ Lower body `AnimationTree` — `AnimationNodeBlendSpace2D` root; 8 blend points at unit circle positions + center idle; driven by `local_velocity.normalized()` each physics frame; `sync = true` on all blend positions for smooth crossfade
 - ⬜ Upper body `AnimationTree` — `AnimationNodeStateMachine`; states: `idle`, `pistol_idle`, `pistol_fire`, `rifle_idle`, `rifle_fire`, `rifle_reload`, `melee_swing`, `hurt`; transitions driven by weapon equip signals + `action_pressed("fire")`; `attack_landed` and `attack_finished` emitted via AnimationPlayer `Call Method` tracks
-- ⬜ `scene/entities/player/upper_body_animation.gd` — wraps AnimationTree state machine; exposes `play_state(name)`, signals `attack_landed`, `attack_finished`; on `attack_finished` returns to current weapon's idle state
+- ✅ `scene/entities/player/upper_body_animation.gd` — wraps AnimationTree state machine; exposes `play_state(name)`, signals `attack_landed`, `attack_finished`; on `attack_finished` returns to current weapon's idle state
 
 **Placable preview**
-- ⬜ `scene/entities/player/placable/placable_preview.gd` — `build(static_data)`: set sprite texture + size, show preview + buttons; overlap Area2D tints sprite red/blue; `confirm()`: check recipe → consume ingredients → `Factory.placable.create()` → add to cur_chunk or cur_house; `cancel()`: hide
+- ✅ `scene/entities/player/placable/placable_preview.gd` — `build(static_data)`: set sprite size, show preview; overlap Area2D tints sprite red/green; `confirm()`: calls Factory.placables.create(); `cancel()`: hide
 
 **Verify**
 - ⬜ Move with WASD: character moves in all 8 directions, BlendSpace2D crossfades smoothly
@@ -1414,46 +1414,45 @@ No `_process` polling. The state reacts to chunk events and checks completion on
 #### Checklist
 
 **EventBus**
-- ⬜ `autoloads/event_bus.gd` — all signals defined above; registered as autoload before all other autoloads; no logic, only signal declarations
+- ✅ `autoloads/event_bus.gd` — all signals defined; registered as autoload; no logic, only signal declarations
 
 **SceneStateManager**
-- ⬜ `scene/game.tscn` — root `Node`: `SceneStateManager` + `HUD` (CanvasLayer layer=2) + `Transition` (CanvasLayer layer=3)
-- ⬜ `scene/states/state_defs.gd` — `const` preloads for all 6 state scenes; used everywhere instead of string keys
-- ⬜ `scene/states/scene_state_manager.gd` — `_stack: Array[Node]`, `_overlays: Array[Node]`, `_pinned: Dictionary`; `push_state(packed)` async with `await transition`; `pop_state()` async; `push_overlay(packed)`, `pop_overlay()`; `_get_or_create(packed)` lazy instantiation; `pin_state()` for MenuState; `_ready()` pins + pushes MenuState
-- ⬜ `scene/states/transition/transition.gd` — `CanvasLayer` layer=3 with full-screen `ColorRect`; `play_out() -> void` tweens alpha 0→1 (await-able); `play_in() -> void` tweens alpha 1→0 (await-able); `PROCESS_MODE_ALWAYS` so it runs while tree is paused
+- ✅ `scene/game.tscn` — root `Node2D`: `SceneStateManager` + `HUD` (instanced hud.tscn, CanvasLayer layer=2) + `Transition` (CanvasLayer layer=3)
+- ✅ `scene/states/state_defs.gd` — `const` preloads for all 6 state scenes
+- ✅ `scene/states/scene_state_manager.gd` — `_stack`, `_overlays`, `_pinned`; `push_state()` / `pop_state()` async with `await transition`; `push_overlay()` / `pop_overlay()`; `replace_state()` for hard reset; lazy instantiation; pins + pushes MenuState in `_ready()`
+- ✅ `scene/states/transition/transition.gd` + `.tscn` — CanvasLayer layer=3, PROCESS_MODE_ALWAYS; `play_out()` / `play_in()` via `create_tween()`, both awaitable
 
 **States**
-- ⬜ `scene/states/menu_state/menu_state.gd` + `.tscn` — `_enter_tree()` shows Continue button if a save file exists; New Game: instantiate GameState + set `is_new_game=true` + `push_state()`; Continue: same + `is_new_game=false`; pinned (survives pops back to menu)
-- ⬜ `scene/states/game_state/game_state.gd` + `.tscn` — `@export is_new_game: bool`; `_enter_tree()`: activate ChunkStreamer + Pathfinder, branch on `is_new_game`; `_exit_tree()`: deactivate Pathfinder, stop auto-save timer; `Timer` (10s, autostart) → emits `EventBus.notification_requested` "saving..." (save trigger wired in Phase 14)
-- ⬜ `scene/states/loading_state/loading_state.gd` + `.tscn` — overlay; `_enter_tree()`: pause tree + keep physics active + connect `EventBus.chunk_activated`; `_check_done()` via `ChunkStreamer.is_initial_load_complete()`; progress spinner animation; `_exit_tree()`: does NOT unpause (GameState owns that)
-- ⬜ `scene/states/pause_state/pause_state.gd` + `.tscn` — overlay; `_enter_tree()` pauses tree; `_exit_tree()` unpauses tree; Resume: `pop_overlay()`; Quit: `pop_state()` to menu; `PROCESS_MODE_WHEN_PAUSED` on this node
-- ⬜ `scene/states/map_state/map_state.gd` + `.tscn` — overlay; `_enter_tree()` pauses tree; touch drag pans an internal `Camera2D`; player marker reads `Globals.player.global_position` once on enter; Close: `pop_overlay()`; `_exit_tree()` unpauses
-- ⬜ `scene/states/game_over_state/game_over_state.gd` + `.tscn` — overlay; `_enter_tree()`: pause; Revive: unpause + `EventBus.player_revived.emit()` + `pop_overlay()`; Main Menu: `pop_state()` back to menu; save trigger wired in Phase 14
+- ✅ `scene/states/menu_state/menu_state.gd` + `.tscn` — Continue hidden if no save; New Game / Continue push GameState with `is_new_game` flag
+- ✅ `scene/states/game_state/game_state.gd` + `.tscn` — `@export is_new_game`; spawns player + controller, wires signals, day stub, 10s auto-save timer; enables/disables Pathfinder
+- ✅ `scene/states/loading_state/loading_state.gd` + `.tscn` — overlay; pauses tree + keeps physics; spinner animation; auto-dismisses (Phase 4 replaces with ChunkStreamer signal)
+- ✅ `scene/states/pause_state/pause_state.gd` + `.tscn` — overlay; PROCESS_MODE_ALWAYS; owns pause/unpause; Resume / Quit to Menu
+- ✅ `scene/states/map_state/map_state.gd` + `.tscn` — overlay; pauses tree; drag-to-pan; player marker; Close button
+- ✅ `scene/states/game_over_state/game_over_state.gd` + `.tscn` — overlay; saves on enter; Revive emits EventBus.player_revived; Main Menu replaces state
 
 **HUD**
-- ⬜ `scene/hud/hud.gd` + `hud.tscn` — CanvasLayer layer=2; `SafeAreaMargin` with display safe area applied on `_ready()`; typed `@onready` refs to all sub-components; `set_controller(node)` removes old + adds new controller to tree
-- ⬜ `scene/hud/gage/gage.gd` + `.tscn` — `@export stat_type: StringName`; connects to EventBus health/hunger signal in `_ready()`; updates `_fill_ratio` + calls `queue_redraw()`; draws fill via `_draw()` — zero `_process` usage
-- ⬜ `scene/hud/notif_container/notif_container.gd` + `.tscn` — pool of 15 `NotifLabel` nodes pre-allocated; connects to `EventBus.notification_requested`; `add_notif(text, color)` pulls from pool; `NotifLabel` self-manages fade in/hold/fade out via internal tween then returns to pool
-- ⬜ `scene/hud/calendar/calendar.gd` + `.tscn` — connects to `EventBus.day_started`; updates label text
-- ⬜ `scene/hud/camera_effect/camera_effect.gd` + `.tscn` — full-screen `ColorRect`, hidden by default; connects to `EventBus.player_health_changed`; `_on_health_changed(cur, max)` computes alpha + scale and applies via `create_tween()` when below 66% health
+- ✅ `scene/hud/hud.gd` + `hud.tscn` — CanvasLayer layer=2; safe area margins in `_ready()`; typed `@onready` refs; `set_controller()` swaps controller slot; pause button
+- ✅ `scene/hud/gage/gage.gd` + `.tscn` — `@export stat_type`; connects EventBus health/hunger; `_draw()` fill rect; zero `_process`
+- ✅ `scene/hud/notif_container/notif_container.gd` + `.tscn` — pool of 15 Labels; connects `EventBus.notification_requested`; fade tween; `_recycle()` callback
+- ✅ `scene/hud/calendar/calendar.gd` — Label; connects `EventBus.day_started`; updates text
+- ✅ `scene/hud/camera_effect/camera_effect.gd` — full-screen ColorRect; connects `EventBus.player_health_changed`; remap ratio to alpha via `create_tween()`
 
 **EventBus emission points (wired in other phases but defined now)**
-- ⬜ In `StatsComponent._on_health_changed()`: emit `EventBus.player_health_changed`
-- ⬜ In `StatsComponent._on_hunger_changed()`: emit `EventBus.player_hunger_changed`
-- ⬜ In `Player.die()`: emit `EventBus.player_died`
-- ⬜ In `Player.revive()`: emit `EventBus.player_revived`
-- ⬜ In `LevelStat.leveled_up`: emit `EventBus.player_level_changed`
-- ⬜ In `StatusEffectContainer.effect_added`: emit `EventBus.status_effect_added`
-- ⬜ In `StatusEffectContainer.effect_removed`: emit `EventBus.status_effect_removed`
+- ✅ In `Player._on_health_changed()`: emits `EventBus.player_health_changed`
+- ✅ In `Player.die()`: emits `EventBus.player_died`
+- ✅ In `Player._on_leveled_up()`: emits `EventBus.player_levelled_up`
+- ⬜ In `StatsComponent._on_hunger_changed()`: emit `EventBus.player_hunger_changed` — wired in Phase 2 stats signal, emitted when Phase 1 hunger drains
+- ⬜ In `StatusEffectContainer`: emit `EventBus.status_effect_added/removed` — Phase 6
+- ⬜ In `LevelStat.leveled_up`: emit `EventBus.player_level_changed` — wired via Player._on_leveled_up
 
 **Verify**
 - ⬜ Game opens to menu, Continue hidden if no save file
-- ⬜ New Game: loading overlay shows, chunks load, loading overlay removes itself without polling
-- ⬜ Pause (Escape/button): tree pauses, resume unpauses — no stuck-paused bugs
-- ⬜ Take damage: health gage updates immediately (signal-driven, no delay)
-- ⬜ Game Over: state pushes, save fires, Revive works, tree unpauses
-- ⬜ Open map, drag to pan, close — game resumes correctly
-- ⬜ EventBus test: confirm zero `_process` polling on gage (add a counter, verify it never increments)
+- ⬜ New Game: player visible at screen centre, health/hunger gages show, Day 1 in calendar
+- ⬜ WASD moves player, world visible, camera follows
+- ⬜ Pause button / Escape: tree pauses, resume unpauses
+- ⬜ Take damage: health gage updates, vignette appears below 66%
+- ⬜ Game Over: overlay shows, Revive works, Main Menu returns to title
+- ⬜ Notifications appear and fade out
 
 ---
 ### PHASE 4 — Map & World (Infinite Chunk Streaming + Procedural World Generation)

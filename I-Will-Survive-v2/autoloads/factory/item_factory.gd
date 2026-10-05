@@ -1,4 +1,4 @@
-class_name ItemFactory extends RefCounted
+extends RefCounted
 ## ItemFactory — instantiates item UI nodes from data.
 ## Phase 0 stub. Full implementation in Phase 8.
 

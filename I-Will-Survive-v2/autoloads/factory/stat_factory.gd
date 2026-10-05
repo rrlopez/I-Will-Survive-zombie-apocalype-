@@ -1,4 +1,4 @@
-class_name StatFactory extends RefCounted
+extends RefCounted
 ## StatFactory — instantiates Stat resources from JSON data dicts.
 
 const _LEGACY_SCRIPT_MAP: Dictionary = {

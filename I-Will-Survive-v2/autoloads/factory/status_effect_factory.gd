@@ -1,4 +1,4 @@
-class_name StatusEffectFactory extends RefCounted
+extends RefCounted
 ## StatusEffectFactory — builds and applies StatusEffect resources from JSON.
 
 func create(data: Dictionary, stats_component: StatsComponent,

@@ -1,4 +1,4 @@
-class_name EnemyFactory extends RefCounted
+extends RefCounted
 ## EnemyFactory — instantiates enemy scenes from data.
 ## Phase 0 stub. Full implementation in Phase 6.
 

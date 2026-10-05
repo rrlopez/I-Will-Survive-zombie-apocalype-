@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://notif_container"]
+
+[ext_resource type="Script" path="res://scene/hud/notif_container/notif_container.gd" id="1_nc"]
+
+[node name="NotifContainer" type="VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+script = ExtResource("1_nc")
+theme_override_constants/separation = 4

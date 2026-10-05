@@ -14,6 +14,13 @@ const MOVE_SPEED_MULTIPLIER: float = 100.0
 const EXP_MULTIPLIER: float        = 100.0
 const STAT_RANDOM: float           = 0.7   # ±variance applied to stat base values
 
+# ── Player movement / rotation (Phase 2) ──────────────────────────────────────
+const ROTATION_SPEED: float    = 12.0   # radians/sec lerp speed toward target facing
+const DRAG_SENSITIVITY: float  = 0.008  # radians per pixel of touch drag
+const FORCE_FRICTION: float    = 8.0    # applied_force decay rate (lerp speed)
+const JOYSTICK_DEAD_ZONE: float  = 8.0  # pixels — minimum offset before movement registers
+const JOYSTICK_MAX_RADIUS: float = 70.0 # pixels — maximum joystick knob displacement
+
 # ── Physics layer masks (bit positions, 1-indexed → shift by layer-1) ─────────
 const LAYER_PLAYER:        int = 1 << 0   # layer 1
 const LAYER_ENEMY:         int = 1 << 1   # layer 2
@@ -40,10 +47,8 @@ var notif_scene: PackedScene      # = preload("res://scene/entities/objects/noti
 # Phase 8+
 var slot_scenes: Dictionary = {}  # filled in Phase 8: {"slot": ..., "equipment_slot": ..., "loot_slot": ...}
 
-# ── Fonts (populated once font assets are imported) ───────────────────────────
-# Phase 0 stub — assign after importing fonts in the editor:
-#   var fonts: Dictionary = {
-#       8:  preload("res://assets/fonts/font_8.tres"),
-#       16: preload("res://assets/fonts/font_16.tres"),
-#   }
-var fonts: Dictionary = {}
+# ── Fonts ─────────────────────────────────────────────────────────────────────
+var fonts: Dictionary = {
+	8:  preload("res://assets/fonts/font_8.tres"),
+	16: preload("res://assets/fonts/font_16.tres"),
+}

@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://controller"]
+
+[ext_resource type="Script" path="res://scene/entities/player/controller/controller.gd" id="1_ctrl"]
+
+[node name="PlayerController" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("1_ctrl")
+
+[node name="JoystickBase" type="Control" parent="."]
+custom_minimum_size = Vector2(120, 120)
+visible = false
+mouse_filter = 2
+
+[node name="BaseCircle" type="ColorRect" parent="JoystickBase"]
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
+color = Color(1, 1, 1, 0.15)
+mouse_filter = 2
+
+[node name="Knob" type="ColorRect" parent="JoystickBase"]
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 22.0
+offset_bottom = 22.0
+color = Color(1, 1, 1, 0.4)
+mouse_filter = 2

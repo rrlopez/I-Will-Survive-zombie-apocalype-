@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://hud"]
+
+[ext_resource type="Script"      path="res://scene/hud/hud.gd"                              id="1_hud"]
+[ext_resource type="Script"      path="res://scene/hud/gage/gage.gd"                        id="2_gage"]
+[ext_resource type="Script"      path="res://scene/hud/notif_container/notif_container.gd"  id="3_nc"]
+[ext_resource type="Script"      path="res://scene/hud/camera_effect/camera_effect.gd"      id="4_ce"]
+[ext_resource type="Script"      path="res://scene/hud/calendar/calendar.gd"                id="5_cal"]
+[ext_resource type="Texture2D"   path="res://assets/gui/healthIcon.png"                     id="6_hp"]
+[ext_resource type="Texture2D"   path="res://assets/gui/hungerIcon.png"                     id="7_hunger"]
+
+[node name="HUD" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_hud")
+
+[node name="CameraEffect" type="ColorRect" parent="."]
+anchor_right  = 1.0
+anchor_bottom = 1.0
+color = Color(0.53, 0.03, 0.03, 0.0)
+mouse_filter = 2
+script = ExtResource("4_ce")
+
+[node name="ControllerSlot" type="Control" parent="."]
+anchor_right  = 1.0
+anchor_bottom = 1.0
+mouse_filter  = 2
+
+[node name="SafeArea" type="MarginContainer" parent="."]
+anchor_right  = 1.0
+anchor_bottom = 1.0
+mouse_filter  = 2
+
+[node name="Layout" type="VBoxContainer" parent="SafeArea"]
+anchor_right  = 1.0
+anchor_bottom = 1.0
+mouse_filter  = 2
+
+[node name="TopBar" type="HBoxContainer" parent="SafeArea/Layout"]
+custom_minimum_size = Vector2(0, 80)
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="Gages" type="VBoxContainer" parent="SafeArea/Layout/TopBar"]
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 4
+
+[node name="HealthGage" type="Control" parent="SafeArea/Layout/TopBar/Gages"]
+custom_minimum_size = Vector2(200, 18)
+script = ExtResource("2_gage")
+stat_type = &"health"
+fill_color = Color(0.77, 0.26, 0.26, 1)
+bg_color = Color(0.15, 0.1, 0.1, 1)
+icon_texture = ExtResource("6_hp")
+
+[node name="HungerGage" type="Control" parent="SafeArea/Layout/TopBar/Gages"]
+custom_minimum_size = Vector2(200, 18)
+script = ExtResource("2_gage")
+stat_type = &"hunger"
+fill_color = Color(0.75, 0.75, 0.24, 1)
+bg_color = Color(0.15, 0.15, 0.1, 1)
+icon_texture = ExtResource("7_hunger")
+
+[node name="Calendar" type="Label" parent="SafeArea/Layout/TopBar/Gages"]
+text = "Day 1"
+theme_override_font_sizes/font_size = 14
+script = ExtResource("5_cal")
+
+[node name="PauseBtn" type="Button" parent="SafeArea/Layout/TopBar"]
+custom_minimum_size = Vector2(56, 56)
+text = "II"
+theme_override_font_sizes/font_size = 20
+
+[node name="NotifContainer" type="VBoxContainer" parent="SafeArea/Layout"]
+custom_minimum_size = Vector2(0, 0)
+size_flags_vertical = 0
+script = ExtResource("3_nc")
+theme_override_constants/separation = 4

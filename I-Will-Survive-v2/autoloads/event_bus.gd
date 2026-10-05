@@ -1,40 +1,32 @@
 extends Node
 ## EventBus — pure signal hub. Zero logic, zero state.
-## Every cross-cutting signal lives here so systems stay decoupled.
-## Phase 0: declare all signals; implementations connect in their own phases.
+## All signals declared here; each phase connects/emits in its own files.
+## @warning_ignore("unused_signal") suppresses false positives — signals are
+## emitted and connected across other files, not in this one.
 
-# ── Player / Health ───────────────────────────────────────────────────────────
-signal player_health_changed(old_val: float, new_val: float, max_val: float)
-signal player_hunger_changed(old_val: float, new_val: float, max_val: float)
-signal player_died
-signal player_revived
+@warning_ignore("unused_signal") signal player_health_changed(old_val: float, new_val: float, max_val: float)
+@warning_ignore("unused_signal") signal player_hunger_changed(old_val: float, new_val: float, max_val: float)
+@warning_ignore("unused_signal") signal player_died
+@warning_ignore("unused_signal") signal player_revived
+@warning_ignore("unused_signal") signal player_levelled_up(new_level: int)
+@warning_ignore("unused_signal") signal player_xp_changed(current_xp: float, threshold: float)
 
-# ── Levelling ─────────────────────────────────────────────────────────────────
-signal player_levelled_up(new_level: int)
-signal player_xp_changed(current_xp: float, threshold: float)
+@warning_ignore("unused_signal") signal status_effect_added(effect: Resource)
+@warning_ignore("unused_signal") signal status_effect_removed(effect: Resource)
 
-# ── Status effects ────────────────────────────────────────────────────────────
-signal status_effect_added(effect)    # StatusEffect resource
-signal status_effect_removed(effect)  # StatusEffect resource
+@warning_ignore("unused_signal") signal day_started(day_number: int)
+@warning_ignore("unused_signal") signal night_started(day_number: int)
+@warning_ignore("unused_signal") signal wave_spawned(wave_number: int)
 
-# ── Day / Night ───────────────────────────────────────────────────────────────
-signal day_started(day_number: int)
-signal night_started(day_number: int)
-signal wave_spawned(wave_number: int)
+@warning_ignore("unused_signal") signal chunk_loaded(chunk_key: String)
+@warning_ignore("unused_signal") signal chunk_unloaded(chunk_key: String)
+@warning_ignore("unused_signal") signal region_entered(region_name: String)
 
-# ── World / chunks ────────────────────────────────────────────────────────────
-signal chunk_loaded(chunk_key: String)
-signal chunk_unloaded(chunk_key: String)
-signal region_entered(region_name: String)
+@warning_ignore("unused_signal") signal item_picked_up(item_data: Dictionary)
+@warning_ignore("unused_signal") signal item_dropped(item_data: Dictionary)
+@warning_ignore("unused_signal") signal hotbar_slot_changed(slot_index: int)
 
-# ── Inventory / Items ─────────────────────────────────────────────────────────
-signal item_picked_up(item_data: Dictionary)
-signal item_dropped(item_data: Dictionary)
-signal hotbar_slot_changed(slot_index: int)
+@warning_ignore("unused_signal") signal notification_requested(text: String)
 
-# ── Notifications ─────────────────────────────────────────────────────────────
-signal notification_requested(text: String)
-
-# ── Save / Load ───────────────────────────────────────────────────────────────
-signal game_saved
-signal game_loaded
+@warning_ignore("unused_signal") signal game_saved
+@warning_ignore("unused_signal") signal game_loaded

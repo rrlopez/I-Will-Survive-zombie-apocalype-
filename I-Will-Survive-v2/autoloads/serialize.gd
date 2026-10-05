@@ -5,7 +5,6 @@ extends Node
 const SAVE_PATH := "user://savegame.json"
 
 var _thread: Thread
-var _save_pending := false
 
 func _ready() -> void:
 	_thread = Thread.new()

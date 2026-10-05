@@ -1,4 +1,4 @@
-class_name ParticleFactory extends RefCounted
+extends RefCounted
 ## ParticleFactory — spawns particle effect scenes (blood, dust, muzzle flash).
 ## Phase 0 stub. Full implementation in Phase 15.
 

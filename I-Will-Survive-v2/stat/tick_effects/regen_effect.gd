@@ -14,7 +14,7 @@ func tick(entity: Node, delta: float) -> bool:
 	_total_timer += delta
 	if _rate_timer >= rate:
 		_rate_timer = 0.0
-		var stats: StatsComponent = entity.get_node_or_null("StatsComponent")
+		var stats := entity.get_node_or_null("StatsComponent") as StatsComponent
 		if stats:
 			var stat: Stat = stats.get_stat(target_stat)
 			if stat:

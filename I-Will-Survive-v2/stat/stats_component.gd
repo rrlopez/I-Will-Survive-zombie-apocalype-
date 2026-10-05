@@ -36,7 +36,7 @@ class_name StatsComponent extends Node
 
 @export_group("Levelling")
 @export var level: Stat = Stat.new()   ## replaced with LevelStat in init_from_data
-@export var exp:   Stat = Stat.new()
+@export var xp_stat: Stat = Stat.new()  ## renamed from 'exp' — conflicts with built-in
 
 # ── Status effect container ────────────────────────────────────────────────────
 @onready var effects: StatusEffectContainer = $StatusEffectContainer
@@ -140,7 +140,7 @@ func _rebuild_stat_map() -> void:
 		&"size": size, &"angle_speed": angle_speed,
 		&"vision_width": vision_width, &"vision_height": vision_height,
 		&"fire_spread_x": fire_spread_x, &"fire_spread_y": fire_spread_y,
-		&"level": level, &"exp": exp,
+		&"level": level, &"exp": xp_stat,
 	}
 
 func _set_stat(stat_id: String, instance: Stat) -> void:
@@ -164,7 +164,7 @@ func _set_stat(stat_id: String, instance: Stat) -> void:
 		"fire_spread_x":                   fire_spread_x    = instance
 		"fire_spread_y":                   fire_spread_y    = instance
 		"level":                           level            = instance
-		"exp":                             exp              = instance
+		"exp":                             xp_stat          = instance
 		_: _stat_map[StringName(stat_id)]  = instance
 
 func _create_stat_for_id(stat_id: String, _data: Dictionary) -> Stat:

@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://game_over_state"]
+
+[ext_resource type="Script" path="res://scene/states/game_over_state/game_over_state.gd" id="1_go"]
+
+[node name="GameOverState" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+process_mode = 3
+script = ExtResource("1_go")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.15, 0, 0, 0.85)
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = 100.0
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+text = "YOU DIED"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
+modulate = Color(0.9, 0.2, 0.2, 1)
+
+[node name="BtnRevive" type="Button" parent="VBoxContainer"]
+text = "Revive"
+custom_minimum_size = Vector2(320, 60)
+
+[node name="BtnMenu" type="Button" parent="VBoxContainer"]
+text = "Main Menu"
+custom_minimum_size = Vector2(320, 60)
+
+[connection signal="pressed" from="VBoxContainer/BtnRevive" to="." method="_on_btn_revive_pressed"]
+[connection signal="pressed" from="VBoxContainer/BtnMenu"   to="." method="_on_btn_menu_pressed"]

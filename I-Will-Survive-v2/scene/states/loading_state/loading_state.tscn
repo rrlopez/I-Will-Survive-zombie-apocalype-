@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://loading_state"]
+
+[ext_resource type="Script" path="res://scene/states/loading_state/loading_state.gd" id="1_ls"]
+
+[node name="LoadingState" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+process_mode = 3
+script = ExtResource("1_ls")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+mouse_filter = 2
+
+[node name="Spinner" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -20.0
+offset_right = 80.0
+offset_bottom = 20.0
+text = "Loading..."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24

@@ -1,4 +1,4 @@
-class_name PlacableFactory extends RefCounted
+extends RefCounted
 ## PlacableFactory — instantiates placable scenes (tables, campfires).
 ## Phase 0 stub. Full implementation in Phase 11.
 
