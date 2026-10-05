@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://scene/entities/player/upper_body_animation.gd" id="4_uba"]
 [ext_resource type="Script" path="res://scene/entities/player/placable/placable_preview.gd" id="5_pp"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_player"]
+radius = 18.0
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
 radius = 18.0
 height = 36.0
@@ -19,10 +22,14 @@ size = Vector2(88, 88)
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 1
 collision_mask = 62
+safe_margin = 0.2
+wall_min_slide_angle = 0.0872665
 script = ExtResource("1_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_1")
+position = Vector2(0, 0)
+shape = SubResource("CircleShape2D_player")
+debug_color = Color(0, 0.6, 0.7, 0.42)
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_stats")
@@ -117,4 +124,4 @@ shape = SubResource("CircleShape2D_1")
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = false
 zoom = Vector2(1.7, 1.7)
-ignore_rotation = true
+ignore_rotation = false

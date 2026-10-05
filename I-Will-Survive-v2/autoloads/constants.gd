@@ -9,6 +9,13 @@ var SCREEN_HEIGHT: int = ProjectSettings.get_setting("display/window/size/viewpo
 # ── World ─────────────────────────────────────────────────────────────────────
 const BLOCK_SIZE: int = 3200          # One chunk in world units
 
+# ── Phase 5: Lot & House system ───────────────────────────────────────────────
+const TILE_SIZE:      int = 32        # pixels per tile
+const CHUNK_TILES:    int = 100       # BLOCK_SIZE / TILE_SIZE = 3200 / 32
+const STREET_WIDTH:   int = 4         # road lane width in tiles
+const PAVEMENT_WIDTH: int = 2         # sidewalk width in tiles
+const LOT_SETBACK:    int = 2         # gap from lot edge to building front
+
 # ── Gameplay multipliers ───────────────────────────────────────────────────────
 const MOVE_SPEED_MULTIPLIER: float = 100.0
 const EXP_MULTIPLIER: float        = 100.0

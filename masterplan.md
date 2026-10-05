@@ -1862,25 +1862,238 @@ res://
 - ⬜ Save + quit + continue → `world_layout.json` persists, same POI positions on reload (Phase 14)
 
 ---
-### PHASE 5 — House System
+### PHASE 5 — Lot & House System
 
 #### Plan
-Houses are the primary source of loot and indoor enemies. Each house is a pre-built static body with a roof that fades when the player enters, an interior collision shape, and a spawner that runs once per game day.
 
-**Daily spawn:** Houses connect to `DayNightCycle.day_started` **only when visible on screen** (connected in `screen_entered`, disconnected in `screen_exited`). This avoids unnecessary signal processing for distant houses. Each day: spawn up to `capacity` enemies from the house's `enemies` JSON config, and scatter loot drops from the `loots` JSON config within the house bounds.
+Phase 5 replaces the original "10 hand-crafted house variants" approach with a fully procedural lot + house generation system. Every chunk gets unique street layouts, lot arrangements, and houses that are generated on-the-fly from the world seed — no pre-built scenes required.
 
+---
 
-**Roof fade:** A separate `Roof` node (child of House) with its own `CollisionShape2D` detection area. When the player enters: `create_tween()` fades `modulate.a` from 1.0 to 0.0 over 0.3s. On exit: fades back. This gives the effect of the roof becoming transparent while inside.
+#### Scale
 
-**10 house variants:** Each is a unique `.tscn` file (House1–House10) with different tilemap layouts, sizes, and door positions. They all inherit the same `House` base script. Enemy and loot configs are set as exported string properties in the inspector.
+```
+TILE_SIZE      = 32 units   (1 tile ≈ 1 meter at game scale)
+CHUNK_TILES    = 100        (3200 / 32 = 100×100 tiles per chunk)
+STREET_WIDTH   = 4 tiles    (road lane — 128 units wide)
+PAVEMENT_WIDTH = 2 tiles    (sidewalk on each side)
+LOT_SETBACK    = 2 tiles    (gap between lot edge and building front)
+```
 
-**`cur_house` tracking:** When player enters a house body sensor, `Globals.cur_house = self`. When player exits, `Globals.cur_house = null`. This is used by the placable system to know whether to parent placed objects to the house's objects container or to the map.
+---
+
+#### The Two-Layer Design
+
+```
+Layer 1 — LotPlanner      runs in ChunkBase._on_activated()
+          generates lot rectangles for the chunk from seed + biome + road_edges
+          returns Array of lot dicts — NOT stored in world_layout.json
+
+Layer 2 — HouseBuilder    runs immediately after LotPlanner
+          takes each lot dict and procedurally builds a house into $Houses node
+          ColorRect walls/floors/roof for now — replaced with TileMap in Phase 17
+```
+
+Both are **static classes** (no Node overhead, pure functions). Deterministic from `chunk_rng(world_seed, chunk_coord)` — same seed always produces identical results.
+
+---
+
+#### Lot Planner
+
+**Lot placement algorithm:**
+```
+1. Detect road edges for this chunk (N/E/S/W) from world_layout["roads"]
+2. For each road edge → place a local street 2 tiles inset from that edge
+3. Place lots on BOTH sides of each street, left→right until chunk edge
+   - Lot width: rng.randi_range(min_w, max_w) tiles
+   - Lot depth: rng.randi_range(min_d, max_d) tiles  
+   - Lots face the street (front = street side)
+4. Fill remaining interior space with cluster lots (village centre feel)
+5. Wilderness/outskirts with no road: 0–3 isolated lots at random positions
+```
+
+**Lot sizes by biome:**
+
+| Biome | Width (tiles) | Depth (tiles) | Max lots/chunk | Pattern |
+|---|---|---|---|---|
+| city_center | 6–10 | 8–12 | 20 | dense grid |
+| city | 8–12 | 10–16 | 14 | street rows |
+| suburb | 10–18 | 14–22 | 8 | street + garden |
+| outskirts | 16–30 | 20–40 | 4 | sparse |
+| wilderness | 12–20 | 16–24 | 0–2 | isolated |
+
+**Lot data structure (in memory only):**
+```gdscript
+{
+  "rect":     Rect2i,   # position + size in tile coords (chunk-local, origin = chunk top-left)
+  "facing":   int,      # 0=north, 1=east, 2=south, 3=west (street side = front)
+  "lot_type": String,   # "residential", "commercial", "industrial", "isolated"
+  "biome":    String,   # inherited from chunk
+}
+```
+
+---
+
+#### House Builder
+
+**Generation pipeline per lot:**
+
+**Step 1 — Footprint:**
+```
+building_rect = lot_rect shrunk by:
+  front: setback(2) + pavement(1) = 3 tiles from street edge
+  sides: 1 tile each
+  back:  1 tile
+Min building size: 4×4 tiles. If result < min → skip (open space / garden)
+```
+
+**Step 2 — BSP Room Division:**
+```
+Split building_rect recursively:
+  if width  > max_room_size (6 tiles) → split vertically   at rng offset
+  if height > max_room_size (6 tiles) → split horizontally at rng offset
+  else → leaf = one room (min 3×3 tiles)
+
+Room type by position:
+  front-facing rooms → living_room, shop_floor, reception
+  back rooms         → bedroom, storage, kitchen
+  corner rooms       → bathroom, closet
+```
+
+**Step 3 — Walls (ColorRect):**
+```
+Exterior walls: drawn around building_rect perimeter (1 unit thick)
+Interior walls: drawn on each BSP split line
+Colors:
+  exterior wall:  Color(0.30, 0.28, 0.25)
+  interior wall:  Color(0.40, 0.38, 0.35)
+  floor:          Color(0.55, 0.52, 0.48)
+```
+
+**Step 4 — Doors (walkable gaps in walls):**
+```
+Front door: gap in front exterior wall, centred ± small rng offset
+            Size: 48 units (1.5 tiles) — player walks through
+Back door:  50% chance, same approach on back wall
+Interior doors: one per BSP split wall, centred
+No door nodes — just a gap (missing wall segment) in the CollisionShape
+```
+
+**Step 5 — Roof:**
+```
+ColorRect covering entire building_rect
+Color: slightly darker than exterior wall — Color(0.22, 0.20, 0.18)
+Z-index: 10 (above player and enemies)
+
+Roof fade (same as legacy):
+  Area2D slightly inset from building walls (interior trigger)
+  body_entered (player layer) → create_tween() → modulate.a: 1.0 → 0.0 over 0.3s
+  body_exited                 → create_tween() → modulate.a: 0.0 → 1.0 over 0.3s
+```
+
+**Step 6 — Spawn Point Anchors:**
+```
+Each room writes anchor points to the house node's metadata:
+  furniture_anchors: Array[Vector2]  — Phase 17 furniture placement
+  loot_spawns:       Array[Vector2]  — Phase 8 loot chest positions
+  enemy_spawns:      Array[Vector2]  — Phase 6 enemy spawn positions
+
+Actual spawning wired in Phase 6 (enemies) and Phase 8 (loot).
+```
+
+---
+
+#### cur_house Tracking
+
+When player enters a house interior trigger: `Globals.cur_house = house_node`
+When player exits: `Globals.cur_house = null`
+
+Used by Phase 11 (Placables) to parent placed objects to the correct container.
+
+---
+
+#### Daily Enemy/Loot Spawning
+
+Houses connect to `EventBus.day_started` **only when visible on screen**
+(connected in `VisibleOnScreenNotifier2D.screen_entered`, disconnected on `screen_exited`).
+
+Each new day: spawn enemies from `enemy_spawns` anchors (up to `capacity`), scatter loot at `loot_spawns`. Already-spawned days tracked so re-entering a house doesn't re-spawn.
+
+---
+
+#### File Map
+
+```
+autoloads/
+└── constants.gd               ← add TILE_SIZE, CHUNK_TILES, STREET_WIDTH, PAVEMENT_WIDTH, LOT_SETBACK
+
+scene/maps/
+├── lot_planner.gd             ← NEW: static class
+├── house_builder.gd           ← NEW: static class
+└── chunk_base.gd              ← update _on_activated() to call LotPlanner + HouseBuilder
+
+scene/entities/houses/
+└── house.gd                   ← NEW: runtime house node (roof fade, cur_house, daily spawn)
+```
+
+---
+
+#### ChunkStreamer additions needed
+
+- `get_road_edges(coord: Vector2i) -> Array[int]` — which of 4 edges (0=N,1=E,2=S,3=W) have roads
+- `get_biome(coord: Vector2i) -> String` — chunk biome string from world_layout
+- `world_seed: int` — exposed for chunk_rng calls
+- `chunk_rng(seed: int, coord: Vector2i) -> RandomNumberGenerator` — static helper (moved from WorldGenerator)
+
+---
 
 #### Checklist
-- ⬜ `scene/entities/houses/house.gd` — StaticBody2D: `@export capacity: int`, `@export enemies_json: String`, `@export loots_json: String`; `screen_entered` → connect to `day_started`; `screen_exited` → disconnect; `spawner(day)`: `spawn_enemies()` + `spawn_loots()` if day not already spawned; body entered/exited → `Globals.cur_house`
-- ⬜ `scene/entities/houses/roof.gd` — Node2D: detection Area2D; `body_entered` → tween alpha 0; `body_exited` → tween alpha 1
-- ⬜ Create `house1.tscn` through `house10.tscn` — varied floor plans using TileMap; each has Roof node, ObjectsContainer node, interior collision
-- ⬜ Verify: enter house, roof fades; enemies present (if any); day passes, new enemies spawn next visit
+
+**Constants**
+- ✅ Add `TILE_SIZE = 32`, `CHUNK_TILES = 100`, `STREET_WIDTH = 4`, `PAVEMENT_WIDTH = 2`, `LOT_SETBACK = 2` to `autoloads/constants.gd`
+
+**ChunkStreamer additions**
+- ✅ `get_road_edges(coord) -> Array[int]` — reads `world_layout["roads"]` to find which edges of this chunk have road connections
+- ✅ `get_biome(coord) -> String` — reads `world_layout["chunks"][key]["biome"]`
+- ✅ Expose `world_seed: int` property
+- ✅ `static func chunk_rng(seed: int, coord: Vector2i) -> RandomNumberGenerator`
+
+**LotPlanner**
+- ✅ `scene/maps/lot_planner.gd` — `class_name LotPlanner` (static methods only)
+- ✅ `static func generate_lots(coord: Vector2i, biome: String, road_edges: Array, rng: RandomNumberGenerator) -> Array`
+- ✅ Street placement along road edges
+- ✅ Lot placement on both sides of each street
+- ✅ Interior cluster lots for remaining space
+- ✅ Isolated lot placement for wilderness/outskirts with no road
+- ✅ Biome-specific lot size tables
+
+**HouseBuilder**
+- ✅ `scene/maps/house_builder.gd` — `class_name HouseBuilder` (static methods only)
+- ✅ `static func build_house(lot: Dictionary, parent: Node, rng: RandomNumberGenerator) -> Node2D`
+- ✅ Footprint calculation (setback + coverage rules)
+- ✅ BSP room division (recursive, min 3×3 tiles)
+- ✅ Exterior + interior walls as `StaticBody2D` + `CollisionShape2D` + `ColorRect`
+- ✅ Floor `ColorRect`
+- ✅ Door gaps: front always, back 50%, interior one per split wall
+- ✅ Roof `ColorRect` with `Area2D` fade trigger (0.3s tween)
+- ✅ Spawn point anchors written to house node metadata
+
+**House runtime node**
+- ✅ `scene/entities/houses/house.gd` — `Node2D`: `capacity: int`, `spawn_day: int`; `VisibleOnScreenNotifier2D` connects/disconnects `EventBus.day_started`; `_on_day_started()` spawns enemies + loot if not already spawned this day; Area2D body sensor sets `Globals.cur_house`
+
+**ChunkBase integration**
+- ✅ `chunk_base.gd _on_activated()`: call `LotPlanner.generate_lots()` then `HouseBuilder.build_house()` per lot, parent results to `$Houses`
+
+**Verify**
+- ⬜ New game: chunks load showing colored street layouts with house footprints
+- ⬜ Houses face the road — front door gap on street side
+- ⬜ Walk through door gap into house: roof fades out, rooms visible
+- ⬜ Walk back out: roof fades in
+- ⬜ `Globals.cur_house` set inside, null outside
+- ⬜ Same seed = identical house layouts on every run
+- ⬜ Different chunks produce different arrangements
+
+---
 
 ---
 

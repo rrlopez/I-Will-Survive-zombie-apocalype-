@@ -12,7 +12,7 @@ var state_manager: SceneStateManager = null
 var map_manager: Node   = null
 var day_night_cycle: Node = null
 var cur_region: String  = ""
-var cur_house           = null   # typed in Phase 5
+var cur_house: Node2D = null  ## Current house the player is inside (set by HouseBuilder sensor)
 
 # ── Chunk loading progress ────────────────────────────────────────────────────
 var loading_blocks_count: int = 0

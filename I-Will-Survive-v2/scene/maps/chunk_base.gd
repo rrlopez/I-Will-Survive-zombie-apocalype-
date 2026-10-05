@@ -88,7 +88,22 @@ func deactivate() -> void:
 
 ## Override in subclasses to start spawners, connect day signal, etc.
 func _on_activated() -> void:
-	pass
+	# Phase 5: Procedural lot and house generation.
+	var rng: RandomNumberGenerator = ChunkStreamer.chunk_rng(
+		ChunkStreamer.world_seed, chunk_coord)
+	var biome: String = ChunkStreamer.get_biome(chunk_coord)
+	var road_edges: Array = ChunkStreamer.get_road_edges(chunk_coord)
+	var lots: Array = LotPlanner.generate_lots(chunk_coord, biome, road_edges, rng)
+
+	# Ensure the Houses container node exists.
+	var houses_node: Node2D = get_node_or_null("Houses") as Node2D
+	if houses_node == null:
+		houses_node = Node2D.new()
+		houses_node.name = "Houses"
+		add_child(houses_node)
+
+	for lot: Dictionary in lots:
+		HouseBuilder.build_house(lot, houses_node, rng)
 
 
 ## Override in subclasses to stop spawners, disconnect signals, etc.

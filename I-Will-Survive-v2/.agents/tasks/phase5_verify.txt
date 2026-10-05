@@ -1,0 +1,90 @@
+Phase 5 Verification Results
+=============================
+Date: Phase 5 implementation complete
+
+## Files Modified
+- autoloads/constants.gd         MODIFIED — added 5 Phase 5 constants
+- autoloads/chunk_streamer.gd    MODIFIED — added world_seed, chunk_rng(), get_biome(), get_road_edges()
+- autoloads/globals.gd           MODIFIED — typed cur_house as Node2D
+- scene/maps/chunk_base.gd       MODIFIED — _on_activated() now calls LotPlanner + HouseBuilder
+
+## Files Created
+- scene/maps/lot_planner.gd      NEW — LotPlanner static class
+- scene/maps/house_builder.gd    NEW — HouseBuilder static class
+- scene/entities/houses/house.gd NEW — House extends Node2D
+
+## Godot Headless Check
+Godot binary not found on PATH in CI environment. Manual syntax review performed instead.
+
+## Manual Syntax Review Results
+
+### constants.gd
+  PASS — 5 new const lines appended, all typed int. No existing constants removed.
+
+### chunk_streamer.gd
+  PASS — world_seed: int = 0 added after _world_layout.
+  PASS — world_seed = int(_world_layout.get("seed", 0)) set in _load_world_layout().
+  PASS — static func chunk_rng() uses hash(str+str) seed formula.
+  PASS — get_biome() and get_road_edges() are instance methods (access _world_layout).
+  PASS — get_road_edges() returns Array[int], iterates roads Array[Array[String]].
+  PASS — No Godot 3 patterns.
+
+### globals.gd
+  PASS — cur_house: Node2D = null (typed correctly).
+
+### chunk_base.gd
+  PASS — _on_activated() calls ChunkStreamer.chunk_rng(), .get_biome(), .get_road_edges().
+  PASS — Creates Houses node dynamically if not present.
+  PASS — Iterates lots, calls HouseBuilder.build_house() for each.
+
+### lot_planner.gd
+  PASS — class_name LotPlanner (no extends — pure static class).
+  PASS — generate_lots() is static func.
+  PASS — LOT_TABLE contains all 5 biome entries.
+  PASS — @warning_ignore("unused_parameter") on coord param.
+  PASS — Isolated path: randi_range(0, max_lots) lots.
+  PASS — Street path: for each road edge, places lots on both sides.
+  PASS — Dense fill pass for city/city_center biomes.
+  PASS — _overlaps_any() uses Rect2i.grow(1) padding.
+  PASS — _lot_type_for_biome() handles all biome variants.
+  PASS — No serialize/deserialize methods.
+  PASS — No Godot 3 patterns.
+
+### house.gd
+  PASS — class_name House extends Node2D.
+  PASS — capacity: int = 3, spawn_day: int = -1.
+  PASS — _ready() accesses $VisibleOnScreenNotifier2D (added by HouseBuilder BEFORE parent.add_child).
+  PASS — screen_entered connects EventBus.day_started.
+  PASS — screen_exited disconnects EventBus.day_started safely (is_connected check).
+  PASS — spawn_enemies() / spawn_loot() are stubs with print().
+  PASS — set_roof(), fade_roof_out(), fade_roof_in() implemented.
+  PASS — No serialize/deserialize methods.
+
+### house_builder.gd
+  PASS — class_name HouseBuilder (no extends — pure static class).
+  PASS — build_house() returns null for lots < MIN_BUILD_TILES.
+  PASS — parent.add_child(house) called LAST, ensuring _ready() fires with full subtree.
+  PASS — floor ColorRect z_index=0, walls z_index=1, roof z_index=10.
+  PASS — RoofTrigger Area2D: collision_layer=0, collision_mask=Constants.LAYER_PLAYER.
+  PASS — HouseSensor Area2D: collision_layer=0, collision_mask=Constants.LAYER_PLAYER.
+  PASS — (house as House).set_roof(roof) wires the roof reference.
+  PASS — VisibleOnScreenNotifier2D added with correct rect.
+  PASS — BSP split: min/max guards prevent infinite recursion.
+  PASS — Door gap clamp prevents zero-width segments.
+  PASS — Constants.LAYER_WALL used for all StaticBody2D collision_layer.
+  PASS — No serialize/deserialize methods.
+  PASS — No Godot 3 patterns.
+
+## Serialization Rule Check
+  PASS — No serialize() or deserialize() methods in any new or modified file.
+  PASS — All serialize/deserialize matches are exclusively in legacy/ directory.
+
+## Godot 4 Syntax Check
+  PASS — All new files use Godot 4 patterns: @warning_ignore, typed arrays,
+          Array[int], Array[Vector2], static func, match, create_tween(),
+          tween_property(), VisibleOnScreenNotifier2D, Area2D.body_entered.connect().
+  PASS — No Godot 3 patterns found: no onready, no export without @,
+          no .instance(), no yield, no connect(name, self, method) old form.
+
+## Outstanding
+  None — all checklist items implemented. Runtime verify items require in-engine testing.

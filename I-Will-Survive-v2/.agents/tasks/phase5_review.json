@@ -1,0 +1,9 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    "`chunk_rng` hash collision risk — the comma-separated string seed is deterministic but GDScript's built-in hash() is not a mixing function; replace with bitwise XOR-multiply formula before Phase 17.",
+    "`$VisibleOnScreenNotifier2D` path dependency — node name is duplicated as a string literal in both house.gd and HouseBuilder; if HouseBuilder renames the node, daily spawn silently breaks. Declare as a shared constant.",
+    "House coordinate system contract — all child positions are chunk-local pixels with House at Vector2.ZERO; if any later phase sets house.position to the lot origin, every collision shape will be double-offset. Add a comment to build_house documenting the contract."
+  ],
+  "reviewDoc": "c:\\Users\\ADMIN\\Documents\\workspace\\games\\I-Will-Survive-zombie-apocalype-\\I-Will-Survive-v2\\.agents\\tasks\\phase5_review.md"
+}

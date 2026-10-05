@@ -37,6 +37,8 @@ var _player_chunk: Vector2i = Vector2i(-9999, -9999)
 var _active: bool = false
 ## Parsed world layout.
 var _world_layout: Dictionary = {}
+## World seed extracted from world_layout.json (Phase 5).
+var world_seed: int = 0
 ## Loaded PackedScenes cache: path → PackedScene.
 var _scene_cache: Dictionary = {}
 
@@ -297,6 +299,7 @@ func _load_world_layout() -> void:
 	var result: Variant = JSON.parse_string(text)
 	if result is Dictionary:
 		_world_layout = result as Dictionary
+		world_seed = int(_world_layout.get("seed", 0))
 	else:
 		push_error("ChunkStreamer: failed to parse world_layout.json")
 
@@ -334,20 +337,68 @@ func spawn_drop_items(_items_data: Array, _pos: Vector2) -> void:
 	pass
 
 
+# ── Phase 5 helpers ───────────────────────────────────────────────────────────
+
+## Deterministic per-chunk RNG. Same inputs always produce the same sequence.
+static func chunk_rng(seed_val: int, coord: Vector2i) -> RandomNumberGenerator:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = hash(str(seed_val) + "," + str(coord.x) + "," + str(coord.y))
+	return rng
+
+
+## Returns biome string for this chunk from world_layout.
+## Falls back to "wilderness" if the chunk is not in the layout.
+func get_biome(coord: Vector2i) -> String:
+	var key := "%d,%d" % [coord.x, coord.y]
+	var chunks: Dictionary = _world_layout.get("chunks", {})
+	if key in chunks:
+		return (chunks[key] as Dictionary).get("biome", "wilderness")
+	return "wilderness"
+
+
+## Returns which of the 4 edges of this chunk have a road entering.
+## 0=North (y-1), 1=East (x+1), 2=South (y+1), 3=West (x-1).
+## Reads world_layout["roads"] which is Array[Array[String]].
+func get_road_edges(coord: Vector2i) -> Array[int]:
+	var edges: Array[int] = []
+	var roads: Array = _world_layout.get("roads", [])
+	var key := "%d,%d" % [coord.x, coord.y]
+	# Neighbour keys indexed by edge number
+	var neighbour_keys: Array[String] = [
+		"%d,%d" % [coord.x, coord.y - 1],  # 0 = North
+		"%d,%d" % [coord.x + 1, coord.y],  # 1 = East
+		"%d,%d" % [coord.x, coord.y + 1],  # 2 = South
+		"%d,%d" % [coord.x - 1, coord.y],  # 3 = West
+	]
+	for road_path: Array in roads:
+		# Build a set of all chunk keys in this road path.
+		var path_set: Dictionary = {}
+		for s: String in road_path:
+			path_set[s] = true
+		if key not in path_set:
+			continue
+		for edge_idx: int in range(4):
+			if neighbour_keys[edge_idx] in path_set and edge_idx not in edges:
+				edges.append(edge_idx)
+	return edges
+
+
 ## Set world rotation — rotates WorldContainer around the player's position.
 func set_world_rotation(angle: float) -> void:
 	if not is_instance_valid(_world_container):
 		return
 	if not is_instance_valid(Globals.player):
 		return
+	
 	# Rotate the container
 	_world_container.rotation = angle
-	# The player's position in world space is their actual coordinate.
-	# After container rotation, we need the container offset so the player
-	# stays visually centred. Since player.global_position is in world space
-	# and the container applies a rotation transform on top, we compensate:
-	var p: Vector2 = Globals.player.position  # player position in world coords
-	# Rotated player pos in container local space
-	var rotated: Vector2 = p.rotated(angle)
-	# Shift container so rotated pos aligns with original pos (keeps player centred)
-	_world_container.position = p - rotated
+	
+	# Get player's exact center position in world space
+	var player_center: Vector2 = Globals.player.global_position
+	
+	# Calculate the rotated position of the player center
+	var rotated_center: Vector2 = player_center.rotated(angle)
+	
+	# Offset container so the player's center stays at the same visual position
+	# This ensures rotation pivots exactly around the player's collision center
+	_world_container.global_position = player_center - rotated_center

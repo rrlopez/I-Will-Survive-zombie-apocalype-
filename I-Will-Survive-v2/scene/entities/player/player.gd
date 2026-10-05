@@ -55,17 +55,31 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Rotate the WORLD, not the player or camera.
-	# ChunkStreamer.WorldContainer holds all chunks — rotating it spins the world.
-	# Player and Camera stay at rotation=0, so the character always faces up.
-	ChunkStreamer.set_world_rotation(_facing)
-
-	# Move: counter-rotate input by world rotation so movement always matches
-	# what the player sees on screen regardless of world container rotation.
-	# World rotated by +_facing → player must move in -_facing direction to go "up screen"
-	var screen_dir := _move_input.rotated(-_facing)
+	# ROTATION MODEL:
+	# Camera rotates +_facing → view rotates clockwise
+	# Player body ALSO rotates +_facing → cancels out, appears upright on screen
+	# Physics body (Player node) does NOT rotate → collision stays stable
+	
+	# Rotate camera to spin the world view
+	_camera.rotation = _facing
+	
+	# Offset camera forward (in rotated space) so player appears lower on screen
+	# This gives more view ahead and less behind
+	_camera.position = Vector2(0, -200).rotated(_facing)
+	
+	# Rotate body by same amount to cancel camera's visual rotation
+	# Camera rotates view +45°, body rotates +45° in world → appears at 0° on screen
+	_body.rotation = _facing
+	
+	# Movement: input is in screen space. Since camera is rotated but player physics
+	# body is NOT rotated, we need to rotate input to match the camera's rotation.
+	var world_dir := _move_input.rotated(_facing)
 	var speed := stats.move_speed.value if stats.move_speed else 180.0
-	velocity = screen_dir * speed + applied_force
+	
+	# Calculate target velocity in world space
+	var target_velocity := world_dir * speed + applied_force
+	velocity = velocity.lerp(target_velocity, 15.0 * delta)
+	
 	move_and_slide()
 
 	# Decay applied_force
