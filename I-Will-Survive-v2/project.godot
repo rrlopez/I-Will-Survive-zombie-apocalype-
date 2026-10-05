@@ -29,6 +29,8 @@ Factory="*res://autoloads/factory/factory.gd"
 Serialize="*res://autoloads/serialize.gd"
 Pathfinder="*res://autoloads/pathfinder.gd"
 EventBus="*res://autoloads/event_bus.gd"
+WorldGenerator="*res://autoloads/world_generator.gd"
+ChunkStreamer="*res://autoloads/chunk_streamer.gd"
 
 [display]
 

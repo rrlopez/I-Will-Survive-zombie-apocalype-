@@ -1446,13 +1446,13 @@ No `_process` polling. The state reacts to chunk events and checks completion on
 - ⬜ In `LevelStat.leveled_up`: emit `EventBus.player_level_changed` — wired via Player._on_leveled_up
 
 **Verify**
-- ⬜ Game opens to menu, Continue hidden if no save file
-- ⬜ New Game: player visible at screen centre, health/hunger gages show, Day 1 in calendar
-- ⬜ WASD moves player, world visible, camera follows
-- ⬜ Pause button / Escape: tree pauses, resume unpauses
-- ⬜ Take damage: health gage updates, vignette appears below 66%
-- ⬜ Game Over: overlay shows, Revive works, Main Menu returns to title
-- ⬜ Notifications appear and fade out
+- ✅ Game opens to menu, Continue hidden if no save file
+- ✅ New Game: player visible at screen centre, health/hunger gages show, Day 1 in calendar
+- ✅ WASD moves player, world visible, camera follows
+- ✅ Pause button / Escape: tree pauses, resume unpauses
+- ⬜ Take damage: health gage updates, vignette appears below 66% — wired, needs in-game test
+- ⬜ Game Over: overlay shows, Revive works, Main Menu returns to title — wired, needs in-game test
+- ✅ Notifications appear and fade out
 
 ---
 ### PHASE 4 — Map & World (Infinite Chunk Streaming + Procedural World Generation)
@@ -1811,53 +1811,55 @@ res://
 #### Checklist
 
 **World Generator**
-- ⬜ `autoloads/world_generator.gd` — singleton: `generate(seed: int)` runs full pipeline; `_step_biome_map()`, `_step_road_network()`, `_step_poi_placement()`, `_step_fill()`, `_step_finalize()`; time-sliced with same `BUDGET_US = 4000` pattern; emits `generation_complete` signal when done; writes `user://world_layout.json`
-- ⬜ `data/poi_registry.json` — all POI definitions with placement constraints (see schema above): police_station, hospital, school ×2, airport, military_base, shopping_mall, gas_station ×3, fire_station, suburb_residential ×8
-- ⬜ `data/biome_rules.json` — ring radii config: `{"city_center": 0, "city": [1,2], "suburb": [2,3], "outskirts": [3,4], "wilderness": 5, "jitter_strength": 0.25}`
-- ⬜ Seeded RNG helper: `chunk_rng(world_seed, coord)` → deterministic `RandomNumberGenerator` per coordinate
-- ⬜ Biome assignment: `_get_biome(coord, seed)` → biome string; uses Manhattan distance + hash jitter
-- ⬜ Road network: `_generate_roads(poi_slots)` → MST (minimum spanning tree) connecting origin to all guaranteed POIs; output stored in `world_layout["roads"]`
-- ⬜ POI placement: sorted most-constrained-first; constraint check (distance, biome, occupied); relaxation fallback (up to 3 retries with loosened `min_distance_from_other_pois`); records `poi_locations` dict
-- ⬜ Fill pass: assigns filler scene to every unoccupied chunk within play radius using `chunk_rng`
-- ⬜ `user://world_layout.json` output — schema: `{seed, version, chunks: {"x,y": {scene, biome, poi}}, roads, poi_locations}`
+- ✅ `autoloads/world_generator.gd` — singleton: `generate(seed: int)` runs full pipeline; `_step_biome_map()`, `_step_road_network()`, `_step_poi_placement()`, `_step_fill()`, `_step_finalize()`; time-sliced with same `BUDGET_US = 4000` pattern; emits `generation_complete` signal when done; writes `user://world_layout.json`
+- ✅ `data/poi_registry.json` — all POI definitions with placement constraints (see schema above): police_station, hospital, school ×2, airport, military_base, shopping_mall, gas_station ×3, suburb_residential ×8
+- ✅ `data/biome_rules.json` — ring radii config: `{"city_center": 0, "city": [1,2], "suburb": [2,3], "outskirts": [3,4], "wilderness": 5, "jitter_strength": 0.25}`
+- ✅ Seeded RNG helper: `chunk_rng(world_seed, coord)` → deterministic `RandomNumberGenerator` per coordinate
+- ✅ Biome assignment: `_get_biome(coord, seed)` → biome string; uses Manhattan distance + hash jitter
+- ✅ Road network: `_step_road_network()` → BFS path connecting origin to all guaranteed POIs; output stored in `world_layout["roads"]`
+- ✅ POI placement: sorted most-constrained-first; constraint check (distance, biome, occupied); relaxation fallback (up to 3 retries with loosened `min_distance_from_other_pois`); records `poi_locations` dict
+- ✅ Fill pass: assigns filler scene to every unoccupied chunk within play radius using `chunk_rng`
+- ✅ `user://world_layout.json` output — schema: `{seed, version, chunks: {"x,y": {scene, biome, poi}}, roads, poi_locations}`
 
 **Chunk Streamer (updates from base design)**
-- ⬜ `autoloads/chunk_streamer.gd` — reads `user://world_layout.json` instead of static registry; `_get_chunk_scene(coord)` looks up layout first, falls back to wilderness if coord not in layout; all ring/budget/state-machine logic unchanged
-- ⬜ `ChunkState` enum: `UNLOADED, QUEUED, LOADING, INSTANTIATING, NAV_BAKING, POPULATING, ACTIVE, UNLOADING`
-- ⬜ Ring constants: `ACTIVE_RADIUS = 1`, `BUFFER_RADIUS = 2`, `PREFETCH_RADIUS = 3`, `HYSTERESIS = 0.5`
-- ⬜ Time-sliced `_process(delta)`: `BUDGET_US = 4000`; priority queue sorted by Manhattan distance to player chunk
-- ⬜ Hysteresis unload guard; player chunk tracker (only diffs on chunk coord change)
-- ⬜ Async nav bake via `NavigationServer2D.bake_from_source_geometry_data()`
-- ⬜ `spawn_sound(origin, radius)`, `spawn_drop_items(items_data, pos)` (previously MapManager)
-- ⬜ Floating origin stub: `_check_origin_shift()` fires when player > 8000 units from world origin
+- ✅ `autoloads/chunk_streamer.gd` — reads `user://world_layout.json` instead of static registry; `_get_chunk_scene(coord)` looks up layout first, falls back to wilderness if coord not in layout; all ring/budget/state-machine logic unchanged
+- ✅ `ChunkState` enum: `UNLOADED, QUEUED, LOADING, INSTANTIATING, NAV_BAKING, ACTIVE, UNLOADING`
+- ✅ Ring constants: `ACTIVE_RADIUS = 1`, `BUFFER_RADIUS = 2`, `PREFETCH_RADIUS = 3`, `HYSTERESIS = 1`
+- ✅ Time-sliced `_process(delta)`: `BUDGET_US = 4000`; priority queue sorted by Manhattan distance to player chunk
+- ✅ Hysteresis unload guard; player chunk tracker (only diffs on chunk coord change)
+- ✅ Async nav bake via `NavigationServer2D.bake_from_source_geometry_data_async()`
+- ✅ `spawn_sound(origin, radius)`, `spawn_drop_items(items_data, pos)` stubs (Phase 17)
+- ✅ Floating origin stub: `_check_origin_shift()` fires when player > 8000 units from world origin
 
 **Discovery System**
-- ⬜ `discovered_chunks: Array` in save data — list of `"x,y"` strings; populated when player enters buffer ring of a chunk
-- ⬜ Minimap: renders fog for undiscovered chunks; outline + `?` for scouted; full label + POI icon for discovered
-- ⬜ `Globals.poi_locations` — populated from `world_layout["poi_locations"]` at game start; used by minimap and future quest system
+- ⬜ `discovered_chunks: Array` in save data — list of `"x,y"` strings; populated when player enters buffer ring of a chunk (Phase 17)
+- ⬜ Minimap: renders fog for undiscovered chunks; outline + `?` for scouted; full label + POI icon for discovered (Phase 17)
+- ⬜ `Globals.poi_locations` — populated from `world_layout["poi_locations"]` at game start; used by minimap and future quest system (Phase 17)
 
 **Chunk Scenes (stubs for now, content in Phase 17)**
-- ⬜ `city_center.tscn` — origin chunk, dense roads, mixed buildings
-- ⬜ `city_block_a/b/c.tscn` — 3 city block variants
-- ⬜ `suburb_a/b.tscn` — 2 suburb variants
-- ⬜ `outskirts_a.tscn` — industrial/sparse
-- ⬜ `wilderness.tscn` — fallback, grass + sparse trees
-- ⬜ `poi_police_station.tscn` — POI stub (just a TileMap + placeholder NavRegion for now)
-- ⬜ `poi_hospital.tscn` — POI stub
-- ⬜ `poi_school.tscn` — POI stub
-- ⬜ `poi_airport.tscn` — POI stub
-- ⬜ `poi_military_base.tscn` — POI stub
-- ⬜ `poi_mall.tscn` — POI stub
-- ⬜ `poi_gas_station.tscn` — POI stub
-- ⬜ `map.gd` — TileMap procedural road+building generator (used inside city/suburb chunks)
-- ⬜ `zone/zone.gd` — Area2D daily spawn; activated only when chunk is ACTIVE
+- ✅ `city_center.tscn` — origin chunk stub
+- ✅ `city_block_a/b/c.tscn` — 3 city block variant stubs
+- ✅ `suburb_a/b.tscn` — 2 suburb variant stubs
+- ✅ `outskirts_a.tscn` — industrial/sparse stub
+- ✅ `wilderness.tscn` — fallback stub
+- ✅ `poi_police_station.tscn` — POI stub
+- ✅ `poi_hospital.tscn` — POI stub
+- ✅ `poi_school.tscn` — POI stub
+- ✅ `poi_airport.tscn` — POI stub
+- ✅ `poi_military_base.tscn` — POI stub
+- ✅ `poi_mall.tscn` — POI stub
+- ✅ `poi_gas_station.tscn` — POI stub
+- ✅ `poi_suburb_residential.tscn` — POI stub
+- ✅ `scene/maps/chunk_base.gd` — Node2D base: `chunk_coord`, `activate()`/`deactivate()`, `_on_activated()`/`_on_deactivated()` virtual hooks
+- ✅ `map.gd` — TileMap stub: `generate_road()`, `place_house()` (Phase 17)
+- ✅ `zone/zone.gd` — Area2D daily spawn; activated only when chunk is ACTIVE
 
 **Verify**
 - ⬜ New game: generator runs, `world_layout.json` written, different seed = different POI positions
 - ⬜ Same seed entered twice = identical POI layout (deterministic)
 - ⬜ Walk to chunk boundary → buffer chunk loads smoothly within budget (no frame spike >16ms)
-- ⬜ Walk to scouted POI chunk → chunk activates, POI label appears on minimap
-- ⬜ Save + quit + continue → `world_layout.json` persists, same POI positions on reload
+- ⬜ Walk to scouted POI chunk → chunk activates, POI label appears on minimap (Phase 17)
+- ⬜ Save + quit + continue → `world_layout.json` persists, same POI positions on reload (Phase 14)
 
 ---
 ### PHASE 5 — House System

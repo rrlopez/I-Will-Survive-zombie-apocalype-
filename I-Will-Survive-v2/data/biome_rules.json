@@ -1,0 +1,8 @@
+{
+	"city_center": 0,
+	"city": [1, 2],
+	"suburb": [2, 3],
+	"outskirts": [3, 4],
+	"wilderness": 5,
+	"jitter_strength": 0.25
+}

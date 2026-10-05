@@ -1,0 +1,19 @@
+﻿[gd_scene load_steps=2 format=3 uid="uid://i8h9j0k1l2m3n4"]
+
+[ext_resource type="Script" path="res://scene/maps/chunk_base.gd" id="1_wilder"]
+
+[node name="ChunkRoot" type="Node2D"]
+script = ExtResource("1_wilder")
+
+[node name="TileMap" type="TileMap" parent="."]
+
+[node name="NavRegion" type="NavigationRegion2D" parent="."]
+
+[node name="StaticObjects" type="Node2D" parent="."]
+groups = ["obstacle"]
+
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="Houses" type="Node2D" parent="."]
+
+[node name="Objects" type="Node2D" parent="."]

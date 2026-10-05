@@ -1,0 +1,108 @@
+{
+	"pois": [
+		{
+			"id": "police_station",
+			"scene": "res://scene/maps/chunks/poi_police_station.tscn",
+			"biome": "city",
+			"min_distance_from_origin": 1,
+			"max_distance_from_origin": 3,
+			"min_distance_from_other_pois": 2,
+			"guaranteed": true,
+			"count": 1,
+			"loot_tier": "high",
+			"enemy_density": "high",
+			"tags": ["weapons", "armor", "food"]
+		},
+		{
+			"id": "hospital",
+			"scene": "res://scene/maps/chunks/poi_hospital.tscn",
+			"biome": "city",
+			"min_distance_from_origin": 1,
+			"max_distance_from_origin": 3,
+			"min_distance_from_other_pois": 2,
+			"guaranteed": true,
+			"count": 1,
+			"loot_tier": "high",
+			"enemy_density": "high",
+			"tags": ["medicine", "food"]
+		},
+		{
+			"id": "school",
+			"scene": "res://scene/maps/chunks/poi_school.tscn",
+			"biome": "suburb",
+			"min_distance_from_origin": 1,
+			"max_distance_from_origin": 3,
+			"min_distance_from_other_pois": 1,
+			"guaranteed": true,
+			"count": 2,
+			"loot_tier": "low",
+			"enemy_density": "medium",
+			"tags": ["food", "tools", "clothing"]
+		},
+		{
+			"id": "airport",
+			"scene": "res://scene/maps/chunks/poi_airport.tscn",
+			"biome": "outskirts",
+			"min_distance_from_origin": 3,
+			"max_distance_from_origin": 5,
+			"min_distance_from_other_pois": 3,
+			"guaranteed": true,
+			"count": 1,
+			"loot_tier": "very_high",
+			"enemy_density": "very_high",
+			"tags": ["vehicles", "fuel", "food"]
+		},
+		{
+			"id": "military_base",
+			"scene": "res://scene/maps/chunks/poi_military_base.tscn",
+			"biome": "outskirts",
+			"min_distance_from_origin": 3,
+			"max_distance_from_origin": 5,
+			"min_distance_from_other_pois": 3,
+			"guaranteed": true,
+			"count": 1,
+			"loot_tier": "very_high",
+			"enemy_density": "very_high",
+			"tags": ["military_gear", "vehicles", "rare_weapons"]
+		},
+		{
+			"id": "shopping_mall",
+			"scene": "res://scene/maps/chunks/poi_mall.tscn",
+			"biome": "suburb",
+			"min_distance_from_origin": 2,
+			"max_distance_from_origin": 4,
+			"min_distance_from_other_pois": 2,
+			"guaranteed": true,
+			"count": 1,
+			"loot_tier": "high",
+			"enemy_density": "very_high",
+			"tags": ["food", "clothing", "tools", "electronics"]
+		},
+		{
+			"id": "gas_station",
+			"scene": "res://scene/maps/chunks/poi_gas_station.tscn",
+			"biome": "any",
+			"min_distance_from_origin": 1,
+			"max_distance_from_origin": 4,
+			"min_distance_from_other_pois": 1,
+			"guaranteed": true,
+			"count": 3,
+			"loot_tier": "medium",
+			"enemy_density": "low",
+			"tags": ["fuel", "food", "tools"]
+		},
+		{
+			"id": "suburb_residential",
+			"scene": "res://scene/maps/chunks/poi_suburb_residential.tscn",
+			"biome": "suburb",
+			"min_distance_from_origin": 1,
+			"max_distance_from_origin": 4,
+			"min_distance_from_other_pois": 0,
+			"guaranteed": false,
+			"count": 8,
+			"loot_tier": "low",
+			"enemy_density": "medium",
+			"tags": ["food", "tools", "clothing"]
+		}
+	]
+}
