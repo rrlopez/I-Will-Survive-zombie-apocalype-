@@ -55,24 +55,24 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# 1. Smooth rotation toward target
-	_facing = lerp_angle(_facing, _target_facing, Constants.ROTATION_SPEED * delta)
-	rotation = _facing
+	# Rotate the WORLD, not the player or camera.
+	# ChunkStreamer.WorldContainer holds all chunks — rotating it spins the world.
+	# Player and Camera stay at rotation=0, so the character always faces up.
+	ChunkStreamer.set_world_rotation(_facing)
 
-	# 2. Counter-rotate body so sprite stays visually upright on screen
-	_body.rotation = -_facing
-
-	# 3. Move: screen-space input rotated to world space + knockback force
-	var move_dir := _move_input.rotated(_facing)
+	# Move: counter-rotate input by world rotation so movement always matches
+	# what the player sees on screen regardless of world container rotation.
+	# World rotated by +_facing → player must move in -_facing direction to go "up screen"
+	var screen_dir := _move_input.rotated(-_facing)
 	var speed := stats.move_speed.value if stats.move_speed else 180.0
-	velocity = move_dir * speed + applied_force
+	velocity = screen_dir * speed + applied_force
 	move_and_slide()
 
-	# 4. Decay applied_force (knockback fades out)
+	# Decay applied_force
 	applied_force = applied_force.lerp(Vector2.ZERO, Constants.FORCE_FRICTION * delta)
 
-	# 5. Drive lower body animation blend position
-	_update_animation(move_dir)
+	# Animation
+	_update_animation(_move_input)
 
 
 # ── Controller signal handlers ────────────────────────────────────────────────
@@ -84,6 +84,7 @@ func on_move_input_changed(dir: Vector2) -> void:
 ## Called by Controller on drag. `delta_angle` in radians.
 func on_rotation_input(delta_angle: float) -> void:
 	_target_facing += delta_angle
+	_facing = _target_facing  ## snap immediately on desktop input — no lerp lag
 
 ## Called by Controller on action (fire, reload, interact).
 func on_action_pressed(action: StringName) -> void:

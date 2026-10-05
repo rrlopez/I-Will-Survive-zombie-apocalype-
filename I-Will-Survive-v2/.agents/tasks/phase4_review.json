@@ -1,7 +1,30 @@
 {
   "verdict": "CHANGES_REQUESTED",
   "findings": [
-    "Chunk state machine stall at LOADING — _begin_load sets state to LOADING but does not re-add coord to _process_queue. _rebuild_queue only re-enqueues UNLOADED chunks, so no chunk ever advances to INSTANTIATING. is_initial_load_complete() never returns true and the game hangs on the loading screen. Fix: add _process_queue.push_front(coord) at the end of _begin_load, matching the pattern already used in _begin_instantiate."
+    {
+      "severity": "HIGH",
+      "label": "_poi_defs typed-array runtime crash",
+      "description": "_poi_defs is declared Array[Dictionary] but assigned from (poi_result as Dictionary).get('pois', []), which returns an untyped Array. Godot 4 throws a runtime type error on this assignment, breaking world generation on every new-game start.",
+      "file": "autoloads/world_generator.gd",
+      "fix": "Declare _poi_defs as Array = [] with a comment, or coerce the raw array element-by-element into the typed array."
+    },
+    {
+      "severity": "MEDIUM",
+      "label": "Variant-inference warnings unguarded",
+      "description": "var poi_result := JSON.parse_string(...), var biome_result := JSON.parse_string(...), and var result := JSON.parse_string(...) all infer as Variant with no @warning_ignore('inference_on_variant'). Earlier files in this project triggered 'Warning treated as error' for the same pattern.",
+      "files": [
+        "autoloads/world_generator.gd (_step_load_data)",
+        "autoloads/chunk_streamer.gd (_load_world_layout)"
+      ],
+      "fix": "Declare these variables as 'Variant' explicitly, or add @warning_ignore('inference_on_variant') above each line."
+    },
+    {
+      "severity": "LOW",
+      "label": "Silent biome gap between outskirts and wilderness",
+      "description": "Effective distances in (4.0, 5.0) fall through to else -> 'outskirts' in _get_biome without an explicit case. Reachable with jitter ±0.25 on distance-4 chunks. Not a crash but intent is ambiguous.",
+      "file": "autoloads/world_generator.gd (_get_biome)",
+      "fix": "Extend the outskirts check to cover the gap, or add an explicit elif for the (4.0, 5.0) range."
+    }
   ],
   "reviewDoc": "c:\\Users\\ADMIN\\Documents\\workspace\\games\\I-Will-Survive-zombie-apocalype-\\I-Will-Survive-v2\\.agents\\tasks\\phase4_review.md"
 }

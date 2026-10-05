@@ -1,9 +1,9 @@
-﻿[gd_scene load_steps=2 format=3 uid="uid://c2b3d4e5f6g7h8"]
+﻿[gd_scene load_steps=2 format=3 uid="uid://bcc1a2b3c4d5e7"]
 
-[ext_resource type="Script" path="res://scene/maps/chunk_base.gd" id="1_citybl"]
+[ext_resource type="Script" path="res://scene/maps/chunk_base.gd" id="1_cba"]
 
 [node name="ChunkRoot" type="Node2D"]
-script = ExtResource("1_citybl")
+script = ExtResource("1_cba")
 
 [node name="TileMap" type="TileMap" parent="."]
 

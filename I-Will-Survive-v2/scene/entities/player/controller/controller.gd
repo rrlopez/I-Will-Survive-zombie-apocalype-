@@ -20,12 +20,14 @@ var _joystick_origin: Vector2   = Vector2.ZERO  ## screen pos where touch began
 var _joystick_index: int        = -1            ## touch finger index
 
 # ── Right zone state ──────────────────────────────────────────────────────────
-var _right_touch_index: int     = -1
-var _right_touch_origin: Vector2 = Vector2.ZERO
+var _right_touch_index: int      = -1
+var _right_touch_origin: Vector2  = Vector2.ZERO
 var _right_touch_start_pos: Vector2 = Vector2.ZERO
-var _right_touch_time: float    = 0.0
-const TAP_MAX_TIME: float       = 0.2   ## seconds — tap vs drag threshold
-const TAP_MAX_MOVE: float       = 10.0  ## pixels — tap vs drag threshold
+var _right_touch_time: float     = 0.0
+var _mouse_dragging: bool        = false   ## true while right mouse button held
+var _mouse_last_pos: Vector2     = Vector2.ZERO
+const TAP_MAX_TIME: float        = 0.2
+const TAP_MAX_MOVE: float        = 10.0
 
 # ── Joystick visual nodes (optional — present if scene has them) ──────────────
 @onready var _joystick_base: Control  = get_node_or_null("JoystickBase")
@@ -34,10 +36,9 @@ const TAP_MAX_MOVE: float       = 10.0  ## pixels — tap vs drag threshold
 # ── Setup ─────────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
-	# Cover full screen, don't block input to game world
 	anchor_right  = 1.0
 	anchor_bottom = 1.0
-	mouse_filter  = Control.MOUSE_FILTER_IGNORE
+	mouse_filter  = Control.MOUSE_FILTER_PASS   # must PASS to receive mouse motion
 
 	if _joystick_base:
 		_joystick_base.hide()
@@ -50,7 +51,7 @@ func _input(event: InputEvent) -> void:
 		_handle_key(event as InputEventKey)
 		return
 
-	# ── Mouse button (desktop fire) ───────────────────────────────────────────
+	# ── Mouse button (desktop fire / rotate) ─────────────────────────────────
 	if event is InputEventMouseButton:
 		var mb := event as InputEventMouseButton
 		if mb.button_index == MOUSE_BUTTON_LEFT:
@@ -58,6 +59,17 @@ func _input(event: InputEvent) -> void:
 				action_pressed.emit(&"fire")
 			else:
 				action_released.emit(&"fire")
+		elif mb.button_index == MOUSE_BUTTON_RIGHT:
+			_mouse_dragging = mb.pressed
+			_mouse_last_pos = mb.position
+		return
+
+	# ── Mouse motion (desktop drag-to-rotate) ─────────────────────────────────
+	if event is InputEventMouseMotion:
+		if _mouse_dragging:
+			var mm := event as InputEventMouseMotion
+			var delta_angle := mm.relative.x * Constants.DRAG_SENSITIVITY * 0.25
+			rotation_input.emit(delta_angle)
 		return
 
 	# ── Touch ─────────────────────────────────────────────────────────────────
@@ -68,6 +80,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	# Continuous Q/E rotation — large enough to feel responsive on desktop
+	var rot_speed := Constants.ROTATION_SPEED * 0.25 * delta
+	if Input.is_key_pressed(KEY_Q):
+		rotation_input.emit(-rot_speed)
+	if Input.is_key_pressed(KEY_E):
+		rotation_input.emit(rot_speed)
+
 	# Accumulate right-zone tap timer
 	if _right_touch_index != -1:
 		_right_touch_time += delta
@@ -136,20 +155,19 @@ func _handle_key(event: InputEventKey) -> void:
 	if event.echo:
 		return
 
-	# WASD / arrow keys → synthesize joystick direction
-	var dir := Vector2.ZERO
-	if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):    dir.y -= 1.0
-	if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):  dir.y += 1.0
-	if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):  dir.x -= 1.0
-	if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT): dir.x += 1.0
-	move_input_changed.emit(dir.normalized())
+	# R key → reload action
+	if event.pressed and event.physical_keycode == KEY_R:
+		action_pressed.emit(&"reload")
 
-	# Q/E → rotation
-	if event.pressed:
-		match event.physical_keycode:
-			KEY_Q: rotation_input.emit(-0.1)
-			KEY_E: rotation_input.emit(0.1)
-			KEY_R: action_pressed.emit(&"reload")
+	# Movement keys — rebuild direction on every press or release
+	match event.physical_keycode:
+		KEY_W, KEY_UP, KEY_S, KEY_DOWN, KEY_A, KEY_LEFT, KEY_D, KEY_RIGHT:
+			var dir := Vector2.ZERO
+			if Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_UP):    dir.y -= 1.0
+			if Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_DOWN):  dir.y += 1.0
+			if Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_LEFT):  dir.x -= 1.0
+			if Input.is_key_pressed(KEY_D) or Input.is_key_pressed(KEY_RIGHT): dir.x += 1.0
+			move_input_changed.emit(dir.normalized())
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 

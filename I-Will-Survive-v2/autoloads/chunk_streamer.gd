@@ -26,6 +26,7 @@ const FALLBACK_SCENE: String = "res://scene/maps/chunks/wilderness.tscn"
 
 ## The scene tree node under which all chunk instances are added.
 var _chunk_root: Node2D = null
+var _world_container: Node2D = null  ## rotates to create "world spins" effect
 ## coord (Vector2i) → { state, instance, scene_path }
 var _chunk_registry: Dictionary = {}
 ## Ordered queue of coords to process next.
@@ -49,9 +50,17 @@ func activate() -> void:
 	if _active:
 		return
 	_active = true
+	# WorldContainer rotates to create the "world spins" effect.
+	# ChunkRoot lives inside it so all chunks rotate together.
+	var world_container := Node2D.new()
+	world_container.name = "WorldContainer"
+	get_tree().current_scene.add_child(world_container)
+	_world_container = world_container
+
 	_chunk_root = Node2D.new()
 	_chunk_root.name = "ChunkRoot"
-	get_tree().current_scene.add_child(_chunk_root)
+	world_container.add_child(_chunk_root)
+
 	_load_world_layout()
 	set_process(true)
 
@@ -66,6 +75,9 @@ func deactivate() -> void:
 	if is_instance_valid(_chunk_root):
 		_chunk_root.queue_free()
 		_chunk_root = null
+	if is_instance_valid(_world_container):
+		_world_container.queue_free()
+		_world_container = null
 	_chunk_registry.clear()
 	_process_queue.clear()
 	_player_chunk = Vector2i(-9999, -9999)
@@ -95,8 +107,8 @@ func _process(_delta: float) -> void:
 	if not is_instance_valid(Globals.player):
 		return
 
-	# Track player chunk position
-	var player_pos: Vector2 = Globals.player.global_position
+	# Track player chunk position using real world coords (unaffected by visual rotation)
+	var player_pos: Vector2 = Globals.player.position
 	var new_chunk := Vector2i(
 		floori(player_pos.x / float(CHUNK_SIZE)),
 		floori(player_pos.y / float(CHUNK_SIZE))
@@ -111,7 +123,7 @@ func _process(_delta: float) -> void:
 		var coord: Vector2i = _process_queue.pop_front()
 		_advance_chunk(coord)
 
-	_check_origin_shift(player_pos)
+	_check_origin_shift(Globals.player.position)
 
 
 ## Rebuild the ordered work queue whenever the player crosses a chunk boundary.
@@ -282,7 +294,7 @@ func _load_world_layout() -> void:
 		push_warning("ChunkStreamer: no world_layout.json found; all chunks will use fallback.")
 		return
 	var text: String = FileAccess.get_file_as_string(path)
-	var result := JSON.parse_string(text)
+	var result: Variant = JSON.parse_string(text)
 	if result is Dictionary:
 		_world_layout = result as Dictionary
 	else:
@@ -320,3 +332,22 @@ func spawn_sound(_origin: Vector2, _radius: float) -> void:
 @warning_ignore("unused_parameter")
 func spawn_drop_items(_items_data: Array, _pos: Vector2) -> void:
 	pass
+
+
+## Set world rotation — rotates WorldContainer around the player's position.
+func set_world_rotation(angle: float) -> void:
+	if not is_instance_valid(_world_container):
+		return
+	if not is_instance_valid(Globals.player):
+		return
+	# Rotate the container
+	_world_container.rotation = angle
+	# The player's position in world space is their actual coordinate.
+	# After container rotation, we need the container offset so the player
+	# stays visually centred. Since player.global_position is in world space
+	# and the container applies a rotation transform on top, we compensate:
+	var p: Vector2 = Globals.player.position  # player position in world coords
+	# Rotated player pos in container local space
+	var rotated: Vector2 = p.rotated(angle)
+	# Shift container so rotated pos aligns with original pos (keeps player centred)
+	_world_container.position = p - rotated

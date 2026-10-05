@@ -37,7 +37,7 @@ var world_seed: int = 0
 var _step_index: int = -1   # -1 = idle
 var _layout: Dictionary = {}
 var _occupied: Dictionary = {}   # Vector2i -> true
-var _poi_defs: Array[Dictionary] = []
+var _poi_defs: Array = []  # Array of Dictionary; untyped to accept JSON-parsed values
 var _biome_rules: Dictionary = {}
 var _write_thread: Thread = Thread.new()
 
@@ -72,12 +72,12 @@ func _process(_delta: float) -> void:
 # ── Step 0: Load data files ────────────────────────────────────────────
 func _step_load_data() -> void:
 	var poi_text: String = FileAccess.get_file_as_string("res://data/poi_registry.json")
-	var poi_result := JSON.parse_string(poi_text)
+	var poi_result: Variant = JSON.parse_string(poi_text)
 	if poi_result is Dictionary:
 		_poi_defs = (poi_result as Dictionary).get("pois", [])
 
 	var biome_text: String = FileAccess.get_file_as_string("res://data/biome_rules.json")
-	var biome_result := JSON.parse_string(biome_text)
+	var biome_result: Variant = JSON.parse_string(biome_text)
 	if biome_result is Dictionary:
 		_biome_rules = biome_result as Dictionary
 	_step_index = 1
@@ -307,7 +307,8 @@ func _get_biome(coord: Vector2i) -> String:
 		return "suburb"
 	elif effective_dist <= outskirts_range[1]:
 		return "outskirts"
-	elif effective_dist >= wilderness_min:
-		return "wilderness"
-	else:
+	elif effective_dist < wilderness_min:
+		# Gap between outskirts boundary and wilderness minimum — treat as outskirts.
 		return "outskirts"
+	else:
+		return "wilderness"
