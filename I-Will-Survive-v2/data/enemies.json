@@ -17,6 +17,7 @@
 				"loose_range": {"name": "Loose range", "script": "default", "val": 1000, "multiplier": 1},
 				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
 				"exp": {"name": "Experience", "script": "default", "val": 15, "multiplier": 1},
+				"idle_time": {"name": "Idle time", "script": "default", "val": {"min": 2.0, "max": 5.0}, "multiplier": 0},
 				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 1}, "multiplier": 0}
 			},
 			"drops":[
@@ -42,10 +43,11 @@
 				"angle_speed": {"name": "Angle speed", "script": "default", "val": 5, "multiplier": 1},
 				"attack_range": {"name": "Attack range", "script": "default", "val": 50, "multiplier": 1},
 				"attack_dmg": {"name": "Damage", "script": "damage", "val": 15, "multiplier": 1},
-				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 50, "multiplier": 1},
+				"aggression_range": {"name": "Aggression range", "script": "aggressionRange", "val": 300, "multiplier": 1},
 				"loose_range": {"name": "Loose range", "script": "default", "val": 2000, "multiplier": 1},
 				"vision": {"name": "Vision", "script": "vision", "val": {"width": 15, "height": 200}, "multiplier": 1},
 				"exp": {"name": "Experience", "script": "default", "val": 15, "multiplier": 1},
+				"idle_time": {"name": "Idle time", "script": "default", "val": {"min": 0.5, "max": 2.0}, "multiplier": 0},
 				"level": {"name": "level", "script": "level", "val": {"min": 1, "max": 100}, "multiplier": 0}
 			},
 			"drops":[

@@ -45,6 +45,11 @@ func _ready() -> void:
 
 	# Register in Globals
 	Globals.player = self
+	
+	# Add to player group for enemy AI detection
+	add_to_group("player")
+	
+	print("Player registered: ", self, " at position: ", global_position)
 
 	# Connect pickup area
 	_pickup_area.body_entered.connect(_on_pickup_area_body_entered)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://player_main"]
+[gd_scene load_steps=8 format=3 uid="uid://player_main"]
 
 [ext_resource type="Script" path="res://scene/entities/player/player.gd" id="1_player"]
 [ext_resource type="Script" path="res://stat/stats_component.gd" id="2_stats"]
 [ext_resource type="Script" path="res://stat/status_effect_container.gd" id="3_sec"]
 [ext_resource type="Script" path="res://scene/entities/player/upper_body_animation.gd" id="4_uba"]
 [ext_resource type="Script" path="res://scene/entities/player/placable/placable_preview.gd" id="5_pp"]
+[ext_resource type="Script" path="res://debug/player_circle_visual.gd" id="6_circle"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_player"]
 radius = 18.0
@@ -37,7 +38,11 @@ script = ExtResource("2_stats")
 [node name="StatusEffectContainer" type="Node" parent="StatsComponent"]
 script = ExtResource("3_sec")
 
+[node name="CircleVisual" type="Node2D" parent="."]
+script = ExtResource("6_circle")
+
 [node name="Body" type="Node2D" parent="."]
+visible = false
 
 [node name="Shadow" type="ColorRect" parent="Body"]
 offset_left = -14.0

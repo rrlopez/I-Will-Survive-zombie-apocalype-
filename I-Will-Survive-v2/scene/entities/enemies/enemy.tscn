@@ -1,0 +1,160 @@
+[gd_scene load_steps=12 format=3 uid="uid://enemy_base_scene"]
+
+[ext_resource type="Script" path="res://scene/entities/enemies/enemy.gd" id="1_enemy"]
+[ext_resource type="Script" path="res://scene/entities/enemies/body/lower_body.gd" id="2_lower"]
+[ext_resource type="Script" path="res://scene/entities/enemies/body/upper_body.gd" id="3_upper"]
+[ext_resource type="Script" path="res://ai/bt_runner.gd" id="4_btrunner"]
+[ext_resource type="Script" path="res://stat/stats_component.gd" id="5_stats"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aggro"]
+radius = 0.0
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_enemy")
+
+[node name="StatsComponent" type="Node" parent="."]
+script = ExtResource("5_stats")
+
+[node name="StatusEffectContainer" type="Node" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_1")
+
+[node name="VisualRoot" type="Node2D" parent="."]
+
+[node name="Shadow" type="Sprite2D" parent="VisualRoot"]
+modulate = Color(0, 0, 0, 0.3)
+position = Vector2(0, 8)
+scale = Vector2(1.5, 0.5)
+
+[node name="LowerBody" type="Node2D" parent="VisualRoot"]
+script = ExtResource("2_lower")
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualRoot/LowerBody"]
+offset = Vector2(0, -24)
+
+[node name="AnimationTree" type="AnimationTree" parent="VisualRoot/LowerBody"]
+
+[node name="UpperBody" type="Node2D" parent="VisualRoot"]
+script = ExtResource("3_upper")
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualRoot/UpperBody"]
+offset = Vector2(0, -32)
+
+[node name="AnimationTree" type="AnimationTree" parent="VisualRoot/UpperBody"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 32.0
+avoidance_enabled = true
+radius = 16.0
+max_speed = 100.0
+
+[node name="BTRunner" type="Node" parent="."]
+script = ExtResource("4_btrunner")
+
+[node name="VisionCone" type="Node2D" parent="."]
+
+[node name="Ray0" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(400, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray1" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(346.41, 200)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray2" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(200, 346.41)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray3" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(0, 400)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray4" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(-200, 346.41)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray5" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(-346.41, 200)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray6" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(-400, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray7" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(-346.41, -200)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray8" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(-200, -346.41)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray9" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(0, -400)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray10" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(200, -346.41)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="Ray11" type="RayCast2D" parent="VisionCone"]
+enabled = true
+target_position = Vector2(346.41, -200)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="AttackHitBox" type="Area2D" parent="."]
+monitoring = false
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitBox"]
+shape = SubResource("CircleShape2D_attack")
+
+[node name="AggroArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_aggro")
+
+[node name="GrowlTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="VisibilityNotifier" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-32, -64, 64, 80)

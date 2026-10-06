@@ -80,7 +80,14 @@ func has_modifier_from(owner_object: Object) -> bool:
 # ── Initialization ────────────────────────────────────────────────────────────
 
 func init_from_data(data: Dictionary) -> void:
-	base_value       = float(data.get("base",             data.get("val", 0.0)))
+	var raw_val = data.get("base", data.get("val", 0.0))
+	# Support {min, max} val for randomised stats (same pattern as LevelStat)
+	if raw_val is Dictionary:
+		var lo: float = float(raw_val.get("min", 0.0))
+		var hi: float = float(raw_val.get("max", lo))
+		base_value = randf_range(lo, hi)
+	else:
+		base_value = float(raw_val)
 	min_value        = float(data.get("min",              0.0))
 	max_value        = float(data.get("max",              -1.0))
 	level_multiplier = float(data.get("level_multiplier", data.get("multiplier", 0.0)))

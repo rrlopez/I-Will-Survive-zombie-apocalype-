@@ -34,3 +34,6 @@ extends Node
 @warning_ignore("unused_signal") signal chunk_activated(coord: Vector2i)
 @warning_ignore("unused_signal") signal chunk_deactivated(coord: Vector2i)
 @warning_ignore("unused_signal") signal poi_discovered(poi_id: String, coord: Vector2i)
+
+@warning_ignore("unused_signal") signal enemy_aggroed(position: Vector2, target: Node)
+@warning_ignore("unused_signal") signal enemy_died(enemy: Node, position: Vector2)
